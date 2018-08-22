@@ -46,12 +46,13 @@ public class NuriterDao {
 			pstmt.setString(1, n.getOwnerNum()); //회원번호
 			pstmt.setString(2, n.getCategoryNum()); //카테고리 넘버
 			pstmt.setString(3, n.getNuriTitle()); //제목
-			pstmt.setDate(4, n.getStartDate()); //시작
-			pstmt.setDate(5, n.getEndDate()); //종룍
-			pstmt.setString(6, n.getStartTime());
-			pstmt.setString(7, n.getPlace());
-			pstmt.setString(8, n.getPrice());
-			pstmt.setString(9, n.getContent());
+			pstmt.setString(4, n.getContent()); //내용
+			pstmt.setDate(5, n.getStartDate()); //시작
+			pstmt.setDate(6, n.getEndDate()); //종료
+			pstmt.setString(7, n.getStartTime()); //시작 종료 시간
+			pstmt.setString(8, n.getPlace()); //장소
+			pstmt.setString(9, n.getPrice()); //가격
+			pstmt.setString(10, n.getPersonnel()); //총원
 			
 			result = pstmt.executeUpdate();
 			

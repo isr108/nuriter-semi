@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_171">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
@@ -13,5 +13,9 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Park/git/nuriter-semi/nuriter-semi/web/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Park/git/nuriter-semi/nuriter-semi/web/WEB-INF/lib/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Park/git/nuriter-semi/nuriter-semi/web/WEB-INF/lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Park/git/nuriter-semi/nuriter-semi/web/WEB-INF/lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="web/WEB-INF/classes"/>
 </classpath>
