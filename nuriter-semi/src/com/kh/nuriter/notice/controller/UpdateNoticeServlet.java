@@ -31,7 +31,6 @@ public class UpdateNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("아아앙아제발");
 		String num = request.getParameter("num");
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
@@ -67,11 +66,9 @@ public class UpdateNoticeServlet extends HttpServlet {
 		
 		System.out.println(result);
 		
-		String page = "";
 		
 		if(result > 0){
-			page = "views/notice/notice.jsp";
-			request.setAttribute("list", new NoticeService().selectList(1, 5));
+			response.sendRedirect(request.getContextPath() + "/selectList.no");
 		}else{
 			request.setAttribute("msg", "공지사항 수정 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

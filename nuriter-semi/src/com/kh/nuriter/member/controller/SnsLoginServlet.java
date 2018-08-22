@@ -40,35 +40,55 @@ public class SnsLoginServlet extends HttpServlet {
 		Member m=new Member();
 		m.setUserEmail(userEmail);
 		m.setNickName(nickName);
-		m.setToken(refreshToken);
+		/*m.setToken(refreshToken);*/
 		
-		Member loginUser = new MemberService().snsloginMember(userEmail);
-		System.out.println(loginUser);
+		
+		
 		
 		//4. 받은 결과에 따라 뷰 페이지 내보내기
 		/*String page = "";*/
-		if(loginUser != null){
+		/*if(loginUser != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			
-			/*page ="index.jsp";
-			System.out.println(page);*/
+			page ="index.jsp";
+			System.out.println(page);
 			response.sendRedirect("index.jsp");
 			
 			
 		}else{
-			/*page = "views/common/errorPage.jsp";*/
-			/*page = "views/common/errorPage.jsp";*/
-			/*request.setAttribute("msg", "로그인 에러!!!");*/
+			page = "views/common/errorPage.jsp";
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "로그인 에러!!!");
 			request.setAttribute("msg", "로그인 실패!!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			
-		}
+		}*/
 		
-		/*int result=new MemberService().snsloginMember(m);
+		int result=new MemberService().snsMember(m);
 		
 		if(result == 99){
 			request.setAttribute("msg", "로그인 성공");
+			Member loginUser = new MemberService().snsloginMember(userEmail);
+			System.out.println(loginUser);
+			
+			if(loginUser != null){
+				HttpSession session = request.getSession();
+				session.setAttribute("loginUser", loginUser);
+				
+				/*page ="index.jsp";
+				System.out.println(page);*/
+				response.sendRedirect("index.jsp");
+				
+				
+			}else{
+				/*page = "views/common/errorPage.jsp";*/
+				/*page = "views/common/errorPage.jsp";*/
+				/*request.setAttribute("msg", "로그인 에러!!!");*/
+				request.setAttribute("msg", "로그인 실패!!");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				
+			}
 		}
 		else if(result<99&&result>0){
 			request.setAttribute("msg", "가입 성공");
@@ -78,7 +98,7 @@ public class SnsLoginServlet extends HttpServlet {
 		}
 		
 		RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);*/
+		view.forward(request, response);
 	}
 
 	/**

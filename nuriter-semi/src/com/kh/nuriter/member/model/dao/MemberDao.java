@@ -389,16 +389,16 @@ public class MemberDao {
 	public Member snsloginMember(Connection con, String userEmail) {
 		Member loginUser = null;	
 
-		int result=0;
+		/*int result=0;
 		int sw=0;
 		Member m1=null;
-		ArrayList<Member> list=new ArrayList<Member>();
+		ArrayList<Member> list=new ArrayList<Member>();*/
 		Statement st=null;
-		PreparedStatement pst=null;
+		/*PreparedStatement pst=null;*/
 		ResultSet rset=null;
 		String query="";
 		query=prop.getProperty("checkMember");
-		String checkQuery=prop.getProperty("checkMember");
+		/*String checkQuery=prop.getProperty("checkMember");*/
 		try {
 			st=con.createStatement();
 			rset=st.executeQuery(query);
@@ -470,10 +470,80 @@ public class MemberDao {
 		} finally{
 			close(st);
 			close(rset);
-			close(pst);
+			/*close(pst);*/
 		}
 		
 		return loginUser;
+	}
+
+	public int snsMember(Member m, Connection con) {
+		int result=0;
+		int sw=0;
+		Member m1=null;
+		ArrayList<Member> list=new ArrayList<Member>();
+		Statement st=null;
+		PreparedStatement pst=null;
+		ResultSet rset=null;
+		String query="";
+		query=prop.getProperty("checkMember");
+		/*String checkQuery=prop.getProperty("checkMember");*/
+		try {
+			st=con.createStatement();
+			rset=st.executeQuery(query);
+			
+			while(rset.next()){
+				m1=new Member();
+				m1.setUserEmail(rset.getString("user_email"));
+				
+				list.add(m1);
+			}
+			
+			for(int i=0;i<list.size();i++){
+				if(list.get(i).getUserEmail().equals(m.getUserEmail())){
+					sw=1;
+					break;
+				}
+			}
+			
+			
+			
+			if(sw==1){
+				query=prop.getProperty("loginMember");
+				
+				pst=con.prepareStatement(query);
+				pst.setString(1, m.getUserEmail());
+				
+				result=pst.executeUpdate();
+				
+				if(result>0){
+					result=99;
+				}
+				else{
+					result=0;
+				}
+				
+			}
+			else{
+				query=prop.getProperty("insertMember2");
+				
+				pst=con.prepareStatement(query);
+				pst.setString(1, m.getUserEmail());
+				pst.setString(2, m.getNickName());
+				/*pst.setString(3, m.getToken());*/
+				
+				result=pst.executeUpdate();
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(st);
+			close(rset);
+			close(pst);
+		}
+		
+		return result;
 	}
 
 	

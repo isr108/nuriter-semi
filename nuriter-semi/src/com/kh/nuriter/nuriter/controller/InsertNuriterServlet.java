@@ -46,6 +46,7 @@ public class InsertNuriterServlet extends HttpServlet {
 		String place = placeOne + " " + placeTwo + " " + placeTree;
 		String files = request.getParameter("summerText"); 
 		String price = request.getParameter("price");
+		String personnel = request.getParameter("personnel");
 		
 		/*System.out.println(writer);
 		System.out.println(category);
@@ -105,6 +106,7 @@ public class InsertNuriterServlet extends HttpServlet {
 		n.setPlace(place);
 		n.setContent(files);
 		n.setPrice(price);
+		n.setPersonnel(personnel);
 		
 		System.out.println(n.toString());
 		

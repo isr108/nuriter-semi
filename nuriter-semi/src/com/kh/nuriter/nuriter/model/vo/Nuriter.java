@@ -15,11 +15,14 @@ public class Nuriter implements java.io.Serializable{
     private String content;//내용
     private String price; //가격
     private Date applicationDate; //누리터 개설일
+    private String personnel; //총원
+    private String newnuriCount; //조회수
     
     public Nuriter() {}
-    
+
 	public Nuriter(String nuriNum, String ownerNum, String categoryNum, String nuriTitle, Date startDate, Date endDate,
-			String startTime, String endTime, String place, String content, String price, Date applicationDate) {
+			String startTime, String endTime, String place, String content, String price, Date applicationDate,
+			String personnel, String newnuriCount) {
 		super();
 		this.nuriNum = nuriNum;
 		this.ownerNum = ownerNum;
@@ -33,6 +36,8 @@ public class Nuriter implements java.io.Serializable{
 		this.content = content;
 		this.price = price;
 		this.applicationDate = applicationDate;
+		this.personnel = personnel;
+		this.newnuriCount = newnuriCount;
 	}
 
 	public String getNuriNum() {
@@ -131,12 +136,29 @@ public class Nuriter implements java.io.Serializable{
 		this.applicationDate = applicationDate;
 	}
 
+	public String getPersonnel() {
+		return personnel;
+	}
+
+	public void setPersonnel(String personnel) {
+		this.personnel = personnel;
+	}
+
+	public String getNewnuriCount() {
+		return newnuriCount;
+	}
+
+	public void setNewnuriCount(String newnuriCount) {
+		this.newnuriCount = newnuriCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Nuriter [nuriNum=" + nuriNum + ", ownerNum=" + ownerNum + ", categoryNum=" + categoryNum
 				+ ", nuriTitle=" + nuriTitle + ", startDate=" + startDate + ", endDate=" + endDate + ", startTime="
 				+ startTime + ", endTime=" + endTime + ", place=" + place + ", content=" + content + ", price=" + price
-				+ ", applicationDate=" + applicationDate + "]";
+				+ ", applicationDate=" + applicationDate + ", personnel=" + personnel + ", newnuriCount=" + newnuriCount
+				+ "]";
 	}
     
 }

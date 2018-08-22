@@ -82,4 +82,20 @@ public class NoticeService {
 		return result;
 	}
 
+	public int deleteNotice(String num) {
+Connection con = getConnection();
+		
+		int result = new NoticeDao().deleteNotice(con, num);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 }
