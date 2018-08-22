@@ -127,8 +127,7 @@
 				</div>
 			<script>
 				function complete(){
-					<%-- $("#updateForm").attr("action", "<%=request.getContextPath()%>/update.no?num=<%= n.getbNumber() %>"); --%>
-					$("#updateForm").click("<%=request.getContextPath()%>/updateNotice.no?num=<%= n.getbNumber()%>");
+					$("#updateForm").attr("action", "<%=request.getContextPath()%>/updateNotice.no?num=<%= n.getbNumber() %>");
 				}
 				
 				function deleteNotice(){

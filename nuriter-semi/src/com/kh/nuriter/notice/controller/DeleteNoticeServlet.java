@@ -1,4 +1,4 @@
-package com.kh.nuriter.payment.controller;
+package com.kh.nuriter.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.nuriter.payment.model.service.PaymentService;
-import com.kh.nuriter.payment.model.vo.Payment;
-import com.kh.nuriter.payment.model.vo.PaymentDetail;
+import com.kh.nuriter.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class PaymentServlet
+ * Servlet implementation class DeleteNoticeServlet
  */
-@WebServlet("/payment.pms")
-public class PaymentServlet extends HttpServlet {
+@WebServlet("/deleteNotice.no")
+public class DeleteNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentServlet() {
+    public DeleteNoticeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,32 +28,17 @@ public class PaymentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid =request.getParameter("imp");
-		String userNum = request.getParameter("userNum");
-		String nuriNum = request.getParameter("nuriNum");
+		System.out.println("delete서블릿 이동완료");
+		String num = request.getParameter("num");
 		
-		Payment p = new Payment();
-		p.setpId(pid);
-		p.setUserNum(userNum);
-		p.setNuriNum(nuriNum);
+		int result = new NoticeService().deleteNotice(num);
 		
-		int result =new PaymentService().InsertPayment(p);
-		
-		
-		
-    	String page="";
-		if(result >0){
-			response.sendRedirect(request.getContextPath()+"/paymentDetail.pd");
-			
+		if(result > 0){
+			response.sendRedirect(request.getContextPath() + "/selectList.no");
 		}else{
-			/*request.getAttribute();*/
+			request.setAttribute("msg", "공지사항 수정 실패!");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
-		System.out.println("결제번호 : "+pid);
-		System.out.println("유저넘버 : "+userNum);
-		System.out.println("누리넘버  : "+nuriNum);
-	
 	}
 
 	/**
