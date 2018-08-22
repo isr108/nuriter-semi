@@ -1,6 +1,6 @@
 package com.kh.nuriter.payment.model.vo;
 
-public class Payment {
+public class Payment implements java.io.Serializable{
 	private String pId; //결제아이디
 	private String userNum;//회원번호
 	private String nuriNum;//누리터 번호
