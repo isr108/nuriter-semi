@@ -20,6 +20,8 @@ public class LoginWrapper extends HttpServletRequestWrapper {
 		
 		if(key != null && key.equals("password")){
 			value = getSha512(super.getParameter("password"));
+		}else if(key != null && key.equals("newPassword")){
+			value = getSha512(super.getParameter("newPassword"));
 		}else{
 			value=super.getParameter(key);
 		}

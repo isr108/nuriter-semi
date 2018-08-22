@@ -1,6 +1,6 @@
 package com.kh.nuriter.nuriter.model.dao;
 
-import static com.kh.nuriter.common.JDBCTemplate.close;
+import static com.kh.nuriter.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -125,49 +125,85 @@ public class NuriterDao {
 		return result;
 	}
 
-	public ArrayList<Nuriter> selectNuriterList(Connection con) {
-		ArrayList<Nuriter> list = null;
-		Statement stmt = null;
-		ResultSet rset = null;
-		Nuriter nu = null;
-		
-		String query = prop.getProperty("selectNuriterList");
-		
-		try {
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
-			list = new ArrayList<Nuriter>();
-			
-			while(rset.next()){
-				nu = new Nuriter();
-				
-				nu.setNuriNum(rset.getString("nuri_number"));
-				nu.setOwnerNum(rset.getString("owner_number"));
-				nu.setCategoryNum(rset.getString("category_id"));
-				nu.setNuriTitle(rset.getString("nuri_name"));
-				nu.setStartDate(rset.getDate("start_date"));
-				nu.setEndDate(rset.getDate("end_date"));
-				nu.setStartTime(rset.getString("start_time"));
-				nu.setPlace(rset.getString("place"));
-				nu.setPrice(rset.getString("price"));
-				nu.setContent(rset.getString("ncontent"));
-				nu.setApplicationDate(rset.getDate("application_date"));
-				nu.setPersonnel(rset.getString("personnel"));
-				nu.setNewnuriCount(rset.getString("newnuri_conunt"));
-				
-				list.add(nu);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(stmt);
-		}
-		
-		return list;
+
+	public int getListCount(Connection con, Nuriboss n) {
+		PreparedStatement pstmt = null;
+	    int listCount = 0;
+	    ResultSet rset = null;
+	      
+	    String query = prop.getProperty("listCount");
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         
+	         pstmt.setString(1, n.getUserNum());
+	         rset = pstmt.executeQuery();
+	         
+	         if(rset.next()){
+	            listCount = rset.getInt(1);
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         close(rset);
+	         close(pstmt);
+	      }
+	      
+	      return listCount;
+	}
+
+	public ArrayList<Nuriter> selectList(Connection con, int currentPage, int limit, String userNum) {
+		 PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      ArrayList<Nuriter> list = null;
+	      
+	      String query = prop.getProperty("selectList");
+	      
+	      try {
+	         //stmt = con.createStatement();
+	         //rset = stmt.executeQuery(query);
+	         pstmt = con.prepareStatement(query);
+	         
+	         //조회 시작 할 행 번호와 마지막 행 번호 계산
+	          int startRow = (currentPage - 1) * limit + 1;
+	          int endRow = startRow + limit - 1;
+	          
+	          pstmt.setString(1, userNum);
+	          pstmt.setInt(2, startRow);
+	          pstmt.setInt(3, endRow);
+	          rset = pstmt.executeQuery();
+	         
+	         if(rset != null){
+	            list = new ArrayList<Nuriter>();
+	            while(rset.next()){
+	            	Nuriter n = new Nuriter();
+	               n.setNuriTitle(rset.getString("nuriTitle"));
+	               n.setStartDate(rset.getDate("startDate"));
+	               n.setEndDate(rset.getDate("endDate"));
+	               n.setPlace(rset.getString("plcae"));
+	               n.setPrice(rset.getString("price"));
+	               n.setApplicationDate(rset.getDate("applicationDate"));
+	               
+	               list.add(n);
+	               
+	            }
+	         }
+	         
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally{
+	         //close(stmt);
+	    	  close(rset);
+	         close(pstmt);
+	      }
+	      
+	      
+	      
+	      return list;
+
 	}
 
 }
