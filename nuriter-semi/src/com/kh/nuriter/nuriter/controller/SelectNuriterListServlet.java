@@ -1,24 +1,29 @@
-package com.kh.nuriter.member.controller;
+package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.nuriter.nuriter.model.service.NuriterService;
+import com.kh.nuriter.nuriter.model.vo.Nuriter;
+
 /**
- * Servlet implementation class PasswordCheckServlet
+ * Servlet implementation class SelectNuriterListServlet
  */
-@WebServlet("/pwdCheck.me")
-public class PasswordCheckServlet extends HttpServlet {
+@WebServlet("/selectNuriterList.no")
+public class SelectNuriterListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PasswordCheckServlet() {
+    public SelectNuriterListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +32,23 @@ public class PasswordCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String password = request.getParameter("password");
-		String oldPassword2 = request.getParameter("oldPassword2");
+		System.out.println("누리터 리스트 서블릿 이동 완료!");
+		ArrayList<Nuriter> list = new NuriterService().selectNuriterList();
 		
-		response.getWriter().write(password);
+		System.out.println(list);
+		
+		String page = "";
+		
+		if(list != null){
+			page = "views/member/category.jsp";
+			request.setAttribute("list", list);
+		}else{
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "누리터 목록 조회 실패");
+		}
+		
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 	}
 
 	/**

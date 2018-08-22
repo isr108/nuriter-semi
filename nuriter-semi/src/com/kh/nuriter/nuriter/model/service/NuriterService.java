@@ -2,6 +2,8 @@ package com.kh.nuriter.nuriter.model.service;
 
 import static com.kh.nuriter.common.JDBCTemplate.rollback;
 import static com.kh.nuriter.common.JDBCTemplate.close;
+import static com.kh.nuriter.common.JDBCTemplate.getConnection;
+import static com.kh.nuriter.common.JDBCTemplate.close;
 import static com.kh.nuriter.common.JDBCTemplate.commit;
 import static com.kh.nuriter.common.JDBCTemplate.getConnection;
 
@@ -93,4 +95,32 @@ public class NuriterService {
 		
 		return result;
 	}*/
+
+
+	public int getListCount(Nuriboss n) {
+		Connection con = getConnection();
+	      
+	    int listCount = new NuriterDao().getListCount(con, n);
+	      
+	      close(con);
+	      
+	      return listCount;
+	}
+
+	public ArrayList<Nuriter> selectList(int currentPage, int limit, String userNum) {
+		Connection con = getConnection();
+	      
+	    ArrayList<Nuriter> list = new NuriterDao().selectList(con, currentPage, limit, userNum);
+	      
+	    close(con);
+	      
+	      
+	      
+	    return list;
+	}
+
+	
+
+
+
 }

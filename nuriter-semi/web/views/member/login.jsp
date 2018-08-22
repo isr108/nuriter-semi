@@ -194,7 +194,7 @@
 				        		  var email = str.substring(str.indexOf('kaccount_email'),str.length);
 				        		  var start_email = email.indexOf(':\"');
 				        		  var end_email = email.indexOf('\",');
-				        		  var useremail = email.substring(start_email+1,end_email);
+				        		  var useremail = email.substring(start_email+2,end_email);
 				        		  
 				                  var nickEnd = str.substring(str.indexOf('nickname'),str.length);
 				                  var start_nick = nickEnd.indexOf(':');
@@ -211,7 +211,7 @@
 				                  document.frm.idNum.value=idNum;
 				                  document.frm.nickname.value=nickname;
 				                  document.frm.refreshToken.value=refreshToken;
-				                  /* document.frm.submit(); */
+				                  document.frm.submit();
 				    		  	},
 				    	 	  	  fail: function(err) {
 							      alert(JSON.stringify(err));
@@ -227,7 +227,7 @@
 				   
 				</script>
 				
-	<%-- <form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">  --%>
+	<form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">
 		<form id="login" method="post" name="frm">
 		<input type="hidden" name="useremail">
 		<input type="hidden" name="idNum">

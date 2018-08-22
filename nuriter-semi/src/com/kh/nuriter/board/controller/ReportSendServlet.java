@@ -1,24 +1,27 @@
-package com.kh.nuriter.member.controller;
+package com.kh.nuriter.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.nuriter.member.model.vo.Member;
+
+
+
 /**
- * Servlet implementation class PasswordCheckServlet
+ * Servlet implementation class ReportSendServlet
  */
-@WebServlet("/pwdCheck.me")
-public class PasswordCheckServlet extends HttpServlet {
+@WebServlet("/reportSend.rs")
+public class ReportSendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PasswordCheckServlet() {
+    public ReportSendServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +30,19 @@ public class PasswordCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String password = request.getParameter("password");
-		String oldPassword2 = request.getParameter("oldPassword2");
-		
-		response.getWriter().write(password);
+			String rTitle = request.getParameter("rTitle");
+			String rContent = request.getParameter("rContent");
+			
+			String rUser = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))));
+			
+			String nuriNum =request.getParameter("nuriNum");
+			
+			System.out.println(nuriNum);
+			System.out.println(rTitle);
+			System.out.println(rContent);
+			System.out.println(rUser);
+	
+	
 	}
 
 	/**
