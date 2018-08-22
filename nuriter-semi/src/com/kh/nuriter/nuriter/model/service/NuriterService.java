@@ -61,6 +61,7 @@ public class NuriterService {
 		return result;
 	}
 
+
 	public int getListCount(Nuriboss n) {
 		Connection con = getConnection();
 	      
@@ -84,5 +85,6 @@ public class NuriterService {
 	}
 
 	
+
 
 }

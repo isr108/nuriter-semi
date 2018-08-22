@@ -125,6 +125,7 @@ public class NuriterDao {
 		return result;
 	}
 
+
 	public int getListCount(Connection con, Nuriboss n) {
 		PreparedStatement pstmt = null;
 	    int listCount = 0;
@@ -202,6 +203,7 @@ public class NuriterDao {
 	      
 	      
 	      return list;
+
 	}
 
 }
