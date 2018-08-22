@@ -414,7 +414,9 @@
    <table>
        <tr>
          <td>
-         <button class="buttonLanguage" onclick="category1();">
+
+         <button class="buttonLanguage" onclick="goNuriterList();">
+
          	<img src="images/board/language.png" width="80" height="80">
          </button>
          </td>
@@ -735,9 +737,11 @@
 			location.href="<%=request.getContextPath()%>/selectList.no";			
 		}
 		
-		function category1(){
+
+		function goNuriterList(){
 			var name = 1;
-			location.href="<%=request.getContextPath()%>/views/member/category.jsp?name="+name;
+			/* var enc = URLEncoder.encode(name,"utf-8"); */
+			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;		
 		}
 	
 	</script> 
