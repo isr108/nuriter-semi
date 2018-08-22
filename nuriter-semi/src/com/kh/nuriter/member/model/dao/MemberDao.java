@@ -498,6 +498,8 @@ public class MemberDao {
 				list.add(m1);
 			}
 			
+			System.out.println("dao list:" + list);
+			
 			for(int i=0;i<list.size();i++){
 				if(list.get(i).getUserEmail().equals(m.getUserEmail())){
 					sw=1;
@@ -506,21 +508,21 @@ public class MemberDao {
 			}
 			
 			
-			
+			System.out.println("sw: " + sw);
 			if(sw==1){
-				query=prop.getProperty("loginMember");
+				/*query=prop.getProperty("loginMember");
 				
 				pst=con.prepareStatement(query);
 				pst.setString(1, m.getUserEmail());
 				
 				result=pst.executeUpdate();
-				
-				if(result>0){
+				*/
+				/*if(result>0){*/
 					result=99;
-				}
-				else{
+				/*}*/
+				/*else{
 					result=0;
-				}
+				}*/
 				
 			}
 			else{
@@ -532,6 +534,9 @@ public class MemberDao {
 				/*pst.setString(3, m.getToken());*/
 				
 				result=pst.executeUpdate();
+				
+				result=99;
+				
 			}
 			
 			
@@ -543,6 +548,7 @@ public class MemberDao {
 			close(pst);
 		}
 		
+		System.out.println("memberdaoresult: " + result);
 		return result;
 	}
 

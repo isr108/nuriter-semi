@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	/* request.setCharacterEncoding("UTF-8"); */
+    	String name = request.getParameter("name");
+    	String val1;
+    	
+    	if(name.equals("1")){
+    		val1="언어";
+    		System.out.println("name :" + val1);
+    	}
+    	
+    	
+    	
+    	/* String name="언어"; */
+   	
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -380,15 +395,15 @@
   <div id="showMain">
   
    <div id="showLeft" >
+   
      <ul class="navi2" style="list-style-type:none">
-        <li id="web-font"><a href="#">운동</a></li>
-        <hr class="colorgraph">
         <li id="web-font"><a href="#">카테고리</a></li>
         <hr class="colorgraph">
-        <li id="web-font"><a href="#">축구</a></li>
-        <li id="web-font"><a href="#">농구</a></li>
-        <li id="web-font"><a href="#">야구</a></li>
+        <li id="web-font"><a href="#"><%=name%></a></li>
+        <hr class="colorgraph">
+        
      </ul>
+      
    </div>
   
      <div id="showRight">
@@ -504,7 +519,17 @@
    
      
   </div>
-  
+  <script>
+  (function(){
+  	if(name.equals("언어")){
+  		$(".navi2").append("<li id="web-font"><a href="#">일본어</a></li>");
+  		$(".navi2").append("<li id="web-font"><a href="#">중국어</a></li>"); 
+  		$(".navi2").append("<li id="web-font"><a href="#">아랍어</a></li>"); 
+  		
+  		} 
+  })();
+
+  </script>
  
    
 </body>

@@ -41,10 +41,7 @@ public class SnsLoginServlet extends HttpServlet {
 		m.setUserEmail(userEmail);
 		m.setNickName(nickName);
 		/*m.setToken(refreshToken);*/
-		
-		
-		
-		
+
 		//4. 받은 결과에 따라 뷰 페이지 내보내기
 		/*String page = "";*/
 		/*if(loginUser != null){
@@ -66,11 +63,12 @@ public class SnsLoginServlet extends HttpServlet {
 		}*/
 		
 		int result=new MemberService().snsMember(m);
+		System.out.println("서블릿 result : " + result);
 		
 		if(result == 99){
 			request.setAttribute("msg", "로그인 성공");
 			Member loginUser = new MemberService().snsloginMember(userEmail);
-			System.out.println(loginUser);
+			System.out.println("서블릿  유저: " +loginUser);
 			
 			if(loginUser != null){
 				HttpSession session = request.getSession();
@@ -97,8 +95,8 @@ public class SnsLoginServlet extends HttpServlet {
 			request.setAttribute("msg", "로그인 및 가입 실패");
 		}
 		
-		RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);
+		/*RequestDispatcher view=request.getRequestDispatcher("index.jsp");
+		view.forward(request, response);*/
 	}
 
 	/**

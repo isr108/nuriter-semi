@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.member.model.vo.*" import="java.io.util.*"%>
+ 
     <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -413,7 +414,7 @@
    <table>
        <tr>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="category1();">
          	<img src="images/board/language.png" width="80" height="80">
          </button>
          </td>
@@ -732,6 +733,11 @@
 		
 		function goNotice(){
 			location.href="<%=request.getContextPath()%>/selectList.no";			
+		}
+		
+		function category1(){
+			var name = 1;
+			location.href="<%=request.getContextPath()%>/views/member/category.jsp?name="+name;
 		}
 	
 	</script> 
