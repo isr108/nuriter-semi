@@ -109,7 +109,7 @@ overflow:hidden;
 				</tr>
 			</table>
 			<div class="summerText">
-				<%@include file="../common/summerText.jsp" %>
+				<%@include file="../common/summernote_write.jsp" %>
 			</div>
 		</div>
 	</div>
