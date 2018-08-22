@@ -36,8 +36,10 @@ public class deleteMemberServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		
 		Member m = (Member)session.getAttribute("loginUser");
 		
+	    System.out.println(m);
 		int result = new MemberService().deleteMember(m);
 		
 		if(result > 0) {
