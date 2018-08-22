@@ -128,6 +128,7 @@ public class MemberService {
 		
 		close(con);
 		
+		System.out.println("sns 서비스 result :" + result);
 		return result;
 	}
 
