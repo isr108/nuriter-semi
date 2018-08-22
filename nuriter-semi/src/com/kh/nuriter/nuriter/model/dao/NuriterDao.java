@@ -6,13 +6,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.nuriter.nuriter.model.vo.Attachment;
 import com.kh.nuriter.nuriter.model.vo.Category;
 import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
@@ -111,6 +112,57 @@ public class NuriterDao {
 			pstmt.setString(1, n.getUserNum()); //회원번호
 			pstmt.setString(2, n.getCategoryNum()); //카테고리 넘버
 			pstmt.setString(3, n.getBossContent()); //제목
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String selectCurrval(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		String nuriNum = " ";
+		
+		String query = prop.getProperty("selectCurrval");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				nuriNum = rset.getString(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(stmt);
+			close(rset);
+		}
+		
+		return nuriNum;
+	}
+
+	public int insertNuriterPoto(Connection con, Nuriter n, ArrayList<Attachment> fileList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertNuriPoto");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, n.getNuriNum()); //누리터번호
+			pstmt.setString(2, fileList.get(0).getOrigin()); //카테고리 넘버
+			pstmt.setString(3, fileList.get(0).getChange()); //제목
+			pstmt.setString(4, fileList.get(0).getPath()); //파일경로
 			
 			result = pstmt.executeUpdate();
 			

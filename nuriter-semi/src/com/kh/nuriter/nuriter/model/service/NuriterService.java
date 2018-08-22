@@ -1,26 +1,44 @@
 package com.kh.nuriter.nuriter.model.service;
 
+import static com.kh.nuriter.common.JDBCTemplate.rollback;
 import static com.kh.nuriter.common.JDBCTemplate.close;
 import static com.kh.nuriter.common.JDBCTemplate.commit;
 import static com.kh.nuriter.common.JDBCTemplate.getConnection;
-import static com.kh.nuriter.common.JDBCTemplate.rollback;
 
+import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.kh.nuriter.nuriter.model.dao.NuriterDao;
+import com.kh.nuriter.nuriter.model.vo.Attachment;
 import com.kh.nuriter.nuriter.model.vo.Category;
 import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
 
 public class NuriterService {
 
-	public int insertNuriter(Nuriter n) {
+	public int insertNuriter(Nuriter n, ArrayList<Attachment> fileList) {
 		Connection con = getConnection();
 		
 		int result = new NuriterDao().insertNuriter(con, n);
 		
 		if(result > 0) {
+			
+			String nuriNum = new NuriterDao().selectCurrval(con); 
+			
+			n.setNuriNum('N' + nuriNum);
+			
+			System.out.println(n.getNuriNum());
+
+			int result2 = new NuriterDao().insertNuriterPoto(con, n, fileList);
+			
+			if(result2 > 0) {
+				System.out.println("성공");
+			}else {
+				//에러 페이지로 forward
+				System.out.println("실패");
+			}
+			
 			commit(con);
 		}
 		else {
@@ -59,4 +77,20 @@ public class NuriterService {
 		return result;
 	}
 
+	/*public int insertNuriterPoto(Nuriter n, ArrayList<Attachment> fileList) {
+		Connection con = getConnection();
+		
+		int result = new NuriterDao().insertNuriPoto(con, n, fileList);
+		
+		if(result > 0) {
+			commit(con);
+		}
+		else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}*/
 }

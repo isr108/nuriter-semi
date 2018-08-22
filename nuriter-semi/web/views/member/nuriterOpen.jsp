@@ -77,6 +77,9 @@
    		font-size: 15px;
    		color: rgb(241, 196, 15);
    	}
+   	#fileArea{
+   		display:none;
+   	}
    	.web-font{
       	font-family: 'Jua', sans-serif;
    	}
@@ -85,6 +88,13 @@
 	    padding: 12px 20px;
 	    margin: 4px 0;
 	    box-sizing: border-box;
+	    border-style: double;
+	    border-color: rgb(241, 196, 15);
+   	}
+   	#titleImgArea{
+   		width:500px;
+   		height:200px;
+   		box-sizing: border-box;
 	    border-style: double;
 	    border-color: rgb(241, 196, 15);
    	}
@@ -138,7 +148,7 @@
 	    	<div id="twoRight" align="center">
 	    		<div id="twoRight-child">
 		    		<div id="twoRight-child2" align="left">
-		    		<form action="<%=request.getContextPath() %>/insert.nu" method="post" id="insertForm">
+		    		<form action="<%=request.getContextPath() %>/insert.nu" method="post" id="insertForm" encType="multipart/form-data">
 			    		<h3 id="web-font">카테고리</h3><br>
 						  <select id="web-font" class="selectBox">
 						  		<option id="web-font">---</option>
@@ -186,7 +196,22 @@
 						  <input type="text" id="sample6_address2" placeholder="상세주소" name="placeTree">
 					  </div>
 					  
-					  <br><br>
+					  <br>
+					  
+					  <h3 id="web-font">대표 이미지</h3>
+					  <div id="titleImgArea">
+						 <img id="titleImg" width="495px" height="195px">
+					  </div>
+							
+					  <!-- <div id="summerText">
+					  	<button type="button" id="titleImgArea"><font id="web-font">사진등록</font></button>
+					  </div> -->
+					  
+					  <br>
+					  
+					  <div id="fileArea">
+					  	<input type="file" id="thumbnailImg1" name="thumbnailImg1" multiple onchange="loadImg(this, 1)">
+					  </div>
 					  
 					  <h3 id="web-font">누리터 내용</h3>
 					  <div id="summerText">
@@ -230,6 +255,32 @@
 	} %>
 	
     <script>
+
+    //사진 업로드
+    $(function(){
+		$("#fileArea").hide();
+		
+		$("#titleImgArea").click(function(){
+			$("#thumbnailImg1").click();
+		});
+	});
+    
+    //사진 출력
+    function loadImg(value, num){
+		console.log("test");
+		if(value.files && value.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e){
+				switch(num){
+					case 1 : 
+						$("#titleImg").attr("src", e.target.result);
+						break;
+				}
+			}
+			reader.readAsDataURL(value.files[0]);
+		}
+	}
+    
     //데이터피커
     $(function(){
         $( "#datepicker" ).datepicker();
