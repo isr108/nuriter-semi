@@ -204,6 +204,13 @@
 						  <input type="text" id="web-font" name="price">
 					  </div>
 					  
+					  <br>
+					  
+					  <h3 id="web-font">정원</h3>
+					  <div id="summerText">
+						  <input type="text" id="web-font" name="personnel">
+					  </div>
+					  
 					  <br><br><br><br>
 					  
 					  <div id="submitDiv" align="center">
