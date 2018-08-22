@@ -54,7 +54,7 @@
 		</tr>
 	</table>
 		<div id="child">
-			<%@include file="../common/summerText.jsp" %>
+			<%@include file="../common/summernote_write.jsp" %>
 		</div>
 	</div>
 </body>

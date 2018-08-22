@@ -45,15 +45,10 @@ public class PaymentServlet extends HttpServlet {
 		
     	String page="";
 		if(result >0){
-			PaymentDetail pd = new PaymentDetail();
-			
-			
-			
-			
-			//int resuly2 = new PaymentService().InsertDetailPayment();
+			response.sendRedirect(request.getContextPath()+"/paymentDetail.pd");
 			
 		}else{
-			
+			/*request.getAttribute();*/
 		}
 		
 		

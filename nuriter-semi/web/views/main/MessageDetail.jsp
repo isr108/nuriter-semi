@@ -35,7 +35,7 @@
   
     <%@ include file="../common/categorybar.jsp" %>
     
-    <%@ include file="myPage_left.jsp" %>
+    <%@ include file="../common/myPage_left.jsp" %>
 
 	<div class="outer">
 		<br>
