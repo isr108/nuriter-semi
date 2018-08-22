@@ -2,7 +2,7 @@ package com.kh.nuriter.nuriter.model.vo;
 
 import java.sql.Date;
 
-public class Nuriboss {
+public class Nuriboss implements java.io.Serializable{
 	private String applyNum;
 	private String userNum;
 	private String categoryNum;
