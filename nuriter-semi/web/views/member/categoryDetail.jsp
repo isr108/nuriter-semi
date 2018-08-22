@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
+<%
+    int price = 100;
+
+    
+    
+    %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -254,7 +260,7 @@ button {
             </div>
          </div>
          <div>
-         	<button onclick="cash();">누리터 신청하기</button>
+         	<button onclick="choice();">누리터 신청하기</button>
          </div>
     </div>
     
@@ -303,6 +309,20 @@ button {
 	});
 </Script>  
 <script>
+function choice(){
+	 if(<%=price%> != 0){
+		 cash();
+		 
+	 }else{
+		<%-- console.log(<%=loginUser.getUserEmail()%>); --%>
+		var pId = "imp_"+new Date().getTime() ;
+		alert(pId);
+		location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
+		 
+	 }
+}
+
+ 
  function cash(){
 	alert('전송');
 	
@@ -314,7 +334,7 @@ button {
 		       pay_method : 'card',	// 결제 수단
 		       merchant_uid : 'merchant_' + new Date().getTime(),
 		      name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
-		       amount : '100',	// 결제 금액
+		       amount : '<%=price%>',	// 결제 금액
 		       buyer_email : 'user01@naver.com',	// 구매자 email
 		      buyer_name :  '홍길동',	// 구매자 이름
 		       buyer_tel :  '01066432470',	// 구매자 전화번호
@@ -328,7 +348,7 @@ button {
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 			    location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
-				
+			
 				/*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
 			} else { // 실패시
 				var msg = '결제에 실패하였습니다.';
