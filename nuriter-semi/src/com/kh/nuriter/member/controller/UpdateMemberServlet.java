@@ -39,9 +39,8 @@ public class UpdateMemberServlet extends HttpServlet {
 	      //request 객체에서 파라메터 꺼내기
 	      int userNumber = Integer.parseInt(request.getParameter("userNumber"));
 	      String userEmail = request.getParameter("userEmail");
-	      String oldPassword = request.getParameter("oldPassword");
-	      String oldPassword2 = request.getParameter("oldPassword2");
-	      String password = request.getParameter("password");
+	      String newPassword = request.getParameter("newPassword");
+	      System.out.println(newPassword);
 	      String userName = request.getParameter("userName");
 	      String nickName = request.getParameter("nickName");
 	      String phone = request.getParameter("phone");
@@ -60,7 +59,7 @@ public class UpdateMemberServlet extends HttpServlet {
 	      Member m = new Member();
 	      m.setUserNumber(userNumber);
 	      m.setUserEmail(userEmail);
-	      m.setPassword(password);
+	      m.setPassword(newPassword);
 	      m.setUserName(userName);
 	      m.setNickName(nickName);
 	      m.setPhone(phone);

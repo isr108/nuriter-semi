@@ -1,6 +1,7 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +27,10 @@ public class PasswordCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String oldPass = request.getParameter("oldPassword");
-		String oldPass2 = request.getParameter("oldPassword2");
+		String password = request.getParameter("password");
+		String oldPassword2 = request.getParameter("oldPassword2");
+		
+		response.getWriter().write(password);
 	}
 
 	/**

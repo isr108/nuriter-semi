@@ -42,7 +42,7 @@
 				1건<br><br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/views/common/doneNuri.jsp">종료된 누리터<br>
 				3건<br><br></a></td>
-				<td><br><a href="<%=request.getContextPath()%>/views/common/nuriOpen.jsp">개설중인 누리터<br>
+				<td><br><a href="<%=request.getContextPath()%>/selectNuriOpenList.nu">개설중인 누리터<br>
 				0건<br><br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/views/common/nuriEnded.jsp">개설했던 누리터<br>
 				0건<br><br></a></td>
