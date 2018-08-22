@@ -123,6 +123,7 @@
 		<div id="myInfoPage">
 		<h1 align="center"><%=loginUser.getUserName() %>님의 회원 정보 수정</h1>
 		<br><br>
+		
 		<form id="updatePage" action="<%=request.getContextPath()%>/updateMember.me" method="post">
 			<table class="changeInfo" align="center">
 			<colgroup>
@@ -202,13 +203,14 @@
 		</table>					
 		<br><br>
 		<div align="center">
+		</form>
+		<div align="center">
 		<input type="button" value="취소하기" onclick="location.href='<%=request.getContextPath()%>/index.jsp'"> 
 		<!-- <button onclick="updateMember();">변경하기</button> -->
 		<input type="button" value="변경하기" onclick="updateMember();">
 		<!-- <input type="submit" value="변경하기"> -->
 		<button onclick="deleteMember();">탈퇴하기</button>
 		</div>
-		</form>
 		<!-- ▼ 알아두기 //-->
 	<br>
 	<hr width="50%">
@@ -223,7 +225,6 @@
 		<li>타 사이트와 동일한 비밀번호 사용은 가급적 피해주시고 가능한 주기적으로 비밀번호를 변경하시는 것이 좋습니다.</li>
 	</ul>
 	</div>
-		
 	</div>
 	<script>
 		$(function(){
@@ -239,23 +240,29 @@
 		});
 		
 		function updateMember(){
-			var oldPass = $("#oldPass").val();
-			var oldPass2 = $("#oldPass2").val();
+			var oldPassword = $("#oldPass").val();
+			var oldPassword2 = $("#oldPass2").val();
 			var newPass1 = $("#newPass1").val();
 			var newPass2 = $("#newPass2").val();
+			console.log(oldPassword);
+			console.log(oldPassword2);
+			console.log(newPass1);
+			//console.log(newPass2);
 			
-			console.log(oldPass);
-			console.log(oldPass2);
+			window.confirm("정보변경이 완료되었습니다.");
+			$("#updatePage").submit();
+			<%-- location.href="<%=request.getContextPath()%>/pwdCheck.me"; --%>
+			
 			/* $.ajax({
 				url : "pwdCheck.me",
 				data : {
-					oldPass : oldPass,
-					oldPass2 : oldPass2
+					oldPassword : oldPassword,
+					oldPassword2 : oldPassword2
 				},
-				type : "get",
+				type : "post",
 				success : function(data) {
-					console.log(oldPass);
-					console.log(oldPass2);
+					console.log(oldPassword);
+					console.log(oldPassword2);
 				},
 				error : function(data, status, msg) {
 					console.log("서버전송 실패!");
@@ -266,9 +273,7 @@
 			}); */
 			
 			
-		};
-
-			
+		};	
 			
 			<%-- if(newPass1 != newPass2){
 				alert("새 비밀번호가 일치하지 않습니다.");
@@ -293,7 +298,7 @@
 			}else{
 				alert('탈퇴가 취소되었습니다.');
 			}
-		}
+		};
 		
 			
 			
