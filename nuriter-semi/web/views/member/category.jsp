@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+<% ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); %>
+<%
+	/* request.setCharacterEncoding("UTF-8"); */
+	int name = Integer.parseInt(request.getParameter("name")) ;
+
+	System.out.print("name :" +name);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +17,12 @@
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <title>Insert title here</title>
+
+
+
 <style>
 
 	html{
@@ -325,7 +337,14 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     } */
- 
+ /* #tableDiv{
+     border:1px solid blue;
+     width:100%;
+     height:480px;
+   } */
+   
+  
+  
 </style>
 </head>
 <body>
@@ -380,15 +399,16 @@
   <div id="showMain">
   
    <div id="showLeft" >
-     <ul class="navi2" style="list-style-type:none">
-        <li id="web-font"><a href="#">운동</a></li>
-        <hr class="colorgraph">
+      <ul class="navi2" style="list-style-type:none">
         <li id="web-font"><a href="#">카테고리</a></li>
         <hr class="colorgraph">
-        <li id="web-font"><a href="#">축구</a></li>
+        <%-- <li id="web-font"><a href="#"><%=name%></a></li>
+        <hr class="colorgraph"> --%>
+       <!--  <li id="web-font"><a href="#">축구</a></li>
         <li id="web-font"><a href="#">농구</a></li>
-        <li id="web-font"><a href="#">야구</a></li>
+        <li id="web-font"><a href="#">야구</a></li> -->
      </ul>
+     
    </div>
   
      <div id="showRight">
@@ -410,9 +430,21 @@
      <!-- <br><br> -->
       
         <div id="tableDiv" align="center">
+       	 <% for(Nuriter nu : list){ %>
            <table>
            <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px" onclick="location.href='categoryDetail.jsp'"></th>
+            <th><img src="../image/go1.gif" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
+           </tr>
+           <tr>
+           	<input type="hidden" value="<%= nu.getNuriNum()%>">
+            <td><!-- <p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p> --><%=nu.getNuriTitle() %></td>
+           </tr>
+            </table>
+         <% } %>
+           <!--
+            <table>
+           <tr>
+            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
            </tr>
            <tr>
             <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
@@ -421,6 +453,27 @@
             
             <table>
            <tr>
+            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
+           </tr>
+           <tr>
+            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
+           </tr>
+            </table>
+            
+            <table>
+           <tr>
+            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
+           </tr>
+           <tr>
+            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
+           </tr> -->
+            </table>
+            
+            
+            
+            
+            <table>
+           <!-- <tr>
             <th><img src="../image/go1.gif" width="200px" height="130px"></th>
            </tr>
            <tr>
@@ -446,43 +499,13 @@
            </tr>
             </table>
             
-            
-            
-            
             <table>
            <tr>
             <th><img src="../image/go1.gif" width="200px" height="130px"></th>
            </tr>
            <tr>
             <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
+           </tr> -->
             </table>
             
             
@@ -505,7 +528,21 @@
      
   </div>
   
- 
+ <script>
+  $(function() {
+	  var name = <%=name%>;
+    if(name==1){
+    	console.log("네임 : " + name);
+    $(".navi2").append("<li id='web-font'><a href='#'>언어</a></li>");
+    $(".navi2").append("<hr class='colorgraph'>");
+    $(".navi2").append("<li id='web-font'><a href='#'>일본어</a></li>");
+    }else{
+    	$(".navi2").append("<li id='web-font'><a href='#'>축구</a></li>");
+    	
+    }
+    
+  } );
+  </script>
    
 </body>
 </html>

@@ -413,7 +413,7 @@
    <table>
        <tr>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/language.png" width="80" height="80">
          </button>
          </td>
@@ -732,6 +732,12 @@
 		
 		function goNotice(){
 			location.href="<%=request.getContextPath()%>/selectList.no";			
+		}
+		
+		function goNuriterList(){
+			var name = 1;
+			/* var enc = URLEncoder.encode(name,"utf-8"); */
+			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;		
 		}
 	
 	</script> 
