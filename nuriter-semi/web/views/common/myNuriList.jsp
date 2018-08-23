@@ -39,13 +39,13 @@
 	<table id="listTable">
 		<tbody>
 			<tr>
-				<td><br><a href="<%=request.getContextPath()%>/views/common/myNuri.jsp">참여중인 누리터<br>
+				<td><br><a href="<%=request.getContextPath()%>/selectMyNuriList.nu">참여중인 누리터<br>
 				건<br><br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/views/common/doneNuri.jsp">종료된 누리터<br>
 				건<br><br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/selectNuriOpenList.nu">개설중인 누리터<br>
 				건<br><br></a></td>
-				<td><br><a href="<%=request.getContextPath()%>/views/common/nuriEnded.jsp">개설했던 누리터<br>
+				<td><br><a href="<%=request.getContextPath()%>/selectNuriEndedList.nu">개설했던 누리터<br>
 				건<br><br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/views/common/nuriInteresting.jsp">관심 누리터<br>
 				건<br><br></a></td>
