@@ -41,20 +41,25 @@ public class PaymentServlet extends HttpServlet {
 		
 		int result =new PaymentService().InsertPayment(p);
 		
+		Payment p1 = new Payment();
+		p1.setUserNum(userNum);
+		p1.setNuriNum(nuriNum);
 		
+		int result2 =0;
 		
     	String page="";
 		if(result >0){
-			response.sendRedirect(request.getContextPath()+"/paymentDetail.pd");
+			 result2 = new PaymentService().InsertApplication(p1);
 			
 		}else{
 			/*request.getAttribute();*/
 		}
 		
 		
-		System.out.println("결제번호 : "+pid);
-		System.out.println("유저넘버 : "+userNum);
-		System.out.println("누리넘버  : "+nuriNum);
+		if(result2 > 0){
+			System.out.println("성공");
+		}
+		
 	
 	}
 
