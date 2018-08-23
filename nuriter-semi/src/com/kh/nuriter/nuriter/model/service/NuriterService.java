@@ -10,6 +10,7 @@ import static com.kh.nuriter.common.JDBCTemplate.getConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.nuriter.nuriter.model.dao.NuriterDao;
 import com.kh.nuriter.nuriter.model.vo.Attachment;
@@ -97,20 +98,20 @@ public class NuriterService {
 	}*/
 
 
-	public int getListCount(Nuriboss n) {
+	public int getListCount(String userNum) {
 		Connection con = getConnection();
 	      
-	    int listCount = new NuriterDao().getListCount(con, n);
+	    int listCount = new NuriterDao().getListCount(con, userNum);
 	      
 	      close(con);
 	      
 	      return listCount;
 	}
 
-	public ArrayList<Nuriter> selectList(int currentPage, int limit, String userNum) {
+	public ArrayList<Nuriter> selectOpenList(int currentPage, int limit, String userNum) {
 		Connection con = getConnection();
 	      
-	    ArrayList<Nuriter> list = new NuriterDao().selectList(con, currentPage, limit, userNum);
+	    ArrayList<Nuriter> list = new NuriterDao().selectOpenList(con, currentPage, limit, userNum);
 	      
 	    close(con);
 	      
@@ -126,6 +127,16 @@ public class NuriterService {
 	    close(con);
 	    
 		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectThumbnailList() {
+		Connection con = getConnection();
+		
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con);
+		
+		close(con);
+		
+		return pictureList;
 	}
 
 	

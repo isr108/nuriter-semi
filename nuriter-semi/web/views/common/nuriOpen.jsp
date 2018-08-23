@@ -17,8 +17,8 @@
 <title>Insert title here</title>
 <style>
 	.outer{
-		width:900px;
-		height:500px;
+		width:850px;
+		height:auto;
 		background:white;
 		color:lightblack;
 		margin-top:1%;
@@ -33,11 +33,13 @@
 		border:1px solid gray;
 		text-align:center;
 		font-family: 'Jua', sans-serif;
+		width:auto;
+		height:auto;
 	}
 	.tableArea {
 		width:650px;
-		height:350px;
-		margin-left:auto;
+		height:auto;
+		margin-left:5%;
 		margin-right:auto;
 	}
 	.searchArea {
@@ -47,7 +49,29 @@
 	}
 	table tr th{
 	text-align:center;
+	width:auto;
+	height:auto;
 	}
+	
+	table td td{
+	width:auto;
+	}
+	
+	.content{
+	padding-left:15px;
+	padding-right:15px;
+	white-space:nowrap;
+	} 
+
+	#listArea{
+	align:center;
+	}
+	
+	.pageArea{
+	padding-left:20%;
+	}
+	
+	
 
 </style>
 </head>
@@ -61,44 +85,47 @@
 		<h2 align="center">개설중인 누리터</h2>
 		<div class="tableArea">
 			<table id="listArea">
+				<tbody>
 				<tr>
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
-					<th width="300px">누리터명</th>
-					<th width="200px">시작일시</th>
-					<th width="200px">종료일시</th>
-					<th width="200px">장소</th>
-					<th width="100px">참가비</th>
-					<th width="200px">개설일자</th>
+					<th>누리터명</th>
+					<th>시작일시</th>
+					<th>종료일시</th>
+					<th>장소</th>
+					<th>참가비</th>
+					<th>개설일자</th>
 				</tr>
 				
 				 <% for(Nuriter n : list){ %>
 				<tr>
-					<input type="hidden" value="<%= n.getNuriNum()%>">
-					<td><%=n.getNuriTitle()%></td>
-					<td><%=n.getStartDate()%></td>
-					<td><%=n.getEndDate()%></td>
-					<td><%=n.getPlace()%></td>
-					<td><%=n.getPrice()%></td>
-					<td><%=n.getApplicationDate()%></td>
+					<input type="hidden" value="<%= n.getOwnerNum()%>">
+					<td><div class="content"><%=n.getNuriTitle()%></div></td>
+					<td><div class="content"><%=n.getStartDate()%></div></td>
+					<td><div class="content"><%=n.getEndDate()%></div></td>
+					<td><div class="content"><%=n.getPlace()%></div></td>
+					<td><div class="content"><%=n.getPrice()%></div></td>
+					<td><div class="content"><%=n.getApplicationDate()%></div></td>
 				</tr>
 				<% } %>
+				</tbody>
 			</table>
-		</div>
+			<br>
+			<br>
 			<!-- 페이지처리 -->
-   		<div class="pageArea" align="center">
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=1'"><<</button>
+			<div class="pageArea" align="center">
+   			<button onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=1'"><<</button>
    			<% if(currentPage <= 1){ %>
    			<button disabled><</button>
    			<% }else{ %>
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%=currentPage - 1%>'"><</button>
+   			<button onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%=currentPage - 1%>'"><</button>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
    				<button disabled><%= p %></button>
    			<%  }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= p %>'"><%= p %></button>
+   				<button onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%= p %>'"><%= p %></button>
    			<%  } %>
    			
    			<% } %>
@@ -106,12 +133,15 @@
    			<% if(currentPage >= maxPage){ %>
    				<button disabled>></button>
    			<% }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= currentPage + 1%>'">></button>
+   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.nu?currentPage=<%= currentPage + 1%>'">></button>
    			<% } %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= maxPage %>'">>></button>
+   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.nu?currentPage=<%= maxPage %>'">>></button>
    		</div>
 		</div>
-
+			
+   		
    	<%@ include file="../common/footer.jsp" %>
+		</div>
+
 </body>
 </html>

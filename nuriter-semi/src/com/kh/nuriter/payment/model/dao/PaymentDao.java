@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
+import static com.kh.nuriter.common.JDBCTemplate.*;
+
 
 import com.kh.nuriter.payment.model.vo.Payment;
 
@@ -41,10 +43,39 @@ public class PaymentDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			
 		}
 		
 
 		return result;
+	}
+	public int InsertApplication(Connection con, Payment p1) {
+		int result2 =0;
+		PreparedStatement pstmt = null;
+		
+		String query =prop.getProperty("insertApplication");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, p1.getUserNum());
+			pstmt.setString(2, p1.getNuriNum());
+			
+			result2 = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			
+		}
+		
+		
+		
+		
+		return result2;
 	}
 
 }

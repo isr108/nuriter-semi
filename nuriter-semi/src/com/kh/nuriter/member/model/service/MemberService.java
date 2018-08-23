@@ -132,6 +132,18 @@ public class MemberService {
 		return result;
 	}
 
+	public Member finId(String userName, String phone) {
+		Connection con = getConnection();
+		
+		Member loginUser = new MemberDao().finid(con, userName, phone);
+		
+		System.out.println("service userName : " +userName);
+		System.out.println("service phone : " +phone);
+		close(con);
+		
+		return loginUser;
+	}
+
 	/*public int snsloginMember(Member m) {
 		Connection con=getConnection();
 		

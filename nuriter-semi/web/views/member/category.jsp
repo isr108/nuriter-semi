@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
-<% ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); %>
+<% ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); 
+   ArrayList<HashMap<String,Object>> pictureList = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList");
+%>
+   
 <%
 	/* request.setCharacterEncoding("UTF-8"); */
 	int name = Integer.parseInt(request.getParameter("name")) ;
@@ -367,8 +370,6 @@
   
    <%@ include file="../common/logoAndLogbutton.jsp" %>
   
-   
-  
     <%@ include file="../common/categorybar.jsp" %>
 
     <br><br><br> <br><br><br> <br><br><br><br>
@@ -430,7 +431,23 @@
      <!-- <br><br> -->
       
         <div id="tableDiv" align="center">
-       	 <% for(Nuriter nu : list){ %>
+        	<%
+        		for(int i = 0; i < pictureList.size(); i++){
+        			HashMap<String,Object> hmap = pictureList.get(i);
+        	%>
+        		<table>
+           			<tr>
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
+           			</tr>
+           			<tr align="center">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+            			<td><%= hmap.get("nuri_name") %> <br>조회수 : <%= hmap.get("newnuri_conunt") %></td>
+           			</tr>
+            	</table>
+        
+        
+        	<%  } %>
+       	 <%-- <% for(Nuriter nu : list){ %>
            <table>
            <tr>
             <th><img src="../image/go1.gif" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
@@ -440,7 +457,9 @@
             <td><!-- <p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p> --><%=nu.getNuriTitle() %></td>
            </tr>
             </table>
-         <% } %>
+         <% } %> --%>
+         
+         
            <!--
             <table>
            <tr>

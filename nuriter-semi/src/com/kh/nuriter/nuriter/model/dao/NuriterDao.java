@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.nuriter.nuriter.model.vo.Attachment;
@@ -177,7 +178,7 @@ public class NuriterDao {
 		return result;
 	}
 
-	public int getListCount(Connection con, Nuriboss n) {
+	public int getListCount(Connection con, String userNum) {
 		PreparedStatement pstmt = null;
 	    int listCount = 0;
 	    ResultSet rset = null;
@@ -187,7 +188,7 @@ public class NuriterDao {
 	      try {
 	         pstmt = con.prepareStatement(query);
 	         
-	         pstmt.setString(1, n.getUserNum());
+	         pstmt.setString(1, userNum);
 	         rset = pstmt.executeQuery();
 	         
 	         if(rset.next()){
@@ -204,13 +205,13 @@ public class NuriterDao {
 	      return listCount;
 	}
 
-	public ArrayList<Nuriter> selectList(Connection con, int currentPage, int limit, String userNum) {
-		 PreparedStatement pstmt = null;
+	public ArrayList<Nuriter> selectOpenList(Connection con, int currentPage, int limit, String userNum) {
+		  PreparedStatement pstmt = null;
 	      ResultSet rset = null;
 	      
 	      ArrayList<Nuriter> list = null;
 	      
-	      String query = prop.getProperty("selectList");
+	      String query = prop.getProperty("selectOpenList");
 	      
 	      try {
 	         //stmt = con.createStatement();
@@ -229,13 +230,19 @@ public class NuriterDao {
 	         if(rset != null){
 	            list = new ArrayList<Nuriter>();
 	            while(rset.next()){
-	            	Nuriter n = new Nuriter();
-	               n.setNuriTitle(rset.getString("nuriTitle"));
-	               n.setStartDate(rset.getDate("startDate"));
-	               n.setEndDate(rset.getDate("endDate"));
-	               n.setPlace(rset.getString("plcae"));
+	               Nuriter n = new Nuriter();
+	               n.setNuriTitle(rset.getString("nuri_name"));
+	               System.out.println(n.getNuriTitle());
+	               n.setStartDate(rset.getDate("start_date"));
+	               System.out.println(n.getStartDate());
+	               n.setEndDate(rset.getDate("end_date"));
+	               System.out.println(n.getEndDate());
+	               n.setPlace(rset.getString("place"));
+	               System.out.println(n.getPlace());
 	               n.setPrice(rset.getString("price"));
-	               n.setApplicationDate(rset.getDate("applicationDate"));
+	               System.out.println(n.getPrice());
+	               n.setApplicationDate(rset.getDate("application_date"));
+	               System.out.println(n.getApplicationDate());
 	               
 	               list.add(n);
 	               
@@ -301,6 +308,57 @@ public class NuriterDao {
 		}
 		
 		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con) {
+		ArrayList<HashMap<String, Object>> pictureList = null;
+		HashMap<String, Object> hmap = null;
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectNuriterThumbnailMap");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			pictureList = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()){
+				hmap = new HashMap<String, Object>();
+				
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("owner_number", rset.getString("owner_number"));
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("nuri_name", rset.getString("nuri_name"));
+				hmap.put("category_name", rset.getString("category_name"));
+				hmap.put("ncontent", rset.getString("ncontent"));
+				hmap.put("start_date", rset.getDate("start_date"));
+				hmap.put("end_date", rset.getString("end_date"));
+				hmap.put("start_time", rset.getString("start_time"));
+				hmap.put("place", rset.getString("place"));
+				hmap.put("price", rset.getInt("price"));
+				hmap.put("application_date", rset.getDate("application_date"));
+				hmap.put("personnel", rset.getInt("personnel"));
+				hmap.put("newnuri_conunt", rset.getInt("newnuri_conunt"));
+				hmap.put("pid", rset.getString("pid"));
+				hmap.put("origin_name", rset.getString("origin_name"));
+				hmap.put("change_name", rset.getString("change_name"));
+				hmap.put("file_path", rset.getString("file_path"));
+				hmap.put("upload_date", rset.getDate("upload_date"));
+				
+				
+				pictureList.add(hmap);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return pictureList;
 	}
 
 }
