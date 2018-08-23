@@ -17,7 +17,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-<link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -54,8 +54,6 @@
       width:100%;
       height:100%;
       display: inline-block;
-    /*  border-style: solid; 
-       border-color: red;  */
        
        
    }
@@ -64,30 +62,32 @@
    	  height:30%;
       display: inline-block;
       margin-top:1%;
-      /* margin: 8px; */
       margin-left:1%;
-      /* border-style: solid; 
-      border-color: red;  */
    }
    #tableDiv table tr{
       align: center;
-      border: 2px solid black;
-      /* border-style: solid; 
-      border-color: red;  */
-      
+      border-left: 1px solid #D8D8D8;
+      border-right: 1px solid #D8D8D8;
+   }
+   #tableHiddenTop {
+   	border-top: 1px solid #D8D8D8;
+   	border-bottom: 1px solid #D8D8D8;
+   }
+   #tableHidden{
+   	border-bottom: 1px solid #D8D8D8;
    }
    #tableDiv table tr td{
       background: white;
-      /* border-style: solid; 
-      border-color: red;  */
+      font-family: 'Do Hyeon', sans-serif;
+      font-size: 15px;
+      font-color:#6E6E6E;
    }
-   
-  /*  ul.navi li {
-      display: inline-block;
-      /* margin:auto;  */
-   /*   text-align:center;
-   } */
-   
+   #titleTd {
+   	padding:10px;
+   }
+   #priceTd {
+   	padding:10px;
+   }
    ul.navi li a {
       float: center;
       font-size: 20px;
@@ -198,66 +198,6 @@
       font-family: 'Jua', sans-serif;
    }
    
-   /* #head{
-   border-style: solid; 
-      border-color: red; 
-      margin-left:3%;
-      margin-top:1%;
-      color: rgb(241, 196, 15);
-      font-size:3em;
-       text-decoration: none; */
-      /* padding:8px; */
-      /* width:80%; */
-   /* } */
-   
-   /* #iBox{
-      display: inline-block;
-      margin-top: 5px; */
-      /* margin-left: 30px; */
-   /*    width:100%;
-      height:50%; */
-      /*  height: 40px; */
-  /*  } */
-   
-  /*  #search{
-   	  display: inline-block;
-      width:50%;
-      height:10%; */
-      /* margin-top:2%; */
- /*   }
-   
-   #searchBox{
-    display: inline-block;
-       color: rgb(94, 94, 94);
-       border-width: 3px;
-       border-style: solid;
-       border-color: rgb(241, 196, 15);
-       width:70%;
-       height:40px;
-   }
-   */ 
-  /*  #searchBtn {
-     width: 90px;
-    height: 40px;
-     border-radius: 3px;
-    font-weight: 600;
-     border-color: transparent;
-     font-size: 15px;
-    color: white;
-    cursor: pointer;
-    background-color: rgb(241, 196, 15);
-   }
-   
-   #loginBtn{
-   	  float:right;
-      display: inline-block;
-      margin-top: 2%;
-      margin-right:1%;
-   	/*   margin-left: 20%; */
-   /* 	 width:10%:
-   	 
-   } */
-   
     .button{
        width: 90px;
      height: 40px;
@@ -307,47 +247,40 @@
    		width:30%;
    		margin-left: 340px;
    }
-   
-/*   .pagination {
-    display: inline-block;
-    width:60%;
-    float:right;
-    
-}
+  table tr th {
+  	 border-radius: 4px; 
+     color: white;
+     cursor: pointer;
+  }
+  .pagination {
+	    width:400px;
+	    height:60px;
+	    overflow:hidden;
+	}
+	.pagination a {
+	    color: black;
+	    padding: 8px 16px;
+	    text-decoration: none;
+	    border: 1px solid #ddd;
+	}
+	.pagination a.active {
+	    background-color: rgb(241, 196, 15);
+	    color: white;
+	    border: 1px solid rgb(241, 196, 15);
+	}
+	.pagination a:hover:not(.active) {
+		background-color: #ddd;
+	}
 
-.pagination a {
-    color: black;
-    float: left;
-     padding: 8px 16px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-}
+	.pagination a:first-child {
+	    border-top-left-radius: 5px;
+	    border-bottom-left-radius: 5px;
+	}
 
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
-
-.pagination a:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.pagination a:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    } */
- /* #tableDiv{
-     border:1px solid blue;
-     width:100%;
-     height:480px;
-   } */
-   
-  
-  
+	.pagination a:last-child {
+	    border-top-right-radius: 5px;
+	    border-bottom-right-radius: 5px;
+    }
 </style>
 </head>
 <body>
@@ -430,18 +363,22 @@
         
      <!-- <br><br> -->
       
-        <div id="tableDiv" align="center">
+        <div id="tableDiv" align="center" border="0">
         	<%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
+        			/* System.out.println(hmap); */
         	%>
         		<table>
-           			<tr>
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
+           			<tr id="tableHiddenTop">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-            			<td><%= hmap.get("nuri_name") %> <br>조회수 : <%= hmap.get("newnuri_conunt") %></td>
+            			<td id="titleTd" align="left"><%= hmap.get("nuri_name") %></td>
+           			</tr>
+           			<tr id="tableHidden">
+           				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
            			</tr>
             	</table>
         
@@ -529,7 +466,9 @@
             
             
              <br><br><br><br><br><br><br>
+             
     <div class="pagination" align="center">
+      <br>
 	  <a href="#" >&laquo;</a>
 	  <a href="#" class="active">1</a>
 	  <a href="#" >2</a>
@@ -538,11 +477,12 @@
 	  <a href="#" >5</a>
 	  <a href="#" >6</a>
 	  <a href="#" >&raquo;</a>
-		</div>
- <!--  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
-        </div>
+	  <br>
+	</div>
+        
+    </div>
    
-     </div>
+    </div>
    
      
   </div>

@@ -75,9 +75,10 @@ hr {
 }
 
 .likeOrAngry > div{
+    margin-left: 10px;
 	border:2px solid #FFBF00;
 	float:left;
-	width: 223px;
+	width: 210px;
 	border-radius: 4px;
 	cursor: pointer;
 }
@@ -86,7 +87,7 @@ hr {
 	border:2px solid #FFBF00;
 	background:#848484;
 	float:left;
-	width: 223px;
+	width: 210px;
 	border-radius: 4px;
 	opacity: 0.8;
 }
@@ -174,6 +175,11 @@ button {
 	text-align:left;
 	height:auto;
 }
+#enterDiv {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
 #enter {
 	color: #424242;
 	font-weight: 600;
@@ -187,6 +193,7 @@ button {
 	background:#FFBF00;
 	opacity: 0.6;
 }
+
 </style>
 </head>
 <body>
@@ -251,9 +258,10 @@ button {
            </div>
         </div>
          
-         <div>
+         <div id="enterDiv">
          	<button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
          </div>
+         
     </div>
    </div>
 </div>
