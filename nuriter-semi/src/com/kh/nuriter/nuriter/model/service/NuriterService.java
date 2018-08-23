@@ -97,20 +97,20 @@ public class NuriterService {
 	}*/
 
 
-	public int getListCount(Nuriboss n) {
+	public int getListCount(String userNum) {
 		Connection con = getConnection();
 	      
-	    int listCount = new NuriterDao().getListCount(con, n);
+	    int listCount = new NuriterDao().getListCount(con, userNum);
 	      
 	      close(con);
 	      
 	      return listCount;
 	}
 
-	public ArrayList<Nuriter> selectList(int currentPage, int limit, String userNum) {
+	public ArrayList<Nuriter> selectOpenList(int currentPage, int limit, String userNum) {
 		Connection con = getConnection();
 	      
-	    ArrayList<Nuriter> list = new NuriterDao().selectList(con, currentPage, limit, userNum);
+	    ArrayList<Nuriter> list = new NuriterDao().selectOpenList(con, currentPage, limit, userNum);
 	      
 	    close(con);
 	      

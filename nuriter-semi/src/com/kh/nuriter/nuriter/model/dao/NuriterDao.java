@@ -177,7 +177,7 @@ public class NuriterDao {
 		return result;
 	}
 
-	public int getListCount(Connection con, Nuriboss n) {
+	public int getListCount(Connection con, String userNum) {
 		PreparedStatement pstmt = null;
 	    int listCount = 0;
 	    ResultSet rset = null;
@@ -187,7 +187,7 @@ public class NuriterDao {
 	      try {
 	         pstmt = con.prepareStatement(query);
 	         
-	         pstmt.setString(1, n.getUserNum());
+	         pstmt.setString(1, userNum);
 	         rset = pstmt.executeQuery();
 	         
 	         if(rset.next()){
@@ -204,13 +204,13 @@ public class NuriterDao {
 	      return listCount;
 	}
 
-	public ArrayList<Nuriter> selectList(Connection con, int currentPage, int limit, String userNum) {
-		 PreparedStatement pstmt = null;
+	public ArrayList<Nuriter> selectOpenList(Connection con, int currentPage, int limit, String userNum) {
+		  PreparedStatement pstmt = null;
 	      ResultSet rset = null;
 	      
 	      ArrayList<Nuriter> list = null;
 	      
-	      String query = prop.getProperty("selectList");
+	      String query = prop.getProperty("selectOpenList");
 	      
 	      try {
 	         //stmt = con.createStatement();
@@ -229,13 +229,19 @@ public class NuriterDao {
 	         if(rset != null){
 	            list = new ArrayList<Nuriter>();
 	            while(rset.next()){
-	            	Nuriter n = new Nuriter();
-	               n.setNuriTitle(rset.getString("nuriTitle"));
-	               n.setStartDate(rset.getDate("startDate"));
-	               n.setEndDate(rset.getDate("endDate"));
-	               n.setPlace(rset.getString("plcae"));
+	               Nuriter n = new Nuriter();
+	               n.setNuriTitle(rset.getString("nuri_name"));
+	               System.out.println(n.getNuriTitle());
+	               n.setStartDate(rset.getDate("start_date"));
+	               System.out.println(n.getStartDate());
+	               n.setEndDate(rset.getDate("end_date"));
+	               System.out.println(n.getEndDate());
+	               n.setPlace(rset.getString("place"));
+	               System.out.println(n.getPlace());
 	               n.setPrice(rset.getString("price"));
-	               n.setApplicationDate(rset.getDate("applicationDate"));
+	               System.out.println(n.getPrice());
+	               n.setApplicationDate(rset.getDate("application_date"));
+	               System.out.println(n.getApplicationDate());
 	               
 	               list.add(n);
 	               
