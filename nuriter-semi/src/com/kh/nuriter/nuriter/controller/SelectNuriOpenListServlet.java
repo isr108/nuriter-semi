@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.nuriter.member.model.vo.Member;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
@@ -56,8 +57,7 @@ public class SelectNuriOpenListServlet extends HttpServlet {
 		String userNum = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber());
 		System.out.println("userNum : " + userNum);
 		// 전체 목록 갯수와 목록 전체를 리턴받음,
-		int listCount = new NuriterService().getListCount(userNum);
-		
+		int listCount = new NuriterService().getListCount(userNum);	
 		System.out.println("게시글 수 : " + listCount);
 
 		// 한 페이지에 보여줄 게시물 수
