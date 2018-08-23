@@ -9,6 +9,7 @@
 	int name = Integer.parseInt(request.getParameter("name")) ;
 
 	System.out.print("name :" +name);
+	
 	%>
 <!DOCTYPE html>
 <html>
@@ -435,18 +436,19 @@
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
         	%>
-        		<table>
+        		<table id="nuriterListArea">
            			<tr>
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
+           				<!-- onclick="location.href='views/member/categoryDetail.jsp'" -->
+           				<td><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="200px" height="130px"></td>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
             			<td><%= hmap.get("nuri_name") %> <br>조회수 : <%= hmap.get("newnuri_conunt") %></td>
            			</tr>
             	</table>
-        
-        
-        	<%  } %>
+        	<%  
+        			System.out.println(hmap.get("nuri_number"));
+        		} %>
        	 <%-- <% for(Nuriter nu : list){ %>
            <table>
            <tr>
@@ -561,6 +563,17 @@
     }
     
   } );
+  
+  	$(function(){
+	 	$("#nuriterListArea td").mouseenter(function(){
+			$(this).parent().css({"cursor":"pointer"});
+	 	}).click(function(){
+	 			var num = $(this).parent().children("input").val();
+				console.log(num);
+				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+	 	});
+	 
+  	});
   </script>
 
    
