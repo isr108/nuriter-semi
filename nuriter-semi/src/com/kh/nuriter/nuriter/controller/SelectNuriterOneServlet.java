@@ -30,6 +30,7 @@ public class SelectNuriterOneServlet extends HttpServlet {
 		
 		System.out.println(num);
 		System.out.println("누리터 하나 선택할때 이동하는 서블릿");
+		System.out.println("hi");
 	}
 
 	/**
