@@ -10,14 +10,6 @@
 <html>
 <head>
 <meta charset=UTF-8">
-
-  
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  
-  <!-- 왼쪽 하단 간단설명 tab부분 -->
-   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -26,38 +18,29 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
-<!--   <script>
-      $( function() {
-       $( "#tabs" ).tabs();
-     } );
-  </script> -->
-  
-  <!-- 아이콘 삽입 부분 -->
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   
 <title>categoryDetail</title>
 <style>
-
+#textBox{
+	width:400px;
+	height:auto;
+	overflow:hidden;
+}
+    
+hr {
+	width:90%;
+}
 .content{
-
-    margin-top: 170px;
-
+   margin-top: 170px;
    border:1px solid white;
    width:40%;
    margin-left:auto;
    margin-right:auto;
-   width: 1080px;
+   width: 1200px;
    min-height: 935px;
 }
-
-/* #listBox{
-    margin-right: 500px;
-   left: 200px;
-   border:1px solid blue;
-    font-size: 19px;
-    width:500px;
-    height:40px;
-} */
 
 .leftBox{
    float:left;
@@ -65,8 +48,10 @@
 
 .images{
    padding-top:50px;
-    margin-top: 20px;
-    /* margin-right:500px; */
+   margin-top: 50px;
+   width:600px;
+   height:auto;
+   float:left;
 }
 
 #tabs{
@@ -80,30 +65,31 @@
 }
 
 #info {
-   border:1px solid black;
+   border:2px solid #FFBF00;
    width:450px;
-   height:400px;
+   height:auto;
    margin-bottom: 20px;
-}
-
-.likeOrAngry{
-   /* float:left; */
-    margin-top: 100px;
+   overflow:hidden; 
+   border-radius: 6px;
    
 }
 
 .likeOrAngry > div{
-	border:1px solid black;
+	border:2px solid #FFBF00;
 	float:left;
-	width: 224px;
+	width: 223px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
-
-/* #likeOrAngry > i{
-   border:1px solid blue;
-   width:180px;
-   height:50px;
-} */
+.likeOrAngry > div:hover{
+	border:2px solid #FFBF00;
+	background:#848484;
+	float:left;
+	width: 223px;
+	border-radius: 4px;
+	opacity: 0.8;
+}
 
 button {
    margin-top:10px;
@@ -180,99 +166,94 @@ button {
    width:200px;
    height:50px;
 }
+.likeOrAngry {
+	overflow:hidden;
+}
+#nuri p{
+	margin-left:20px;
+	text-align:left;
+	height:auto;
+}
+#enter {
+	color: #424242;
+	font-weight: 600;
+    border-radius: 4px;
+	background:#FFBF00;
+}
+#enter:hover {
+	color: #424242;
+	font-weight: 600;
+    border-radius: 4px;
+	background:#FFBF00;
+	opacity: 0.6;
+}
 </style>
 </head>
 <body>
-   <%-- <%@ include file="../common/upLogo.jsp" %> --%>
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
-      <!-- <div id="listBox" align="center">
-            <button type="button" class="btn btn-link">언어</button>
-            <button type="button" class="btn btn-link">공방</button>
-            <button type="button" class="btn btn-link">요리</button>
-            <button type="button" class="btn btn-link">운동</button>
-            <button type="button" class="btn btn-link">음악</button>
-            <button type="button" class="btn btn-link">컴퓨터</button>
-            <button type="button" class="btn btn-link">문화</button>
-            <button type="button" class="btn btn-link">기타</button>
-         </div> -->
-   <div class="leftBox">
-         <img src="/ns/images/category/william.jpg" width="500px" height="400px" class="images"/>
-       <div class="images">
-          <img src="/ns/images/category/william1.jpg" width="165px" height="150px"/>
-          <img src="/ns/images/category/william2.jpg" width="165px" height="150px"/>
-          <img src="/ns/images/category/william3.jpg" width="165px" height="150px"/>
-       
-   <div id="tabs">
-       <ul>
-       <li><a href="#tabs-1">계획</a></li>
-       <li><a href="#tabs-2">가격정보</a></li>
-       <li><a href="#tabs-3">A/S및 환불</a></li>
-       <li><a href="#tabs-4">서비스평가</a></li>
-      </ul>
-      <div id="tabs-1">
-       <p>윌리엄은 샘 해밍턴의 아들이며 현재 슈퍼맨이 돌아왔다에 출연중인 깜찍한 아가다.</p>
-      </div>
-      <div id="tabs-2">
-       <p>앙하하ㅏ하하ㅏ하하ㅏㅎ아ㅏㅇ하ㅏ앙하ㅏㅇ항</p>
-      </div>
-     <div id="tabs-3">
-       <p>하기시리히ㅓ아허ㅣ엏나ㅣㅓ아ㅓ한ㅇㅎ</p>
-      </div>
-      <div id="tabs-4">
-       <p>안노오오오오ㅗㅇㅇ</p>
-      </div>
+	   <div class="leftBox">
+	    <div class="images">
+	        
+	   </div>
    </div>
    
-   </div>
-   </div>
    <div class="rightBox">
-      <div id="textBox">매주 일요일마다 같이 축구하실 분 구합니다.</div>
+   	  <br>
+   	  
+      <div id="textBox">
+      	<font id="web-font" size="4">BGM/MR 제작, 작곡, 편곡 하이퀄리티/맞춤제작해 드립니다.</font>
+      </div>
       
+      <br><br>
      <div id="info">
-         <p>가격 : </p>
-         <hr>
-         <p>요일 : </p>
-         <p>시간 : </p>
-         <p>장소 : </p>
-         <div class="likeOrAngry">
-            <div>
-               <i class="far fa-grin-hearts fa-5x"></i><br>관심누리터 등록
-            </div>
-            <div>
-               <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br>게시글 신고
-            </div>
-              <div id="popupDiv" class="modal fade" role="dialog">
-            		<h2 id="web-font">누리터 신고</h2>
-            		<div id="textArea">
-            		<h5 id="web-font">신고 제목</h5>
-            		<input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;"
-            		 id="reportTitle" name="reportTitle">
-            		<h5 id="web-font">신고 내용</h5>
-            		<textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
-            		</div>
-            		<div class="popBtn">
-            	<button id="popSendbtn">send</button>
-            	<button id="popCloseBtn">close</button>
-            		</div>
-            </div>
-         </div>
+     	
+     	<br>
+        
+        <div id="nuri">
+	        <p><font id="web-font">누리장 : </font></p>
+	        <p><font id="web-font">카테고리 : </font></p>
+	        <hr>
+	        <p><font id="web-font">시작일시: </font><br><font id="web-font">종료일시: </font></p>
+	        <hr>
+	        <p><font id="web-font">장소: </font></p>
+	        <hr>
+	        <p><font id="web-font">가격(1인) : </font></p>
+	        <p><font id="web-font">정원 : </font></p>
+        </div>
+        
+        <hr color="red" size="10px">
+        
+        <div class="likeOrAngry">
+        
+	        <div>
+	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
+	        </div>
+	            
+	        <div>
+	             <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
+	        </div>
+	         
+            <div id="popupDiv" class="modal fade" role="dialog">
+	            <h2 id="web-font">누리터 신고</h2>
+	            <div id="textArea">
+		            <h5 id="web-font">신고 제목</h5>
+		            <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
+		            <h5 id="web-font">신고 내용</h5>
+		            <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
+	            </div>
+	            <div class="popBtn">
+		            <button id="popSendbtn">send</button>
+		            <button id="popCloseBtn">close</button>
+	            </div>
+           </div>
+        </div>
+         
          <div>
-         	<button onclick="choice();">누리터 신청하기</button>
+         	<button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
          </div>
-    </div>
-    
-    <div id = aboutHe>
-       <div id="profile">
-          <i class="fas fa-user-tie fa-5x"></i><br>
-          <label>홍길동</label>
-       </div>
-       <div id="introduce" align="center">
-          <label>누리장 소개</label>
-          <p>안녕하세요 저는...</p>
-       </div>
     </div>
    </div>
 </div>
@@ -311,7 +292,7 @@ button {
 	        	/* alert(nuriNum); */
 	        	request.setAttribute('rTitle');
 	        	request.setAttribute('rContent');
-	        	location.href='<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum"&rTitle="+rTitle"&rContent="+rContent"';
+	        	location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
 	        	alert("신고가 접수 되었습니다");
 	        	
 	        	
