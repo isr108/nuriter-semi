@@ -2,6 +2,7 @@ package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,13 +36,17 @@ public class SelectNuriterListServlet extends HttpServlet {
 		System.out.println("누리터 리스트 서블릿 이동 완료!");
 		ArrayList<Nuriter> list = new NuriterService().selectNuriterList();
 		
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList();
+		
 		System.out.println(list);
+		System.out.println(pictureList);
 		
 		String page = "";
 		
 		if(list != null){
 			page = "views/member/category.jsp";
 			request.setAttribute("list", list);
+			request.setAttribute("pictureList", pictureList);
 		}else{
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "누리터 목록 조회 실패");
