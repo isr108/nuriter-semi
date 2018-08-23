@@ -119,6 +119,15 @@ public class NuriterService {
 	    return list;
 	}
 
+	public ArrayList<Nuriter> selectNuriterList() {
+		Connection con = getConnection();
+	    ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con);
+		
+	    close(con);
+	    
+		return list;
+	}
+
 	
 
 

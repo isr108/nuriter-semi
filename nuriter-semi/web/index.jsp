@@ -741,7 +741,7 @@
 		function goNuriterList(){
 			var name = 1;
 			/* var enc = URLEncoder.encode(name,"utf-8"); */
-			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;		
+			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
 		}
 	
 	</script> 
