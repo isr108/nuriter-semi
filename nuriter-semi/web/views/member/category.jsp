@@ -9,6 +9,7 @@
 	int name = Integer.parseInt(request.getParameter("name")) ;
 
 	System.out.print("name :" +name);
+	
 	%>
 <!DOCTYPE html>
 <html>
@@ -369,9 +370,12 @@
         			HashMap<String,Object> hmap = pictureList.get(i);
         			/* System.out.println(hmap); */
         	%>
+
+
         		<table>
            			<tr id="tableHiddenTop">
            				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
+
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
@@ -381,9 +385,9 @@
            				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
            			</tr>
             	</table>
-        
-        
-        	<%  } %>
+        	<%  
+        			System.out.println(hmap.get("nuri_number"));
+        		} %>
        	 <%-- <% for(Nuriter nu : list){ %>
            <table>
            <tr>
@@ -501,6 +505,17 @@
     }
     
   } );
+  
+  	$(function(){
+	 	$("#nuriterListArea td").mouseenter(function(){
+			$(this).parent().css({"cursor":"pointer"});
+	 	}).click(function(){
+	 			var num = $(this).parent().children("input").val();
+				console.log(num);
+				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+	 	});
+	 
+  	});
   </script>
 
    
