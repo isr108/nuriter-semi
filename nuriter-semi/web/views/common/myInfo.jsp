@@ -120,7 +120,7 @@ colorgroup {
 	<%@ include file="myPage_left.jsp"%>
 
 	<div id="myInfoPage">
-		<h1 align="center"><%=loginUser.getUserName()%>님의 회원 정보 수정
+		<h1 align="center"><%=loginUser.getNickName()%>님의 회원 정보 수정
 		</h1>
 		<br>
 		<br>
@@ -156,11 +156,6 @@ colorgroup {
 						<td><input type="password" id="newPassword2" name="newPassword"
 							maxlength="16" class="newPassword"> <br> <label
 							id="pwdresult"></label></td>
-					</tr>
-					<tr>
-						<th>이름</th>
-						<td><input type="text" name="userName"
-							value="<%=loginUser.getUserName()%>" readonly></td>
 					</tr>
 					<tr>
 						<th>닉네임</th>

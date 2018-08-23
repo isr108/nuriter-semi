@@ -41,7 +41,6 @@ public class UpdateMemberServlet extends HttpServlet {
 	      String userEmail = request.getParameter("userEmail");
 	      String newPassword = request.getParameter("newPassword");
 	      System.out.println(newPassword);
-	      String userName = request.getParameter("userName");
 	      String nickName = request.getParameter("nickName");
 	      String phone = request.getParameter("phone");
 	      String address = request.getParameter("address");
@@ -60,7 +59,6 @@ public class UpdateMemberServlet extends HttpServlet {
 	      m.setUserNumber(userNumber);
 	      m.setUserEmail(userEmail);
 	      m.setPassword(newPassword);
-	      m.setUserName(userName);
 	      m.setNickName(nickName);
 	      m.setPhone(phone);
 	      m.setAddress(address);
