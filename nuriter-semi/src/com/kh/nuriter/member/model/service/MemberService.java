@@ -144,6 +144,33 @@ public class MemberService {
 		return loginUser;
 	}
 
+	public Member checkEmail(String userEmail) {
+		Connection con = getConnection();
+		
+		Member loginUser = new MemberDao().checkEmail(con, userEmail);
+		
+		
+		close(con);
+
+		return loginUser;
+	}
+
+	public int passwordUpdate(Member m) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().passwordUpdate(con, m);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+				
+		return result;
+	}
+
 	/*public int snsloginMember(Member m) {
 		Connection con=getConnection();
 		
