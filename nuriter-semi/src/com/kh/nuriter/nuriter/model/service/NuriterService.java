@@ -10,6 +10,7 @@ import static com.kh.nuriter.common.JDBCTemplate.getConnection;
 import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.nuriter.nuriter.model.dao.NuriterDao;
 import com.kh.nuriter.nuriter.model.vo.Attachment;
@@ -126,6 +127,16 @@ public class NuriterService {
 	    close(con);
 	    
 		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectThumbnailList() {
+		Connection con = getConnection();
+		
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con);
+		
+		close(con);
+		
+		return pictureList;
 	}
 
 	
