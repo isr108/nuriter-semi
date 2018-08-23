@@ -21,9 +21,7 @@ public class BoardService {
 			
 		}else{
 			rollback(con);
-			
 		}
-		
 		
 		return result;
 	}

@@ -286,12 +286,9 @@ button {
 	        $("#popSendbtn").click(function(event){
 	        	var rTitle =$("#reportTitle").val();
 	        	var rContent = $("div textarea").val();
-	        	/* alert(rTitle);
-	        	alert(rContent); */
+	        
 	        	var nuriNum = "N1";
-	        	/* alert(nuriNum); */
-	        	request.setAttribute('rTitle');
-	        	request.setAttribute('rContent');
+	        	
 	        	location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
 	        	alert("신고가 접수 되었습니다");
 	        	
