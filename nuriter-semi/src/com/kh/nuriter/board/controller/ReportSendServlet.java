@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.nuriter.board.model.sevice.BoardService;
+import com.kh.nuriter.board.model.vo.reportNuri;
 import com.kh.nuriter.member.model.vo.Member;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 
 
@@ -32,16 +35,33 @@ public class ReportSendServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			String rTitle = request.getParameter("rTitle");
 			String rContent = request.getParameter("rContent");
-			
-			String rUser = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))));
-			
+			String rUser = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber());
 			String nuriNum =request.getParameter("nuriNum");
+			String boardSort = "REPORT";
+			
+			
+			
+			reportNuri rNuri = new reportNuri();
+			rNuri.setBoardTitle(rTitle);
+			rNuri.setBoardContent(rContent);
+			rNuri.setUserNum(Integer.parseInt(rUser));
+			rNuri.setNuriNum(nuriNum);
+			rNuri.setBoardSort(boardSort);
+			
+			
+			
+					
+			
+			int result = new BoardService().InsertReportNuri(rNuri);
+			
+			
+			
 			
 			System.out.println(nuriNum);
 			System.out.println(rTitle);
 			System.out.println(rContent);
 			System.out.println(rUser);
-	
+			
 	
 	}
 

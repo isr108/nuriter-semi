@@ -22,13 +22,35 @@ public class PaymentService {
 			rollback(con);
 			
 			
-		}//
+		}
 		close(con);
 		
 		
 		
 		
 		return result;
+	}
+
+	public int InsertApplication(Payment p1) {
+		int result2 =0;
+		Connection con =getConnection();
+		
+		result2 = new PaymentDao().InsertApplication(con,p1);
+		
+		if(result2 >0){
+			commit(con);
+			
+		}else{
+			rollback(con);
+			
+			
+		}
+		close(con);
+		
+		
+		
+		
+		return result2;
 	}
 
 }
