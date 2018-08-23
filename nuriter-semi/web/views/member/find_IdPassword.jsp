@@ -303,6 +303,18 @@
       font-size: 15px;
        /* font-weight: bold; */
    }
+   #web-font2{
+      font-family: 'Jua', sans-serif;
+       border-radius: 4px;
+        background-color: rgb(241, 196, 15); 
+     color: white;
+      
+   }
+   #web-font2:hover {
+     background-color: white; /* Green */
+     color: rgb(241, 196, 15);
+     border: 2px solid rgb(241, 196, 15); /* Green */
+   }
    
     
 </style>
@@ -322,16 +334,16 @@
 			<p style="font-size:2em;">비밀번호 찾기</p>
 			</div>
 			<br><br>
-			<form id="form1" action="/ns/insertMember" method="post" style="margin-left: 20%; display: inline-block;">
+			<form id="form1" action="<%=request.getContextPath()%>/findUser" method="post" style="margin-left: 20%; display: inline-block;">
 				<table align="center">
 					<tr>
 						<!-- <td><label>아이디</label></td> -->
-						<td><input type="text" name="userName" style="width: 300px; height: 30px;"
+						<td><input id="findName" type="text" name="findName"  style="width: 300px; height: 30px;"
 						placeholder="이름"></td>
 					</tr>
 					<tr>
 						<!-- <td><label>비밀번호</label></td> -->
-						<td><input type="tel" name="phone" style="width: 300px; height: 30px;"
+						<td><input id="findTel" type="tel" name="findTel"  style="width: 300px; height: 30px;"
 						placeholder="전화번호"></td>
 					</tr>
 					<!-- <tr>
@@ -341,7 +353,7 @@
 					</tr> -->
 				</table>
 				<br><br>
-				<input style="width: 300px; height: 30px;" type="submit" value="ID찾기">
+				<input id="web-font2" style="width: 300px; height: 30px;" type="submit" value="ID찾기"></button>
 			</form>
 			<form id="form1" action="/ns/insertMember" method="post" style="margin-left: 20%; display: inline-block;">
 				<table align="center">
@@ -357,7 +369,7 @@
 					</tr> -->
 				</table>
 				<br><br>
-				<input style="width: 300px; height: 30px;" type="submit" value="비밀번호 찾기">
+				<input id="web-font2" style="width: 300px; height: 30px;" type="submit" value="비밀번호 찾기">
 			</form>
 		</div>
 		
