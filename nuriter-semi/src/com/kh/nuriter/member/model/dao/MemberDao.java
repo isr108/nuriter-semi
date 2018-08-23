@@ -605,6 +605,83 @@ public class MemberDao {
 		return loginUser;
 	}
 
+	public Member checkEmail(Connection con, String userEmail) {
+		Member loginUser = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("idCheck");
+		System.out.println(query);
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userEmail);
+			
+			System.out.println(pstmt);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				loginUser = new Member();
+				
+				loginUser.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+				loginUser.setUserEmail(rset.getString("user_email"));
+				loginUser.setPassword(rset.getString("user_pwd"));
+				loginUser.setUserName(rset.getString("user_name"));
+				loginUser.setNickName(rset.getString("nickname"));
+				loginUser.setAddress(rset.getString("address"));
+				loginUser.setPhone(rset.getString("phone"));
+				loginUser.setHobby(rset.getString("hobby"));
+				loginUser.setBirthDate(rset.getDate("birth_date"));
+				loginUser.setEnrollDate(rset.getDate("enroll_date"));
+				loginUser.setGrade(rset.getString("grade"));
+				loginUser.setGradeDate(rset.getDate("grade_date"));
+				loginUser.setBankName(rset.getString("bank_name"));
+				loginUser.setBankNumber(rset.getString("bank_number"));
+				loginUser.setAccountSort(rset.getString("account_sort"));
+				loginUser.setToken(rset.getString("token"));
+				loginUser.setReportedUser(rset.getString("reported_user"));
+				loginUser.setActivated(rset.getString("activated"));
+				loginUser.setActivatedDate(rset.getDate("activated_date"));
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		
+		return loginUser;
+	}
+
+	public int passwordUpdate(Connection con, Member m) {
+		 PreparedStatement pstmt = null;
+	      int result = 0;
+	      
+	      String query = prop.getProperty("passwordUpdate");
+	      //String query2 = prop.getProperty("updateMemberNoPwd");
+	      System.out.println(query);
+	      
+	      try {
+	            pstmt = con.prepareStatement(query);
+	            pstmt.setString(1, m.getPassword());            
+	            pstmt.setString(2, m.getUserEmail());
+	            
+	         
+	            result = pstmt.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      
+	      return result;
+	}
+
 	
 
 }

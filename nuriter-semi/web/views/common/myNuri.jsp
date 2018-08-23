@@ -42,7 +42,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="logoAndLogbutton.jsp" %>
+	<%@ include file="logoAndLogbutton.jsp"%>
 	<%@ include file="categorybar.jsp" %>
 	<%@ include file="myPage_left.jsp" %>
 	<%@ include file="myNuriList.jsp" %>

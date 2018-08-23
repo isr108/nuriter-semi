@@ -19,7 +19,7 @@ public class BoardDao {
 
 		try {
 			prop.load(new FileReader(fileName));
-
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,12 +35,21 @@ public class BoardDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, rNuri.getBoardTitle());
+			pstmt.setString(2, rNuri.getBoardContent());
+			pstmt.setString(3, rNuri.getUserNum()+"");
+			pstmt.setString(4, rNuri.getNuriNum());
+			
+			result = pstmt.executeUpdate();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			
 		}
-		
 		
 
 		return result ;

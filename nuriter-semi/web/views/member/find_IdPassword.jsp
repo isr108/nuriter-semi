@@ -353,13 +353,13 @@
 					</tr> -->
 				</table>
 				<br><br>
-				<input id="web-font2" style="width: 300px; height: 30px;" type="submit" value="ID찾기"></button>
+				<input id="web-font2" style="width: 300px; height: 30px;" type="submit" value="ID찾기">
 			</form>
-			<form id="form1" action="/ns/insertMember" method="post" style="margin-left: 20%; display: inline-block;">
+			<form id="form1" action="<%=request.getContextPath()%>/findPassword.me" method="post" style="margin-left: 20%; display: inline-block;">
 				<table align="center">
 					<tr>
 						<!-- <td><label>아이디</label></td> -->
-						<td><input type="text" name="userId" style="width: 300px; height: 30px;"
+						<td><input id="findEmail" type="text" name="findEmail" style="width: 300px; height: 30px;"
 						placeholder="이메일"></td>
 					</tr>
 					<!-- <tr>
