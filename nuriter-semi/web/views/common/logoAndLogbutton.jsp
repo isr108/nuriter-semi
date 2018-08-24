@@ -59,7 +59,7 @@
   	 display: inline-block;
       /* margin-top: 5px; */
       /* margin-left: 30px; */
-      width:240%;
+      width:200%;
       /* height:30%; */
       /*  height: 40px; */
    }
@@ -243,7 +243,7 @@
         		<button class="button" onclick="logout();" >로그아웃</button>
         <% } %>
         		<% if(!loginUser.getUserEmail().equals("admin@naver.com")){ %>
-					<button class="button" onclick="location.href='location.href='<%=request.getContextPath()%>/views/common/myNuri.jsp'">마이페이지</button>
+					<button class="button" onclick="location.href='<%=request.getContextPath()%>/selectMyNuriList.nu?'">마이페이지</button>
 				<% }else{ %>
 					<button class="button" onclick="location.href='views/admin/adminPage.jsp'">관리페이지</button>
 				<% } %>
