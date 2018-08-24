@@ -3,15 +3,17 @@
 <% 
    ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); 
    ArrayList<HashMap<String,Object>> pictureList = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList");
+   PageInfo pi = (PageInfo)request.getAttribute("pi");
+   int listCount = pi.getListCount();
+   int currentPage = pi.getCurrentPage();
+   int maxPage = pi.getMaxPage();
+   int startPage = pi.getStartPage();
+   int endPage = pi.getEndPage();
+   
+   /* int name = Integer.parseInt(request.getParameter("name")) ;
+   System.out.print("name :" +name); */
 %>
    
-<%
-	/* request.setCharacterEncoding("UTF-8"); */
-	int name = Integer.parseInt(request.getParameter("name")) ;
-
-	System.out.print("name :" +name);
-	
-	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,6 @@
 
 
 <title>Insert title here</title>
-
 
 
 <style>
@@ -324,6 +325,8 @@
         			HashMap<String,Object> hmap = pictureList.get(i);
         	%>
         		<table id="nuriterListArea">
+
+
            			<tr id="tableHiddenTop">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
@@ -331,18 +334,45 @@
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
             			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap.get("nuri_name") %></td>
+
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
            			</tr>
             	</table>
+
         	<%  System.out.println(hmap.get("nuri_number")); } %>
+
             
+            <br><br><br><br><br><br>
             
-             <br><br><br><br><br><br><br>
+             <!-- 페이지처리 -->
+             <div class="pageArea" align="center">
+             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</button>
+             	<% if(currentPage <= 1){ %>
+             	<button disabled><</button>
+             	<% }else{ %>
+             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'"><</button>
+             	<% } %>
+             	<% for(int p = startPage; p <= endPage; p++){
+             		if(p == currentPage){	
+             	%>
+             	<button disabled><%= p %></button>
+             	<%  }else{ %>
+             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></button>
+             	<%  } %>
+             	<% } %>
+             	
+             	<% if(currentPage >= maxPage){ %>
+             	<button disabled>></button>
+             	<% }else{ %>
+             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></button>
+             	<% } %>
+             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></button>
+             </div>
              
-    <div class="pagination" align="center">
+    <!-- <div class="pagination" align="center">
       <br>
 	  <a href="#" >&laquo;</a>
 	  <a href="#" class="active">1</a>
@@ -353,7 +383,7 @@
 	  <a href="#" >6</a>
 	  <a href="#" >&raquo;</a>
 	  <br>
-	</div>
+	</div> -->
         
     </div>
    
@@ -363,7 +393,7 @@
   </div>
   
  <script>
-  $(function() {
+ <%--  $(function() {
 	  var name = <%=name%>;
     if(name==1){
     	console.log("네임 : " + name);
@@ -375,16 +405,18 @@
     	
     }
     
-  } );
+  } ); --%>
   
   	$(function(){
 	 	$("#nuriterListArea td").mouseenter(function(){
 			$(this).parent().css({"cursor":"pointer"});
 	 	}).click(function(){
-	 			var num = $(this).parent().children("input").val();
+	 			/* var num = $(this).parent().children("input").val(); */
+	 			var num = document.getElementById('test1').value;
 				console.log(num);
 				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
 	 	});
+
   	});
   </script>
 
