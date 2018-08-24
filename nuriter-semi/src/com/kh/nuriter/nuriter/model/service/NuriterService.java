@@ -122,6 +122,7 @@ public class NuriterService {
 
 	public ArrayList<Nuriter> selectNuriterList() {
 		Connection con = getConnection();
+		
 	    ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con);
 		
 	    close(con);
@@ -140,6 +141,7 @@ public class NuriterService {
 	}
 
 
+
 	public int getNuriterListCount() {
 		Connection con = getConnection();
 		
@@ -148,6 +150,36 @@ public class NuriterService {
 		close(con);
 		
 		return listCount;
+
+	public ArrayList<Nuriter> selectEndList(int currentPage, int limit, String userNum) {
+		Connection con = getConnection();
+	      
+	    ArrayList<Nuriter> list = new NuriterDao().selectEndList(con, currentPage, limit, userNum);
+	      
+	    close(con);
+	      
+	      
+	      
+	    return list;
+	}
+
+	
+	public Nuriter selectOne(String num) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = new NuriterDao().updateCount(con, num);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		Nuriter n = new NuriterDao().selectOne(con, num);
+		
+		close(con);
+		
+		return n;
+
 	}
 
 	

@@ -79,7 +79,6 @@ public class SelectNuriOpenListServlet extends HttpServlet {
 		// 페이지 정보를 공유할 vo객체 생성
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		
 		ArrayList<Nuriter> list = new NuriterService().selectOpenList(currentPage, limit, userNum);
 		System.out.println("개설 중인 누리터 리스트 : " + list);
 

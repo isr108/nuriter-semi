@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
-<%
-    int price = 100;
-
-    
-    
-    %>
+<% Nuriter n = (Nuriter)request.getAttribute("n"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,12 +42,20 @@ hr {
 }
 
 .images{
+   border:2px solid #FFBF00;
+   border-radius: 6px;
    padding-top:50px;
    margin-top: 50px;
    width:600px;
    height:auto;
    float:left;
+   overflow:hidden;
 }
+img{
+    width: 100px;
+    object-fit: contain;
+}
+
 
 #tabs{
    width:500px;
@@ -193,6 +196,10 @@ button {
 	background:#FFBF00;
 	opacity: 0.6;
 }
+img { 
+	max-width: 100%; 
+	height: auto; 
+}
 
 </style>
 </head>
@@ -203,7 +210,7 @@ button {
 <div class="content" align="center">
 	   <div class="leftBox">
 	    <div class="images">
-	        
+	        <%= n.getContent() %>
 	   </div>
    </div>
    
@@ -211,7 +218,7 @@ button {
    	  <br>
    	  
       <div id="textBox">
-      	<font id="web-font" size="4">BGM/MR 제작, 작곡, 편곡 하이퀄리티/맞춤제작해 드립니다.</font>
+      	<font id="web-font" size="4"><%= n.getNuriTitle() %></font>
       </div>
       
       <br><br>
@@ -220,15 +227,15 @@ button {
      	<br>
         
         <div id="nuri">
-	        <p><font id="web-font">누리장 : </font></p>
-	        <p><font id="web-font">카테고리 : </font></p>
+	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
 	        <hr>
-	        <p><font id="web-font">시작일시: </font><br><font id="web-font">종료일시: </font></p>
+	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
 	        <hr>
-	        <p><font id="web-font">장소: </font></p>
+	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
 	        <hr>
-	        <p><font id="web-font">가격(1인) : </font></p>
-	        <p><font id="web-font">정원 : </font></p>
+	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
         </div>
         
         <hr color="red" size="10px">
@@ -268,91 +275,95 @@ button {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
-	$(function(){
-		
-		$("#popOpen").click(function(event){
-			console.log('작동');
-			$("#popupDiv").css({
-	                "top": (($(window).height()-$("#popupDiv").outerHeight())/1.5+$(window).scrollTop())+"px",
-	                "left": (($(window).width()-$("#popupDiv").outerWidth())/2+$(window).scrollLeft())+"px"
-			
-			 });
-			   $("#popup_mask").css("display","block"); 
-	            
-	            $("body").css("overflow","hidden");
-	        });
-	        
-	        $("#popCloseBtn").click(function(event){
-	          /*  $("#popup_mask").hide(); */
-	            $("#popupDiv").hide(); 
-	            $(".modal-backdrop").hide();
-	            $("body").css("overflow","auto");
-	        
-	        });
-			
-	       
-	        $("#popSendbtn").click(function(event){
-	        	var rTitle =$("#reportTitle").val();
-	        	var rContent = $("div textarea").val();
-	        
-	        	var nuriNum = "N1";
-	        	
-	        	location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
-	        	alert("신고가 접수 되었습니다");
-	        	
-	        	
-	        });
-	});
+$(function(){
+    
+    $("#popOpen").click(function(event){
+       console.log('작동');
+       $("#popupDiv").css({
+                 "top": (($(window).height()-$("#popupDiv").outerHeight())/1.5+$(window).scrollTop())+"px",
+                 "left": (($(window).width()-$("#popupDiv").outerWidth())/2+$(window).scrollLeft())+"px"
+       
+        });
+          $("#popup_mask").css("display","block"); 
+             
+             $("body").css("overflow","hidden");
+         });
+         
+         $("#popCloseBtn").click(function(event){
+           /*  $("#popup_mask").hide(); */
+             $("#popupDiv").hide(); 
+             $(".modal-backdrop").hide();
+             $("body").css("overflow","auto");
+         
+         });
+       
+        
+         $("#popSendbtn").click(function(event){
+            var rTitle =$("#reportTitle").val();
+            var rContent = $("div textarea").val();
+         
+            var nuriNum = "N1";
+            
+            location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
+            alert("신고가 접수 되었습니다");
+            
+            
+         });
+ });
 </Script>  
 <script>
 function choice(){
-	 if(<%=price%> != 0){
-		 cash();
-		 
-	 }else{
-		<%-- console.log(<%=loginUser.getUserEmail()%>); --%>
-		var pId = "imp_"+new Date().getTime() ;
-		alert(pId);
-		location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
-		 
-	 }
+  if(<%= n.getPrice() %> != 0){
+     cash();
+     
+  }else{
+    <%-- console.log(<%=loginUser.getUserEmail()%>); --%>
+    var pId = "imp_"+new Date().getTime() ;
+    alert(pId);
+    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
+     
+  }
 }
 
- 
- function cash(){
-	alert('전송');
-	
-		var IMP = window.IMP; // 생략가능
-		   IMP.init('imp43582013');  // 가맹점 식별 코드
 
-		   IMP.request_pay({
-		      pg : 'inicis', // 결제방식
-		       pay_method : 'card',	// 결제 수단
-		       merchant_uid : 'merchant_' + new Date().getTime(),
-		      name : '주문명: 결제 테스트',	// order 테이블에 들어갈 주문명 혹은 주문 번호
-		       amount : '<%=price%>',	// 결제 금액
-		       buyer_email : 'user01@naver.com',	// 구매자 email
-		      buyer_name :  '홍길동',	// 구매자 이름
-		       buyer_tel :  '01066432470',	// 구매자 전화번호
-		       buyer_addr :  '서울특별시 강남구 역삼동',	// 구매자 주소
-		       buyer_postcode :  '123-456',	// 구매자 우편번호
-		   }, function(rsp) {
-			if ( rsp.success ) { // 성공시
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-			    location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
-			
-				/*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
-			} else { // 실패시
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-				
-			}
-		});
-	}
+function cash(){
+ alert('전송');
+ 
+    var IMP = window.IMP; // 생략가능
+       IMP.init('imp43582013');  // 가맹점 식별 코드
+
+       IMP.request_pay({
+          pg : 'inicis', // 결제방식
+           pay_method : 'card',   // 결제 수단
+           merchant_uid : 'merchant_' + new Date().getTime(),
+          name : '주문명: 결제 테스트',   // order 테이블에 들어갈 주문명 혹은 주문 번호
+           amount : '<%=n.getPrice()%>',   // 결제 금액
+           buyer_email : '<%=loginUser.getUserEmail()%>',// 구매자 email
+          buyer_name :  '<%=loginUser.getUserName()%>',   // 구매자 이름
+           buyer_tel :  '<%=loginUser.getPhone()%>',   // 구매자 전화번호
+           buyer_addr :  '<%=loginUser.getAddress()%>',   // 구매자 주소
+           buyer_postcode :  '123-456',   // 구매자 우편번호
+       }, function(rsp) {
+       if ( rsp.success ) { // 성공시
+          var msg = '결제가 완료되었습니다.';
+          msg += '고유ID : ' + rsp.imp_uid;
+          msg += '상점 거래ID : ' + rsp.merchant_uid;
+          msg += '결제 금액 : ' + rsp.paid_amount;
+          msg += '카드 승인번호 : ' + rsp.apply_num;
+          
+          var userNum = <%=loginUser.getUserNumber()%>
+          
+           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+userNum+"&nuriNum=<%="N1"%>";
+       
+          /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
+       } else { // 실패시
+          var msg = '결제에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+          
+       }
+    });
+ }
+
 </script>    
 </body>
 </html>

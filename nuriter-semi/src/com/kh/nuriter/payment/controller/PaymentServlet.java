@@ -33,24 +33,35 @@ public class PaymentServlet extends HttpServlet {
 		String pid =request.getParameter("imp");
 		String userNum = request.getParameter("userNum");
 		String nuriNum = request.getParameter("nuriNum");
+		String cardNum = request.getParameter("cardNum");
 		
 		Payment p = new Payment();
 		p.setpId(pid);
 		p.setUserNum(userNum);
 		p.setNuriNum(nuriNum);
 		
-		int result =new PaymentService().InsertPayment(p);
+		int result =new PaymentService().InsertPayment(p); //결제
 		
 		Payment p1 = new Payment();
 		p1.setUserNum(userNum);
 		p1.setNuriNum(nuriNum);
 		
-		int result2 =0;
+		Payment p2 = new Payment();
+		
+		
+		int result2 =0; //참가신청
+		int result3 =0;//결제디테일
+		
+		PaymentDetail pd = new PaymentDetail();
+		pd.setPid(pid);
+		pd.setCardNum(cardNum);
+		
+		
 		
     	String page="";
 		if(result >0){
 			 result2 = new PaymentService().InsertApplication(p1);
-			
+			 result3 = new PaymentService().InsertPaymentDetail(pd);
 		}else{
 			/*request.getAttribute();*/
 		}
