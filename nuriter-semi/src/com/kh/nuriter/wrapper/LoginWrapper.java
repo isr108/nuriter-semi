@@ -26,13 +26,10 @@ public class LoginWrapper extends HttpServletRequestWrapper {
 			value=super.getParameter(key);
 		}
 		
-		
-		
-		
 		return value;
 	}
 	
-	private static String getSha512(String pwd){
+	public static String getSha512(String pwd){
 		String encPwd = null;
 		
 		try {

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.wrapper.LoginWrapper;
 
 
 /**
@@ -40,13 +41,14 @@ public class FindPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userEmail = request.getParameter("findEmail");
-	      
+		 String userEmail = request.getParameter("findEmail");
+	     
 	      Member loginUser = new MemberService().checkEmail(userEmail);
 	    
 	      String page = "";
 	      //기존 회원 여부 확인
 	      if(loginUser != null){
+
 	         /*response.getWriter().println(2);*/
 	    	  	 String authenticationNum = randomStr();
 		         String subject = "누리터 임시 비밀번호";
@@ -54,10 +56,16 @@ public class FindPasswordServlet extends HttpServlet {
 		         
 		         String username = "isr1059@gmail.com";
 		         String password = "dlwlsgml06!";
+		         
+		         String exPassword="null";
+	    			  			
+		         exPassword = LoginWrapper.getSha512(authenticationNum);
 		          
 		          Member m = new Member();
 			      m.setUserEmail(userEmail);
-			      m.setPassword(authenticationNum);
+			      m.setPassword(exPassword);
+			      
+			      System.out.println("멤버 : " + m);
 			      
 			      int result = new MemberService().passwordUpdate(m);
 		          
@@ -99,7 +107,7 @@ public class FindPasswordServlet extends HttpServlet {
 		     	         HttpSession session1 = request.getSession();
 		     	         session1.setAttribute("loginUser", m);
 		     	         
-		     	         response.sendRedirect("passwordResult.jsp");
+		     	         response.sendRedirect("views/member/passwordResult.jsp");
 		     	      }else {
 		     	         page = "views/common/errorPage.jsp";
 		     	         request.setAttribute("msg", "회원 정보 수정에 실패하였습니다!!");
@@ -110,6 +118,7 @@ public class FindPasswordServlet extends HttpServlet {
 		     	      }
 		              
 		         response.getWriter().println(authenticationNum);
+		         System.out.println("임시비밀번호 : " + authenticationNum);
 
 	      }else{
 	         
@@ -142,6 +151,8 @@ public class FindPasswordServlet extends HttpServlet {
 	         } 
 	         
 	       return ranStr; 
-	     } 
+	     }
+	  
+	  
 
 }

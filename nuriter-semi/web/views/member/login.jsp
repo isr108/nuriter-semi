@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-   
+
+<!-- 네이버 로그인 api -->
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,6 +20,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+ <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 
 <title>Insert title here</title>
 <style>
@@ -64,7 +74,7 @@
    /* border-style: solid;
     border-color: red;  */
   	width:300px;
-  	height:200px;
+  	height:150px;
   	padding:0;
   
   }
@@ -150,14 +160,49 @@
 			<font id="web-font"><span><a href="../member/memberJoinForm.jsp">무료 회원가입</a></span></font>
 			<br>
 			<br>
-
-			<button type="submit" style="width: 290px; height: 30px;"><font id="web-font">네이버로
-				시작하기</font></button> 
-			
+	
 			
 		</table>
 	 </form>
 	 </div>
+	 <br>
+	  <!-- <button id="naver_id_login" type="button" style="width: 290px; height: 30px;" onclick="openChild()"><font id="web-font">네이버 로그인</font></button> --> 
+	<!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>-->
+<%-- <%
+  String clientId = "p7rY8Kd2Yc3e2TAc4l38";//애플리케이션 클라이언트 아이디값";
+  String redirectURI = URLEncoder.encode("http://localhost:8001/ns/naverlogin", "UTF-8");
+  SecureRandom random = new SecureRandom();
+  String state = new BigInteger(130, random).toString();
+  String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+  apiURL += "&client_id=" + clientId;
+  apiURL += "&redirect_uri=" + redirectURI;
+  apiURL += "&state=" + state;
+  session.setAttribute("state", state);
+%>  --%>
+
+ <%
+    String clientId = "p7rY8Kd2Yc3e2TAc4l38";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8001/ns/views/member/navercallback.jsp", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+
+
+	   <%--  <form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">
+		
+		<input type="hidden" name="useremail">
+		<input type="hidden" name="idNum">
+		<input type="hidden" name="nickname">
+		<input type="hidden" name="refreshToken">
+	</form> --%>
+
+	
 	 <br>
 	<!-- <button type="button" style="width: 290px; height: 30px;"><font id="web-font">카카오톡으로
 				시작하기</font></button> -->
@@ -228,13 +273,25 @@
 				</script>
 				
 	<form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">
-		<form id="login" method="post" name="frm">
+		
 		<input type="hidden" name="useremail">
 		<input type="hidden" name="idNum">
 		<input type="hidden" name="nickname">
 		<input type="hidden" name="refreshToken">
 	</form>
 	</div>
+
+	
+	 <%--     <script>
+        function openChild()
+        {
+            // window.name = "부모창 이름"; 
+            window.name = "parentForm";
+            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+            window.open("<%=apiURL%>",
+                    "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
+        }
+   </script> --%>
 	
 	<script>
 		
