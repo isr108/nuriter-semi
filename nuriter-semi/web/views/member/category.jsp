@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
-<% ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); 
+<% 
+   ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list"); 
    ArrayList<HashMap<String,Object>> pictureList = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList");
 %>
    
@@ -282,66 +283,22 @@
 	    border-top-right-radius: 5px;
 	    border-bottom-right-radius: 5px;
     }
+    td {
+    	display: inline-block; width: 200px; white-space: nowrap; overflow: hidden;
+    }
 </style>
 </head>
 <body>
-<!-- <div id="iBox">
-        <label id="head" href='../../index.jsp'><font id="web-font">누리터</font></label>
-       <font id="web-font"><a id="head" href='../../index.jsp'>누리터</a></font> 
-        <div id="search" align="center">
-      		<input type="text" id="searchBox" value="내용을 입력해 주세요">
-      		<input type="button" id="searchBtn" value="검색">
-  	 	</div>
-  	 	
-  	 	 <div id="loginBtn">
-        	<button class="button">로그인</button>
-        	<button class="button">회원가입</button>
-      		<button type="button" class="btn">로그인</button>
-       	 <button type="button" class="btn btn-primary">회원가입</button>
-   		</div>
-   </div>  -->
-   
-  
-   <%@ include file="../common/logoAndLogbutton.jsp" %>
-  
+    <%@ include file="../common/logoAndLogbutton.jsp" %>
     <%@ include file="../common/categorybar.jsp" %>
 
     <br><br><br> <br><br><br> <br><br><br><br>
-      <!-- <nav>
-        <div class="wrapper">
-          <ul class="navi">
-               <li id="web-font" ><a href="/bs/views/Login.html">언어</a>
-               	 <ul>
-               		<li id="web-font" class="na"><a href="#">일본어</a></li>
-               		<li id="web-font" class="na"><a href="#">중국어</a></li>
-               		
-               	</ul> 
-               	</li>	
-               <li id="web-font"><a href="/bs/views/mypage.html">공방</a></li>
-               <li id="web-font"><a href="/bs/views/roadmap.html">요리</a></li>
-               <li id="web-font"><a href="/bs/views/hobby.html">운동</a></li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">음악</a></li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">컴퓨터</a></li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">문화</a></li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">기타</a></li>
-          </ul>
-        </div>
-  </nav>   -->
-  
-  
-  <!-- <hr class="colorgraph"> -->
   
   <div id="showMain">
-  
    <div id="showLeft" >
       <ul class="navi2" style="list-style-type:none">
         <li id="web-font"><a href="#">카테고리</a></li>
         <hr class="colorgraph">
-        <%-- <li id="web-font"><a href="#"><%=name%></a></li>
-        <hr class="colorgraph"> --%>
-       <!--  <li id="web-font"><a href="#">축구</a></li>
-        <li id="web-font"><a href="#">농구</a></li>
-        <li id="web-font"><a href="#">야구</a></li> -->
      </ul>
 
    </div>
@@ -354,119 +311,33 @@
                <div class="select-control inline-block width-100px" align="right">
                <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)" >
                     <option value="recommendation_point">추천순</option>
-                    <option value="ranking_points" selected="">랭킹순</option>
+                    <option value="ranking_points" selected=" ">랭킹순</option>
                     <option value="created_at">신규등록순</option>
               </select>
         	</div>  
               
        </div>
-        
-        
-     <!-- <br><br> -->
       
-        <div id="tableDiv" align="center" border="0">
+        <div id="tableDiv" align="center">
         	<%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
-        			/* System.out.println(hmap); */
         	%>
-
-
-        		<table>
+        		<table id="nuriterListArea">
            			<tr id="tableHiddenTop">
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
-
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-            			<td id="titleTd" align="left"><%= hmap.get("nuri_name") %></td>
+            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap.get("nuri_name") %></td>
            			</tr>
            			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
            			</tr>
             	</table>
-        	<%  
-        			System.out.println(hmap.get("nuri_number"));
-        		} %>
-       	 <%-- <% for(Nuriter nu : list){ %>
-           <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px" onclick="location.href='views/member/categoryDetail.jsp'"></th>
-           </tr>
-           <tr>
-           	<input type="hidden" value="<%= nu.getNuriNum()%>">
-            <td><!-- <p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p> --><%=nu.getNuriTitle() %></td>
-           </tr>
-            </table>
-         <% } %> --%>
-         
-         
-           <!--
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr> -->
-            </table>
-            
-            
-            
-            
-            <table>
-           <!-- <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr>
-            </table>
-            
-            <table>
-           <tr>
-            <th><img src="../image/go1.gif" width="200px" height="130px"></th>
-           </tr>
-           <tr>
-            <td><p id="web-font-table" align="center"><font size="4" color="black">[축구]한 게임 찢으실분 구합니다.</font></p></td>
-           </tr> -->
-            </table>
+        	<%  System.out.println(hmap.get("nuri_number")); } %>
             
             
              <br><br><br><br><br><br><br>
@@ -514,7 +385,6 @@
 				console.log(num);
 				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
 	 	});
-	 
   	});
   </script>
 

@@ -122,6 +122,7 @@ public class NuriterService {
 
 	public ArrayList<Nuriter> selectNuriterList() {
 		Connection con = getConnection();
+		
 	    ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con);
 		
 	    close(con);
@@ -137,6 +138,23 @@ public class NuriterService {
 		close(con);
 		
 		return pictureList;
+	}
+
+	public Nuriter selectOne(String num) {
+		Connection con = getConnection();
+		
+		int result = 0;
+		
+		result = new NuriterDao().updateCount(con, num);
+		
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		Nuriter n = new NuriterDao().selectOne(con, num);
+		
+		close(con);
+		
+		return n;
 	}
 
 	

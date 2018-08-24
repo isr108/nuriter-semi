@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Nuriter implements java.io.Serializable{
 	private String nuriNum; //누리터 번호
     private String ownerNum; //누리장 번호(회원번호)
+    private String nickName; //닉네임
     private String categoryNum; //카테고리ID
     private String nuriTitle; //누리터 이름
     private Date startDate; //시작 날짜
@@ -20,12 +21,13 @@ public class Nuriter implements java.io.Serializable{
     
     public Nuriter() {}
 
-	public Nuriter(String nuriNum, String ownerNum, String categoryNum, String nuriTitle, Date startDate, Date endDate,
-			String startTime, String endTime, String place, String content, String price, Date applicationDate,
-			String personnel, String newnuriCount) {
+	public Nuriter(String nuriNum, String ownerNum, String nickName, String categoryNum, String nuriTitle,
+			Date startDate, Date endDate, String startTime, String endTime, String place, String content, String price,
+			Date applicationDate, String personnel, String newnuriCount) {
 		super();
 		this.nuriNum = nuriNum;
 		this.ownerNum = ownerNum;
+		this.nickName = nickName;
 		this.categoryNum = categoryNum;
 		this.nuriTitle = nuriTitle;
 		this.startDate = startDate;
@@ -54,6 +56,14 @@ public class Nuriter implements java.io.Serializable{
 
 	public void setOwnerNum(String ownerNum) {
 		this.ownerNum = ownerNum;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getCategoryNum() {
@@ -154,11 +164,11 @@ public class Nuriter implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Nuriter [nuriNum=" + nuriNum + ", ownerNum=" + ownerNum + ", categoryNum=" + categoryNum
-				+ ", nuriTitle=" + nuriTitle + ", startDate=" + startDate + ", endDate=" + endDate + ", startTime="
-				+ startTime + ", endTime=" + endTime + ", place=" + place + ", content=" + content + ", price=" + price
-				+ ", applicationDate=" + applicationDate + ", personnel=" + personnel + ", newnuriCount=" + newnuriCount
-				+ "]";
+		return "Nuriter [nuriNum=" + nuriNum + ", ownerNum=" + ownerNum + ", nickName=" + nickName + ", categoryNum="
+				+ categoryNum + ", nuriTitle=" + nuriTitle + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", place=" + place + ", content=" + content
+				+ ", price=" + price + ", applicationDate=" + applicationDate + ", personnel=" + personnel
+				+ ", newnuriCount=" + newnuriCount + "]";
 	}
     
 }
