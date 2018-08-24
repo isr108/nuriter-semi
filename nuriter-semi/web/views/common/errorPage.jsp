@@ -5,11 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<style>
+	div h1 {
+		font-family: 'Nanum Pen Script', cursive;
+		font-size: 100px;
+		color: #F79F81;
+	}
+	#main {
+		margin-top: 300px;
+	}
+	
+</style>
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1 align="center">에러발생!</h1>
-	<h3 align="center"><%= msg %></h3>
+	<%@ include file="../common/logoAndLogbutton.jsp" %>
+    <%@ include file="../common/categorybar.jsp" %>
+	<div id="main" align="center">
+		<h1 align="center" id="web-font"><%= msg %></h1>
+		<br><br><br><br>
+		<a href="/ns/index.jsp"><font id="web-font" size="8px">메인으로 이동</font></a>
+	</div>
 </body>
 </html>

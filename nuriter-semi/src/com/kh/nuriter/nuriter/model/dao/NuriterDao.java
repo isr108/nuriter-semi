@@ -300,6 +300,8 @@ public class NuriterDao {
 				list.add(nu);
 			}
 			
+			System.out.println("selectNuriterList: " + list);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -359,6 +361,75 @@ public class NuriterDao {
 		
 		
 		return pictureList;
+	}
+
+	public int updateCount(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+	public Nuriter selectOne(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Nuriter n = null;
+		
+		String query = prop.getProperty("selectOne");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			System.out.println("num=" + num);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new Nuriter();
+				
+				n.setNickName(rset.getString("nickname"));
+				n.setOwnerNum(rset.getString("owner_number"));
+				n.setCategoryNum(rset.getString("category_id"));
+				n.setNuriTitle(rset.getString("nuri_name"));
+				n.setContent(rset.getString("ncontent"));
+				n.setStartDate(rset.getDate("start_date"));
+				n.setEndDate(rset.getDate("END_DATE"));
+				n.setStartTime(rset.getString("START_TIME"));
+				n.setPlace(rset.getString("place"));
+				n.setPrice(rset.getString("price"));
+				n.setApplicationDate(rset.getDate("application_date"));
+				n.setPersonnel(rset.getString("PERSONNEL"));
+				n.setNewnuriCount(rset.getString("newnuri_conunt"));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return n;
 	}
 
 }
