@@ -45,6 +45,7 @@ public class SelectMyNuriListServlet extends HttpServlet {
 
 				// 게시판은 1페이지부터 시작함
 				currentPage = 1;
+				System.out.println("test");
 
 				// 현재 페이지가 1페이지가 아닌 경우
 				if (request.getParameter("currentPage") != null) {
@@ -84,7 +85,7 @@ public class SelectMyNuriListServlet extends HttpServlet {
 				String page = "";
 
 				if (list != null) {
-					page = "/views/common/nuriOpen.jsp";
+					page = "/views/common/myNuri.jsp";
 					request.setAttribute("list", list);
 					request.setAttribute("pi", pi);
 				} else {
