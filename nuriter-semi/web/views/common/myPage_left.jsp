@@ -111,7 +111,7 @@ a {
 	
 		
 			<div id="newNuri" style="font-size: 16px;" align="center">
-				<a href="<%=request.getContextPath()%>/views/member/nuriterOpen.jsp">나의 누리터 개설</a>
+				<a href="<%=request.getContextPath()%>/views/member/nuribossApply.jsp">누리장 신청</a>
 			</div><br>
 		
 		</div>
