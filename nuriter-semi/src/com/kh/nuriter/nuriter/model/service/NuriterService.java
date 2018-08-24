@@ -150,6 +150,7 @@ public class NuriterService {
 		close(con);
 		
 		return listCount;
+	}
 
 	public ArrayList<Nuriter> selectEndList(int currentPage, int limit, String userNum) {
 		Connection con = getConnection();
@@ -181,6 +182,28 @@ public class NuriterService {
 		return n;
 
 	}
+	
+	public int getMyNuriListCount(String userNum) {
+	      Connection con = getConnection();
+	         
+	       int listCount = new NuriterDao().getMyNuriListCount(con, userNum);
+	         
+	         close(con);
+	         
+	         return listCount;
+	   }
+
+	   public ArrayList<Nuriter> selectMyNuriList(int currentPage, int limit, String userNum) {
+	      Connection con = getConnection();
+	         
+	       ArrayList<Nuriter> list = new NuriterDao().selectMyNuriList(con, currentPage, limit, userNum);
+	         
+	       close(con);
+	         
+	         
+	         
+	       return list;
+	   }
 
 	
 
