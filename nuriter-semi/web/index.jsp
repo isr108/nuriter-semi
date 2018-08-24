@@ -421,39 +421,39 @@
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/bang.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/cooking.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/sports.png" width="80" height="80">
          </button>
          </td>
       </tr>
       <tr>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/music.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/compu.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/cul.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="location.href='views/member/category.jsp' ">
+         <button class="buttonLanguage" onclick="goNuriterList();">
          	<img src="images/board/gita.png" width="80" height="80">
          </button>
          </td>

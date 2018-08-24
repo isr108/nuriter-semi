@@ -310,19 +310,28 @@ public class NuriterDao {
 		return list;
 	}
 
-	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con) {
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con, int currentPage, int limit) {
 		ArrayList<HashMap<String, Object>> pictureList = null;
 		HashMap<String, Object> hmap = null;
 		
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		/*Statement stmt = null;*/
 		ResultSet rset = null;
 		
 		String query = prop.getProperty("selectNuriterThumbnailMap");
 		
 		try {
-			stmt = con.createStatement();
+			pstmt = con.prepareStatement(query);
+			/*stmt = con.createStatement();
+			rset = stmt.executeQuery(query);*/
 			
-			rset = stmt.executeQuery(query);
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 			
 			pictureList = new ArrayList<HashMap<String, Object>>();
 			
@@ -355,10 +364,39 @@ public class NuriterDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		
 		return pictureList;
+	}
+
+	public int getNuriterListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("nuriterListCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		
+		return listCount;
 	}
 
 }

@@ -129,14 +129,25 @@ public class NuriterService {
 		return list;
 	}
 
-	public ArrayList<HashMap<String, Object>> selectThumbnailList() {
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(int currentPage, int limit) {
 		Connection con = getConnection();
 		
-		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con);
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con, currentPage, limit);
 		
 		close(con);
 		
 		return pictureList;
+	}
+
+
+	public int getNuriterListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new NuriterDao().getNuriterListCount(con);
+		
+		close(con);
+		
+		return listCount;
 	}
 
 	

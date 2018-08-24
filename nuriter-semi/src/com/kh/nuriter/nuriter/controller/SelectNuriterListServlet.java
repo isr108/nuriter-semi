@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.nuriter.nuriter.model.service.NuriterService;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
+import com.kh.nuriter.nuriter.model.vo.PageInfo;
 
 /**
  * Servlet implementation class SelectNuriterListServlet
@@ -33,10 +34,39 @@ public class SelectNuriterListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//페이징 처리
+		int currentPage;
+		int limit;
+		int maxPage;
+		int startPage;
+		int endPage;
+		
+		currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = new NuriterService().getNuriterListCount();
+		
+		limit = 8;
+		
+		maxPage = (int)((double)listCount / limit + 0.9) ;
+		
+		startPage = (((int)((double)currentPage / limit + 0.9)) -1) * limit + 1;
+		
+		endPage = startPage + limit - 1;
+		
+		if(maxPage < endPage){
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+		
 		System.out.println("누리터 리스트 서블릿 이동 완료!");
 		ArrayList<Nuriter> list = new NuriterService().selectNuriterList();
 		
-		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList();
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList(currentPage, limit);
 		
 		System.out.println(list);
 		System.out.println(pictureList);
@@ -47,6 +77,7 @@ public class SelectNuriterListServlet extends HttpServlet {
 			page = "views/member/category.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("pi", pi);
 		}else{
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "누리터 목록 조회 실패");
