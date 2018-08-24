@@ -1,7 +1,8 @@
 package com.kh.nuriter.board.model.sevice;
 
 import com.kh.nuriter.board.model.dao.BoardDao;
-import com.kh.nuriter.board.model.vo.reportNuri;
+import com.kh.nuriter.board.model.vo.board;
+
 import static com.kh.nuriter.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.Connection;
 
 public class BoardService {
 
-	public int InsertReportNuri(reportNuri rNuri) {
+	public int InsertReportNuri(board rNuri) {
 		int result =0;
 		Connection con = getConnection();
 		

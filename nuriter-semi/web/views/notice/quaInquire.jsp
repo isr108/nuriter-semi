@@ -76,6 +76,7 @@ overflow:hidden;
 	<br>
 	<hr style="border: solid 1px lightgray;">
 	<div class="main">
+	<%if(!loginUser.getUserEmail().equals("admin")){ %>
 		<div id="showLeft">
 			<ul class="navi2" style="list-style-type: none">
 				<hr class="colorgraph">
@@ -86,12 +87,13 @@ overflow:hidden;
 				<li id="web-font"><a href="#">1:1 문의하기</a></li>
 			</ul>
 		</div>
+		<%} %>
 		<div class="showRight" id="web-font">
 			<table class="bTable">
 				<tr height="10px"></tr>
 				<tr class="tHead">
 					<td>제목</td>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="qTitle"></td>
 				</tr>
 				<tr height="10px"></tr>
 				<tr class="tHead">
@@ -104,5 +106,11 @@ overflow:hidden;
 			</div>
 		</div>
 	</div>
+	<script>
+		$(function (){
+			
+		});
+	
+	</script>
 </body>
 </html>

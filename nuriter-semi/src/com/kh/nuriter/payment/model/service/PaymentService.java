@@ -2,6 +2,8 @@ package com.kh.nuriter.payment.model.service;
 
 import com.kh.nuriter.payment.model.dao.PaymentDao;
 import com.kh.nuriter.payment.model.vo.Payment;
+import com.kh.nuriter.payment.model.vo.PaymentDetail;
+
 import static com.kh.nuriter.common.JDBCTemplate.*;
 
 import java.sql.Connection;
@@ -51,6 +53,11 @@ public class PaymentService {
 		
 		
 		return result2;
+	}
+
+	public int InsertPaymentDetail(PaymentDetail pd) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
