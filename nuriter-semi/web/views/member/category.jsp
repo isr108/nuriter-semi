@@ -10,8 +10,8 @@
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
    
-   /* int name = Integer.parseInt(request.getParameter("name")) ;
-   System.out.print("name :" +name); */
+   int name = Integer.parseInt(request.getParameter("name")) ;
+   System.out.print("name :" +name); 
 %>
    
 <!DOCTYPE html>
@@ -259,6 +259,7 @@
 	    width:400px;
 	    height:60px;
 	    overflow:hidden;
+
 	}  */
 	 .pagination {
   		display:inline-blick;
@@ -268,30 +269,37 @@
 	    padding-left: 0;
 	    margin: 20px 0;
 	    boder-radius:4px;
-	} 
+	    pointer: cursor;
+	}
+
 	.pagination a {
 	    color: black;
 	    padding: 8px 16px;
 	    text-decoration: none;
 	    border: 1px solid #ddd;
+	    pointer: cursor;
 	}
 	.pagination a.active {
 	    background-color: rgb(241, 196, 15);
 	    color: white;
 	    border: 1px solid rgb(241, 196, 15);
+	    pointer: cursor;
 	}
 	.pagination a:hover:not(.active) {
 		background-color: #ddd;
+		pointer: cursor;
 	}
 
 	.pagination a:first-child {
 	    border-top-left-radius: 5px;
 	    border-bottom-left-radius: 5px;
+	    pointer: cursor;
 	}
 
 	.pagination a:last-child {
 	    border-top-right-radius: 5px;
 	    border-bottom-right-radius: 5px;
+	    pointer: cursor;
     }
     td {
     	display: inline-block; width: 200px; white-space: nowrap; overflow: hidden;
@@ -317,7 +325,6 @@
      
         <div id="showRightButton">
             <button class="button" onclick="location.href='/ns/views/member/nuriterOpen.jsp' ">누리터 개설하기</button>
-              <button class="button">관심누리터 확인</button>
                <div class="select-control inline-block width-100px" align="right">
                <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)" >
                     <option value="recommendation_point">추천순</option>
@@ -357,42 +364,37 @@
             <br><br><br><br><br><br>
             
              <!-- 페이지처리 -->
-             <div class="pagination" align="center">
-             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</a>
+
+
+             <!-- <div class="pageArea" align="center"> -->
+             <div class="pagination" align="center" id="web-font">
+             <br>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</a>
              	<% if(currentPage <= 1){ %>
-             	<a  disabled><</a>
+             	<!-- <button disabled><</button> -->
+             	<a disabled><</a>
              	<% }else{ %>
-             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'"><</a>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
+
              	<% } %>
              	<% for(int p = startPage; p <= endPage; p++){
              		if(p == currentPage){	
              	%>
-             	<a  disabled><%= p %></a>
+
+             	<a class="active" disabled><%= p %></a>
              	<%  }else{ %>
-             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
+
              	<%  } %>
              	<% } %>
              	
              	<% if(currentPage >= maxPage){ %>
-             	<a  disabled>></a>
+             	<a disabled>></a>
              	<% }else{ %>
-             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
              	<% } %>
-             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
              </div>
-             
-    <!-- <div class="pagination" align="center">
-      <br>
-	  <a href="#" >&laquo;</a>
-	  <a href="#" class="active">1</a>
-	  <a href="#" >2</a>
-	  <a href="#" >3</a>
-	  <a href="#" >4</a>
-	  <a href="#" >5</a>
-	  <a href="#" >6</a>
-	  <a href="#" >&raquo;</a>
-	  <br>
-	</div> -->
         
     </div>
    
@@ -402,7 +404,7 @@
   </div>
   
  <script>
- <%--  $(function() {
+  $(function() {
 	  var name = <%=name%>;
     if(name==1){
     	console.log("네임 : " + name);
@@ -414,21 +416,18 @@
     	
     }
     
-  } ); --%>
+  } );
   
   	$(function(){
 	 	$("#nuriterListArea td").mouseenter(function(){
 			$(this).parent().css({"cursor":"pointer"});
 	 	}).click(function(){
-	 			/* var num = $(this).parent().children("input").val(); */
-	 			var num = document.getElementById('test1').value;
+	 			var num = $(this).parent().children("input").val();
 				console.log(num);
 				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
 	 	});
-
   	});
   </script>
-
    
 </body>
 </html>

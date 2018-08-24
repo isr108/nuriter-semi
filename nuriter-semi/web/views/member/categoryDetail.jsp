@@ -88,7 +88,7 @@ img{
 
 .likeOrAngry > div:hover{
 	border:2px solid #FFBF00;
-	background:#848484;
+	background:#F5D0A9;
 	float:left;
 	width: 210px;
 	border-radius: 4px;
