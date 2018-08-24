@@ -255,12 +255,23 @@
      color: white;
      cursor: pointer;
   }
-  .pagination {
+  /* .pagination {
 	    width:400px;
 	    height:60px;
 	    overflow:hidden;
+
+	}  */
+	 .pagination {
+  		display:inline-blick;
+	    /* width:400px;
+	    height:60px;
+	    overflow:hidden; */
+	    padding-left: 0;
+	    margin: 20px 0;
+	    boder-radius:4px;
 	    pointer: cursor;
 	}
+
 	.pagination a {
 	    color: black;
 	    padding: 8px 16px;
@@ -353,6 +364,8 @@
             <br><br><br><br><br><br>
             
              <!-- 페이지처리 -->
+
+
              <!-- <div class="pageArea" align="center"> -->
              <div class="pagination" align="center" id="web-font">
              <br>
@@ -362,13 +375,16 @@
              	<a disabled><</a>
              	<% }else{ %>
              	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
+
              	<% } %>
              	<% for(int p = startPage; p <= endPage; p++){
              		if(p == currentPage){	
              	%>
+
              	<a class="active" disabled><%= p %></a>
              	<%  }else{ %>
              	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
+
              	<%  } %>
              	<% } %>
              	
