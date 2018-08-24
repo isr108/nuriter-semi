@@ -140,6 +140,20 @@ public class NuriterService {
 		return pictureList;
 	}
 
+
+	public ArrayList<Nuriter> selectEndList(int currentPage, int limit, String userNum) {
+		Connection con = getConnection();
+	      
+	    ArrayList<Nuriter> list = new NuriterDao().selectEndList(con, currentPage, limit, userNum);
+	      
+	    close(con);
+	      
+	      
+	      
+	    return list;
+	}
+
+	
 	public Nuriter selectOne(String num) {
 		Connection con = getConnection();
 		
@@ -155,6 +169,7 @@ public class NuriterService {
 		close(con);
 		
 		return n;
+
 	}
 
 	

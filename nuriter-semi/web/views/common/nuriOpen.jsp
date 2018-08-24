@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
- <% 
+<% 
 	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
  	PageInfo pi = (PageInfo)request.getAttribute("pi");
  	int listCount = pi.getListCount();
@@ -49,8 +49,8 @@
 	}
 	table tr th{
 	text-align:center;
-	width:auto;
-	height:auto;
+	/* width:auto;
+	height:auto; */
 	}
 	
 	table td td{
@@ -71,6 +71,11 @@
 	padding-left:20%;
 	}
 	
+	tbody{
+		width:auto;
+		height:auto;
+	}
+	
 	
 
 </style>
@@ -89,12 +94,12 @@
 				<tr>
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
-					<th>누리터명</th>
-					<th>시작일시</th>
-					<th>종료일시</th>
-					<th>장소</th>
-					<th>참가비</th>
-					<th>개설일자</th>
+					<th><div style="width:150px">누리터명</div></th>
+					<th><div style="width:100px">시작일시</div></th>
+					<th><div style="width:100px">종료일시</div></th>
+					<th><div style="width:300px">장소</div></th>
+					<th><div style="width:50px">참가비</div></th>
+					<th><div style="width:100px">개설일자</div></th>
 				</tr>
 				
 				 <% for(Nuriter n : list){ %>
@@ -133,9 +138,9 @@
    			<% if(currentPage >= maxPage){ %>
    				<button disabled>></button>
    			<% }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.nu?currentPage=<%= currentPage + 1%>'">></button>
+   				<button onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList?currentPage=<%= currentPage + 1%>'">></button>
    			<% } %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.nu?currentPage=<%= maxPage %>'">>></button>
+   				<button onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList?currentPage=<%= maxPage %>'">>></button>
    		</div>
 		</div>
 			
