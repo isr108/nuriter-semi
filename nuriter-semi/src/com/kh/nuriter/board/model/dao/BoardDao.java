@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 import static com.kh.nuriter.common.JDBCTemplate.*;
 
-import com.kh.nuriter.board.model.vo.reportNuri;
+import com.kh.nuriter.board.model.vo.board;
+
 
 
 public class BoardDao {
@@ -27,7 +28,7 @@ public class BoardDao {
 
 
 
-	public int InsertReportNuri(Connection con, reportNuri rNuri) {
+	public int InsertReportNuri(Connection con, board rNuri) {
 		int result =0;
 		PreparedStatement pstmt = null;
 		
@@ -37,7 +38,7 @@ public class BoardDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, rNuri.getBoardTitle());
 			pstmt.setString(2, rNuri.getBoardContent());
-			pstmt.setString(3, rNuri.getUserNum()+"");
+			pstmt.setString(3, (rNuri.getUserNum())+"");
 			pstmt.setString(4, rNuri.getNuriNum());
 			
 			result = pstmt.executeUpdate();

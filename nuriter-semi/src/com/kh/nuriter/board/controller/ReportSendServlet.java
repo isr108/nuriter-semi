@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.nuriter.board.model.sevice.BoardService;
-import com.kh.nuriter.board.model.vo.reportNuri;
+import com.kh.nuriter.board.model.vo.board;
 import com.kh.nuriter.member.model.vo.Member;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
@@ -40,7 +40,7 @@ public class ReportSendServlet extends HttpServlet {
 	
 
 
-		reportNuri rNuri = new reportNuri();
+		board rNuri = new board();
 		rNuri.setBoardTitle(rTitle);
 		rNuri.setBoardContent(rContent);
 		rNuri.setUserNum(Integer.parseInt(rUser));

@@ -263,6 +263,7 @@
 	
 	function home(){
 		location.href='<%=request.getContextPath()%>/home';
+	
 	}
 	</script>
 </nav>
