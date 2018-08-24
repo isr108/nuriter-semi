@@ -180,7 +180,7 @@
   session.setAttribute("state", state);
 %>  --%>
 
- <%
+<%--  <%
     String clientId = "p7rY8Kd2Yc3e2TAc4l38";//애플리케이션 클라이언트 아이디값";
     String redirectURI = URLEncoder.encode("http://localhost:8001/ns/views/member/navercallback.jsp", "UTF-8");
     SecureRandom random = new SecureRandom();
@@ -191,9 +191,24 @@
     apiURL += "&state=" + state;
     session.setAttribute("state", state);
  %>
-  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
 
+<div id="naver_id_login"></div>
+<script type="text/javascript"
+		src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+		charset="utf-8"></script>
 
+<script type="text/javascript">
+		var clientId = "p7rY8Kd2Yc3e2TAc4l38";
+		var callbackUrl = "http://localhost:8001/ns/views/member/navercallback.jsp";
+		var naver_id_login = new naver_id_login(clientId, callbackUrl);
+		var state = naver_id_login.getUniqState();
+		naver_id_login.setButton("green", 3, 50);
+		naver_id_login.setDomain("http://localhost:8001/ns");
+		naver_id_login.setState(state);
+		naver_id_login.setPopup();
+		naver_id_login.init_naver_id_login();
+</script>
 	   <%--  <form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">
 		
 		<input type="hidden" name="useremail">

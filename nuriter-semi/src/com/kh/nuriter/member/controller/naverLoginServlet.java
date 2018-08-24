@@ -26,12 +26,13 @@ public class naverLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userEmail=request.getParameter("useremail");
-		String idNum=request.getParameter("idNum");
+		String userEmail=request.getParameter("email");
+		String name=request.getParameter("name");
 		String nickName=request.getParameter("nickname");
-		String refreshToken=request.getParameter("refreshToken");
+		String birthday=request.getParameter("birthday");
 		
 		System.out.println(userEmail);
+		System.out.println("오냐?");
 	}
 
 	/**

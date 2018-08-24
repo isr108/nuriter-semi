@@ -255,11 +255,20 @@
      color: white;
      cursor: pointer;
   }
-  .pagination {
+  /* .pagination {
 	    width:400px;
 	    height:60px;
 	    overflow:hidden;
-	}
+	}  */
+	 .pagination {
+  		display:inline-blick;
+	    /* width:400px;
+	    height:60px;
+	    overflow:hidden; */
+	    padding-left: 0;
+	    margin: 20px 0;
+	    boder-radius:4px;
+	} 
 	.pagination a {
 	    color: black;
 	    padding: 8px 16px;
@@ -348,28 +357,28 @@
             <br><br><br><br><br><br>
             
              <!-- 페이지처리 -->
-             <div class="pageArea" align="center">
-             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</button>
+             <div class="pagination" align="center">
+             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</a>
              	<% if(currentPage <= 1){ %>
-             	<button disabled><</button>
+             	<a  disabled><</a>
              	<% }else{ %>
-             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'"><</button>
+             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'"><</a>
              	<% } %>
              	<% for(int p = startPage; p <= endPage; p++){
              		if(p == currentPage){	
              	%>
-             	<button disabled><%= p %></button>
+             	<a  disabled><%= p %></a>
              	<%  }else{ %>
-             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></button>
+             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
              	<%  } %>
              	<% } %>
              	
              	<% if(currentPage >= maxPage){ %>
-             	<button disabled>></button>
+             	<a  disabled>></a>
              	<% }else{ %>
-             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></button>
+             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
              	<% } %>
-             	<button onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></button>
+             	<a  onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
              </div>
              
     <!-- <div class="pagination" align="center">
