@@ -37,6 +37,7 @@ public class NuriterDao {
 		}
 	}
 
+	//누리터 개설
 	public int insertNuriter(Connection con, Nuriter n) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -55,6 +56,7 @@ public class NuriterDao {
 			pstmt.setString(8, n.getPlace()); //장소
 			pstmt.setString(9, n.getPrice()); //가격
 			pstmt.setString(10, n.getPersonnel()); //총원
+			pstmt.setInt(11, n.getAttendCount()); //총 출석일수
 			
 			result = pstmt.executeUpdate();
 			
@@ -126,7 +128,7 @@ public class NuriterDao {
 		return result;
 	}
 
-
+	//누리터 번호 가져오기
 	public String selectCurrval(Connection con) {
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -152,8 +154,88 @@ public class NuriterDao {
 		
 		return nuriNum;
 	}
+	
+	//누리터 개설시 Board, 썸네일 테이블에 데이터 삽입 
+		public int insertNuriterBoard(Connection con, Nuriter n) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			String query = prop.getProperty("insertNuriterBoard");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, n.getNuriTitle()); //게시판 제목
+				pstmt.setString(2, n.getContent()); //게시판 내용
+				pstmt.setString(3, n.getOwnerNum()); //작성자 번호
+				pstmt.setString(4, n.getNuriNum()); //누리터 번호
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
 
-	public int insertNuriterPoto(Connection con, Nuriter n, ArrayList<Attachment> fileList) {
+		//Board 번호 가져오기
+		public String selectBoardCurrval(Connection con) {
+			Statement stmt = null;
+			ResultSet rset = null;
+			String BoardNum = " ";
+			
+			String query = prop.getProperty("selectBoardCurrval");
+			
+			try {
+				stmt = con.createStatement();
+				rset = stmt.executeQuery(query);
+				
+				if(rset.next()){
+					BoardNum = rset.getString(1);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(stmt);
+				close(rset);
+			}
+			
+			return BoardNum;
+		}
+
+		//누리터 개설시 대표 사진 등록 기능
+		public int insertNuriterAttachment(Connection con, Nuriter n, ArrayList<Attachment> fileList, String BoardId) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			String query = prop.getProperty("insertBoardAttachment");
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, BoardId); //현재 게시판 번호
+				pstmt.setString(2, fileList.get(0).getOrigin()); //사진이름
+				pstmt.setString(3, fileList.get(0).getChange()); //바꿀사진이름
+				pstmt.setString(4, fileList.get(0).getPath()); //파일경로
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+
+	//누리터 사진 테이블을 사용하지 않아 주석 처리함
+	/*public int insertNuriterPoto(Connection con, Nuriter n, ArrayList<Attachment> fileList) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -176,7 +258,7 @@ public class NuriterDao {
 		}
 		
 		return result;
-	}
+	}*/
 
 	public int getListCount(Connection con, String userNum) {
 		PreparedStatement pstmt = null;
@@ -562,7 +644,7 @@ public class NuriterDao {
 	   }
 
 	   public ArrayList<Nuriter> selectMyNuriList(Connection con, int currentPage, int limit, String userNum) {
-	       PreparedStatement pstmt = null;
+	         PreparedStatement pstmt = null;
 	         ResultSet rset = null;
 	         
 	         ArrayList<Nuriter> list = null;

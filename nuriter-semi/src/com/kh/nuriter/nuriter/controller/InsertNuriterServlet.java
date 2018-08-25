@@ -41,8 +41,8 @@ public class InsertNuriterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("오니??");
-		//폼 전송을 multipart/form-data로 전송하는 경우에는
+		
+				//폼 전송을 multipart/form-data로 전송하는 경우에는
 				//기존처럼 request.getParameter로 값을 받을 수 없다.
 				//cos.jar가 파일도 받고 다른 값들도 받아주는 역할을 한다.
 				//com.orelilly.servlet의 약자이다.
@@ -152,19 +152,17 @@ public class InsertNuriterServlet extends HttpServlet {
 					}
 					
 					Nuriter n = new Nuriter();
-					n.setOwnerNum(writer);
-					n.setCategoryNum(category);
-					n.setNuriTitle(title);
-					n.setStartDate(startDay);
-					n.setEndDate(endDay);
-					n.setStartTime(startTime + " ~ " + endTime);
-					n.setEndTime(endTime);
-					n.setPlace(place);
-					n.setContent(summerText);
-					n.setPrice(price);
-					n.setPersonnel(personnel);
-					
-					System.out.println(n.toString());
+					n.setOwnerNum(writer); //누리장 번호
+					n.setCategoryNum(category); //카테고리ID
+					n.setNuriTitle(title); //누리터 제목
+					n.setStartDate(startDay); //시작일
+					n.setEndDate(endDay); //종료일
+					n.setStartTime(startTime + " ~ " + endTime); //시작 종료시간
+					/*n.setEndTime(endTime);*/
+					n.setPlace(place); //장소
+					n.setContent(summerText); //내용
+					n.setPrice(price); //가격
+					n.setPersonnel(personnel); //총원
 					
 					//Attachment객체 생성해서 arrayList객체 생성
 					ArrayList<Attachment> fileList = new ArrayList<Attachment>();
