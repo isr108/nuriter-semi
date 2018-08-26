@@ -27,7 +27,7 @@
     	table-layout: fixed;
     	font-family: 'Jua', sans-serif;
 	}
-	a{
+ 	a{
 		color:black;
 	}
 </style>

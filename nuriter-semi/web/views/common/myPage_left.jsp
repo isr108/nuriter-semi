@@ -10,7 +10,7 @@
 	position: fixed;
 	width: 160px;
 	height: 300px;
-	margin-top: 2%;
+	margin-top: -4%;
 	margin-left: 3%;
 	margin-right: auto;
 	}
@@ -37,6 +37,7 @@
 
 #mpLogo {
 	font-family: 'Jua', sans-serif;
+	margin-top: 25%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -50,72 +51,55 @@
 	margin-right: auto;
 }
 
-
-#myNuri {
-
+	.contents{
 	font-family: 'Jua', sans-serif;
 	margin-left: auto;
 	margin-right: auto;
-}
+		
+	}
 
 
-
-#info {
-
-	font-family: 'Jua', sans-serif;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
-
-#check {
-
-	font-family: 'Jua', sans-serif;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
-#newNuri {
-
-	font-family: 'Jua', sans-serif;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-a {
+div a {
 	color: black;
 }
 </style>
 </head>
 <body>
+	<%@ include file="/views/common/logoAndLogbutton.jsp"%>
+	<%@ include file="/views/common/categorybar.jsp" %>
+
 	<!-- 왼쪽 마이페이지 목록 -->
 	<div id="leftSide" align="left">
 		<div id="mpLogo" style="font-size: 16px;" align="center">마이페이지</div>
 		<br><br>
 		<div class="leftContent">
-			<div id="name" style="font-size: 18px;" align="center">홍길동</div>
+			<div id="name" style="font-size: 18px;" align="center"><%=loginUser.getNickName()%> 님</div>
 		<br><br>
-			<div id="myNuri" style="font-size: 16px;" align="center">
-			<a href="<%=request.getContextPath()%>/views/common/myNuri.jsp">나의누리터</a>
+			<div id="myNuri" class="contents" style="font-size: 16px;" align="center">
+			<a href="<%=request.getContextPath()%>/selectMyNuriList.nu">나의누리터</a>
 			</div><br>
 	
-			<div id="info" style="font-size: 16px;" align="center">
+			<div id="info" class="contents" style="font-size: 16px;" align="center">
 				<a href="<%=request.getContextPath()%>/views/common/myInfo.jsp">개인정보수정</a>
 			</div><br>
 		
-			<div id="check" style="font-size: 16px;" align="center">
+			<div id="check" class="contents" style="font-size: 16px;" align="center">
 				<a href="<%=request.getContextPath()%>/views/member/csCheck.jsp">출석체크</a>
 			</div><br>
-	
-		
-			<div id="newNuri" style="font-size: 16px;" align="center">
-				<a href="<%=request.getContextPath()%>/views/member/nuribossApply.jsp">누리장 신청</a>
-			</div><br>
-		
+					 	
+	  	    <%if(loginUser.getGrade().equals("G3")) {%>
+	  	   	    <div id="firstOption" class="contents" style="font-size: 16px;" align="center">
+	        	<a href="<%=request.getContextPath()%>/views/member/nuribossApply.jsp">누리장 신청</a>
+	        	</div>
+
+	        <%}else if(loginUser.getGrade().equals("G2")){%>
+	        	<div id="secondOption" class="contents" style="font-size: 16px;" align="center">
+	            <a href="<%=request.getContextPath()%>/">누리터 관리</a>
+	            </div>
+	        
+	        <%}%>
 		</div>
-	</div>
+		</div>
 	<!-- 마이페이지 -->
 
 

@@ -78,13 +78,14 @@
    		color: rgb(241, 196, 15);
    	}
    	
+   	a {
+	color: black;
+	}
    	
 </style>
 </head>
 <body>
 	<div>
-		<%@ include file="../common/logoAndLogbutton.jsp" %>
-	    <%@ include file="../common/categorybar.jsp" %>
 	    <%@ include file="../common/myPage_left.jsp" %>
 	</div>
 	<% if(loginUser != null){ %>

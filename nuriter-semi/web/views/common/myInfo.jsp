@@ -111,12 +111,13 @@ colorgroup {
 .notice_list li {
 	padding-left: 7px;
 }
+
+a {
+	color: black;
+}
 </style>
 </head>
 <body>
-
-	<%@ include file="logoAndLogbutton.jsp"%>
-	<%@ include file="categorybar.jsp"%>
 	<%@ include file="myPage_left.jsp"%>
 
 	<div id="myInfoPage">
