@@ -227,6 +227,15 @@ public class NuriterService {
 	       return list;
 	   }
 
+	public ArrayList<Nuriboss> selectNuribossList() {
+		Connection con = getConnection();
+		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con);
+		
+		close(con);
+		
+		return bossList;
+	}
+
 	
 
 

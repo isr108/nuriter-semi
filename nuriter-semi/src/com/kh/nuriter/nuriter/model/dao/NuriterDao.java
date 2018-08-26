@@ -621,4 +621,45 @@ public class NuriterDao {
 	         return list;
 	   }
 
+	public ArrayList<Nuriboss> selectNuribossList(Connection con) {
+		ArrayList<Nuriboss> bossList = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		Nuriboss nb = null;
+		
+		String query = prop.getProperty("selectNuribossList");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			bossList = new ArrayList<Nuriboss>();
+			
+			while(rset.next()){
+				nb = new Nuriboss();
+				
+				nb.setApplyNum(rset.getString("apply_id"));
+				nb.setUserNum(rset.getString("user_number"));
+				nb.setCategoryNum(rset.getString("category_id"));
+				nb.setBossContent(rset.getString("newnuri_content"));
+				nb.setPotoPath(rset.getString("planfile_path"));
+				nb.setPotoName(rset.getString("planfile_name"));
+				nb.setApplyDate(rset.getDate("apply_date"));
+				
+				bossList.add(nb);
+			}
+			
+			System.out.println(bossList);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return bossList;
+	}
+
 }
