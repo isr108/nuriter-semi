@@ -314,7 +314,7 @@
     /* border-bottom: 1px solid #ffd400; */
     background-color: #fff;
     top: 0;
-     margin-top:72px;
+     margin-top:68px;
     z-index: 10;
     }
 </style>	

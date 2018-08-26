@@ -3,36 +3,36 @@ package com.kh.nuriter.board.model.vo;
 import java.sql.Date;
 
 public class board implements java.io.Serializable {
-   private String boardNum; //게시판 번호
-   private String boardTitle; //게시글 제목
-   private String boardContent;//게시글 내용
-   private String userNum;//사용자넘버
-   private int boardCount; //조회수
-   private Date boardDate;//게시글 작성일시
-   private String boardSort;//게시판 종류
-   private String reportNum; //신고 대상자 번호
-   private String nuriNum; //누리터 번호
-   private String status; //게시판 상태
-   
-   
-   public board(){}
+	private String boardNum; //게시판 번호
+	private String boardTitle; //게시글 제목
+	private String boardContent;//게시글 내용
+	private String userNum;//사용자넘버
+	private int boardCount; //조회수
+	private Date boardDate;//게시글 작성일시
+	private String boardSort;//게시판 종류
+	private String reportNum; //신고 대상자 번호
+	private String nuriNum; //누리터 번호
+	private String status; //게시판 상태
+	
+	
+	
+	public board(){}
 
 
-   public board(String boardNum, String boardTitle, String boardContent, String userNum, int boardCount,
-         Date boardDate, String boardSort, String reportNum, String nuriNum, String status) {
-      super();
-      this.boardNum = boardNum;
-      this.boardTitle = boardTitle;
-      this.boardContent = boardContent;
-      this.userNum = userNum;
-      this.boardCount = boardCount;
-      this.boardDate = boardDate;
-      this.boardSort = boardSort;
-      this.reportNum = reportNum;
-      this.nuriNum = nuriNum;
-      this.status = status;
-   }
-
+	public board(String boardNum, String boardTitle, String boardContent, String userNum, int boardCount,
+			Date boardDate, String boardSort, String reportNum, String nuriNum, String status) {
+		super();
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.userNum = userNum;
+		this.boardCount = boardCount;
+		this.boardDate = boardDate;
+		this.boardSort = boardSort;
+		this.reportNum = reportNum;
+		this.nuriNum = nuriNum;
+		this.status = status;
+	}
 
    public String getBoardNum() {
       return boardNum;
@@ -63,21 +63,29 @@ public class board implements java.io.Serializable {
       this.boardContent = boardContent;
    }
 
-
-   public String getUserNum() {
-      return userNum;
-   }
-
-
-   public void setUserNum(String userNum) {
-      this.userNum = userNum;
-   }
+	public String getUserNum() {
+		return userNum;
+	}
 
 
-   public int getBoardCount() {
-      return boardCount;
-   }
+	public void setUserNum(String userNum) {
+		this.userNum = userNum;
+	}
 
+
+	public int getBoardCount() {
+		return boardCount;
+	}
+
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+
+	public Date getBoardDate() {
+		return boardDate;
+	}
 
    public void setBoardCount(int boardCount) {
       this.boardCount = boardCount;
@@ -98,11 +106,25 @@ public class board implements java.io.Serializable {
       return boardSort;
    }
 
+	public String getReportNum() {
+		return reportNum;
+	}
+
+
+	public void setReportNum(String reportNum) {
+		this.reportNum = reportNum;
+	}
+
+
+	public String getNuriNum() {
+		return nuriNum;
+	}
+
+
 
    public void setBoardSort(String boardSort) {
       this.boardSort = boardSort;
    }
-
 
    public String getReportNum() {
       return reportNum;
@@ -142,3 +164,4 @@ public class board implements java.io.Serializable {
    }
    
 }
+

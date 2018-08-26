@@ -111,7 +111,7 @@
 	
 	#noticeList{
 	align:center;
-	width:640px;
+	width:650px;
 	text-align:left;
 	position:relative;
 	font-family: 'Jua', sans-serif;
@@ -123,7 +123,7 @@
 	padding-right:15px;
 	border:1px solid #D7D7D7;
 	background-color:#F7F7F7;
-	font-size:11px;
+	/* font-size:11px; */
 	position:relative;
 	left:30%;
 	}
@@ -240,13 +240,14 @@
 			<tr>
 				<th>이메일</th>		
 				<td><input type="text" id="userEmail" name="userEmail"></td>
-				<td width=200px><div id="idCheck">중복확인</div></td>
+				<td width=100px><div id="idCheck">중복확인</div></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
 				<td>
 					<input type="password" id="password" name="password" maxlength="16" class="newPassword">
 				</td>
+				<td></td>
 			</tr>
 			<tr>
 				<th> 비밀번호 확인</th>
@@ -257,30 +258,37 @@
 			<tr>
 				<th>이름</th>
 				<td><input type="text" name="userName" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
 				<td><input type="text" name="nickName" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><input type="date" name="birthdate" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td><input type="date" name="birthdate" style="width:100%;" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
 				<td><input type="tel" name="phone" <%-- value="<%=loginUser.getPhone()%>" --%>></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th><label>주소</label></th>
 				<td><input type="text" name="address" <%-- value="<%=loginUser.getAddress()%>" --%>></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th><label>은행명</label></th>
 				<td><input type="text" name="bankname"></td>
+				<td></td>
 			</tr>
 			<tr>
 				<th><label>계좌번호</label></th>
 				<td><input type="text" name="banknumber"></td>
+				<td></td>
 			</tr>
 			<tr>
 			<th><label>취미</label></th>
@@ -305,6 +313,7 @@
 					value="문화" id="culture"> 
 					<label for="culture">문화</label>
 				</td>
+				<td></td>
 				</tr>
 				</tbody>
 		</table>			

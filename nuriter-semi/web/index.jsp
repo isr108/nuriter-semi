@@ -298,7 +298,7 @@
     #listBox{
    border:1px solid black;
     height: 363px;
-    width: 698px;
+    width: 695.9px;
     /* margin-left:auto;
     margin-right:auto; */
     margin:auto;
@@ -739,8 +739,7 @@
 		
 
 		function goNuriterList(){
-			var name = 1;
-			/* var enc = URLEncoder.encode(name,"utf-8"); */
+			var name = "C1";
 			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
 		}
 	
