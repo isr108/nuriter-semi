@@ -34,6 +34,9 @@ public class SelectNuriterListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String category = request.getParameter("name");
+		System.out.println("언어를 선택하셨습니다. => " + category);
+		
 		//페이징 처리
 		int currentPage;
 		int limit;
@@ -47,7 +50,9 @@ public class SelectNuriterListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = new NuriterService().getNuriterListCount();
+		int listCount = new NuriterService().getNuriterListCount(category);
+		
+		System.out.println("listCount => " + listCount);
 		
 		limit = 8;
 		
@@ -64,12 +69,13 @@ public class SelectNuriterListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		System.out.println("누리터 리스트 서블릿 이동 완료!");
-		ArrayList<Nuriter> list = new NuriterService().selectNuriterList();
+		ArrayList<Nuriter> list = new NuriterService().selectNuriterList(category); //해당 카테고리에 대한 리스트를 ArrayList로 가져온다.
+		
+		System.out.println(list);
 		
 		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList(currentPage, limit);
 		
-		System.out.println(list);
-		System.out.println(pictureList);
+		System.out.println("pictureList => " + pictureList);
 		
 		String page = "";
 		

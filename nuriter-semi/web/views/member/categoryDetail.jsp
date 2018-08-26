@@ -208,11 +208,11 @@ img {
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
-	   <div class="leftBox">
-	    <div class="images">
+	   <div class="leftBox" align = "center">
+	   	<div class="images">
 	        <%= n.getContent() %>
-	   </div>
-   </div>
+	   	</div>
+   	   </div>
    
    <div class="rightBox">
    	  <br>
@@ -228,9 +228,13 @@ img {
         
         <div id="nuri">
 	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getNickName() %></font></p>
+	        <hr>
 	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
 	        <hr>
+	        <p><font id="web-font">누리터 활동상태: <%= n.getStartDate() %></font></p>
 	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+	        <p><font id="web-font">총 출석 횟수: <%= n.getStartDate() %></font>
 	        <hr>
 	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
 	        <hr>
@@ -270,6 +274,13 @@ img {
          </div>
          
     </div>
+    	<div id="nuri2">
+	        
+        </div>
+    <div>
+    	
+    </div>
+    
    </div>
 </div>
       <%@ include file="../common/footer.jsp" %>
