@@ -1,5 +1,6 @@
 package com.kh.nuriter.nuriter.model.vo;
 
+
 public class Category implements java.io.Serializable{
 	private String cno; //카테고리 번호
 	private String cname; //카테고리 이름

@@ -18,6 +18,7 @@ import com.kh.nuriter.nuriter.model.vo.Category;
 import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
 
+
 public class NuriterService {
 
 	public int insertNuriter(Nuriter n, ArrayList<Attachment> fileList) {
