@@ -6,8 +6,6 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +14,34 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+ <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
  <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<title>누리터 로그인</title>
 
-
-<title>Insert title here</title>
 <style>
    input[type="submit"]{
-		height:50px;
+	background:#424242;
+	color:white;
+	border-radius:10px;
+	border:none;
+
+	}
+	input[type="submit"]:hover{
+	background:#6E6E6E;
+	color:white;
+	border-radius:10px;
+	border:none;
+	}
+
+	input[type="text"]:hover{
+		border:1px solid #EDDB0B;
+	}
+	input[type="text"]:visited{
+		border:1px solid #EDDB0B;
 	}
 	
 	.colorgraph {
@@ -69,7 +83,6 @@
       /*  height: 40px; */
    }
    
-   
   #form1{
    /* border-style: solid;
     border-color: red;  */
@@ -78,6 +91,7 @@
   	padding:0;
   
   }
+  
   #form2{
     /* border-style: solid;
     border-color: red; */
@@ -86,6 +100,7 @@
   	padding:0;
   	margin-top:0;
   }
+  
   #login1{
   	display:inline-block;
    /*  border-style: solid;
@@ -115,6 +130,13 @@
   	height:15%;
   	float:right;
   }
+  h3{
+  	font-weight:bold;	
+  }
+  
+  a{
+  color:#585858;
+  }
 </style>
 </head>
 <body>
@@ -122,42 +144,40 @@
        <!--  <font id="web-font"><a id="head" href='../../index.jsp'>누리터</a></font>  -->
         <font id="web-font"><a id="head" href="#home" onclick="home()">누리터</a></font> 
    </div> 
-   
-   <br><br><br><br>
-	
+   	<hr>
+
+
 	<div id="login1" align="center">
 		<div id="login2">
-			<div align="center"><font id="web-font"><h2>로그인</h2></font></div>
+			<div align="left" style="width: 300px; height: 50px;"><h3>로그인</h3></div>
     		<form id = "form1" action="<%=request.getContextPath()%>/login.me" method="post">
 			 <table>
 			  <tr>
-				<td><input id="web-font" type="text" name="useremail"
-					style="width: 290px; height: 30px;" placeholder="이메일"></td>
+				<td><input type="text" name="useremail"
+					style="width: 300px; height: 50px;" placeholder="이메일"></td>
 			 </tr>
-			
 			  <tr>
-				<td><input id="web-font" type="password" name="password"
-					style="width: 290px; height: 30px;" placeholder="비밀번호"></td>
+				<td><input type="password" name="password"
+					style="width: 300px; height: 50px; margin-top:10px;" placeholder="비밀번호"></td>
 			  </tr> 
 			</table>
 	
 		<div id="login3">
 			<input type="checkbox" id="automaticLogin" value="automaticLogin">
-			<font id="web-font"><label>자동로그인</label></font>
+			<label>자동로그인</label>
 			<br>
 			<br>
 		 </div>
-			<input id ="web-font" type="submit" style="width: 290px; height: 30px;" value="로그인">
+			<input type="submit" style="width: 300px; height: 50px;" value="로그인">
 	
 		<!-- </form> -->
-	
 			<br>
 		<!-- <form id="form2"> -->
 		<table>
-			<span><label><a href="<%=request.getContextPath()%>/views/member/find_IdPassword.jsp"><font id="web-font">아이디/비밀번호 찾기</font></a></label></span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span><label><a href="<%=request.getContextPath()%>/views/member/find_IdPassword.jsp">아이디/비밀번호 찾기</a></label></span>
 			
-			<font id="web-font"><span><a href="../member/memberJoinForm.jsp">무료 회원가입</a></span></font>
+			
+			<span style="margin-left:55px;"><a href="../member/memberJoinForm.jsp">무료 회원가입</a></span>
 			<br>
 			<br>
 	
@@ -309,7 +329,6 @@
    </script> --%>
 	
 	<script>
-		
 		function home(){
 			location.href='<%=request.getContextPath()%>/home';
 		}

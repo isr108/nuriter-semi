@@ -12,7 +12,9 @@
    
    /* int name = Integer.parseInt(request.getParameter("name")) ;
    System.out.print("name :" +name);  */
+
 %>
+   
    
 <!DOCTYPE html>
 <html>
