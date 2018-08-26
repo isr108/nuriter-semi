@@ -44,7 +44,7 @@ public class ReportSendServlet extends HttpServlet {
 		board rNuri = new board();
 		rNuri.setBoardTitle(rTitle);
 		rNuri.setBoardContent(rContent);
-		rNuri.setUserNum(Integer.parseInt(rUser));
+		rNuri.setUserNum(rUser);
 		rNuri.setNuriNum(nuriNum);
 	
 
