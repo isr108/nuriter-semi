@@ -10,9 +10,10 @@
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
    
-   int name = Integer.parseInt(request.getParameter("name")) ;
+   String name = request.getParameter("name");
    System.out.print("name :" +name); 
 %>
+   
    
 <!DOCTYPE html>
 <html>

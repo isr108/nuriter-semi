@@ -12,6 +12,7 @@ import com.kh.nuriter.board.model.vo.board;
 
 
 
+
 public class BoardDao {
 	private Properties prop = new Properties();
 	

@@ -2,6 +2,7 @@ package com.kh.nuriter.nuriter.model.vo;
 
 import java.sql.Date;
 
+
 public class Attachment implements java.io.Serializable{
 	private String pid;
 	private String nuriNum;

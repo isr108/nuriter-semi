@@ -20,6 +20,7 @@ import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 public class InsertNuriBossSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
