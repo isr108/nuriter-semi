@@ -163,6 +163,7 @@ public class NuriterService {
 	}
 
 	
+	
 	public Nuriter selectOne(String num) {
 		System.out.println("서비스 실행 시작");
 		Connection con = getConnection();

@@ -15,6 +15,7 @@ public class board implements java.io.Serializable {
 	private String status; //게시판 상태
 	
 	
+	
 	public board(){}
 
 

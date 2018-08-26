@@ -9,6 +9,7 @@ import java.sql.Connection;
 
 
 
+
 public class BoardService {
 
 	public int InsertReportNuri(board rNuri) {

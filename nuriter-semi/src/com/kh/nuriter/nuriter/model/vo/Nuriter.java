@@ -2,6 +2,7 @@ package com.kh.nuriter.nuriter.model.vo;
 
 import java.sql.Date;
 
+
 public class Nuriter implements java.io.Serializable{
 	private String nuriNum; //누리터 번호
     private String ownerNum; //누리장 번호(회원번호)

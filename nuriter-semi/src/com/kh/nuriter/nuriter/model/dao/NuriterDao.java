@@ -576,6 +576,7 @@ public class NuriterDao {
 			close(pstmt);
 		}
 		
+		
 		System.out.println("업데이트 카운트 실행완료");
 		
 		return result;
