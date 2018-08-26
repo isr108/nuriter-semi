@@ -3,6 +3,7 @@
 <%-- <%
 	ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
 %> --%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

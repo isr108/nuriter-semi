@@ -37,6 +37,7 @@ public class NuriterDao {
 		}
 	}
 
+	
 	//누리터 개설
 	public int insertNuriter(Connection con, Nuriter n) {
 		int result = 0;
@@ -611,7 +612,8 @@ public class NuriterDao {
 				n.setPrice(rset.getString("price"));
 				n.setApplicationDate(rset.getDate("application_date"));
 				n.setPersonnel(rset.getString("PERSONNEL"));
-				
+				n.setProgress(rset.getString("progress"));
+				n.setAttendCount(rset.getInt("attend_count"));
 			}
 			
 		} catch (SQLException e) {

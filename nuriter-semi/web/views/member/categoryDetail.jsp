@@ -15,7 +15,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   
 <title>categoryDetail</title>
 <style>
@@ -228,15 +228,21 @@ img {
         <br>
         
         <div id="nuri">
-           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-           <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
-           <hr>
-           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-           <hr>
-           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-           <hr>
-           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
+	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
+	        <hr>
+	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
+	        <hr>
+	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+	        <hr>
+	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+	        <hr>
+	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
         </div>
         
         <hr color="red" size="10px">
