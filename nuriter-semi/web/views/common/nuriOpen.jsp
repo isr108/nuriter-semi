@@ -81,8 +81,6 @@
 </style>
 </head>
 <body>
-	<%@ include file="/views/common/logoAndLogbutton.jsp"%>
-	<%@ include file="/views/common/categorybar.jsp" %>
 	<%@ include file="/views/common/myPage_left.jsp" %>
 	<%@ include file="/views/common/myNuriList.jsp" %>
 	<div class="outer">
