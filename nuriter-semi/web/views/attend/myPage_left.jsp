@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,10 +92,10 @@ a {
 <body>
 	<!-- 왼쪽 마이페이지 목록 -->
 	<div id="leftSide" align="left">
-		<div id="mpLogo" style="font-size: 16px;" align="center">마이페이지</div>
+		
 		<br><br>
 		<div class="leftContent">
-			<div id="name" style="font-size: 18px;" align="center">홍길동</div>
+			
 		<br><br>
 			<div id="myNuri" style="font-size: 16px;" align="center">
 			<a href="<%=request.getContextPath()%>/selectMyNuriList.nu?">나의누리터</a>

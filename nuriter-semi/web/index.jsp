@@ -298,7 +298,7 @@
     #listBox{
    border:1px solid black;
     height: 363px;
-    width: 698px;
+    width: 695.9px;
     /* margin-left:auto;
     margin-right:auto; */
     margin:auto;

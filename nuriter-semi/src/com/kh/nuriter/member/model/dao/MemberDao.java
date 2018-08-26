@@ -525,6 +525,7 @@ public class MemberDao {
 				}*/
 				
 			}
+			
 			else{
 				query=prop.getProperty("insertMember2");
 				
