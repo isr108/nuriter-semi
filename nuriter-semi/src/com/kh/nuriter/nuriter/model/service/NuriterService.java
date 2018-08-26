@@ -1,13 +1,10 @@
 package com.kh.nuriter.nuriter.model.service;
 
-import static com.kh.nuriter.common.JDBCTemplate.rollback;
-import static com.kh.nuriter.common.JDBCTemplate.close;
-import static com.kh.nuriter.common.JDBCTemplate.getConnection;
 import static com.kh.nuriter.common.JDBCTemplate.close;
 import static com.kh.nuriter.common.JDBCTemplate.commit;
 import static com.kh.nuriter.common.JDBCTemplate.getConnection;
+import static com.kh.nuriter.common.JDBCTemplate.rollback;
 
-import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -208,5 +205,56 @@ public class NuriterService {
 	         
 	       return list;
 	   }
+
+	public ArrayList<Nuriter> selectOpenList1(int currentPage, int limit, String userNum) {
+		Connection con = getConnection();
+	      
+	    ArrayList<Nuriter> list = new NuriterDao().selectOpenList1(con, currentPage, limit, userNum);
+	      
+	    close(con);
+	      
+	      
+	      
+	    return list;
+	}
+	
+	 public ArrayList<Nuriter> selectMyNuriList1(int currentPage, int limit, String userNum) {
+	      Connection con = getConnection();
+	         
+	       ArrayList<Nuriter> list = new NuriterDao().selectMyNuriList1(con, currentPage, limit, userNum);
+	         
+	       close(con);
+	         
+	         
+	         
+	       return list;
+	   }
+
+
+	public ArrayList<Nuriboss> selectNuribossList() {
+		Connection con = getConnection();
+		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con);
+		
+		close(con);
+		
+		return bossList;
+	}
+
+	
+
+	public Nuriter selectOpenOne(String nunum) {
+		Connection con = getConnection();
+		
+		Nuriter n = new NuriterDao().selectOpenOne(con, nunum);
+		
+		commit(con);
+		
+		close(con);
+		
+		return n;
+	}
+
+
+
 
 }

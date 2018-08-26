@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
 <% Nuriter n = (Nuriter)request.getAttribute("n"); %>
@@ -11,7 +12,6 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
 
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 
@@ -20,13 +20,13 @@
 <title>categoryDetail</title>
 <style>
 #textBox{
-	width:400px;
-	height:auto;
-	overflow:hidden;
+   width:400px;
+   height:auto;
+   overflow:hidden;
 }
     
 hr {
-	width:90%;
+   width:90%;
 }
 .content{
    margin-top: 170px;
@@ -80,20 +80,20 @@ img{
 
 .likeOrAngry > div{
     margin-left: 10px;
-	border:2px solid #FFBF00;
-	float:left;
-	width: 210px;
-	border-radius: 4px;
-	cursor: pointer;
+   border:2px solid #FFBF00;
+   float:left;
+   width: 210px;
+   border-radius: 4px;
+   cursor: pointer;
 }
 
 .likeOrAngry > div:hover{
-	border:2px solid #FFBF00;
-	background:#F5D0A9;
-	float:left;
-	width: 210px;
-	border-radius: 4px;
-	opacity: 0.8;
+   border:2px solid #FFBF00;
+   background:#848484;
+   float:left;
+   width: 210px;
+   border-radius: 4px;
+   opacity: 0.8;
 }
 
 button {
@@ -125,12 +125,12 @@ button {
 }
 
 #textBox {
-	text-align:center;
+   text-align:center;
     margin-top: 30px;
 }
 
 .rightBox {
-	/* float:right; */
+   /* float:right; */
 }
 
 #popupDiv {  /* 팝업창 css */
@@ -140,30 +140,30 @@ button {
     height: 550px;
     display: none; 
     background:#D8D8D8;
-   	border:none;
+      border:none;
     
     }
 #textArea{
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:5px;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:5px;
 }
 .popBtn{
-	margin-top:10px;
-		
+   margin-top:10px;
+      
 }
 #popSendbtn{
-	background:#0080FF;
-	color:white;
-	margin-right:15px;
-	height:30px;
-	width:80px;
+   background:#0080FF;
+   color:white;
+   margin-right:15px;
+   height:30px;
+   width:80px;
 }
 #popCloseBtn{
-	background:#FFBF00;
-	color:white;
-	height:30px;
-	width:80px;
+   background:#FFBF00;
+   color:white;
+   height:30px;
+   width:80px;
 }
 
 .applyButton{
@@ -172,34 +172,34 @@ button {
    height:50px;
 }
 .likeOrAngry {
-	overflow:hidden;
+   overflow:hidden;
 }
 #nuri p{
-	margin-left:20px;
-	text-align:left;
-	height:auto;
+   margin-left:20px;
+   text-align:left;
+   height:auto;
 }
 #enterDiv {
-	margin-top:5px;
-	margin-bottom:5px;
+   margin-top:5px;
+   margin-bottom:5px;
 }
 
 #enter {
-	color: #424242;
-	font-weight: 600;
+   color: #424242;
+   font-weight: 600;
     border-radius: 4px;
-	background:#FFBF00;
+   background:#FFBF00;
 }
 #enter:hover {
-	color: #424242;
-	font-weight: 600;
+   color: #424242;
+   font-weight: 600;
     border-radius: 4px;
-	background:#FFBF00;
-	opacity: 0.6;
+   background:#FFBF00;
+   opacity: 0.6;
 }
 img { 
-	max-width: 100%; 
-	height: auto; 
+   max-width: 100%; 
+   height: auto; 
 }
 
 </style>
@@ -209,25 +209,26 @@ img {
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
-	   <div class="leftBox" align = "center">
-	   	<div class="images">
-	        <%= n.getContent() %>
-	   	</div>
-   	   </div>
+      <div class="leftBox">
+       <div class="images">
+           <%= n.getContent() %>
+      </div>
+   </div>
    
    <div class="rightBox">
-   	  <br>
-   	  
+        <br>
+        
       <div id="textBox">
-      	<font id="web-font" size="4"><%= n.getNuriTitle() %></font>
+         <font id="web-font" size="4"><%= n.getNuriTitle() %></font>
       </div>
       
       <br><br>
      <div id="info">
-     	
-     	<br>
+        
+        <br>
         
         <div id="nuri">
+
 	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
 	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
 	        <hr>
@@ -241,47 +242,41 @@ img {
 	        <hr>
 	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
 	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry">
         
-	        <div>
-	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
-	        </div>
-	            
-	        <div>
-	             <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
-	        </div>
-	         
+           <div>
+                <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
+           </div>
+               
+           <div>
+                <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
+           </div>
+            
             <div id="popupDiv" class="modal fade" role="dialog">
-	            <h2 id="web-font">누리터 신고</h2>
-	            <div id="textArea">
-		            <h5 id="web-font">신고 제목</h5>
-		            <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
-		            <h5 id="web-font">신고 내용</h5>
-		            <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
-	            </div>
-	            <div class="popBtn">
-		            <button id="popSendbtn">send</button>
-		            <button id="popCloseBtn">close</button>
-	            </div>
+               <h2 id="web-font">누리터 신고</h2>
+               <div id="textArea">
+                  <h5 id="web-font">신고 제목</h5>
+                  <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
+                  <h5 id="web-font">신고 내용</h5>
+                  <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
+               </div>
+               <div class="popBtn">
+                  <button id="popSendbtn">send</button>
+                  <button id="popCloseBtn">close</button>
+               </div>
            </div>
         </div>
          
          <div id="enterDiv">
-         	<button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
+            <button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
          </div>
          
     </div>
-    	<div id="nuri2">
-	        
-        </div>
-    <div>
-    	
-    </div>
-    
    </div>
 </div>
       <%@ include file="../common/footer.jsp" %>
@@ -314,7 +309,7 @@ $(function(){
             var rTitle =$("#reportTitle").val();
             var rContent = $("div textarea").val();
          
-            var nuriNum = "N1";
+            var nuriNum =<%=n.getNuriNum()%>
             
             location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
             alert("신고가 접수 되었습니다");
@@ -332,9 +327,11 @@ function choice(){
     <%-- console.log(<%=loginUser.getUserEmail()%>); --%>
     var pId = "imp_"+new Date().getTime() ;
     alert(pId);
-    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
+   <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
+    <%-- var nuriNum =<%=n.getNuriNum()%> --%>
+    location.href="<%=request.getContextPath()%>/payment.pms?imp="rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>"";
      
-  }
+  
 }
 
 
@@ -364,8 +361,9 @@ function cash(){
           msg += '카드 승인번호 : ' + rsp.apply_num;
           
           var userNum = <%=loginUser.getUserNumber()%>
+          var nuriNum = <%=n.getNuriNum()%>
           
-           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+userNum+"&nuriNum=<%="N1"%>";
+           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>";
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시
@@ -375,7 +373,7 @@ function cash(){
        }
     });
  }
-
+   
 </script>    
 </body>
 </html>

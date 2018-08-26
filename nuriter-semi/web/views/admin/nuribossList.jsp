@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+<% ArrayList<Nuriboss> bossList = (ArrayList<Nuriboss>)request.getAttribute("bossList"); %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,8 +133,23 @@
 				<div id="child2">
 					<h1 id="web-font">누리장 신청 회원</h1>
 					<br>
-					<table border="2" id="web-font">
+					<table border="2" id="web-font" id="listArea">
 						<tr>
+							<td>신청일자</td>
+							<td>이름</td>
+							<td>카테고리</td>
+							<td>활동 계획서</td>
+						</tr>
+						<% for(Nuriboss nb : bossList) %>
+						<tr>
+							<%-- <input type="hidden" value="<%= nb.getApplyNum() %>"> --%>
+							<td><%= nb.getApplyDate() %></td>
+							<td><%= nb.getUserNum()%></td>
+							<td><%= nb.getCategoryNum()%></td>
+							<td><%= nb.getBossContent()%></td>
+						</tr>
+						<% } %>
+						<!-- <tr>
 							<td>신청일자</td>
 							<td>이름</td>
 							<td>카테고리</td>
@@ -168,7 +184,7 @@
 							<td>김진호</td>
 							<td>웹 프론트엔드 디자인</td>
 							<td><button>확인하기</button></td>
-						</tr>
+						</tr> -->
 					</table>
 					
 					<div class="pagination" align="center">

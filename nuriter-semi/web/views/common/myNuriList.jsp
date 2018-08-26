@@ -10,7 +10,7 @@
 		/* position: fixed; */
     	width: 734px;
     	height: 74px;
- 		margin-top:16%;
+ 		margin-top:13%;
     	margin-left:auto;
 		margin-right:auto;
 		
@@ -27,7 +27,7 @@
     	table-layout: fixed;
     	font-family: 'Jua', sans-serif;
 	}
-	a{
+ 	a{
 		color:black;
 	}
 </style>

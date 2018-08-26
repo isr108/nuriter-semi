@@ -10,8 +10,9 @@
    int startPage = pi.getStartPage();
    int endPage = pi.getEndPage();
    
-   String name = request.getParameter("name");
-   System.out.print("name :" +name); 
+   /* int name = Integer.parseInt(request.getParameter("name")) ;
+   System.out.print("name :" +name);  */
+
 %>
    
    
@@ -376,7 +377,7 @@
              	<!-- <button disabled><</button> -->
              	<a disabled><</a>
              	<% }else{ %>
-             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
 
              	<% } %>
              	<% for(int p = startPage; p <= endPage; p++){
@@ -385,7 +386,7 @@
 
              	<a class="active" disabled><%= p %></a>
              	<%  }else{ %>
-             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
 
              	<%  } %>
              	<% } %>
@@ -393,9 +394,9 @@
              	<% if(currentPage >= maxPage){ %>
              	<a disabled>></a>
              	<% }else{ %>
-             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
              	<% } %>
-             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
              </div>
         
     </div>
@@ -406,7 +407,7 @@
   </div>
   
  <script>
-  $(function() {
+  <%-- $(function() {
 	  var name = <%=name%>;
     if(name==1){
     	console.log("네임 : " + name);
@@ -418,7 +419,7 @@
     	
     }
     
-  } );
+  } ); --%>
   
   	$(function(){
 	 	$("#nuriterListArea td").mouseenter(function(){

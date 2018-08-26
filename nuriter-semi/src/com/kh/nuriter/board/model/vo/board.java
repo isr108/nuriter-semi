@@ -34,36 +34,34 @@ public class board implements java.io.Serializable {
 		this.status = status;
 	}
 
-
-	public String getBoardNum() {
-		return boardNum;
-	}
-
-
-	public void setBoardNum(String boardNum) {
-		this.boardNum = boardNum;
-	}
+   public String getBoardNum() {
+      return boardNum;
+   }
 
 
-	public String getBoardTitle() {
-		return boardTitle;
-	}
+   public void setBoardNum(String boardNum) {
+      this.boardNum = boardNum;
+   }
 
 
-	public void setBoardTitle(String boardTitle) {
-		this.boardTitle = boardTitle;
-	}
+   public String getBoardTitle() {
+      return boardTitle;
+   }
 
 
-	public String getBoardContent() {
-		return boardContent;
-	}
+   public void setBoardTitle(String boardTitle) {
+      this.boardTitle = boardTitle;
+   }
 
 
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
-	}
+   public String getBoardContent() {
+      return boardContent;
+   }
 
+
+   public void setBoardContent(String boardContent) {
+      this.boardContent = boardContent;
+   }
 
 	public String getUserNum() {
 		return userNum;
@@ -89,21 +87,24 @@ public class board implements java.io.Serializable {
 		return boardDate;
 	}
 
-
-	public void setBoardDate(Date boardDate) {
-		this.boardDate = boardDate;
-	}
-
-
-	public String getBoardSort() {
-		return boardSort;
-	}
+   public void setBoardCount(int boardCount) {
+      this.boardCount = boardCount;
+   }
 
 
-	public void setBoardSort(String boardSort) {
-		this.boardSort = boardSort;
-	}
+   public Date getBoardDate() {
+      return boardDate;
+   }
 
+
+   public void setBoardDate(Date boardDate) {
+      this.boardDate = boardDate;
+   }
+
+
+   public String getBoardSort() {
+      return boardSort;
+   }
 
 	public String getReportNum() {
 		return reportNum;
@@ -120,26 +121,47 @@ public class board implements java.io.Serializable {
 	}
 
 
-	public void setNuriNum(String nuriNum) {
-		this.nuriNum = nuriNum;
-	}
+
+   public void setBoardSort(String boardSort) {
+      this.boardSort = boardSort;
+   }
+
+   public String getReportNum() {
+      return reportNum;
+   }
 
 
-	public String getStatus() {
-		return status;
-	}
+   public void setReportNum(String reportNum) {
+      this.reportNum = reportNum;
+   }
 
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+   public String getNuriNum() {
+      return nuriNum;
+   }
 
 
-	@Override
-	public String toString() {
-		return "board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-				+ ", userNum=" + userNum + ", boardCount=" + boardCount + ", boardDate=" + boardDate + ", boardSort="
-				+ boardSort + ", reportNum=" + reportNum + ", nuriNum=" + nuriNum + ", status=" + status + "]";
-	}
-	
+   public void setNuriNum(String nuriNum) {
+      this.nuriNum = nuriNum;
+   }
+
+
+   public String getStatus() {
+      return status;
+   }
+
+
+   public void setStatus(String status) {
+      this.status = status;
+   }
+
+
+   @Override
+   public String toString() {
+      return "board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+            + ", userNum=" + userNum + ", boardCount=" + boardCount + ", boardDate=" + boardDate + ", boardSort="
+            + boardSort + ", reportNum=" + reportNum + ", nuriNum=" + nuriNum + ", status=" + status + "]";
+   }
+   
 }
+

@@ -10,7 +10,7 @@
 
 <style>
 #myInfoPage {
-	margin-top: 16%;
+	margin-top: 11%;
 	margin-left: 0 auto;
 	marign-right: 0 auto;
 	font-family: 'Jua', sans-serif;
@@ -88,7 +88,7 @@ colorgroup {
 	font-family: 'Jua', sans-serif;
 }
 
-#noticeList {
+/* #noticeList {
 	align: center;
 	width: 1200px;
 	padding-right: 50%;
@@ -106,17 +106,37 @@ colorgroup {
 	font-size: 11px;
 	position: relative;
 	left: 60%;
-}
+} */
+
+#noticeList{
+	align:center;
+	width:650px;
+	text-align:left;
+	position:relative;
+	font-family: 'Jua', sans-serif;
+	}
+	 	
+	.notice_list{
+	padding:18px 15px;
+	padding-left:30px;
+	padding-right:15px;
+	border:1px solid #D7D7D7;
+	background-color:#F7F7F7;
+	/* font-size:11px; */
+	/* position:relative; */
+	left:30%;
+	}
 
 .notice_list li {
 	padding-left: 7px;
 }
+
+a {
+	color: black;
+}
 </style>
 </head>
 <body>
-
-	<%@ include file="logoAndLogbutton.jsp"%>
-	<%@ include file="categorybar.jsp"%>
 	<%@ include file="myPage_left.jsp"%>
 
 	<div id="myInfoPage">
