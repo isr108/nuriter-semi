@@ -23,25 +23,23 @@ public class NuriterService {
 	public int insertNuriter(Nuriter n, ArrayList<Attachment> fileList) {
 		Connection con = getConnection();
 		
-		int result = new NuriterDao().insertNuriter(con, n);
+		int result1 = new NuriterDao().insertNuriter(con, n); //누리터 개설
 		
-		if(result > 0) {
-			
-			String nuriNum = new NuriterDao().selectCurrval(con); 
-			
-			n.setNuriNum('N' + nuriNum);
-			
-			System.out.println(n.getNuriNum());
-
-			int result2 = new NuriterDao().insertNuriterPoto(con, n, fileList);
-			
-			if(result2 > 0) {
-				System.out.println("성공");
-			}else {
-				//에러 페이지로 forward
-				System.out.println("실패");
-			}
-			
+		String nuriNum = new NuriterDao().selectCurrval(con);//현재 누리터 번호 가져오기
+		
+		n.setNuriNum("N" + nuriNum);
+		
+		System.out.println("누리터 번호 => " + n.getNuriNum());
+		
+		int result2 = new NuriterDao().insertNuriterBoard(con, n); //Board 테이블에 누리터 개설
+		
+		String BoardNum = new NuriterDao().selectBoardCurrval(con);//현재 게시판 번호 가져오기
+		
+		String BoardId = "B" + BoardNum;
+		
+		int result3 = new NuriterDao().insertNuriterAttachment(con, n, fileList, BoardId);
+		
+		if(result3 > 0) {
 			commit(con);
 		}
 		else {
@@ -50,7 +48,7 @@ public class NuriterService {
 		
 		close(con);
 		
-		return result;
+		return result1;
 	}
 
 	public ArrayList<Category> selectCategoryList(String name) {
@@ -120,10 +118,10 @@ public class NuriterService {
 	    return list;
 	}
 
-	public ArrayList<Nuriter> selectNuriterList() {
+	public ArrayList<Nuriter> selectNuriterList(String category) {
 		Connection con = getConnection();
 		
-	    ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con);
+	    ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con, category);
 		
 	    close(con);
 	    
@@ -141,11 +139,11 @@ public class NuriterService {
 	}
 
 
-
-	public int getNuriterListCount() {
+	
+	public int getNuriterListCount(String category) {
 		Connection con = getConnection();
 		
-		int listCount = new NuriterDao().getNuriterListCount(con);
+		int listCount = new NuriterDao().getNuriterListCount(con, category);
 		
 		close(con);
 		
@@ -165,15 +163,20 @@ public class NuriterService {
 	}
 
 	
+	
 	public Nuriter selectOne(String num) {
+		System.out.println("서비스 실행 시작");
 		Connection con = getConnection();
 		
 		int result = 0;
 		
 		result = new NuriterDao().updateCount(con, num);
 		
-		if(result > 0) commit(con);
-		else rollback(con);
+		if(result > 0) { 
+			commit(con);
+		} else { 
+			rollback(con);
+		}
 		
 		Nuriter n = new NuriterDao().selectOne(con, num);
 		
@@ -204,31 +207,5 @@ public class NuriterService {
 	         
 	       return list;
 	   }
-
-	public int getMyNuriListCount(String userNum) {
-	      Connection con = getConnection();
-	         
-	       int listCount = new NuriterDao().getMyNuriListCount(con, userNum);
-	         
-	         close(con);
-	         
-	         return listCount;
-	   }
-
-	   public ArrayList<Nuriter> selectMyNuriList(int currentPage, int limit, String userNum) {
-	      Connection con = getConnection();
-	         
-	       ArrayList<Nuriter> list = new NuriterDao().selectMyNuriList(con, currentPage, limit, userNum);
-	         
-	       close(con);
-	         
-	         
-	         
-	       return list;
-	   }
-
-	
-
-
 
 }

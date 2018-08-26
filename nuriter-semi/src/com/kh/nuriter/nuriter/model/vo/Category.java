@@ -6,6 +6,7 @@ public class Category implements java.io.Serializable{
 	private String clevel; //카테고리 레벨
 	private String pno; //상위 카테고리 번호
 	
+	
 	public Category() {}
 
 	public Category(String cno, String cname, String clevel, String pno) {

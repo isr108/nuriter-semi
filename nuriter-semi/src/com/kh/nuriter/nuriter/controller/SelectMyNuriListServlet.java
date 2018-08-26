@@ -24,6 +24,7 @@ import com.kh.nuriter.nuriter.model.vo.PageInfo;
 public class SelectMyNuriListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
