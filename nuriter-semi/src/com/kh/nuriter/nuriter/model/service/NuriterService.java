@@ -362,6 +362,7 @@ public class NuriterService {
 
 	}
 
+
 	public int getMyTemptingListCount(String userNum) {
 		Connection con = getConnection();
         
@@ -391,6 +392,22 @@ public class NuriterService {
 		close(con);
 		
 		return pictureList;
+
+	public int updateNuribossStatus(String num) {
+		Connection con = getConnection();
+		
+		int result = new NuriterDao().updateNuribossStatus(con, num);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+
 	}
 
 

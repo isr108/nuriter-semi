@@ -73,8 +73,6 @@
      height:480px;
    }
    
-   table {
-   }
    
 </style>
 </head>
