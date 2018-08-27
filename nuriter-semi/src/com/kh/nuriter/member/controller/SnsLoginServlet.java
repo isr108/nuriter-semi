@@ -62,11 +62,11 @@ public class SnsLoginServlet extends HttpServlet {
 			
 		}*/
 		
-		int result=new MemberService().snsMember(m);
+		/*int result=new MemberService().snsMember(m);
 		System.out.println("서블릿 result : " + result);
 		
 		if(result == 99){
-			request.setAttribute("msg", "로그인 성공");
+			request.setAttribute("msg", "로그인 성공");*/
 			Member loginUser = new MemberService().snsloginMember(userEmail);
 			System.out.println("서블릿  유저: " +loginUser);
 			
@@ -77,9 +77,11 @@ public class SnsLoginServlet extends HttpServlet {
 				/*page ="index.jsp";
 				System.out.println(page);*/
 				response.sendRedirect("index.jsp");
-				
-				
+
 			}else{
+				int result=new MemberService().snsMember(m);
+				System.out.println("서블릿 result : " + result);
+				
 				/*page = "views/common/errorPage.jsp";*/
 				/*page = "views/common/errorPage.jsp";*/
 				/*request.setAttribute("msg", "로그인 에러!!!");*/
@@ -87,14 +89,14 @@ public class SnsLoginServlet extends HttpServlet {
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				
 			}
-		}
+		/*}
 		else if(result<99&&result>0){
 			request.setAttribute("msg", "가입 성공");
 		}
 		else{
 			request.setAttribute("msg", "로그인 및 가입 실패");
 		}
-		
+		*/
 		/*RequestDispatcher view=request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);*/
 	}

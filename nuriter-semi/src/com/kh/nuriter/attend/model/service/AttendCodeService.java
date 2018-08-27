@@ -43,4 +43,15 @@ public class AttendCodeService {
 		return result;
 	}
 
+	public AttendCode codeCheck(String checkcode) {
+		Connection con=getConnection();
+		AttendCode atcode = new AttendCodeDao().codeCheck(con, checkcode);
+		
+		commit(con);
+		
+		close(con);
+		
+		return atcode;
+	}
+
 }

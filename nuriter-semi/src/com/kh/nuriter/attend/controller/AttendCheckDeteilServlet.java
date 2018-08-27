@@ -35,7 +35,27 @@ public class AttendCheckDeteilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int currentPage; // 현재 페이지를 표시할 변수
+		String nunum = request.getParameter("nunum");
+		
+		Nuriter n = new NuriterService().selectOpenOne(nunum);
+		
+		String page ="";
+		
+		System.out.println(n);
+		
+		
+		if(n != null){
+			page = "views/attend/csCheckone.jsp";
+			request.setAttribute("n", n);
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글 상세보기 실패");
+		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+		
+		
+		/*int currentPage; // 현재 페이지를 표시할 변수
 		int limit; // 한 페이지에 게시글이 몇 개가 보여질 것인지
 		int maxPage; // 전체 페이지에서 가장 마지막 페이지
 		int startPage; // 한번에 표시될 페이지가 시작할 페이지
@@ -78,7 +98,7 @@ public class AttendCheckDeteilServlet extends HttpServlet {
 		
 		
 		ArrayList<Nuriter> list = new NuriterService().selectMyNuriList(currentPage, limit, userNum);
-		System.out.println("개설 중인 누리터 리스트 : " + list);
+		System.out.println("참여 중인 누리터 리스트 : " + list);
 
 		String page = "";
 
@@ -92,7 +112,7 @@ public class AttendCheckDeteilServlet extends HttpServlet {
 		}
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-
+*/
 
 	}
 

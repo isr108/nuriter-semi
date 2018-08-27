@@ -84,10 +84,10 @@ public class AttenCheckServlet extends HttpServlet {
 
 				String page = "";
 
-				if (list != null) {
+				if (list != null || list1!=null) {
 					page = "/views/attend/csCheck.jsp";
 					request.setAttribute("list", list);
-					request.setAttribute("list", list1);
+					request.setAttribute("list1", list1);
 					request.setAttribute("pi", pi);
 				} else {
 					page = "views/common/errorPage.jsp";

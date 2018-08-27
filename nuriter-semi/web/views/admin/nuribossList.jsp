@@ -140,7 +140,7 @@
 							<td>카테고리</td>
 							<td>활동 계획서</td>
 						</tr>
-						<% for(Nuriboss nb : bossList) %>
+						<% for(Nuriboss nb : bossList) {%>
 						<tr>
 							<%-- <input type="hidden" value="<%= nb.getApplyNum() %>"> --%>
 							<td><%= nb.getApplyDate() %></td>

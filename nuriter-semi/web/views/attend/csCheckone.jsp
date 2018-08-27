@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
-
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*, com.kh.nuriter.member.model.vo.*"%>
+ 
+<%--     <% Member loginUser = (Member)session.getAttribute("loginUser") --%>; %>
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%@page import="java.util.Calendar"%>
@@ -13,6 +14,12 @@
  	int maxPage = pi.getMaxPage();
  	int startPage = pi.getStartPage();
  	int endPage = pi.getEndPage(); */
+ 	
+	Nuriter n = (Nuriter)request.getAttribute("n");
+ 	System.out.print(n);
+ 	
+ 	String nunum = request.getParameter("nunum");
+ 	System.out.print("nunum : " + nunum);
 %> 
 
 <%
@@ -172,7 +179,38 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 
 	<div class ="check1">
 	<table align="center" id="listArea">
-			<th>
+	<tr>
+					<%-- <input type="hidden" value="<%= n.getNuriNum()%>"> --%>
+					<td><div style="width:100px; text-align:center; display:inline-block;">누리터명</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getNuriTitle()%></div></td>
+				</tr>
+				<tr>
+					<td><div style="width:100px; text-align:center; display:inline-block;">시작일시</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getStartDate()%></div></td>
+				</tr>
+				<tr>
+					<td><div style="width:100px; text-align:center; display:inline-block;">종료일시</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getEndDate()%></div></td>
+				</tr>
+				<tr>
+					<td><div style="width:100px; text-align:center; display:inline-block;">장소</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getPlace()%></div></td>
+				</tr>
+				<tr>
+					<td><div style="width:50px; text-align:center; display:inline-block;">참가비</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getPrice()%></div></td>
+				</tr>
+				<tr>
+					<td><div style="width:50px; text-align:center; display:inline-block;">개설일자</div></td>
+					<td>
+					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getApplicationDate()%></div></td>
+				</tr>
+			<%-- <th>
 				<tr>
 					<td><div style="width:100px; text-align:center;">누리터명</div></td>
 				</tr>
@@ -190,7 +228,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 				</tr>
 			</th>	
 				
-				<%-- <tr onclick="location.href='<%=request.getContextPath()%>/views/attend/csCheckone.jsp'"> --%>
+				<tr onclick="location.href='<%=request.getContextPath()%>/views/attend/csCheckone.jsp'">
 			 <% for(Nuriter n : list){ %>
 			<th>
 				<tr>
@@ -212,17 +250,19 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 				</tr>
 			</th>	
 			
-				 <% } %>
+				 <% } %> --%>
 	</table>
 	<br>
+	<form id = "form1" action="<%=request.getContextPath()%>/checkcodeone.at" method="post">
+		<input type="hidden" name="userNum" value=<%=loginUser.getUserNumber()%>>
 		<input type="text" name="checkcode" style="width: 250px; height: 30px;"
 						placeholder="출석코드">
 	
 		<br><br>
 						
 		<input id ="web-font2" type="submit" style="width: 250px; height: 30px;" value="출석하기">
-	
-		<br><br>
+	</form>
+		<br>
 	
 		<input id ="web-font1" type="button" style="width: 80px; height: 30px;" value="누리터 이용완료">			
     
