@@ -30,11 +30,7 @@
 </style>
 </head>
 <body>
-<font id="web-font">
-  	<%@ include file="../common/logoAndLogbutton.jsp" %>
-  
-    <%@ include file="../common/categorybar.jsp" %>
-    
+<font id="web-font">  
     <%@ include file="../common/myPage_left.jsp" %>
 
 	<div class="outer">
