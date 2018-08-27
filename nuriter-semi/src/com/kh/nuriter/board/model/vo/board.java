@@ -58,6 +58,7 @@ public class board implements java.io.Serializable {
 	}
 
 
+
 	public String getNuriNum() {
 		return nuriNum;
 	}
@@ -66,6 +67,7 @@ public class board implements java.io.Serializable {
 	public String getStatus() {
 		return status;
 	}
+
 
 
 	public void setBoardNum(String boardNum) {
@@ -86,7 +88,6 @@ public class board implements java.io.Serializable {
 	public void setUserNum(String userNum) {
 		this.userNum = userNum;
 	}
-
 
 	public void setBoardCount(int boardCount) {
 		this.boardCount = boardCount;

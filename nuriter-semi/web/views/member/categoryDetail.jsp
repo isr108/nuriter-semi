@@ -209,6 +209,7 @@ img {
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
+
 	   <div class="leftBox" align = "center">
 	   	<div class="images">
 	        <%= n.getContent() %>
@@ -228,6 +229,7 @@ img {
      	<br>
         
         <div id="nuri">
+
 	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
 	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
 	        <hr>
@@ -241,6 +243,7 @@ img {
 	        <hr>
 	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
 	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
         </div>
         
         <hr color="red" size="10px">
@@ -275,11 +278,12 @@ img {
          </div>
          
     </div>
+
     	<div id="nuri2">
 	        
         </div>
     <div>
-    	
+
     </div>
     
    </div>
@@ -371,12 +375,11 @@ function choice(){
     var pId = "imp_"+new Date().getTime() ;
     alert(pId);
 
+
    <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
     <%-- var nuriNum =<%=n.getNuriNum()%> --%>
     location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
   }
-  
-
 }
 
 

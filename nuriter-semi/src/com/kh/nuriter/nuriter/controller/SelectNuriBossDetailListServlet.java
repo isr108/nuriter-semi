@@ -15,25 +15,24 @@ import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 import com.kh.nuriter.nuriter.model.vo.PageInfo;
 
 /**
- * Servlet implementation class SelectNuriBossListServlet
+ * Servlet implementation class SelectNuriBossDetailListServlet
  */
-@WebServlet("/selectNuribossList.nu")
-public class SelectNuriBossListServlet extends HttpServlet {
+@WebServlet("/selectNuriBossDetailList.nu")
+public class SelectNuriBossDetailListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public SelectNuriBossListServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SelectNuriBossDetailListServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//페이징처리
 		int currentPage;
 		int limit;
 		int maxPage;
@@ -61,22 +60,23 @@ public class SelectNuriBossListServlet extends HttpServlet {
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-
+		
+		
 		ArrayList<Nuriboss> bossList = new NuriterService().selectNuribossList(currentPage, limit);
-
-		System.out.println("누리보스 목록 불러오는 서블릿 이동 완료!");
-
+		
+		System.out.println("누리보스 디테일 목록 불러오는 서블릿 이동 완료!");
+		
 		String page = "";
-
+		
 		if(bossList != null){
-			page="views/admin/nuribossList.jsp";
+			page="views/admin/nuribossAllList.jsp";
 			request.setAttribute("bossList", bossList);
 			request.setAttribute("pi", pi);
 		}else{
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "누리장 조회 실패!");
 		}
-
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
