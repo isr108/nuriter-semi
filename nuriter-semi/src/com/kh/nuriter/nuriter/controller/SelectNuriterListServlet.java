@@ -37,7 +37,7 @@ public class SelectNuriterListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String category = request.getParameter("name");
-		System.out.println("언어를 선택하셨습니다. => " + category);
+		System.out.println("선택하셨습니다. => " + category);
 		
 		//페이징 처리
 		int currentPage;

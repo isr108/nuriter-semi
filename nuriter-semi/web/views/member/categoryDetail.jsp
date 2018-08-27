@@ -47,7 +47,7 @@ hr {
    border-radius: 6px;
    padding-top:50px;
    margin-top: 50px;
-   width:600px;
+   width:705px;
    height:auto;
    float:left;
    overflow:hidden;
@@ -201,6 +201,36 @@ img {
 	max-width: 100%; 
 	height: auto; 
 }
+.commentDiv input[type=text]{
+	    border-radius: 3px;
+		margin-top:50px;
+	    width:600px;
+	    height:100px;
+		box-sizing: border-box;
+	    border-style: solid;
+	    border-color: rgb(241, 196, 15);
+}
+.commentBtn {
+	width:100px;
+	height:100px;
+	background-color: rgb(241, 196, 15); /* Green */
+	font-family: 'Jua', sans-serif;
+    color: black;
+    border-radius: 3px;
+    font-size:15px;
+    border: 2px solid rgb(241, 196, 15); /* Green */
+}
+.commentBtn:hover {
+	width:100px;
+	height:100px;
+	background-color: rgb(241, 196, 15); /* Green */
+	font-family: 'Jua', sans-serif;
+    color: black;
+    border-radius: 3px;
+    font-size:15px;
+    border: 2px solid rgb(241, 196, 15); /* Green */
+    opacity: 0.6;
+}
 
 </style>
 </head>
@@ -213,6 +243,11 @@ img {
 	   	<div class="images">
 	        <%= n.getContent() %>
 	   	</div>
+	  	
+      	<div class="commentDiv">
+      		<input type="text" id="web-font" name="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
+      	</div>
+      
    	   </div>
    
    <div class="rightBox">
@@ -228,27 +263,25 @@ img {
      	<br>
         
         <div id="nuri">
-           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
-           <hr>
-           <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
-           <hr>
-           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-           <hr>
-           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-           <hr>
-           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
-
+	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
+	        <hr>
+	        <p><font id="web-font">카테고리 : <%= n.getCategoryName() %></font></p>
+	        <hr>
+	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+	        <hr>
+	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+	        <hr>
+	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry">
         
-
 	        <div class="hobbyDiv">
 	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
 	        </div>
@@ -277,12 +310,11 @@ img {
          </div>
          
     </div>
-
     	<div id="nuri2">
 	        
         </div>
     <div>
-
+    	
     </div>
     
    </div>
@@ -290,6 +322,20 @@ img {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
+/* Ext.onReady(function(){
+    Ext.MessageBox.confirm(
+       'Confirm 타이틀'
+       ,'Confirm 컨텐츠 메시지입니다.'
+       ,function(click_button){
+            if(click_button == "yes") {
+               alert("yes click");
+            } else {
+                alert("no click");
+            }
+       }
+   );
+}); */
+
 //셀렉트 박스
 $(function(){
 	$(function(){
@@ -305,19 +351,10 @@ $(function(){
 				data:{name:name},
 				type:"get",
 				success:function(data){
+					
 					console.log(data);
 					
-					$select = $("#gsonListSelect");
-					$select.find("option").remove();
-					
-					for(var key in data){
-						var $option = $("<option  name='category'>");
-						$option.val(data[key].cno);
-						$option.text(data[key].cname);
-						$select.append($option);
-					}
-					
-					$("#gsonListSelect").show();
+					alert(data); 
 				},
 				error:function(data){
 					console.log(data);
