@@ -1203,6 +1203,7 @@ public class NuriterDao {
 		
 		
 		return result;
+	}
 
 
 	public int getNuribossListCount(Connection con) {
@@ -1248,8 +1249,8 @@ public class NuriterDao {
 				nb = new Nuriboss();
 				
 				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setCategoryNum(rset.getString("category_id"));
+				nb.setUserNum(rset.getString("user_name"));
+				nb.setCategoryNum(rset.getString("category_name"));
 				nb.setBossContent(rset.getString("newnuri_content"));
 				nb.setPotoPath(rset.getString("planfile_path"));
 				nb.setPotoName(rset.getString("planfile_name"));
@@ -1262,6 +1263,7 @@ public class NuriterDao {
 		
 		
 		return nb;
+	}
 
 	public int insertNuriterHobby(Connection con, String userNum, String name) {
 		int result = 0;
@@ -1286,6 +1288,29 @@ public class NuriterDao {
 		return result;
 
 
+	}
+
+
+	public int updateNuribossStatus(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateNuribossStatus");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		System.out.println(result);
+		
+		return result;
 	}
 
 }

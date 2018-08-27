@@ -86,55 +86,10 @@
 	border: 1px solid rgb(241, 196, 15);
 }
 
-.pagination
-
-
- 
-
-
-a
-
-
-
-
-:hover
-
-
-
-
-:not
-
-
- 
-
-
-(
-.active
-
-
- 
-
-
-)
-{
-background-color
-
-
-
-
-:
-
-
- 
-
-
-#ddd
-
-
-
-
-;
+.pagination a:hover :not(.active){
+	background-color:#ddd;
 }
+
 .pagination a:first-child {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -210,7 +165,6 @@ button:hover {
 		<!-- </div> -->
 
 		<div id="main" align="center">
-
 			<form>
 				<div id="child">
 					<div id="child2">
@@ -244,7 +198,7 @@ button:hover {
 								$(function(){
 										
 									$(".listBox td").mouseenter(function(){
-										$(this).parent().css({"cursor":"pointer"});
+										$(this).parent().css({"background":"#eaeaea", "cursor":"pointer"});
 									}).mouseout(function(){
 										$(this).parent().css({"background":"white"});
 									}).click(function(){
@@ -302,7 +256,6 @@ button:hover {
 
 
 						<div class="pagination" align="center">
-
 					
 					  <!-- <br>
 					  

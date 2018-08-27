@@ -342,6 +342,7 @@ public class NuriterService {
 		close(con);
 		
 		return nb;
+	}
 
 	public int insertNuriterHobby(String userNum, String name) {
 		Connection con = getConnection();
@@ -359,6 +360,22 @@ public class NuriterService {
 		
 		return result;
 
+	}
+
+	public int updateNuribossStatus(String num) {
+		Connection con = getConnection();
+		
+		int result = new NuriterDao().updateNuribossStatus(con, num);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 
