@@ -19,7 +19,7 @@ public class AttendCodeDao {
 	private Properties prop = new Properties();
 	
 	public AttendCodeDao() {
-		String fileName = NuriterDao.class.getResource("/sql/attend/attend-query.properties").getPath();
+		String fileName = AttendCodeDao.class.getResource("/sql/attend/attend-query.properties").getPath();
 	
 		try {
 			prop.load(new FileReader(fileName));
@@ -96,6 +96,47 @@ try {
 		System.out.println("dao result : " +result);
 		return result;
 		
+	}
+
+	public AttendCode codeCheck(Connection con, String checkcode) {
+		AttendCode atcode = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		/*String query=null;*/		
+		String query = prop.getProperty("attendcodeOne");
+		
+		try {	
+			/*pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nunum);
+			pstmt.setString(2, nunum);
+			rset = pstmt.executeQuery();*/
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, checkcode);
+			rset = pstmt.executeQuery();
+			System.out.println("dao"+ checkcode);
+			System.out.println("rest : " + rset);
+			
+			while(rset.next()){	
+				atcode = new AttendCode();
+				atcode.setAttendCodeid(rset.getString("attendcode_id"));
+				atcode.setNuriNumber(rset.getString("nuri_number"));
+				atcode.setAttendCodeDate(rset.getDate("attendcode_date"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		
+		return atcode;
 	}
 
 }

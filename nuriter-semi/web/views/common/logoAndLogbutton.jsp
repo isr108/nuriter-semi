@@ -235,8 +235,8 @@
 					<button class="button" onclick="location.href='../admin/adminPage.jsp'">관리페이지</button>
 				<% } %> --%>
 				<%if(loginUser == null) {%>
-        	<button class="button" onclick="location.href='../member/login.jsp' " >로그인</button>
-        	<button class="button" onclick="location.href='../member/memberJoinForm.jsp' ">회원가입</button>
+        	<button class="button" onclick="location.href='<%=request.getContextPath()%>/views/member/login.jsp' " >로그인</button>
+        	<button class="button" onclick="location.href='<%=request.getContextPath()%>/views/member/memberJoinForm.jsp' ">회원가입</button>
         <%}else{ %>
         <%if(loginUser != null) {%>
         		<font id="web-font"> <a><%= loginUser.getNickName() %> 님</a></font>

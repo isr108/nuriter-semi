@@ -737,32 +737,31 @@ public class NuriterDao {
 	          int endRow = startRow + limit - 1;
 	          
 	          pstmt.setString(1, userNum);
-	          pstmt.setInt(2, startRow);
-	          pstmt.setInt(3, endRow);
+	          /*pstmt.setInt(2, startRow);
+	          pstmt.setInt(3, endRow);*/
 	          rset = pstmt.executeQuery();
 	         
 	         if(rset != null){
 	            list = new ArrayList<Nuriter>();
 	            while(rset.next()){
-	               Nuriter n = new Nuriter();
-	               n.setNuriNum(rset.getString("nuri_number"));
-	               System.out.println(n.getNuriNum());
-	               n.setNuriTitle(rset.getString("nuri_name"));
-	               System.out.println(n.getNuriTitle());
-	               System.out.println("받았니?");
-	               n.setStartDate(rset.getDate("start_date"));
-	               System.out.println(n.getStartDate());
-	               n.setEndDate(rset.getDate("end_date"));
-	               System.out.println(n.getEndDate());
-	               n.setPlace(rset.getString("place"));
-	               System.out.println(n.getPlace());
-	               n.setPrice(rset.getString("price"));
-	               System.out.println(n.getPrice());
-	               n.setApplicationDate(rset.getDate("application_date"));
-	               System.out.println(n.getApplicationDate());
-	               
-	               list.add(n);
-	               
+	            	 Nuriter n = new Nuriter();
+		               n.setNuriNum(rset.getString("nuri_number"));
+		               System.out.println(n.getNuriNum());
+		               n.setNuriTitle(rset.getString("nuri_name"));
+		               System.out.println(n.getNuriTitle());
+		               System.out.println("받았니?");
+		               n.setStartDate(rset.getDate("start_date"));
+		               System.out.println(n.getStartDate());
+		               n.setEndDate(rset.getDate("end_date"));
+		               System.out.println(n.getEndDate());
+		               n.setPlace(rset.getString("place"));
+		               System.out.println(n.getPlace());
+		               n.setPrice(rset.getString("price"));
+		               System.out.println(n.getPrice());
+		               n.setApplicationDate(rset.getDate("application_date"));
+		               System.out.println(n.getApplicationDate());
+		               
+		               list.add(n);
 	            }
 	         }
 	         
@@ -778,13 +777,14 @@ public class NuriterDao {
 	      
 	      
 	      return list;
+
 	}
 	
 	 public ArrayList<Nuriter> selectMyNuriList1(Connection con, int currentPage, int limit, String userNum) {
 	       PreparedStatement pstmt = null;
 	         ResultSet rset = null;
 	         
-	         ArrayList<Nuriter> list = null;
+	         ArrayList<Nuriter> list1 = null;
 	         
 	         String query = prop.getProperty("selectMyNuriList");
 	         System.out.println(query);
@@ -803,25 +803,26 @@ public class NuriterDao {
 	             rset = pstmt.executeQuery();
 	            
 	            if(rset != null){
-	               list = new ArrayList<Nuriter>();
+	               list1 = new ArrayList<Nuriter>();
 	               while(rset.next()){
 	                  Nuriter n = new Nuriter();
-	                  n.setNuriTitle(rset.getString("nuri_name"));
-	                  System.out.println(n.getNuriTitle());
-	                  n.setOwnerNum(rset.getString("nickname"));
-	                  System.out.println(n.getOwnerNum());
-	                  n.setStartDate(rset.getDate("start_date"));
-	                  System.out.println(n.getStartDate());
-	                  n.setEndDate(rset.getDate("end_date"));
-	                  System.out.println(n.getEndDate());
-	                  n.setPlace(rset.getString("place"));
-	                  System.out.println(n.getPlace());
-	                  n.setPrice(rset.getString("price"));
-	                  System.out.println(n.getPrice());
-	                  n.setApplicationDate(rset.getDate("application_date"));
-	                  System.out.println(n.getApplicationDate());
+	                  n.setNuriNum(rset.getString("nuri_number"));
+		               System.out.println(n.getNuriNum());
+		               n.setNuriTitle(rset.getString("nuri_name"));
+		               System.out.println(n.getNuriTitle());
+		               System.out.println("받았니?");
+		               n.setStartDate(rset.getDate("start_date"));
+		               System.out.println(n.getStartDate());
+		               n.setEndDate(rset.getDate("end_date"));
+		               System.out.println(n.getEndDate());
+		               n.setPlace(rset.getString("place"));
+		               System.out.println(n.getPlace());
+		               n.setPrice(rset.getString("price"));
+		               System.out.println(n.getPrice());
+		               n.setApplicationDate(rset.getDate("application_date"));
+		               System.out.println(n.getApplicationDate());
 	                  
-	                  list.add(n);
+	                  list1.add(n);
 	                  
 	               }
 	            }
@@ -837,7 +838,7 @@ public class NuriterDao {
 	         
 	         
 	         
-	         return list;
+	         return list1;
 	   }
 
 	public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
@@ -889,7 +890,9 @@ public class NuriterDao {
 		}
 		
 		return bossList;
+
 	}
+
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();

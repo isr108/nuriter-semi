@@ -222,13 +222,13 @@ public class NuriterService {
 	 public ArrayList<Nuriter> selectMyNuriList1(int currentPage, int limit, String userNum) {
 	      Connection con = getConnection();
 	         
-	       ArrayList<Nuriter> list = new NuriterDao().selectMyNuriList1(con, currentPage, limit, userNum);
+	       ArrayList<Nuriter> list1 = new NuriterDao().selectMyNuriList1(con, currentPage, limit, userNum);
 	         
 	       close(con);
 	         
 	         
 	         
-	       return list;
+	       return list1;
 	   }
 
 

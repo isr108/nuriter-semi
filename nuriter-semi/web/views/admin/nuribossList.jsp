@@ -210,6 +210,7 @@ button:hover {
 		<!-- </div> -->
 
 		<div id="main" align="center">
+
 			<form>
 				<div id="child">
 					<div id="child2">
@@ -301,6 +302,7 @@ button:hover {
 
 
 						<div class="pagination" align="center">
+
 					
 					  <!-- <br>
 					  

@@ -94,7 +94,6 @@ img{
 	width: 210px;
 	border-radius: 4px;
 	opacity: 0.8;
-
 }
 
 button {
@@ -215,7 +214,6 @@ img {
 	        <%= n.getContent() %>
 	   	</div>
    	   </div>
-
    
    <div class="rightBox">
    	  <br>
@@ -243,12 +241,14 @@ img {
            <hr>
            <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
            <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry">
         
+
 	        <div class="hobbyDiv">
 	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
 	        </div>
@@ -278,12 +278,11 @@ img {
          
     </div>
 
-
     	<div id="nuri2">
 	        
         </div>
     <div>
-                     
+
     </div>
     
    </div>
@@ -375,7 +374,6 @@ function choice(){
     var pId = "imp_"+new Date().getTime() ;
     alert(pId);
 
-
    <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
     <%-- var nuriNum =<%=n.getNuriNum()%> --%>
     location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
@@ -414,6 +412,7 @@ function cash(){
           var nuriNum = <%=n.getNuriNum()%> --%>
           
           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
+
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시

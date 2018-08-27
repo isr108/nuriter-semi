@@ -385,28 +385,83 @@ public class MemberDao {
 	      
 	      return list;
 	   }*/
-
-	public Member snsloginMember(Connection con, String userEmail) {
+	   public Member snsloginMember(Connection con, String userEmail) {
+		   Member loginUser = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = prop.getProperty("loginMember");
+			System.out.println(query);
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, userEmail);
+				
+				System.out.println(pstmt);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()){
+					loginUser = new Member();
+					
+					loginUser.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+					loginUser.setUserEmail(rset.getString("user_email"));
+					loginUser.setPassword(rset.getString("user_pwd"));
+					loginUser.setUserName(rset.getString("user_name"));
+					loginUser.setNickName(rset.getString("nickname"));
+					loginUser.setAddress(rset.getString("address"));
+					loginUser.setPhone(rset.getString("phone"));
+					loginUser.setHobby(rset.getString("hobby"));
+					loginUser.setBirthDate(rset.getDate("birth_date"));
+					loginUser.setEnrollDate(rset.getDate("enroll_date"));
+					loginUser.setGrade(rset.getString("grade"));
+					loginUser.setGradeDate(rset.getDate("grade_date"));
+					loginUser.setBankName(rset.getString("bank_name"));
+					loginUser.setBankNumber(rset.getString("bank_number"));
+					loginUser.setAccountSort(rset.getString("account_sort"));
+					loginUser.setToken(rset.getString("token"));
+					loginUser.setReportedUser(rset.getString("reported_user"));
+					loginUser.setActivated(rset.getString("activated"));
+					loginUser.setActivatedDate(rset.getDate("activated_date"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+				
+			}
+			
+			
+			return loginUser;
+		   
+		   
+	   }
+	   
+	   
+	   
+	/*public Member snsloginMember(Connection con, String userEmail) {
 		Member loginUser = null;	
 
-		/*int result=0;
+		int result=0;
 		int sw=0;
 		Member m1=null;
-		ArrayList<Member> list=new ArrayList<Member>();*/
+		ArrayList<Member> list=new ArrayList<Member>();
 		Statement st=null;
-		/*PreparedStatement pst=null;*/
+		PreparedStatement pst=null;
 		ResultSet rset=null;
 		String query="";
 		query=prop.getProperty("checkMember");
-		/*String checkQuery=prop.getProperty("checkMember");*/
+		String checkQuery=prop.getProperty("checkMember");
 		try {
 			st=con.createStatement();
 			rset=st.executeQuery(query);
 			while(rset.next()){
-				/*m1=new Member();
+				m1=new Member();
 				m1.setUserEmail(rset.getString("user_email"));
 				
-				list.add(m1);*/
+				list.add(m1);
 				loginUser = new Member();
 				
 				loginUser.setUserNumber(rset.getInt("user_number"));
@@ -428,7 +483,7 @@ public class MemberDao {
 				loginUser.setReportedUser(rset.getString("reported_user"));
 				loginUser.setActivated(rset.getString("activated"));
 				loginUser.setActivatedDate(rset.getDate("activated_date"));
-			}
+			}*/
 			
 			/*for(int i=0;i<list.size();i++){
 				if(list.get(i).getUserEmail().equals(m.getUserEmail())){
@@ -465,16 +520,16 @@ public class MemberDao {
 			}*/
 			
 			
-		} catch (SQLException e) {
+		/*} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
 			close(st);
 			close(rset);
-			/*close(pst);*/
+			close(pst);
 		}
 		
 		return loginUser;
-	}
+	}*/
 
 	public int snsMember(Member m, Connection con) {
 		int result=0;
@@ -496,6 +551,7 @@ public class MemberDao {
 				m1.setUserEmail(rset.getString("user_email"));
 				
 				list.add(m1);
+				
 			}
 			
 			System.out.println("dao list:" + list);
