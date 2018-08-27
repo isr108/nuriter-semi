@@ -87,7 +87,7 @@ div a {
 		
 
 			<div id="check" class="contents" style="font-size: 16px;" align="center">
-				<a href="<%=request.getContextPath()%>/views/member/csCheck.jsp">출석체크</a>
+				<a href="<%=request.getContextPath()%>/attencheck.nu?">출석체크</a>
 
 			</div><br>
 					 	
@@ -98,7 +98,7 @@ div a {
 
 	        <%}else if(loginUser.getGrade().equals("G2")){%>
 	        	<div id="secondOption" class="contents" style="font-size: 16px;" align="center">
-	            <a href="<%=request.getContextPath()%>/">누리터 관리</a>
+	            <a href="<%=request.getContextPath()%>/selectMyNuriterList.nu">누리터 관리</a>
 	            </div>
 	        
 	        <%}%>

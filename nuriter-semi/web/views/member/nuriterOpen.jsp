@@ -142,7 +142,6 @@
 	<div>
 		<%@ include file="../common/logoAndLogbutton.jsp" %>
 	    <%@ include file="../common/categorybar.jsp" %>
-	    <%@ include file="../common/myPage_left.jsp" %>
 	</div>
 	<div id="main">
 	<% if(loginUser != null){ %>

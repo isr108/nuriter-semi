@@ -82,7 +82,7 @@ public class SelectMyNuriListServlet extends HttpServlet {
 				
 				
 				ArrayList<Nuriter> list = new NuriterService().selectMyNuriList(currentPage, limit, userNum);
-				System.out.println("개설 중인 누리터 리스트 : " + list);
+				System.out.println("참여 중인 누리터 리스트 : " + list);
 
 				String page = "";
 
