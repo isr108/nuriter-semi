@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
-<% Nuriter n = (Nuriter)request.getAttribute("n"); %>
+<% Nuriter n = (Nuriter)request.getAttribute("n"); 
+	String nuriNum=(String)request.getAttribute("num");
+	
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -355,7 +358,7 @@ $(function(){
             var rTitle =$("#reportTitle").val();
             var rContent = $("div textarea").val();
          
-            var nuriNum = "N1";
+            var nuriNum = '<%=n.getNuriNum()%>';
             
             location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
             alert("신고가 접수 되었습니다");
@@ -370,14 +373,14 @@ function choice(){
      cash();
      
   }else{
-    <%-- console.log(<%=loginUser.getUserEmail()%>); --%>
+    var contextPath = '<%= request.getContextPath() %>';
     var pId = "imp_"+new Date().getTime() ;
-    alert(pId);
+    var userNum = '<%=loginUser.getUserNumber()%>';
+    var nuriNum = '<%=n.getNuriNum()%>';
+    var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
+    console.log(loc);
 
-   <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
-    <%-- var nuriNum =<%=n.getNuriNum()%> --%>
-    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
-
+    location.href=loc;
   }
 }
 
@@ -406,13 +409,16 @@ function cash(){
           msg += '상점 거래ID : ' + rsp.merchant_uid;
           msg += '결제 금액 : ' + rsp.paid_amount;
           msg += '카드 승인번호 : ' + rsp.apply_num;
-          
-
-     <%--      var userNum = <%=loginUser.getUserNumber()%>
-          var nuriNum = <%=n.getNuriNum()%> --%>
-          
-          location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
-
+          //console.log();
+          var contextPath = '<%= request.getContextPath() %>';
+          var uid = rsp.imp_uid;
+          var userNum = '<%=loginUser.getUserNumber()%>';
+          var nuriNum = '<%=n.getNuriNum()%>';
+          var cardNum = rsp.apply_num;
+          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
+          console.log(loc);
+    
+          location.href=loc;
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시
