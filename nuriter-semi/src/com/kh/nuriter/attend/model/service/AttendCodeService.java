@@ -51,6 +51,7 @@ public class AttendCodeService {
 		
 		close(con);
 		
+		System.out.println("서비스 atcode : " + atcode);
 		return atcode;
 	}
 

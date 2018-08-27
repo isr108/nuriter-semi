@@ -7,8 +7,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import com.kh.nuriter.attend.model.vo.Attend;
+import com.kh.nuriter.attend.model.vo.AttendCode;
 
 public class AttendDao {
 private Properties prop = new Properties();
@@ -51,6 +55,50 @@ private Properties prop = new Properties();
 		
 		System.out.println("dao result : " +result);
 		return result;
+	}
+
+
+	public Attend attendCheck(Connection con, String checkcode, String usernum) {
+		Attend attend = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		/*String query=null;*/		
+		String query = prop.getProperty("attendCheck");
+		
+		try {	
+			/*pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nunum);
+			pstmt.setString(2, nunum);
+			rset = pstmt.executeQuery();*/
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, checkcode);
+			pstmt.setString(2, usernum);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("dao 체크코드 : "+ checkcode);
+			System.out.println("rest : " + rset);
+			
+			while(rset.next()){	
+				attend = new Attend();
+				attend.setAttendNumber(rset.getString("attend_number"));
+				attend.setAttendCodeId(rset.getString("attendcode_id"));
+				attend.setUserNumber(rset.getString("user_number"));
+				attend.setAttendDate(rset.getDate("attend_date"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		return attend;
 	}
 
 }

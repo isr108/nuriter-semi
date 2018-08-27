@@ -36,14 +36,14 @@ public class SelectNuriBossOneServlet extends HttpServlet {
 		String num = request.getParameter("num");
 		System.out.println(num);
 		
-		Nuriboss nu = new NuriterService().selectOneNuriboss(num);
+		Nuriboss nb = new NuriterService().selectOneNuriboss(num);
 		
 		String page = "";
-		System.out.println(nu);
+		System.out.println(nb);
 		
-		if(nu != null){
-			page = "views/admin/nuribossDetailBeforeAccept";
-			request.setAttribute("nu", nu);
+		if(nb != null){
+			page = "views/admin/nuribossDetailBeforeAccept.jsp";
+			request.setAttribute("nb", nb);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "누리장 신청 디테일 조회 실패!");

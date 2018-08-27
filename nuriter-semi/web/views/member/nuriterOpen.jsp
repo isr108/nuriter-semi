@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
 <%-- <%
+
 	ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
+
 %> --%>
 
 <!DOCTYPE html>
@@ -249,37 +251,37 @@
     </div>
     
     <% }else{
-		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
-		request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
-		
-	} %>
-	
+      request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+      request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
+      
+   } %>
+   
     <script>
 
     //사진 업로드
     $(function(){
-		$("#fileArea").hide();
-		
-		$("#titleImgArea").click(function(){
-			$("#thumbnailImg1").click();
-		});
-	});
+      $("#fileArea").hide();
+      
+      $("#titleImgArea").click(function(){
+         $("#thumbnailImg1").click();
+      });
+   });
     
     //사진 출력
     function loadImg(value, num){
-		console.log("test");
-		if(value.files && value.files[0]){
-			var reader = new FileReader();
-			reader.onload = function(e){
-				switch(num){
-					case 1 : 
-						$("#titleImg").attr("src", e.target.result);
-						break;
-				}
-			}
-			reader.readAsDataURL(value.files[0]);
-		}
-	}
+      console.log("test");
+      if(value.files && value.files[0]){
+         var reader = new FileReader();
+         reader.onload = function(e){
+            switch(num){
+               case 1 : 
+                  $("#titleImg").attr("src", e.target.result);
+                  break;
+            }
+         }
+         reader.readAsDataURL(value.files[0]);
+      }
+   }
     
     //데이터피커
     $(function(){
@@ -288,13 +290,13 @@
     
     //개설하기 버튼
     function insert(){
-    	var markupStr = $('#summernote').summernote('code');
-    	console.log(markupStr);
-    	
-    	$(".summerText").val(markupStr);
-    	
-		$("#insertForm").submit();
-	}
+       var markupStr = $('#summernote').summernote('code');
+       console.log(markupStr);
+       
+       $(".summerText").val(markupStr);
+       
+      $("#insertForm").submit();
+   }
     
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -367,6 +369,7 @@
 				}
 			});
 		});
+
     });
     
     </script>

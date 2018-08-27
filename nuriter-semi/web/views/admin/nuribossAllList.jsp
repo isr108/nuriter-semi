@@ -95,55 +95,10 @@
 	border: 1px solid rgb(241, 196, 15);
 }
 
-.pagination
-
-
- 
-
-
-a
-
-
-
-
-:hover
-
-
-
-
-:not
-
-
- 
-
-
-(
-.active
-
-
- 
-
-
-)
-{
-background-color
-
-
-
-
-:
-
-
- 
-
-
-#ddd
-
-
-
-
-;
+.pagination a:hover:not(.active) {
+	background-color : #ddd;
 }
+
 .pagination a:first-child {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -212,6 +167,10 @@ button:hover {
 	/* 	border-style: solid;
     border-color: red; */
 }
+
+th{
+	align:center;
+}
 </style>
 </head>
 <body>
@@ -229,72 +188,51 @@ button:hover {
 					<div id="child2">
 						<h1 id="web-font">누리장 회원</h1>
 						<br>
-						<table border="2" id="web-font">
+						<table border="2" id="web-font" class="listBox">
 							<tr>
-								<td>누리장 승인일자</td>
-								<td>이름</td>
-								<td>카테고리</td>
-								<td>활동 계획서</td>
-								<td>체크</td>
+								<th>누리장 승인일자</th>
+								<th>이름</th>
+								<th>카테고리</th>
+								<th>승인</th>
 							</tr>
 							<%
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<input type="" value="<%=nb.getApplyNum()%>">
+								<input type="hidden" value="<%=nb.getApplyNum()%>">
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserNum()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<td><button onclick="goCheck();">확인하기</button></td>
-								<td><input type="checkbox"></td>
-								<script>
-								function goCheck(){
-									<%-- $(".listBox").attr("action", "<%= request.getContextPath()%>/selectOneNuriboss.nu"); --%>
-									<%-- location.href="<%=request.getContextPath()%>/index.jsp"; --%>
-									location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=<%=nb.getApplyNum()%>";
-									console.log("stress.......");
-								}
-							</script>
+								<%-- <td id="checkBtn"><button onclick="location.href='<%=request.getContextPath()%>/PermitNuriboss.nu?num=<%=nb.getApplyNum()%>'">승인하기</button></td> --%>
+								<th align="center"><div style="width:100px; height:10px; background:yellow;">승인하기</div></th>
 							</tr>
 							<%
 								}
 							%>
-							<!-- <tr>
-							<td>2018/08/11</td>
-							<td>김지황</td>
-							<td>객체지향 프로그래밍</td>
-							<td><button>확인하기</button></td>
-							<td><input type="checkbox"></td>
-						</tr>
-						<tr>
-							<td>2018/08/11</td>
-							<td>이진희</td>
-							<td>정보처리 자격증</td>
-							<td><button>확인하기</button></td>
-							<td><input type="checkbox"></td>
-						</tr>
-						<tr>
-							<td>2018/08/11</td>
-							<td>채은비</td>
-							<td>토익 스터디</td>
-							<td><button>확인하기</button></td>
-							<td><input type="checkbox"></td>
-						</tr>
-						<tr>
-							<td>2018/08/11</td>
-							<td>허민지</td>
-							<td>정보처리 자격증</td>
-							<td><button>확인하기</button></td>
-							<td><input type="checkbox"></td>
-						</tr>
-						<tr>
-							<td>2018/08/11</td>
-							<td>김진호</td>
-							<td>웹 프론트엔드 디자인</td>
-							<td><button>확인하기</button></td>
-							<td><input type="checkbox"></td>
-						</tr> -->
+							
 						</table>
+						
+						<script>
+						$(function(){
+							
+							$(".listBox td").mouseenter(function(){
+								$(this).parent().css({"background":"#eaeaea", "cursor":"pointer"});
+							}).mouseout(function(){
+								$(this).parent().css({"background":"white"});
+							}).click(function(){
+								var num = $(this).parent().children("input").val();
+								alert("야 !!! " + num);
+								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
+							});
+							
+							$(".listBox th").click(function(){
+								var num = $(this).parent().children("input").val();
+								console.log(num);
+								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?num="+num;
+							});
+							
+						});
+						</script>
 
 						<div class="pagination" align="center">
 
@@ -351,7 +289,7 @@ button:hover {
 								<div id="submit" align="center">
 									<button id="web-font">누리장 삭제</button>
 									&nbsp;
-									<button id="web-font">이전 페이지</button>
+									<button id="web-font" onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu'">이전 페이지</button>
 								</div>
 						</div>
 					</div>

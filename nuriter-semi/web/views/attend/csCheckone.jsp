@@ -16,10 +16,10 @@
  	int endPage = pi.getEndPage(); */
  	
 	Nuriter n = (Nuriter)request.getAttribute("n");
- 	System.out.print(n);
+ 	System.out.print("cscheckone n: " +n);
  	
  	String nunum = request.getParameter("nunum");
- 	System.out.print("nunum : " + nunum);
+ 	System.out.print("cscheckone nunum : " + nunum);
 %> 
 
 <%
@@ -58,6 +58,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
 	#web-font{
@@ -99,6 +100,19 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
       
    }
    #web-font2:hover {
+     background-color: white; /* Green */
+     color: rgb(241, 196, 15);
+     border: 2px solid rgb(241, 196, 15); /* Green */
+   }
+   
+   .web-font2{
+      font-family: 'Jua', sans-serif;
+       border-radius: 4px;
+        background-color: rgb(241, 196, 15); 
+     color: white;
+      
+   }
+   .web-font2:hover {
      background-color: white; /* Green */
      color: rgb(241, 196, 15);
      border: 2px solid rgb(241, 196, 15); /* Green */
@@ -253,16 +267,16 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 				 <% } %> --%>
 	</table>
 	<br>
-	<form id = "form1" action="<%=request.getContextPath()%>/checkcodeone.at" method="post">
-		<input type="hidden" name="userNum" value=<%=loginUser.getUserNumber()%>>
-		<input type="text" name="checkcode" style="width: 250px; height: 30px;"
+	<%-- <form id = "form1" action="<%=request.getContextPath()%>/checkcodeone.at" method="post"> --%>
+		<input type="hidden" id="userNum" name="userNum" value=<%=loginUser.getUserNumber()%>>
+		<input type="text" id="checkcode" name="checkcode" style="width: 250px; height: 30px;"
 						placeholder="출석코드">
 	
 		<br><br>
 						
-		<input id ="web-font2" type="submit" style="width: 250px; height: 30px;" value="출석하기">
-	</form>
-		<br>
+		<button class="web-font2" id ="checkbutton" type="submit" style="width: 250px; height: 30px;">출석하기</button>
+	<!-- </form> -->
+		<br><br>
 	
 		<input id ="web-font1" type="button" style="width: 80px; height: 30px;" value="누리터 이용완료">			
     
@@ -401,7 +415,8 @@ for(int index = 1; index <= endDay; index++)
        if(iUseDate == intToday ) {
              backColor = "#c9c9c9";
        } 
-       out.println("<TD valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
+       out.println("<TD id='today' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
+
 %>
 
        <font color='<%=color%>'>
@@ -449,7 +464,7 @@ while(newLine > 0 && newLine < 7)
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
 	<script>
 		$(function(){
-			$("#listArea td").mouseenter(function(){
+			<%-- $("#listArea td").mouseenter(function(){
 				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
 			}).mouseout(function(){
 				$(this).parent().css({"background":"black"});
@@ -458,6 +473,33 @@ while(newLine > 0 && newLine < 7)
 				var num = $(this).parent().children().eq(0).text();
 				location.href="<%=request.getContextPath()%>/selectOne.no?num=" + num;
 			
+			}); --%>
+			
+			
+			$("#checkbutton").click(function(){
+				var checkcode = $("#checkcode").val();
+				var userNum = $("#userNum").val();
+				
+				console.log(checkcode);
+				console.log(userNum);
+				$.ajax({
+					url:"checkcodeone.at",
+					type:"post",
+					data:{checkcode:checkcode, 
+						userNum:userNum},
+					success:function(data){
+						if(data === "fail"){
+							alert("출석체크성공!!");
+							$("#today").parent().css({"bgcolor":"red"});
+						}else{
+							alert("출석체크실패!!")
+						}
+					},
+					error:function(data){
+						console.log("실패!");
+					}
+				});
+				
 			});
 			
 		});
