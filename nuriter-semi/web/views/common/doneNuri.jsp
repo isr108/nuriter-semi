@@ -69,15 +69,55 @@
 	align:center;
 	}
 	
-	.pageArea{
+	/* .pageArea{
 	padding-left:20%;
-	}
+	} */
 	
 	tbody{
 		width:auto;
 		height:auto;
 	}
 	
+	.pagination {
+  		display:inline-blick;
+	    /* width:400px;
+	    height:60px;
+	    overflow:hidden; */
+	    padding-left: 45%;
+	    margin: 20px 0;
+	    boder-radius:4px;
+	    pointer: cursor;
+	    align:center;
+	}
+
+	.pagination a {
+	    color: black;
+	    padding: 8px 16px;
+	    text-decoration: none;
+	    border: 1px solid #ddd;
+	    pointer: cursor;
+	}
+	.pagination a.active {
+	    background-color: rgb(241, 196, 15);
+	    color: white;
+	    border: 1px solid rgb(241, 196, 15);
+	    pointer: cursor;
+	}
+	.pagination a:hover:not(.active) {
+		background-color: #ddd;
+		pointer: cursor;
+	}
+
+	.pagination a:first-child {
+	    border-top-left-radius: 5px;
+	    border-bottom-left-radius: 5px;
+	    pointer: cursor;
+	}
+
+	.pagination a:last-child {
+	    border-top-right-radius: 5px;
+	    border-bottom-right-radius: 5px;
+	    pointer: cursor;
 	
 
 </style>
@@ -98,7 +138,7 @@
 					<th><div style="width:100px">누리장명</div></th>
 					<th><div style="width:100px">시작일시</div></th>
 					<th><div style="width:100px">종료일시</div></th>
-					<th><div style="width:300px">장소</div></th>
+					<th><div style="width:200px">장소</div></th>
 					<th><div style="width:50px">참가비</div></th>
 					<th><div style="width:100px">개설일자</div></th>
 				</tr>
@@ -120,29 +160,31 @@
 			<br>
 			<br>
 			<!-- 페이지처리 -->
-			<div class="pageArea" align="center">
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=1'"><<</button>
+			<!-- <div class="pageArea" align="center"> -->
+			<div class="pagination" align="center" id="web-font">
+   			<br>
+   			<a href="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>
-   			<button disabled><</button>
+   			<a disabled><</a>
    			<% }else{ %>
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%=currentPage - 1%>'"><</button>
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%=currentPage - 1%>'">&laquo;</a>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
-   				<button disabled><%= p %></button>
+   				<a disabled><%= p %></a>
    			<%  }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= p %>'"><%= p %></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= p %>'"><%= p %></a>
    			<%  } %>
    			
    			<% } %>
    			
    			<% if(currentPage >= maxPage){ %>
-   				<button disabled>></button>
+   				<a disabled>></a>
    			<% }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= currentPage + 1%>'">></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= maxPage %>'">>></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= maxPage %>'">>></a>
    		</div>
 		</div>
 			

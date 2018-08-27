@@ -685,6 +685,8 @@ public class NuriterDao {
 	               list = new ArrayList<Nuriter>();
 	               while(rset.next()){
 	                  Nuriter n = new Nuriter();
+	                  n.setNuriNum(rset.getString("nuri_number"));
+	                  System.out.println(n.getNuriNum());
 	                  n.setNuriTitle(rset.getString("nuri_name"));
 	                  System.out.println(n.getNuriTitle());
 	                  n.setOwnerNum(rset.getString("nickname"));
@@ -949,7 +951,7 @@ public class NuriterDao {
 	}
 
 	public int getMyNuriterListCount(Connection con, String userNum) {
-		 PreparedStatement pstmt = null;
+		   PreparedStatement pstmt = null;
 	       int listCount = 0;
 	       ResultSet rset = null;
 	         
@@ -1203,6 +1205,7 @@ public class NuriterDao {
 		
 		
 		return result;
+	}
 
 	}
 	public int getNuribossListCount(Connection con) {
@@ -1248,8 +1251,8 @@ public class NuriterDao {
 				nb = new Nuriboss();
 				
 				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setCategoryNum(rset.getString("category_id"));
+				nb.setUserNum(rset.getString("user_name"));
+				nb.setCategoryNum(rset.getString("category_name"));
 				nb.setBossContent(rset.getString("newnuri_content"));
 				nb.setPotoPath(rset.getString("planfile_path"));
 				nb.setPotoName(rset.getString("planfile_name"));
@@ -1263,6 +1266,7 @@ public class NuriterDao {
 		
 		return nb;
 	}
+
 	public int insertNuriterHobby(Connection con, String userNum, String name) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -1286,6 +1290,160 @@ public class NuriterDao {
 		return result;
 
 
+	}
+
+	public int getMyTemptingListCount(Connection con, String userNum) {
+		   PreparedStatement pstmt = null;
+	       int listCount = 0;
+	       ResultSet rset = null;
+	         
+	       String query = prop.getProperty("selectMyTemptingListCount");
+	         
+	         try {
+	            pstmt = con.prepareStatement(query);
+	            
+	            pstmt.setString(1, userNum);
+	            rset = pstmt.executeQuery();
+	            
+	            if(rset.next()){
+	               listCount = rset.getInt(1);
+	            }
+	            
+	         } catch (SQLException e) {
+	            e.printStackTrace();
+	         }finally{
+	            close(rset);
+	            close(pstmt);
+	         }
+	         
+	         return listCount;
+	}
+
+
+	public ArrayList<Nuriter> selectMyTemptingList(Connection con, String userNum) {
+		ArrayList<Nuriter> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Nuriter n = null;
+		
+		String query = prop.getProperty("selectMyTemptingList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userNum);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Nuriter>();
+			
+			while(rset.next()){
+				n = new Nuriter();
+				
+				n.setNuriNum(rset.getString("NURI_NUMBER"));
+				n.setOwnerNum(rset.getString("OWNER_NUMBER"));
+				n.setCategoryNum(rset.getString("CATEGORY_ID"));
+				n.setNuriNum(rset.getString("NURI_NAME"));
+				n.setContent(rset.getString("NCONTENT"));
+				n.setStartDate(rset.getDate("START_DATE"));
+				n.setEndDate(rset.getDate("END_DATE"));
+				n.setStartTime(rset.getString("START_TIME"));
+				n.setPlace(rset.getString("PLACE"));
+				n.setPrice(rset.getString("PRICE"));
+				n.setApplicationDate(rset.getDate("APPLICATION_DATE"));
+				n.setPersonnel(rset.getString("PERSONNEL"));
+				/*System.out.println(rset.getInt("REPORT_COUNT"));
+				n.setReportCount(rset.getInt("REPORT_COUNT"));*/
+				n.setProgress(rset.getString("PROGRESS"));
+				n.setAttendCount(rset.getInt("ATTEND_COUNT"));
+				
+				list.add(n);
+				System.out.println("누리터 DAO에서 list.add 성공");
+			}
+			
+			System.out.println("selectMyTemptingList: " + list);
+
+	public int updateNuribossStatus(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateNuribossStatus");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
+	public ArrayList<HashMap<String, Object>> selectMyTemptingThumbnailList(Connection con, int currentPage, int limit,
+			String userNum) {
+		ArrayList<HashMap<String, Object>> pictureList = null;
+		HashMap<String, Object> hmap = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectMyTemptingThumbnailMap");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, userNum);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			pictureList = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()){
+				hmap = new HashMap<String, Object>();
+				
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("owner_number", rset.getString("owner_number"));
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("nuri_name", rset.getString("nuri_name"));
+				hmap.put("category_name", rset.getString("category_name"));
+				hmap.put("ncontent", rset.getString("ncontent"));
+				hmap.put("start_date", rset.getDate("start_date"));
+				hmap.put("end_date", rset.getString("end_date"));
+				hmap.put("start_time", rset.getString("start_time"));
+				hmap.put("place", rset.getString("place"));
+				hmap.put("price", rset.getInt("price"));
+				hmap.put("application_date", rset.getDate("application_date"));
+				hmap.put("personnel", rset.getInt("personnel"));
+				/*hmap.put("progress", rset.getString("PROGRESS"));*/
+				/*hmap.put("attend", rset.getShort("attend_count"));*/
+				hmap.put("fid", rset.getString("fid"));
+				hmap.put("origin_name", rset.getString("origin_name"));
+				hmap.put("change_name", rset.getString("change_name"));
+				hmap.put("file_path", rset.getString("file_path"));
+				hmap.put("upload_date", rset.getDate("upload_date"));
+				
+				pictureList.add(hmap);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return pictureList;
 	}
 
 }

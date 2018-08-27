@@ -33,7 +33,9 @@ public class PaymentServlet extends HttpServlet {
 		String pid =request.getParameter("imp");
 		String userNum = request.getParameter("userNum");
 		String nuriNum = request.getParameter("nuriNum");
-		String cardNum = request.getParameter("cardNum");
+		/*String cardNum = request.getParameter("cardNum");*/
+		System.out.println("userNum : " + userNum);
+		
 		
 		Payment p = new Payment();
 		p.setpId(pid);
@@ -54,7 +56,7 @@ public class PaymentServlet extends HttpServlet {
 		
 		PaymentDetail pd = new PaymentDetail();
 		pd.setPid(pid);
-		pd.setCardNum(cardNum);
+	/*	pd.setCardNum(cardNum);*/
 		
 		
 		

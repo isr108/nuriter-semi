@@ -30,13 +30,9 @@
 </style>
 </head>
 <body>
-<font id="web-font">
-  	<%@ include file="../common/logoAndLogbutton.jsp" %>
-  
-    <%@ include file="../common/categorybar.jsp" %>
-    
-    <%@ include file="../common/myPage_left.jsp" %>
 
+<font id="web-font">  
+    <%@ include file="../common/myPage_left.jsp" %>
 	<div class="outer">
 		<br>
 		<h2 align="left">메세지</h2>
