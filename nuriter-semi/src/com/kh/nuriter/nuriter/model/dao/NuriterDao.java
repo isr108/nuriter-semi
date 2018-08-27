@@ -601,6 +601,7 @@ public class NuriterDao {
 			if(rset.next()) {
 				n = new Nuriter();
 				
+				n.setNuriNum(rset.getString("nuri_number"));
 				n.setNickName(rset.getString("nickname"));
 				n.setOwnerNum(rset.getString("owner_number"));
 				n.setCategoryNum(rset.getString("category_id"));
@@ -839,18 +840,28 @@ public class NuriterDao {
 	         return list;
 	   }
 
-	public ArrayList<Nuriboss> selectNuribossList(Connection con) {
+	public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
 		ArrayList<Nuriboss> bossList = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		/*Statement stmt = null;*/
 		ResultSet rset = null;
 		Nuriboss nb = null;
 		
 		String query = prop.getProperty("selectNuribossList");
 		
 		try {
-			stmt = con.createStatement();
+			/*stmt = con.createStatement();
+			rset = stmt.executeQuery(query);*/
 			
-			rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 			
 			bossList = new ArrayList<Nuriboss>();
 			
@@ -858,8 +869,8 @@ public class NuriterDao {
 				nb = new Nuriboss();
 				
 				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setCategoryNum(rset.getString("category_id"));
+				nb.setUserNum(rset.getString("user_name"));
+				nb.setCategoryNum(rset.getString("category_name"));
 				nb.setBossContent(rset.getString("newnuri_content"));
 				nb.setPotoPath(rset.getString("planfile_path"));
 				nb.setPotoName(rset.getString("planfile_name"));
@@ -874,12 +885,11 @@ public class NuriterDao {
 			e.printStackTrace();
 		} finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		return bossList;
 	}
-
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
@@ -934,7 +944,6 @@ public class NuriterDao {
 		return n;
 
 	}
-
 
 	public int getMyNuriterListCount(Connection con, String userNum) {
 		 PreparedStatement pstmt = null;
@@ -1191,6 +1200,89 @@ public class NuriterDao {
 		
 		
 		return result;
+
+
+	public int getNuribossListCount(Connection con) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("nuribossListCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+			close(rset);
+		}
+		
+		return listCount;
+	}
+
+
+	public Nuriboss selectOneNuriboss(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Nuriboss nb = null;
+		
+		String query = prop.getProperty("selectOneNuriboss");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				nb = new Nuriboss();
+				
+				nb.setApplyNum(rset.getString("apply_id"));
+				nb.setUserNum(rset.getString("user_number"));
+				nb.setCategoryNum(rset.getString("category_id"));
+				nb.setBossContent(rset.getString("newnuri_content"));
+				nb.setPotoPath(rset.getString("planfile_path"));
+				nb.setPotoName(rset.getString("planfile_name"));
+				nb.setApplyDate(rset.getDate("apply_date"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return nb;
+
+	public int insertNuriterHobby(Connection con, String userNum, String name) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertNuriterHobby");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, name); 
+			pstmt.setString(2, userNum); 
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+
+
 	}
 
 }

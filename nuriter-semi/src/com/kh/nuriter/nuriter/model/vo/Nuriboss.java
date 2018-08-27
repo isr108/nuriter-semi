@@ -1,6 +1,7 @@
 package com.kh.nuriter.nuriter.model.vo;
 
 
+import java.sql.Connection;
 import java.sql.Date;
 
 
@@ -88,6 +89,12 @@ public class Nuriboss implements java.io.Serializable{
 		return "Nuriboss [applyNum=" + applyNum + ", userNum=" + userNum + ", categoryNum=" + categoryNum
 				+ ", bossContent=" + bossContent + ", potoPath=" + potoPath + ", potoName=" + potoName + ", applyDate="
 				+ applyDate + "]";
+	}
+
+	public Nuriboss selectOneNuriboss(Connection con, String num) {
+		
+		
+		return null;
 	}
 	
 }

@@ -49,8 +49,7 @@
         <hr class="colorgraph">
         <li id="web-font"><a style="font-size:1em;" href="#">회원관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/common/reportedMember.jsp">신고관리</a></li>
-        <li id="web-font"><a href="<%=request.getContextPath()%>/views/admin/nuribossList.jsp">누리장관리</a></li>
-        <%-- <li id="web-font"><a href="<%=request.getContextPath()%>/selectNuribossList.nu">누리장관리</a></li> --%>
+        <li id="web-font"><a href="<%=request.getContextPath()%>/selectNuribossList.nu">누리장관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/common/goneMember.jsp">탈퇴회원관리</a></li>
         <hr class="colorgraph">
         <li id="web-font"><a style="font-size:1em;" href="#">게시글관리</a></li>

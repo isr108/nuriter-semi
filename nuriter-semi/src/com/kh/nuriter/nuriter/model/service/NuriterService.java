@@ -232,9 +232,9 @@ public class NuriterService {
 	   }
 
 
-	public ArrayList<Nuriboss> selectNuribossList() {
+	public ArrayList<Nuriboss> selectNuribossList(int currentPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con);
+		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con, currentPage, limit);
 		
 		close(con);
 		
@@ -321,6 +321,44 @@ public class NuriterService {
 		close(con);
 		
 		return result;
+	}
+
+
+	public int getNuribossListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new NuriterDao().getNuribossListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public Nuriboss selectOneNuriboss(String num) {
+		Connection con = getConnection();
+		
+		Nuriboss nb = new NuriterDao().selectOneNuriboss(con, num);
+		
+		close(con);
+		
+		return nb;
+
+	public int insertNuriterHobby(String userNum, String name) {
+		Connection con = getConnection();
+		
+		int result = new NuriterDao().insertNuriterHobby(con, userNum, name);
+		
+		if(result > 0) {
+			commit(con);
+		}
+		else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+
 	}
 
 
