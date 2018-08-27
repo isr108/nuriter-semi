@@ -231,9 +231,9 @@ public class NuriterService {
 	   }
 
 
-	public ArrayList<Nuriboss> selectNuribossList() {
+	public ArrayList<Nuriboss> selectNuribossList(int currentPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con);
+		ArrayList<Nuriboss> bossList = new NuriterDao().selectNuribossList(con, currentPage, limit);
 		
 		close(con);
 		
@@ -252,6 +252,26 @@ public class NuriterService {
 		close(con);
 		
 		return n;
+	}
+
+	public int getNuribossListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new NuriterDao().getNuribossListCount(con);
+		
+		close(con);
+		
+		return listCount;
+	}
+
+	public Nuriboss selectOneNuriboss(String num) {
+		Connection con = getConnection();
+		
+		Nuriboss nb = new NuriterDao().selectOneNuriboss(con, num);
+		
+		close(con);
+		
+		return nb;
 	}
 
 

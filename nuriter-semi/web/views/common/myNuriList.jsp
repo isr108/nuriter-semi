@@ -10,7 +10,7 @@
 		/* position: fixed; */
     	width: 734px;
     	height: 74px;
- 		margin-top:13%;
+ 		margin-top:15%;
     	margin-left:auto;
 		margin-right:auto;
 		

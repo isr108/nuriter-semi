@@ -87,14 +87,6 @@ public class board implements java.io.Serializable {
 		return boardDate;
 	}
 
-   public void setBoardCount(int boardCount) {
-      this.boardCount = boardCount;
-   }
-
-
-   public Date getBoardDate() {
-      return boardDate;
-   }
 
 
    public void setBoardDate(Date boardDate) {
@@ -105,21 +97,6 @@ public class board implements java.io.Serializable {
    public String getBoardSort() {
       return boardSort;
    }
-
-	public String getReportNum() {
-		return reportNum;
-	}
-
-
-	public void setReportNum(String reportNum) {
-		this.reportNum = reportNum;
-	}
-
-
-	public String getNuriNum() {
-		return nuriNum;
-	}
-
 
 
    public void setBoardSort(String boardSort) {

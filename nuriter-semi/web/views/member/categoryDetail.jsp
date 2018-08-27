@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
 <% Nuriter n = (Nuriter)request.getAttribute("n"); %>
@@ -11,6 +10,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
@@ -89,7 +89,7 @@ img{
 
 .likeOrAngry > div:hover{
    border:2px solid #FFBF00;
-   background:#848484;
+   background:#F5D0A9;
    float:left;
    width: 210px;
    border-radius: 4px;
@@ -209,11 +209,11 @@ img {
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
-      <div class="leftBox">
-       <div class="images">
+      <div class="leftBox" align = "center">
+         <div class="images">
            <%= n.getContent() %>
-      </div>
-   </div>
+         </div>
+         </div>
    
    <div class="rightBox">
         <br>
@@ -228,21 +228,19 @@ img {
         <br>
         
         <div id="nuri">
-
-	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
-	        <hr>
-	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
-	        <hr>
-	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-	        <hr>
-	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-	        <hr>
-	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
-
+           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
+           <hr>
+           <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
+           <hr>
+           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+           <hr>
+           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+           <hr>
+           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
         </div>
         
         <hr color="red" size="10px">
@@ -277,6 +275,13 @@ img {
          </div>
          
     </div>
+       <div id="nuri2">
+           
+        </div>
+    <div>
+       
+    </div>
+    
    </div>
 </div>
       <%@ include file="../common/footer.jsp" %>
@@ -309,7 +314,7 @@ $(function(){
             var rTitle =$("#reportTitle").val();
             var rContent = $("div textarea").val();
          
-            var nuriNum =<%=n.getNuriNum()%>
+            var nuriNum = "N1";
             
             location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
             alert("신고가 접수 되었습니다");
@@ -327,11 +332,9 @@ function choice(){
     <%-- console.log(<%=loginUser.getUserEmail()%>); --%>
     var pId = "imp_"+new Date().getTime() ;
     alert(pId);
-   <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
-    <%-- var nuriNum =<%=n.getNuriNum()%> --%>
-    location.href="<%=request.getContextPath()%>/payment.pms?imp="rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>"";
+    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
      
-  
+  }
 }
 
 
@@ -361,9 +364,8 @@ function cash(){
           msg += '카드 승인번호 : ' + rsp.apply_num;
           
           var userNum = <%=loginUser.getUserNumber()%>
-          var nuriNum = <%=n.getNuriNum()%>
           
-           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>";
+           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+userNum+"&nuriNum=<%="N1"%>";
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시
@@ -373,7 +375,7 @@ function cash(){
        }
     });
  }
-   
+
 </script>    
 </body>
 </html>
