@@ -600,6 +600,7 @@ public class NuriterDao {
 			if(rset.next()) {
 				n = new Nuriter();
 				
+				n.setNuriNum(rset.getString("nuri_number"));
 				n.setNickName(rset.getString("nickname"));
 				n.setOwnerNum(rset.getString("owner_number"));
 				n.setCategoryNum(rset.getString("category_id"));
@@ -889,7 +890,6 @@ public class NuriterDao {
 		return bossList;
 	}
 
-
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
 		PreparedStatement pstmt = null;
@@ -943,6 +943,7 @@ public class NuriterDao {
 		return n;
 
 	}
+
 
 
 	public int getNuribossListCount(Connection con) {
@@ -1002,6 +1003,29 @@ public class NuriterDao {
 		
 		
 		return nb;
+
+	public int insertNuriterHobby(Connection con, String userNum, String name) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertNuriterHobby");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, name); 
+			pstmt.setString(2, userNum); 
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+
 	}
 
 }

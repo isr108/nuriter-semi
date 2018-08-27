@@ -15,61 +15,26 @@ public class board implements java.io.Serializable {
 	private String status; //게시판 상태
 	
 	
-	 
-	public board(){}
+	 public board(){}
 
 
-	public board(String boardNum, String boardTitle, String boardContent, String userNum, int boardCount,
-			Date boardDate, String boardSort, String reportNum, String nuriNum, String status) {
-		super();
-		this.boardNum = boardNum;
-		this.boardTitle = boardTitle;
-		this.boardContent = boardContent;
-		this.userNum = userNum;
-		this.boardCount = boardCount;
-		this.boardDate = boardDate;
-		this.boardSort = boardSort;
-		this.reportNum = reportNum;
-		this.nuriNum = nuriNum;
-		this.status = status;
+	public String getBoardNum() {
+		return boardNum;
 	}
 
-   public String getBoardNum() {
-      return boardNum;
-   }
+
+	public String getBoardTitle() {
+		return boardTitle;
+	}
 
 
-   public void setBoardNum(String boardNum) {
-      this.boardNum = boardNum;
-   }
+	public String getBoardContent() {
+		return boardContent;
+	}
 
-
-   public String getBoardTitle() {
-      return boardTitle;
-   }
-
-
-   public void setBoardTitle(String boardTitle) {
-      this.boardTitle = boardTitle;
-   }
-
-
-   public String getBoardContent() {
-      return boardContent;
-   }
-
-
-   public void setBoardContent(String boardContent) {
-      this.boardContent = boardContent;
-   }
 
 	public String getUserNum() {
 		return userNum;
-	}
-
-
-	public void setUserNum(String userNum) {
-		this.userNum = userNum;
 	}
 
 
@@ -78,67 +43,90 @@ public class board implements java.io.Serializable {
 	}
 
 
-	public void setBoardCount(int boardCount) {
-		this.boardCount = boardCount;
-	}
-
-
 	public Date getBoardDate() {
 		return boardDate;
 	}
 
 
-
-   public void setBoardDate(Date boardDate) {
-      this.boardDate = boardDate;
-   }
-
-
-   public String getBoardSort() {
-      return boardSort;
-   }
+	public String getBoardSort() {
+		return boardSort;
+	}
 
 
-   public void setBoardSort(String boardSort) {
-      this.boardSort = boardSort;
-   }
-
-   public String getReportNum() {
-      return reportNum;
-   }
+	public String getReportNum() {
+		return reportNum;
+	}
 
 
-   public void setReportNum(String reportNum) {
-      this.reportNum = reportNum;
-   }
+
+	public String getNuriNum() {
+		return nuriNum;
+	}
 
 
-   public String getNuriNum() {
-      return nuriNum;
-   }
+	public String getStatus() {
+		return status;
+	}
 
 
-   public void setNuriNum(String nuriNum) {
-      this.nuriNum = nuriNum;
-   }
+
+	public void setBoardNum(String boardNum) {
+		this.boardNum = boardNum;
+	}
 
 
-   public String getStatus() {
-      return status;
-   }
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
 
 
-   public void setStatus(String status) {
-      this.status = status;
-   }
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
 
 
-   @Override
-   public String toString() {
-      return "board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
-            + ", userNum=" + userNum + ", boardCount=" + boardCount + ", boardDate=" + boardDate + ", boardSort="
-            + boardSort + ", reportNum=" + reportNum + ", nuriNum=" + nuriNum + ", status=" + status + "]";
-   }
-   
+	public void setUserNum(String userNum) {
+		this.userNum = userNum;
+	}
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+
+	public void setBoardDate(Date boardDate) {
+		this.boardDate = boardDate;
+	}
+
+
+	public void setBoardSort(String boardSort) {
+		this.boardSort = boardSort;
+	}
+
+
+	public void setReportNum(String reportNum) {
+		this.reportNum = reportNum;
+	}
+
+
+	public void setNuriNum(String nuriNum) {
+		this.nuriNum = nuriNum;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	@Override
+	public String toString() {
+		return "board [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
+				+ ", userNum=" + userNum + ", boardCount=" + boardCount + ", boardDate=" + boardDate + ", boardSort="
+				+ boardSort + ", reportNum=" + reportNum + ", nuriNum=" + nuriNum + ", status=" + status + "]";
+	}
+	 
+	 
+	
 }
 
