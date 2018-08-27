@@ -877,7 +877,7 @@ public class NuriterDao {
 		}
 		
 		return bossList;
-
+	}
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();

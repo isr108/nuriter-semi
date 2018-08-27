@@ -329,8 +329,8 @@ function choice(){
     alert(pId);
    <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
     <%-- var nuriNum =<%=n.getNuriNum()%> --%>
-    location.href="<%=request.getContextPath()%>/payment.pms?imp="rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>"";
-     
+    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
+  }
   
 }
 
@@ -360,10 +360,10 @@ function cash(){
           msg += '결제 금액 : ' + rsp.paid_amount;
           msg += '카드 승인번호 : ' + rsp.apply_num;
           
-          var userNum = <%=loginUser.getUserNumber()%>
-          var nuriNum = <%=n.getNuriNum()%>
+     <%--      var userNum = <%=loginUser.getUserNumber()%>
+          var nuriNum = <%=n.getNuriNum()%> --%>
           
-           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum=<%="loginUser.getUserNumber()"%>&nuriNum=<%="n.getNuriNum()"%>";
+          location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시
