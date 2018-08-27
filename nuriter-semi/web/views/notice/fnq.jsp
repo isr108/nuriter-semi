@@ -70,18 +70,11 @@ ul.navi2 li a {
 	-webkit-border-top-left-radius: 10px;
 }
 
-#textArea {
-	float: right;
-/* 	border: 3px solid red; */
-	height: 500px;
-	width: 80%;
-	margin-right: 30px;
-}
+
 
 .uiSearch {
 	height: 50px;
 	width: 500px;
-	/* border: 3px solid black; */
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 50px;
@@ -110,24 +103,8 @@ ul.navi2 li a {
 	margin-top: 5%;
 }
 
-.tHead {
-	background: rgb(241, 196, 15);
-	text-align: center;
-}
 
-#bulletintable {
-	height: 100px;
-	width: 68%;
-	/* margin-left:300px; */
-	margin-left: auto;
-	margin-right: auto;
-	/* margin-top: 5%; */
-}
 
-#tBody {
-	text-align: center;
-	border-bottom: 1px solid lightgray;
-}
 
 #fnqColor {
 	background-color: rgb(224, 224, 224);
@@ -144,13 +121,19 @@ ul.navi2 li a {
 }
 
 #accordion {
-	border: 3px solid black;
+	
 	height: 300px;
 	width: 70%;
 	margin-right: auto;
 	margin-left: auto;
 	margin-top: 50px;
 	font-family: 'Jua', sans-serif;
+}
+#textArea {
+	float: right;
+	height: 500px;
+	width: 80%;
+	margin-right: 100px;
 }
 
 h3:hover{

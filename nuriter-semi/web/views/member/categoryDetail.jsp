@@ -228,26 +228,28 @@ img {
      	<br>
         
         <div id="nuri">
-	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
-	        <hr>
-	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
-	        <hr>
-	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-	        <hr>
-	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-	        <hr>
-	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
+           <hr>
+           <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
+           <hr>
+           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+           <hr>
+           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+           <hr>
+           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry">
         
-	        <div>
+
+	        <div class="hobbyDiv">
 	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
 	        </div>
 	            
@@ -275,11 +277,12 @@ img {
          </div>
          
     </div>
+
     	<div id="nuri2">
 	        
         </div>
     <div>
-    	
+
     </div>
     
    </div>
@@ -287,6 +290,44 @@ img {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
+//셀렉트 박스
+$(function(){
+	$(function(){
+		$(".hobbyDiv").click(function(){
+			console.log("관심버튼눌림");
+			
+			var name = "<%= n.getNuriNum() %>";
+			
+			console.log(name);
+			
+			$.ajax({
+				url:"/ns/insertHobby.nu",
+				data:{name:name},
+				type:"get",
+				success:function(data){
+					console.log(data);
+					
+					$select = $("#gsonListSelect");
+					$select.find("option").remove();
+					
+					for(var key in data){
+						var $option = $("<option  name='category'>");
+						$option.val(data[key].cno);
+						$option.text(data[key].cname);
+						$select.append($option);
+					}
+					
+					$("#gsonListSelect").show();
+				},
+				error:function(data){
+					console.log(data);
+				}
+			});
+			
+		});
+	});
+});
+
 $(function(){
     
     $("#popOpen").click(function(event){
@@ -332,8 +373,11 @@ function choice(){
     <%-- console.log(<%=loginUser.getUserEmail()%>); --%>
     var pId = "imp_"+new Date().getTime() ;
     alert(pId);
-    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum=<%="201"%>&nuriNum=<%="N1"%>";
-     
+
+   <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
+    <%-- var nuriNum =<%=n.getNuriNum()%> --%>
+    location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
+
   }
 }
 
@@ -363,9 +407,12 @@ function cash(){
           msg += '결제 금액 : ' + rsp.paid_amount;
           msg += '카드 승인번호 : ' + rsp.apply_num;
           
-          var userNum = <%=loginUser.getUserNumber()%>
+
+     <%--      var userNum = <%=loginUser.getUserNumber()%>
+          var nuriNum = <%=n.getNuriNum()%> --%>
           
-           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+userNum+"&nuriNum=<%="N1"%>";
+          location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
+
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시

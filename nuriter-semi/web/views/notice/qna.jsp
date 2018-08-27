@@ -75,7 +75,7 @@ ul.navi2 li a {
 	/* border: 3px solid black; */
 	height: 500px;
 	width: 80%;
-	margin-right: 30px;
+	margin-right: 105px;
 }
 .bulletin{
     width: 100%;

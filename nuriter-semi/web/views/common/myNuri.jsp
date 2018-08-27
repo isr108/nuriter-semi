@@ -101,11 +101,12 @@
 					<th><div style="width:300px">장소</div></th>
 					<th><div style="width:50px">참가비</div></th>
 					<th><div style="width:100px">개설일자</div></th>
+					<th><div style="width:100px">참여종료하기</div></th>
 				</tr>
 				
 				 <% for(Nuriter n : list){ %>
 				<tr>
-					<input type="hidden" value="<%= n.getOwnerNum()%>">
+					<input type="hidden" name="nuriNum" value="<%=n.getNuriNum()%>">
 					<td><div class="content"><%=n.getNuriTitle()%></div></td>
 					<td><div class="content"><%=n.getOwnerNum()%></div></td>
 					<td><div class="content"><%=n.getStartDate()%></div></td>
@@ -113,6 +114,7 @@
 					<td><div class="content"><%=n.getPlace()%></div></td>
 					<td><div class="content"><%=n.getPrice()%></div></td>
 					<td><div class="content"><%=n.getApplicationDate()%></div></td>
+					<td><div class="content"><input type="button" value="종료신청" onclick="deleteMyNuri();"></div></td>
 				</tr>
 				<% } %>
 				</tbody>
@@ -151,4 +153,16 @@
 		</div>
 
 </body>
+<script>
+function deleteMyNuri(){
+	var answer = window.confirm('종료 후 재 신청이 불가능합니다. 그래도 종료하시겠습니까?');
+	<%-- var userNumber = <%=loginUser.getUserNumber()%> --%>
+	if(answer == true){
+		alert('종료 처리되었습니다.');
+		location.href="<%=request.getContextPath()%>/deleteMyNuri.nu";
+	}else{
+		alert('종료가 취소되었습니다.');
+	}
+};
+</script>
 </html>

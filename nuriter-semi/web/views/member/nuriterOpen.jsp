@@ -1,148 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
-<%-- <%
-	ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
-%> --%>
-
-<!DOCTYPE html>
-<html lang="en">
+<% 
+   ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
+    PageInfo pi = (PageInfo)request.getAttribute("pi");
+    int listCount = pi.getListCount();
+    int currentPage = pi.getCurrentPage();
+    int maxPage = pi.getMaxPage();
+    int startPage = pi.getStartPage();
+    int endPage = pi.getEndPage();
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta charset="UTF-8">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- 다음 우편번호 찾기 -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-	#main {
-		margin-top:190px;
-		margin-left:220px;
-		margin-right:auto;
-    	overflow:hidden;
-	}
-	#twoRight {
-		background:red;
-		display:inline;
-		overflow:hidden;
-	}
-	#twoRight-child {
-		margin-top:30px;
-		margin-left:70px;
-    	overflow:hidden;
-	}
-	#twoRight-child2 {
-		width:900px;
-    	overflow:hidden;
-	}
-	#category {
-		display:inline;
-	}
-	#category > h3{
-		display:inline;
-	}
-	#web-font{
-      	font-family: 'Jua', sans-serif;
-   	}
-   	#submitDiv > button {
-   		width:150px;
-   	}
-   	#placeDiv{
-   		font-family: 'Jua', sans-serif;
-   	}
-   	#placeDiv input[type=text]{
-	    margin-bottom:10px;
-   	}
-   	#placeDiv input[type=button]{
-   		background: rgb(241, 196, 15);
-   		font-size:15px;
-   		color:white;
-   		border-radius: 4px;
-	    background-color: rgb(241, 196, 15);
-   	}
-   	#placeDiv input[type=button]:hover{
-   		background: white;
-   		font-size: 15px;
-   		color: rgb(241, 196, 15);
-   	}
-   	#fileArea{
-   		display:none;
-   	}
-   	.web-font{
-      	font-family: 'Jua', sans-serif;
-   	}
-   	#nuriterTitle{
-   		width: 600px;
-	    padding: 12px 20px;
-	    margin: 4px 0;
-	    box-sizing: border-box;
-	    border-style: double;
-	    border-color: rgb(241, 196, 15);
-   	}
-   	#titleImgArea{
-   		width:500px;
-   		height:200px;
-   		box-sizing: border-box;
-	    border-style: double;
-	    border-color: rgb(241, 196, 15);
-   	}
-	button{
-	     width: 90px;
-	     height: 40px;
-	     font-weight: 600;
-	     border-radius: 4px;
-	     background: rgb(241, 196, 15); 
-	     color: white;
-   	}
-    button:hover {
-	     background-color: white; /* Green */
-	     color: rgb(241, 196, 15);
-	     border: 2px solid rgb(241, 196, 15); /* Green */
-	     color: rgb(241, 196, 15);
-   	}
-	select {
-		display:inline;
-		width:100px;
-		height:30px;
-		border-radius: 5px; /* iOS 둥근모서리 제거 */
-		/* background: rgb(241, 196, 15); */
-	}
-	input[type=file] {
-		font-family: 'Jua', sans-serif;
-	}
-	.date {
-		width:600px;
-		box-sizing: border-box;
-	    border-style: solid;
-	    border-color: rgb(241, 196, 15);
-	}
-	button font{
-		color:white;
-	}
-	button:hover font{
-		color: rgb(241, 196, 15);
-	}
-	.layer { display: none; }
+   .outer{
+      width:850px;
+      height:auto;
+      background:white;
+      color:lightblack;
+      margin-top:1%;
+      margin-left:auto;
+      margin-right:auto;
+      /* margin-top:280px; */
+   }
+   h2{
+   font-family: 'Jua', sans-serif;
+   }
+   table {
+      border:1px solid gray;
+      text-align:center;
+      font-family: 'Jua', sans-serif;
+      width:auto;
+      height:auto;
+   }
+   .tableArea {
+      width:650px;
+      height:auto;
+      margin-left:5%;
+      margin-right:auto;
+   }
+   .searchArea {
+      width:650px;
+      margin-left:auto;
+      margin-right:auto;
+   }
+   table tr th{
+   text-align:center;
+   /* width:auto;
+   height:auto; */
+   }
+   
+   table td td{
+   width:auto;
+   }
+   
+   .content{
+   padding-left:15px;
+   padding-right:15px;
+   white-space:nowrap;
+   } 
+
+   #listArea{
+   align:center;
+   }
+   
+   .pageArea{
+   padding-left:20%;
+   }
+   
+   tbody{
+      width:auto;
+      height:auto;
+   }
+   
+   
+
 </style>
 </head>
 <body>
+
 	<div>
 		<%@ include file="../common/logoAndLogbutton.jsp" %>
 	    <%@ include file="../common/categorybar.jsp" %>
 	   <%--  <%@ include file="../common/myPage_left.jsp" %> --%>
+
 	</div>
 	<div id="main">
 	<% if(loginUser != null){ %>
@@ -333,45 +277,5 @@
                 document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('sample6_address').value = fullAddr;
 
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById('sample6_address2').focus();
-            }
-        }).open();
-    }
-    
-    //셀렉트 박스
-    $(function(){
-	    $(".selectBox").change(function(){
-	    	var name = $(".selectBox option:selected").text();
-	    	
-	    	$.ajax({
-				url:"/ns/category.nu",
-				data:{name:name},
-				type:"get",
-				success:function(data){
-					console.log(data);
-					
-					$select = $("#gsonListSelect");
-					$select.find("option").remove();
-					
-					for(var key in data){
-						var $option = $("<option  name='category'>");
-						$option.val(data[key].cno);
-						$option.text(data[key].cname);
-						$select.append($option);
-					}
-					
-					$("#gsonListSelect").show();
-				},
-				error:function(data){
-					console.log(data)
-				}
-			});
-		});
-    });
-    
-    </script>
-    <br><br><br><br><br>
-    <br><br><br>
 </body>
 </html>

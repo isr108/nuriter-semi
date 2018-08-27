@@ -37,7 +37,7 @@ public class SelectNuriEndedListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 페이징처리 추가
+				// 페이징처리 추가
 				int currentPage; // 현재 페이지를 표시할 변수
 				int limit; // 한 페이지에 게시글이 몇 개가 보여질 것인지
 				int maxPage; // 전체 페이지에서 가장 마지막 페이지
