@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.member.model.vo.*" import="java.io.util.*"%>
  
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+    <% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -416,45 +416,45 @@
        <tr>
          <td>
 
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C1">
 
          	<img src="images/board/language.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList(); " value="C2">
          	<img src="images/board/bang.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C3">
          	<img src="images/board/cooking.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C4">
          	<img src="images/board/sports.png" width="80" height="80">
          </button>
          </td>
       </tr>
       <tr>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C5">
          	<img src="images/board/music.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C6">
          	<img src="images/board/compu.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C7">
          	<img src="images/board/cul.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();">
+         <button class="buttonLanguage" onclick="goNuriterList();" value="C8">
          	<img src="images/board/gita.png" width="80" height="80">
          </button>
          </td>
@@ -738,11 +738,11 @@
 			location.href="<%=request.getContextPath()%>/selectList.no";			
 		}
 		
-
-		function goNuriterList(){
-			var name = "C1";
+		//카테고리 버튼 클릭
+		$(".buttonLanguage").click(function(){
+            var name = $(this).attr('value');
 			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
-		}
+    	});
 	
 	</script> 
  <%@ include file="views/common/footer.jsp" %>

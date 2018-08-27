@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
 <%-- <%
-   ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
+
+	ArrayList<Category> list = (ArrayList<Category>) request.getAttribute("list");
+
 %> --%>
 
 <!DOCTYPE html>
@@ -28,224 +30,224 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-   #main {
-      margin-top:190px;
-      margin-left:220px;
-      margin-right:auto;
-       overflow:hidden;
-   }
-   #twoRight {
-      background:red;
-      display:inline;
-      overflow:hidden;
-   }
-   #twoRight-child {
-      margin-top:30px;
-      margin-left:70px;
-       overflow:hidden;
-   }
-   #twoRight-child2 {
-      width:900px;
-       overflow:hidden;
-   }
-   #category {
-      display:inline;
-   }
-   #category > h3{
-      display:inline;
-   }
-   #web-font{
-         font-family: 'Jua', sans-serif;
-      }
-      #submitDiv > button {
-         width:150px;
-      }
-      #placeDiv{
-         font-family: 'Jua', sans-serif;
-      }
-      #placeDiv input[type=text]{
-       margin-bottom:10px;
-      }
-      #placeDiv input[type=button]{
-         background: rgb(241, 196, 15);
-         font-size:15px;
-         color:white;
-         border-radius: 4px;
-       background-color: rgb(241, 196, 15);
-      }
-      #placeDiv input[type=button]:hover{
-         background: white;
-         font-size: 15px;
-         color: rgb(241, 196, 15);
-      }
-      #fileArea{
-         display:none;
-      }
-      .web-font{
-         font-family: 'Jua', sans-serif;
-      }
-      #nuriterTitle{
-         width: 600px;
-       padding: 12px 20px;
-       margin: 4px 0;
-       box-sizing: border-box;
-       border-style: double;
-       border-color: rgb(241, 196, 15);
-      }
-      #titleImgArea{
-         width:500px;
-         height:200px;
-         box-sizing: border-box;
-       border-style: double;
-       border-color: rgb(241, 196, 15);
-      }
-   button{
-        width: 90px;
-        height: 40px;
-        font-weight: 600;
-        border-radius: 4px;
-        background: rgb(241, 196, 15); 
-        color: white;
-      }
+	#main {
+		margin-top:190px;
+		margin-left:220px;
+		margin-right:auto;
+    	overflow:hidden;
+	}
+	#twoRight {
+		background:red;
+		display:inline;
+		overflow:hidden;
+	}
+	#twoRight-child {
+		margin-top:30px;
+		margin-left:70px;
+    	overflow:hidden;
+	}
+	#twoRight-child2 {
+		width:900px;
+    	overflow:hidden;
+	}
+	#category {
+		display:inline;
+	}
+	#category > h3{
+		display:inline;
+	}
+	#web-font{
+      	font-family: 'Jua', sans-serif;
+   	}
+   	#submitDiv > button {
+   		width:150px;
+   	}
+   	#placeDiv{
+   		font-family: 'Jua', sans-serif;
+   	}
+   	#placeDiv input[type=text]{
+	    margin-bottom:10px;
+   	}
+   	#placeDiv input[type=button]{
+   		background: rgb(241, 196, 15);
+   		font-size:15px;
+   		color:white;
+   		border-radius: 4px;
+	    background-color: rgb(241, 196, 15);
+   	}
+   	#placeDiv input[type=button]:hover{
+   		background: white;
+   		font-size: 15px;
+   		color: rgb(241, 196, 15);
+   	}
+   	#fileArea{
+   		display:none;
+   	}
+   	.web-font{
+      	font-family: 'Jua', sans-serif;
+   	}
+   	#nuriterTitle{
+   		width: 600px;
+	    padding: 12px 20px;
+	    margin: 4px 0;
+	    box-sizing: border-box;
+	    border-style: double;
+	    border-color: rgb(241, 196, 15);
+   	}
+   	#titleImgArea{
+   		width:500px;
+   		height:200px;
+   		box-sizing: border-box;
+	    border-style: double;
+	    border-color: rgb(241, 196, 15);
+   	}
+	button{
+	     width: 90px;
+	     height: 40px;
+	     font-weight: 600;
+	     border-radius: 4px;
+	     background: rgb(241, 196, 15); 
+	     color: white;
+   	}
     button:hover {
-        background-color: white; /* Green */
-        color: rgb(241, 196, 15);
-        border: 2px solid rgb(241, 196, 15); /* Green */
-        color: rgb(241, 196, 15);
-      }
-   select {
-      display:inline;
-      width:100px;
-      height:30px;
-      border-radius: 5px; /* iOS 둥근모서리 제거 */
-      /* background: rgb(241, 196, 15); */
-   }
-   input[type=file] {
-      font-family: 'Jua', sans-serif;
-   }
-   .date {
-      width:600px;
-      box-sizing: border-box;
-       border-style: solid;
-       border-color: rgb(241, 196, 15);
-   }
-   button font{
-      color:white;
-   }
-   button:hover font{
-      color: rgb(241, 196, 15);
-   }
-   .layer { display: none; }
+	     background-color: white; /* Green */
+	     color: rgb(241, 196, 15);
+	     border: 2px solid rgb(241, 196, 15); /* Green */
+	     color: rgb(241, 196, 15);
+   	}
+	select {
+		display:inline;
+		width:100px;
+		height:30px;
+		border-radius: 5px; /* iOS 둥근모서리 제거 */
+		/* background: rgb(241, 196, 15); */
+	}
+	input[type=file] {
+		font-family: 'Jua', sans-serif;
+	}
+	.date {
+		width:600px;
+		box-sizing: border-box;
+	    border-style: solid;
+	    border-color: rgb(241, 196, 15);
+	}
+	button font{
+		color:white;
+	}
+	button:hover font{
+		color: rgb(241, 196, 15);
+	}
+	.layer { display: none; }
 </style>
 </head>
 <body>
-   <div>
-      <%@ include file="../common/logoAndLogbutton.jsp" %>
-       <%@ include file="../common/categorybar.jsp" %>
-   </div>
-   <div id="main">
-   <% if(loginUser != null){ %>
-          <div id="twoRight" align="center">
-             <div id="twoRight-child">
-                <div id="twoRight-child2" align="left">
-                <form action="<%=request.getContextPath() %>/insert.nu" method="post" id="insertForm" encType="multipart/form-data">
-                   <h3 id="web-font">카테고리</h3><br>
-                    <select id="web-font" class="selectBox">
-                          <option id="web-font">---</option>
-                          <option id="web-font" class="selectLanguage" value="언어">언어</option>
-                          <option id="web-font" class="selectWork" value="공방">공방</option>
-                          <option id="web-font" class="selectCook">요리</option>
-                          <option id="web-font" class="selectSport">운동</option>
-                          <option id="web-font" class="selectMusic">음악</option>
-                          <option id="web-font" class="selectComputer">컴퓨터</option>
-                          <option id="web-font" class="selectCulture">문화</option>
-                          <option id="web-font" class="selectEtc">기타</option>
-                    </select>
-                    
-                    <select name="category" id="gsonListSelect" class="web-font" style="display:none; font-size:14px;"></select>
-                    
-                    
-                    
-                    
-                 <br><br>
-                 
-                 <h3 id="web-font">누리터명</h3>
-                 <input type="text" id="nuriterTitle" class="web-font" name="title">
-                 
-                 <br><br>
-                 
-                 <h3 id="web-font">기간</h3>
-                 <div class="startDate">
-                     <%@ include file="../common/datePicker.jsp" %>
-                 </div>
-                 
-                 <br><br>
-                       
-                 <h3 id="web-font">시간</h3>
-                 <div class="time">
-                     <%@ include file="../common/timePicker.jsp" %>
-                 </div>
-                 
-                 <br><br>
-                 
-                 <h3 id="web-font">장소</h3>
-                 <div id="placeDiv">
-                    <input type="text" id="sample6_postcode" placeholder="우편번호" name="placeOne">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="sample6_address" placeholder="주소" name="placeTwo">
-                    <input type="text" id="sample6_address2" placeholder="상세주소" name="placeTree">
-                 </div>
-                 
-                 <br>
-                 
-                 <h3 id="web-font">대표 이미지</h3>
-                 <div id="titleImgArea">
-                   <img id="titleImg" width="495px" height="195px">
-                 </div>
-                     
-                 <!-- <div id="summerText">
-                    <button type="button" id="titleImgArea"><font id="web-font">사진등록</font></button>
-                 </div> -->
-                 
-                 <br>
-                 
-                 <div id="fileArea">
-                    <input type="file" id="thumbnailImg1" name="thumbnailImg1" multiple onchange="loadImg(this, 1)">
-                 </div>
-                 
-                 <h3 id="web-font">누리터 내용</h3>
-                 <div id="summerText">
-                    <div id="summertextChild">
-                       <%@ include file="../common/summernote_write.jsp" %>
-                    </div>
-                 </div>
-                 
-                 <br>
-                 
-                 <input type="hidden" id="web-font" class="summerText" name="summerText">
-                 
-                 <h3 id="web-font">활동비</h3>
-                 <div id="summerText">
-                    <input type="text" id="web-font" name="price">
-                 </div>
-                 
-                 <br>
-                 
-                 <h3 id="web-font">정원</h3>
-                 <div id="summerText">
-                    <input type="text" id="web-font" name="personnel">
-                 </div>
-                 
-                 <br><br><br><br>
-                 
-                 <div id="submitDiv" align="center">
-                         <button type="submit" onclick="insert();"><font id="web-font" size=3px>개설하기</font></button>&nbsp;&nbsp;&nbsp;
-                         <button type="reset"><font id="web-font" size=3px>취소하기</font></button>
-                      </div>
-                      </form>
-              </div>
-           </div>
-       </div>
+	<div>
+		<%@ include file="../common/logoAndLogbutton.jsp" %>
+	    <%@ include file="../common/categorybar.jsp" %>
+	</div>
+	<div id="main">
+	<% if(loginUser != null){ %>
+	    	<div id="twoRight" align="center">
+	    		<div id="twoRight-child">
+		    		<div id="twoRight-child2" align="left">
+		    		<form action="<%=request.getContextPath() %>/insert.nu" method="post" id="insertForm" encType="multipart/form-data">
+			    		<h3 id="web-font">카테고리</h3><br>
+						  <select id="web-font" class="selectBox">
+						  		<option id="web-font">---</option>
+						        <option id="web-font" class="selectLanguage" value="언어">언어</option>
+						        <option id="web-font" class="selectWork" value="공방">공방</option>
+						        <option id="web-font" class="selectCook">요리</option>
+						        <option id="web-font" class="selectSport">운동</option>
+						        <option id="web-font" class="selectMusic">음악</option>
+						        <option id="web-font" class="selectComputer">컴퓨터</option>
+						        <option id="web-font" class="selectCulture">문화</option>
+						        <option id="web-font" class="selectEtc">기타</option>
+						  </select>
+						  
+						  <select name="category" id="gsonListSelect" class="web-font" style="display:none; font-size:14px;"></select>
+						  
+						  
+						  
+						  
+					  <br><br>
+					  
+					  <h3 id="web-font">누리터명</h3>
+					  <input type="text" id="nuriterTitle" class="web-font" name="title">
+					  
+					  <br><br>
+					  
+					  <h3 id="web-font">기간</h3>
+					  <div class="startDate">
+					  	 <%@ include file="../common/datePicker.jsp" %>
+					  </div>
+					  
+					  <br><br>
+					        
+					  <h3 id="web-font">시간</h3>
+					  <div class="time">
+					  	 <%@ include file="../common/timePicker.jsp" %>
+					  </div>
+					  
+					  <br><br>
+					  
+					  <h3 id="web-font">장소</h3>
+					  <div id="placeDiv">
+						  <input type="text" id="sample6_postcode" placeholder="우편번호" name="placeOne">
+						  <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+						  <input type="text" id="sample6_address" placeholder="주소" name="placeTwo">
+						  <input type="text" id="sample6_address2" placeholder="상세주소" name="placeTree">
+					  </div>
+					  
+					  <br>
+					  
+					  <h3 id="web-font">대표 이미지</h3>
+					  <div id="titleImgArea">
+						 <img id="titleImg" width="495px" height="195px">
+					  </div>
+							
+					  <!-- <div id="summerText">
+					  	<button type="button" id="titleImgArea"><font id="web-font">사진등록</font></button>
+					  </div> -->
+					  
+					  <br>
+					  
+					  <div id="fileArea">
+					  	<input type="file" id="thumbnailImg1" name="thumbnailImg1" multiple onchange="loadImg(this, 1)">
+					  </div>
+					  
+					  <h3 id="web-font">누리터 내용</h3>
+					  <div id="summerText">
+						  <div id="summertextChild">
+						  	<%@ include file="../common/summernote_write.jsp" %>
+						  </div>
+					  </div>
+					  
+					  <br>
+					  
+					  <input type="hidden" id="web-font" class="summerText" name="summerText">
+					  
+					  <h3 id="web-font">활동비</h3>
+					  <div id="summerText">
+						  <input type="text" id="web-font" name="price">
+					  </div>
+					  
+					  <br>
+					  
+					  <h3 id="web-font">정원</h3>
+					  <div id="summerText">
+						  <input type="text" id="web-font" name="personnel">
+					  </div>
+					  
+					  <br><br><br><br>
+					  
+					  <div id="submitDiv" align="center">
+		           		  <button type="submit" onclick="insert();"><font id="web-font" size=3px>개설하기</font></button>&nbsp;&nbsp;&nbsp;
+		           		  <button type="reset"><font id="web-font" size=3px>취소하기</font></button>
+	           		  </div>
+	           		  </form>
+	        	</div>
+        	</div>
+	    </div>
     </div>
     
     <% }else{
@@ -340,33 +342,34 @@
     
     //셀렉트 박스
     $(function(){
-       $(".selectBox").change(function(){
-          var name = $(".selectBox option:selected").text();
-          
-          $.ajax({
-            url:"/ns/category.nu",
-            data:{name:name},
-            type:"get",
-            success:function(data){
-               console.log(data);
-               
-               $select = $("#gsonListSelect");
-               $select.find("option").remove();
-               
-               for(var key in data){
-                  var $option = $("<option  name='category'>");
-                  $option.val(data[key].cno);
-                  $option.text(data[key].cname);
-                  $select.append($option);
-               }
-               
-               $("#gsonListSelect").show();
-            },
-            error:function(data){
-               console.log(data)
-            }
-         });
-      });
+	    $(".selectBox").change(function(){
+	    	var name = $(".selectBox option:selected").text();
+	    	
+	    	$.ajax({
+				url:"/ns/category.nu",
+				data:{name:name},
+				type:"get",
+				success:function(data){
+					console.log(data);
+					
+					$select = $("#gsonListSelect");
+					$select.find("option").remove();
+					
+					for(var key in data){
+						var $option = $("<option  name='category'>");
+						$option.val(data[key].cno);
+						$option.text(data[key].cname);
+						$select.append($option);
+					}
+					
+					$("#gsonListSelect").show();
+				},
+				error:function(data){
+					console.log(data)
+				}
+			});
+		});
+
     });
     
     </script>

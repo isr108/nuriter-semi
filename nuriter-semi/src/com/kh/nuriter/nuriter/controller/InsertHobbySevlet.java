@@ -32,15 +32,20 @@ public class InsertHobbySevlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userNum = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber());
 		String name = request.getParameter("name");
+		String msg = " ";
 		
 		//서비스로 전달
 		int result = new NuriterService().insertNuriterHobby(userNum, name);
 		
 		if(result > 0) {
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			new Gson().toJson(result, response.getWriter());
+			msg = "관심 누리터 등록완료"; 
+		}else {
+			msg = "이미 등록된 관심 누리터입니다.";
 		}
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		new Gson().toJson(msg, response.getWriter());
 	}
 
 	/**

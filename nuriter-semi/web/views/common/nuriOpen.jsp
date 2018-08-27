@@ -223,7 +223,7 @@
    }
    
    #showRightButton button{
-       width: 150px;
+     width: 150px;
      height: 40px;
      font-weight: 600;
      border-radius: 4px;
@@ -295,6 +295,28 @@
     td {
     	display: inline-block; width: 200px; white-space: nowrap; overflow: hidden;
     }
+    button font{
+		color:white;
+	}
+	button:hover font{
+		color: rgb(241, 196, 15);
+	}
+
+
+button{
+	     width: 90px;
+	     height: 40px;
+	     font-weight: 600;
+	     border-radius: 4px;
+	     background: rgb(241, 196, 15); 
+	     color: white;
+   	}
+    button:hover {
+	     background-color: white; /* Green */
+	     color: rgb(241, 196, 15);
+	     border: 2px solid rgb(241, 196, 15); /* Green */
+	     color: rgb(241, 196, 15);
+   	}
 </style>
 </head>
 <body>
