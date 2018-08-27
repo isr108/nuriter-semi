@@ -254,6 +254,23 @@ public class NuriterService {
 		return n;
 	}
 
+	public int insertNuriterHobby(String userNum, String name) {
+		Connection con = getConnection();
+		
+		int result = new NuriterDao().insertNuriterHobby(con, userNum, name);
+		
+		if(result > 0) {
+			commit(con);
+		}
+		else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
 
 
 
