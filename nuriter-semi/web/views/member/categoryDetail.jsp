@@ -94,6 +94,7 @@ img{
 	width: 210px;
 	border-radius: 4px;
 	opacity: 0.8;
+
 }
 
 button {
@@ -209,12 +210,12 @@ img {
    <%@ include file="../common/categorybar.jsp" %>
    
 <div class="content" align="center">
-
 	   <div class="leftBox" align = "center">
 	   	<div class="images">
 	        <%= n.getContent() %>
 	   	</div>
    	   </div>
+
    
    <div class="rightBox">
    	  <br>
@@ -229,21 +230,19 @@ img {
      	<br>
         
         <div id="nuri">
-
-	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
-	        <hr>
-	        <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
-	        <hr>
-	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-	        <hr>
-	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-	        <hr>
-	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
-
+           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %></font></p>
+           <hr>
+           <p><font id="web-font">카테고리 : <%= n.getCategoryNum() %></font></p>
+           <hr>
+           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+           <hr>
+           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+           <hr>
+           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
         </div>
         
         <hr color="red" size="10px">
@@ -279,11 +278,12 @@ img {
          
     </div>
 
+
     	<div id="nuri2">
 	        
         </div>
     <div>
-
+                     
     </div>
     
    </div>
@@ -379,6 +379,7 @@ function choice(){
    <%--  var userNum = <%=loginUser.getUserNumber()%> --%>
     <%-- var nuriNum =<%=n.getNuriNum()%> --%>
     location.href="<%=request.getContextPath()%>/payment.pms?imp="+pId+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
+
   }
 }
 
@@ -413,7 +414,6 @@ function cash(){
           var nuriNum = <%=n.getNuriNum()%> --%>
           
           location.href="<%=request.getContextPath()%>/payment.pms?imp="+rsp.imp_uid+"&userNum="+<%=loginUser.getUserNumber()%>+"&nuriNum="+<%=n.getNuriNum()%>;
-
        
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시

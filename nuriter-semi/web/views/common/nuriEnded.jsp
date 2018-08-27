@@ -83,7 +83,7 @@
 <body>
 	
 	<%@ include file="/views/common/myPage_left.jsp" %>
-	<%@ include file="/views/common/myNuriList.jsp" %>
+	<%@ include file="/views/common/myNuriManagement.jsp" %>
 	
 	<div class="outer">
 		<br>
