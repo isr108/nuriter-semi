@@ -105,7 +105,7 @@ try {
 		ResultSet rset = null;
 		
 		/*String query=null;*/		
-		String query = prop.getProperty("attendcodeOne");
+		String query = prop.getProperty("codeCheck");
 		
 		try {	
 			/*pstmt = con.prepareStatement(query);
@@ -135,7 +135,7 @@ try {
 			
 		}
 		
-		
+		System.out.println("dao atcode : " + atcode);
 		return atcode;
 	}
 

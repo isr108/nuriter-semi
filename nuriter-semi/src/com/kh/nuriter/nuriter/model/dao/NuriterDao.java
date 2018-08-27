@@ -1207,7 +1207,7 @@ public class NuriterDao {
 		return result;
 	}
 
-
+	}
 	public int getNuribossListCount(Connection con) {
 		int listCount = 0;
 		Statement stmt = null;
