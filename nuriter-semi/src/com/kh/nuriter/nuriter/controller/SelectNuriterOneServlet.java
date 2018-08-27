@@ -43,6 +43,7 @@ public class SelectNuriterOneServlet extends HttpServlet {
 		if(n != null) {
 			page = "views/member/categoryDetail.jsp";
 			request.setAttribute("n", n);
+			request.setAttribute("num", num);
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 상세 조회 실패");

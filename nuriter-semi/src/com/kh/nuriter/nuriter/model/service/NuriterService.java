@@ -342,7 +342,7 @@ public class NuriterService {
 		close(con);
 		
 		return nb;
-
+	}
 	public int insertNuriterHobby(String userNum, String name) {
 		Connection con = getConnection();
 		
