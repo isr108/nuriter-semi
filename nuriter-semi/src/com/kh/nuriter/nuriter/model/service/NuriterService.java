@@ -362,6 +362,37 @@ public class NuriterService {
 
 	}
 
+
+	public int getMyTemptingListCount(String userNum) {
+		Connection con = getConnection();
+        
+	    int listCount = new NuriterDao().getMyTemptingListCount(con, userNum);
+	         
+	    close(con);
+	         
+	    return listCount;
+	}
+
+	public ArrayList<Nuriter> selectMyTemptingList(String userNum) {
+		Connection con = getConnection();
+		
+	    ArrayList<Nuriter> list = new NuriterDao().selectMyTemptingList(con, userNum);
+		
+	    close(con);
+	    
+		return list;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectMyTemptingThumbnailList(int currentPage, int limit,
+			String userNum) {
+		Connection con = getConnection();
+		
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectMyTemptingThumbnailList(con, currentPage, limit, userNum);
+		
+		close(con);
+		
+		return pictureList;
+
 	public int updateNuribossStatus(String num) {
 		Connection con = getConnection();
 		
@@ -376,6 +407,7 @@ public class NuriterService {
 		close(con);
 		
 		return result;
+
 	}
 
 

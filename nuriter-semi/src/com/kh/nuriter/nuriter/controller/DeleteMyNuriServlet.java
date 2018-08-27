@@ -44,7 +44,7 @@ public class DeleteMyNuriServlet extends HttpServlet {
 		int result = new NuriterService().deleteMyNuri(userNum, nuriNum);
 		
 		if(result > 0){
-			response.sendRedirect("/selectMyNuri.nu");
+			response.sendRedirect("/selectMyNuriList.nu");
 		}else{
 			request.setAttribute("msg", "누리터 종료 실패!");
 			

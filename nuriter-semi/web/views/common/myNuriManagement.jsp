@@ -43,9 +43,9 @@
 				<td><br><a href="<%=request.getContextPath()%>/views/common/doneNuri.jsp">종료된 누리터<br>
 				건<br><br></a></td> --%>
 				<td><br><a href="<%=request.getContextPath()%>/selectMyNuriterList.nu">개설중인 누리터<br>
-				건<br><br></a></td>
+				<br></a></td>
 				<td><br><a href="<%=request.getContextPath()%>/selectNuriEndedList.nu">개설했던 누리터<br>
-				건<br><br></a></td>
+				<br></a></td>
 				<%-- <td><br><a href="<%=request.getContextPath()%>/views/common/nuriInteresting.jsp">관심 누리터<br>
 				건<br><br></a></td> --%>
 			</tr>
