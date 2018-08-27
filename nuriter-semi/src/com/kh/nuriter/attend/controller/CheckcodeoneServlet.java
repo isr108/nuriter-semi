@@ -1,6 +1,7 @@
 package com.kh.nuriter.attend.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,25 +36,58 @@ public class CheckcodeoneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String checkcode = request.getParameter("checkcode");
 		String usernum = request.getParameter("userNum");
-		
+		System.out.println("서블릿 체크코드 : " + checkcode);
+		System.out.println("서블릿 usernum : " + usernum);
+			
 		AttendCode atcode = new AttendCodeService().codeCheck(checkcode);
+		String nunum = atcode.getNuriNumber();
 		
-		System.out.println("서블릿 :" + atcode);
+		System.out.println("서블릿 atcode:" + atcode);
+		
+		
+		/*Attend attend = new AttendService().attendCheck(checkcode,usernum);
+		System.out.println("attend: " + attend.getAttendCodeId());*/
+		/*if(attend.getAttendCodeId().equals(checkcode)){*/
+			
+			/*PrintWriter out = response.getWriter();
+			
+			
+			out.append("fail");
+			
+			
+			out.flush();
+			out.close();*/
+			
+		/*}else{*/
 		if(atcode.getAttendCodeid().equals(checkcode)){
 			int result = new AttendService().insertattend(checkcode, usernum);
-			String page = "";
+			/*String page = "";
 			
 			if(result>0){
 				page = "/views/attend/csCheckone.jsp";
 				request.setAttribute("msg", "출석체크 성공!");
-				/*response.sendRedirect(request.getContextPath());*/
+				response.sendRedirect(request.getContextPath() + "/checkcodeone.at");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().print(nunum);
 			}else{
 				page = "/views/common/errorPage.jsp";
 				request.setAttribute("msg", "출석체크 실패!!");
+				RequestDispatcher view = request.getRequestDispatcher(page);
+				view.forward(request, response);
+			}*/
+			
+			PrintWriter out = response.getWriter();
+			
+			if(result >0){
+				out.append("fail");
+			}else{
+				out.append("success");
 			}
-			RequestDispatcher view = request.getRequestDispatcher(page);
-			view.forward(request, response);
+			
+			out.flush();
+			out.close();
 		}
+		/*}*/
 	}
 
 	/**
