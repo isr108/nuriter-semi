@@ -59,10 +59,13 @@ margin-left:30px;
 margin-top:50px;
 }
 .summerText1{
-overflow:hidden;
-		margin-left:auto;
-		margin-right:auto;
+		overflow:hidden;
+		/* margin-left:auto;
+		margin-right:auto; */
 		margin-top:5%;
+		width:80%;
+		height:800px;
+		
 }
 
 </style>
@@ -89,28 +92,17 @@ overflow:hidden;
 		</div>
 		<%} %>
 		<div class="showRight" id="web-font">
-			<table class="bTable">
-				<tr height="10px"></tr>
-				<tr class="tHead">
-					<td>제목</td>
-					<td><input type="text" name="qTitle"></td>
-				</tr>
-				<tr height="10px"></tr>
-				<tr class="tHead">
-					<td>내용</td>
-					<!-- <td><textarea rows="15" cols="100"></textarea></td> -->
-				</tr>
-			</table>
+		
 			<div class="summerText1">
-				<%@include file="../common/summernote_write.jsp" %>
+				<%@ include file="../common/summernote_write.jsp" %>
 			</div>
 		</div>
 	</div>
 	<script>
-		$(function (){
+		/* $(function (){
 			
 		});
-	
+	 */
 	</script>
 </body>
 </html>
