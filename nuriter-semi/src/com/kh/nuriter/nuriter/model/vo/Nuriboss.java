@@ -8,6 +8,7 @@ import java.sql.Date;
 public class Nuriboss implements java.io.Serializable{
 	private String applyNum;
 	private String userNum;
+	private String userName;
 	private String categoryNum;
 	private String bossContent;
 	private String potoPath;
@@ -16,11 +17,12 @@ public class Nuriboss implements java.io.Serializable{
 	
 	public Nuriboss() {}
 	
-	public Nuriboss(String applyNum, String userNum, String categoryNum, String bossContent, String potoPath,
+	public Nuriboss(String applyNum, String userNum, String userName, String categoryNum, String bossContent, String potoPath,
 			String potoName, Date applyDate) {
 		super();
 		this.applyNum = applyNum;
 		this.userNum = userNum;
+		this.userName = userName;
 		this.categoryNum = categoryNum;
 		this.bossContent = bossContent;
 		this.potoPath = potoPath;
@@ -42,6 +44,14 @@ public class Nuriboss implements java.io.Serializable{
 
 	public void setUserNum(String userNum) {
 		this.userNum = userNum;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getCategoryNum() {
@@ -86,15 +96,13 @@ public class Nuriboss implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "Nuriboss [applyNum=" + applyNum + ", userNum=" + userNum + ", categoryNum=" + categoryNum
-				+ ", bossContent=" + bossContent + ", potoPath=" + potoPath + ", potoName=" + potoName + ", applyDate="
-				+ applyDate + "]";
+		return "Nuriboss [applyNum=" + applyNum + ", userNum=" + userNum + ", userName=" + userName + ", categoryNum="
+				+ categoryNum + ", bossContent=" + bossContent + ", potoPath=" + potoPath + ", potoName=" + potoName
+				+ ", applyDate=" + applyDate + "]";
 	}
 
-	public Nuriboss selectOneNuriboss(Connection con, String num) {
-		
-		
-		return null;
-	}
+	
+
+	
 	
 }

@@ -34,6 +34,15 @@
 	/* 	border-style: solid;
     border-color: red; */
 }
+
+button {
+	width: 90px;
+	height: 40px;
+	font-weight: 600;
+	border-radius: 4px;
+	background-color: rgb(241, 196, 15);
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -67,7 +76,7 @@
 				<br><br>
 			</div>
 		</form>
-				<button onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu'">이전으로</button>
+				<button id="web-font" onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu'">이전으로</button>
 	</div>
 </div>
 </body>

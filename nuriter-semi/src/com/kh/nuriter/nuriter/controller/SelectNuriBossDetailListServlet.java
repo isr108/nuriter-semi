@@ -27,7 +27,7 @@ public class SelectNuriBossDetailListServlet extends HttpServlet {
     public SelectNuriBossDetailListServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
+    }                                                                                                                                                                                                                                                                                                             
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
