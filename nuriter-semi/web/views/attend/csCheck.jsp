@@ -150,7 +150,9 @@
 					<th width="150px">참가비</th>
 					<th width="150px">개설일자</th>
 				</tr>
-				<% for(Nuriter n:list ){ %>
+				
+				<% if(list !=null){
+					for(Nuriter n:list ){ %>
 				<tr>
 					<input type="hidden" value="<%=n.getNuriNum()%>">
 					<td><%=n.getNuriTitle()%></td>
@@ -160,7 +162,7 @@
 					<td><%=n.getPrice()%></td>
 					<td><%=n.getApplicationDate()%></td>
 				</tr>
-				<% } %>
+				<%} } %>
 			</table>
 		</div>
 		

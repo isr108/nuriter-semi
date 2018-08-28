@@ -90,6 +90,7 @@ div a {
 				<a href="<%=request.getContextPath()%>/attencheck.nu?">출석체크</a>
 
 			</div><br>
+
 					 	
 	  	    <%if(loginUser.getGrade().equals("G3")) {%>
 	  	   	    <div id="firstOption" class="contents" style="font-size: 16px;" align="center">

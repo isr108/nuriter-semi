@@ -37,7 +37,7 @@ public class AttendService {
 		
 		close(con);
 		
-		System.out.println("서비스 atcode : " + attend);
+		System.out.println("서비스 attend : " + attend);
 		
 		return attend;
 	}
