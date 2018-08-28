@@ -135,7 +135,7 @@
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
 					<th><div style="width:150px">누리터명</div></th>
-					<th><div style="width:100px">누리장명</div></th>
+					<!-- <th><div style="width:100px">누리장명</div></th> -->
 					<th><div style="width:100px">시작일시</div></th>
 					<th><div style="width:100px">종료일시</div></th>
 					<th><div style="width:200px">장소</div></th>
@@ -149,7 +149,7 @@
 					<input type="hidden" id="nuriNum" name="nuriNum" value="<%=n.getNuriNum()%>">
 				
 					<td><div class="content"><%=n.getNuriTitle()%></div></td>
-					<td><div class="content"><%=n.getOwnerNum()%></div></td>
+					<%-- <td><div class="content"><%=n.getOwnerNum()%></div></td> --%>
 					<td><div class="content"><%=n.getStartDate()%></div></td>
 					<td><div class="content"><%=n.getEndDate()%></div></td>
 					<td><div class="content"><%=n.getPlace()%></div></td>
