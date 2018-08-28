@@ -3,12 +3,21 @@
 	import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
 <%
 	ArrayList<Nuriboss> bossList = (ArrayList<Nuriboss>) request.getAttribute("bossList");
+	ArrayList<Nuriboss> bossList2 = (ArrayList<Nuriboss>) request.getAttribute("bossList2");
+	
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	PageInfo pi2 = (PageInfo) request.getAttribute("pi2");
+	int listCount2 = pi2.getListCount();
+	int currentPage2 = pi2.getCurrentPage();
+	int maxPage2 = pi2.getMaxPage();
+	int startPage2 = pi2.getStartPage();
+	int endPage2 = pi2.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -86,8 +95,8 @@
 	border: 1px solid rgb(241, 196, 15);
 }
 
-.pagination a:hover :not(.active){
-	background-color:#ddd;
+.pagination a:hover :not (.active ){
+	background-color: #ddd;
 }
 
 .pagination a:first-child {
@@ -120,15 +129,6 @@
 }
 
 button {
-	width: 90px;
-	height: 40px;
-	font-weight: 600;
-	border-radius: 4px;
-	background-color: rgb(241, 196, 15);
-	color: white;
-}
-
-#checkBtn {
 	width: 90px;
 	height: 40px;
 	font-weight: 600;
@@ -181,29 +181,30 @@ button:hover {
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<input type="hidden" class="applyNum" value="<%=nb.getApplyNum()%>">
+								<input type="hidden" class="applyNum"
+									value="<%=nb.getApplyNum()%>">
 								<td><%=nb.getApplyDate()%></td>
-								<td><%=nb.getUserNum()%></td>
+								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<td id="checkBtn">확인하기</td>
+								<td id="checkBtn" style="color: #5AAEFF;">확인하기</td>
 							</tr>
 							<%
 								}
 							%>
-							
-							
+
+
 						</table>
-						
+
 						<script>
 								$(function(){
 										
 									$(".listBox td").mouseenter(function(){
-										$(this).parent().css({"background":"#eaeaea", "cursor":"pointer"});
+										$(this).parent().css({"cursor":"pointer"});
 									}).mouseout(function(){
 										$(this).parent().css({"background":"white"});
 									}).click(function(){
 										var num = $(this).parent().children("input").val();
-										alert("야 !!! " + num);
+										/* alert("야 !!! " + num); */
 										location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 									});
 										
@@ -215,10 +216,8 @@ button:hover {
 
 						<!-- 페이지처리 -->
 						<div class="pagination" align="center">
-						
-						<br>
-						
-							<a
+
+							<br> <a
 								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=1'"><<</a>
 							<%
 								if (currentPage <= 1) {
@@ -256,8 +255,8 @@ button:hover {
 
 
 						<div class="pagination" align="center">
-					
-					  <!-- <br>
+
+							<!-- <br>
 					  
 					  <a href="#" >&laquo;</a>
 					  <a href="#" class="active">1</a>
@@ -267,15 +266,19 @@ button:hover {
 					  <a href="#" >5</a>
 					  <a href="#" >6</a>
 					  <a href="#" >&raquo;</a> -->
-					  
-					  
-					  
-					  <br><br><br>
-					  		          
-					   <!-- <button id="web-font" onclick="location.href='/nu/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> -->
-					   <%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> --%>
-					   <input type ="button" align="center" class="button" style="width:200px;" value="신청회원 전체보기" onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu'">
-					</div>
+
+
+
+							<br>
+							<br>
+							<br>
+
+							<!-- <button id="web-font" onclick="location.href='/nu/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> -->
+							<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> --%>
+							<input type="button" align="center" class="button"
+								style="width: 200px;" value="신청회원 전체보기"
+								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu'">
+						</div>
 					</div>
 
 					<hr>
@@ -285,51 +288,84 @@ button:hover {
 						<br>
 						<table border="2" id="web-font">
 							<tr>
-								<td>누리장 승인일자</td>
-								<td>이름</td>
-								<td>카테고리</td>
-								<td>활동 계획서</td>
+								<th width="400px">신청일자</th>
+								<th width="400px">이름</th>
+								<th width="400px">카테고리</th>
+								<th width="400px">활동 계획서</th>
 							</tr>
+							<%
+								for (Nuriboss nb2 : bossList2) {
+							%>
 							<tr>
-								<td>2018/08/11</td>
-								<td>김진호</td>
-								<td>운동</td>
-								<td><button>확인하기</button></td>
+								<input type="hidden" class="applyNum"
+									value="<%=nb2.getApplyNum()%>">
+								<td><%=nb2.getApplyDate()%></td>
+								<td><%=nb2.getUserNum()%></td>
+								<td><%=nb2.getCategoryNum()%></td>
+								<td id="checkBtn" style="color: #5AAEFF;">확인하기</td>
 							</tr>
-							<tr>
-								<td>2018/08/11</td>
-								<td>김진호</td>
-								<td>낚시</td>
-								<td><button>확인하기</button></td>
-							</tr>
-							<tr>
-								<td>2018/08/11</td>
-								<td>김진호</td>
-								<td>객체지향 언어 스터디</td>
-								<td><button>확인하기</button></td>
-							</tr>
+							<%
+								}
+							%>
+							
 						</table>
 
+						<!-- 페이지처리 -->
+						<div class="pagination" align="center">
 
+							<br> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=1'"><<</a>
+							<%
+								if (currentPage2 <= 1) {
+							%>
+							<a disabled><
+								</button> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=currentPage2 - 1%>'"><</a>
+								<%
+								}
+							%> <%
+								for (int p2 = startPage2; p2 <= endPage2; p2++) {
+									if (p2 == currentPage2) {
+							%> <a disabled><%=p2%></a> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=p2%>'"><%=p2%></a>
+								<%
+								}
+							%> <%
+								}
+							%> <%
+								if (currentPage2 >= maxPage2) {
+							%> <a disabled>></a> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=currentPage2 + 1%>'">></a>
+								<%
+								}
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=maxPage2%>'">>></a>
+						</div>
 
 						<div class="pagination" align="center">
 
-							<br> <a href="#">&laquo;</a> <a href="#" class="active">1</a>
+							<br> <!-- <a href="#">&laquo;</a> <a href="#" class="active">1</a>
 							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#">6</a> <a href="#">&raquo;</a> <br> <br> <br>
+							<a href="#">6</a> <a href="#">&raquo;</a> --> <br> <br> <br>
 
 							<!-- <button id="web-font">누리장 전체보기</button> -->
 							<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossApplyList.jsp'">누리장 전체보기</button> --%>
 							<input type="button" class="button" style="width: 200px;"
 								value="누리장 전체보기"
-								onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossApplyList.jsp'">
+								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu'">
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-		
+
 
 
 	<br>

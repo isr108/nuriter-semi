@@ -33,6 +33,7 @@ public class UpdateNuriBossStatusServlet extends HttpServlet {
 		System.out.println(num);
 		
 		int result = new NuriterService().updateNuribossStatus(num);
+		/*int result2 = new NuriterService().updateMemberGrade(num);*/
 		
 		String page = "";
 		

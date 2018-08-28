@@ -168,9 +168,7 @@ button:hover {
     border-color: red; */
 }
 
-th{
-	align:center;
-}
+
 </style>
 </head>
 <body>
@@ -183,7 +181,7 @@ th{
 		<!-- </div> -->
 
 		<div id="main" align="center">
-			<form>
+			<form id="test">
 				<div id="child">
 					<div id="child2">
 						<h1 id="web-font">누리장 회원</h1>
@@ -194,17 +192,19 @@ th{
 								<th>이름</th>
 								<th>카테고리</th>
 								<th>승인</th>
+								<th>삭제</th>
 							</tr>
 							<%
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
 								<input type="hidden" value="<%=nb.getApplyNum()%>">
+								<%-- <input type="text" values="<%=nb.getUserNum()%> %>"> --%>
 								<td><%=nb.getApplyDate()%></td>
-								<td><%=nb.getUserNum()%></td>
+								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<%-- <td id="checkBtn"><button onclick="location.href='<%=request.getContextPath()%>/PermitNuriboss.nu?num=<%=nb.getApplyNum()%>'">승인하기</button></td> --%>
-								<th align="center"><div style="width:100px; height:10px; background:yellow;">승인하기</div></th>
+								<th><div style="color:#5AAEFF;">승인하기</button></th>
+								<td><div style="color:#FF5E00;">삭제하기</div></td>
 							</tr>
 							<%
 								}
@@ -221,7 +221,7 @@ th{
 								$(this).parent().css({"background":"white"});
 							}).click(function(){
 								var num = $(this).parent().children("input").val();
-								alert("야 !!! " + num);
+								/* alert("야 !!! " + num); */
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
@@ -231,6 +231,8 @@ th{
 								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?num="+num;
 							});
 							
+							
+							
 						});
 						</script>
 
@@ -238,14 +240,6 @@ th{
 
 							<br>
 
-							<!-- <a href="#" >&laquo;</a>
-					  <a href="#" class="active">1</a>
-					  <a href="#" >2</a>
-					  <a href="#" >3</a>
-					  <a href="#" >4</a>
-					  <a href="#" >5</a>
-					  <a href="#" >6</a>
-					  <a href="#" >&raquo;</a> -->
 
 							<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=1'"><<</a>
 							<% if (currentPage <= 1) {%>
@@ -287,10 +281,16 @@ th{
 								</div> <br> <br>
 
 								<div id="submit" align="center">
-									<button id="web-font">누리장 삭제</button>
+									<button id="web-font" onclick="deleteNuriboss();">누리장 삭제</button>
+									<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/deleteNuriboss.nu'">누리장 삭제</button> --%>
 									&nbsp;
 									<button id="web-font" onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu'">이전 페이지</button>
 								</div>
+								<script>
+									function deleteNuriboss(){
+										$("#test").attr("action", "<%=request.getContextPath()%>/views/admin/deleteNuriboss.jsp");
+									}
+								</script>
 						</div>
 					</div>
 				</div>

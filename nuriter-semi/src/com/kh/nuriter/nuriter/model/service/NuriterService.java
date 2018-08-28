@@ -81,19 +81,17 @@ public class NuriterService {
       Connection con = getConnection();
       
       int result = new NuriterDao().insertNuriPoto(con, n, fileList);
-      
+     
       if(result > 0) {
          commit(con);
       }
       else {
          rollback(con);
       }
-      
       close(con);
       
       return result;
    }*/
-
 
    public int getListCount(String userNum) {
       Connection con = getConnection();        
@@ -132,12 +130,20 @@ public class NuriterService {
 		ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con, currentPage, limit, category);
 		
 		close(con);
-		
+
 		return pictureList;
 	}
 
 
-   
+	public ArrayList<Nuriboss> selectNuribossList2(int currentPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Nuriboss> bossList2 = new NuriterDao().selectNuribossList2(con, currentPage, limit);
+
+		close(con);
+
+		return bossList2;
+	}
+
    public int getNuriterListCount(String category) {
       Connection con = getConnection();
       
@@ -428,71 +434,30 @@ public int insertNuriterComment(String nuriNum, String content, String writer) {
 	return result;
 }
 
-
 	public Nuriter selectOpenOne(String nunum) {
 		Connection con = getConnection();
-		
+
 		Nuriter n = new NuriterDao().selectOpenOne(con, nunum);
-		
+
 		commit(con);
-		
+
 		close(con);
-		
+
 		return n;
 	}
 
-	public int getMyNuriterListCount(String userNum) {
-		 Connection con = getConnection();         
-     int listCount = new NuriterDao().getListCount(con, userNum);
-         
-         close(con);
-         
-         return listCount;
-   }
+  
+	public int getNuribossListCount2() {
+		Connection con = getConnection();
 
-   public ArrayList<Nuriter> selectOpenList(int currentPage, int limit, String userNum) {
-      Connection con = getConnection();
-         
-       ArrayList<Nuriter> list = new NuriterDao().selectOpenList(con, currentPage, limit, userNum);
-         
-       close(con);
-         
-         
-         
-       return list;
-   }
+		int listCount2 = new NuriterDao().getNuribossListCount2(con);
 
-   public ArrayList<Nuriter> selectNuriterList(String category) {
-      Connection con = getConnection();
-      
-       ArrayList<Nuriter> list = new NuriterDao().selectNuriterList(con, category);
-      
-       close(con);
-       
-      return list;
-   }
+		close(con);
 
-   public ArrayList<HashMap<String, Object>> selectThumbnailList(int currentPage, int limit) {
-      Connection con = getConnection();
-      
-      ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList(con, currentPage, limit);
-      
-      close(con);
-      
-      return pictureList;
-   }
-
-
-   
-   public int getNuriterListCount(String category) {
-      Connection con = getConnection();
-      
-      int listCount = new NuriterDao().getNuriterListCount(con, category);
-      close(con);
-      
-      return listCount;
-   }
-	
+		return listCount2;
+	}
+  
+  
 //댓글 리스트 가져오기
 public ArrayList<HashMap<String, Object>> selectNuriterComment(String nuriNum) {
 	Connection con = getConnection();
