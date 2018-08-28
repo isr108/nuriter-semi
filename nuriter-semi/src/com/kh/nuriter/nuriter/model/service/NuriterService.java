@@ -248,18 +248,6 @@ public class NuriterService {
 
    
 
-   public Nuriter selectOpenOne(String nunum) {
-      Connection con = getConnection();
-      
-      Nuriter n = new NuriterDao().selectOpenOne(con, nunum);
-      
-      commit(con);
-      
-      close(con);
-      
-      return n;
-   }
-
    public int getMyNuriterListCount(String userNum) {
        Connection con = getConnection();
          

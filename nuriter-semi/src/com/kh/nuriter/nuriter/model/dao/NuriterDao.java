@@ -744,7 +744,7 @@ public class NuriterDao {
 
 		return bossList2;
 
-	
+	}
 	public int getMyNuriListCount(Connection con, String userNum) {
 	      PreparedStatement pstmt = null;
 	       int listCount = 0;
