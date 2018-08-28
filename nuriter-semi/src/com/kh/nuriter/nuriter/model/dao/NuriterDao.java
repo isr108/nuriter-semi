@@ -1031,15 +1031,14 @@ public class NuriterDao {
 	}
 
 
-	public ArrayList<HashMap<String, Object>> selectMyThumbnailList(Connection con, int currentPage, int limit,
-			String userNum) {
+	public ArrayList<HashMap<String, Object>> selectThumbnailList(Connection con, int currentPage, int limit, String category) {
 		ArrayList<HashMap<String, Object>> pictureList = null;
 		HashMap<String, Object> hmap = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("selectMyNuriterThumbnailMap");
+		String query = prop.getProperty("selectNuriterThumbnailMap");
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -1047,9 +1046,10 @@ public class NuriterDao {
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
 			
-			pstmt.setString(1, userNum);
+			pstmt.setString(1, category);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
+			
 			
 			rset = pstmt.executeQuery();
 			
@@ -1451,6 +1451,103 @@ public class NuriterDao {
 		}
 
 		return pictureList;
+	}
+
+	//누리터 번호를 참조하는 BOARD 테이블의 번호 가져오는 기능
+	public String selectBoardNumber(Connection con, String nuriNum) {
+		ResultSet rset = null;
+		String BoardNumber = " ";
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("selectBoardNumber_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);  
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				BoardNumber = rset.getString(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return BoardNumber;
+	}
+
+
+	public int insertNuriterComment(Connection con, String nuriNum, String content, String writer, String boardNum) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertNuriterComment_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, boardNum); 
+			pstmt.setString(2, content);
+			pstmt.setString(3, writer);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println("댓글 추가 성공");
+		
+		return result;
+	}
+
+	//댓글 리스트 가져오기
+	public ArrayList<HashMap<String, Object>> selectNuriterComment(Connection con, String nuriNum) {
+		ArrayList<HashMap<String, Object>> commentList = null;
+		HashMap<String, Object> hmap = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectBoardComment_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, nuriNum);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			commentList = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()){
+				hmap = new HashMap<String, Object>();
+				
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("comment_date", rset.getString("comment_date"));
+				hmap.put("comment_content", rset.getString("comment_content"));
+				
+				commentList.add(hmap);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return commentList;
 	}
 
 }
