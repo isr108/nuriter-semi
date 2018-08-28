@@ -1,6 +1,8 @@
 package com.kh.nuriter.payment.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +35,8 @@ public class PaymentServlet extends HttpServlet {
 		String pid =request.getParameter("imp");
 		String userNum = request.getParameter("userNum");
 		String nuriNum = request.getParameter("nuriNum");
-		/*String cardNum = request.getParameter("cardNum");*/
-		System.out.println("userNum : " + userNum);
+		String cardNum = request.getParameter("cardNum");
+		System.out.println("cardNum : " + cardNum);
 		
 		
 		Payment p = new Payment();
@@ -56,24 +58,30 @@ public class PaymentServlet extends HttpServlet {
 		
 		PaymentDetail pd = new PaymentDetail();
 		pd.setPid(pid);
-	/*	pd.setCardNum(cardNum);*/
+		pd.setCardNum(cardNum);
 		
 		
 		
     	String page="";
 		if(result >0){
 			 result2 = new PaymentService().InsertApplication(p1);
-			 result3 = new PaymentService().InsertPaymentDetail(pd);
 		}else{
 			/*request.getAttribute();*/
 		}
 		
 		
 		if(result2 > 0){
+			/*page="views/member/categoryDetail.jsp";*/
+			result3 = new PaymentService().InsertPaymentDetail(pd);
 			System.out.println("성공");
+		}else{
+			System.out.println("실패");
 		}
 		
-	
+		
+	/*	RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
+		*/
 	}
 
 	/**

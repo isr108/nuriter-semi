@@ -56,8 +56,20 @@ public class PaymentService {
 	}
 
 	public int InsertPaymentDetail(PaymentDetail pd) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result3 =0;
+		
+		Connection con = getConnection();
+		
+		result3= new PaymentDao().InsertPaymentDetail(pd,con);
+		
+		if(result3 >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		
+		return result3;
 	}
 
 }

@@ -1,56 +1,54 @@
 package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.kh.nuriter.member.model.vo.Member;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
-import com.kh.nuriter.nuriter.model.vo.Nuriter;
 
 /**
- * Servlet implementation class SelectNuriterOneServlet
+ * Servlet implementation class InsertCommentServlet
  */
-@WebServlet("/selectNuriterOne.nu")
-public class SelectNuriterOneServlet extends HttpServlet {
+@WebServlet("/insertComment.nu")
+public class InsertCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectNuriterOneServlet() {
+    public InsertCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num = request.getParameter("num");
-		System.out.println(num);
+		String nuriNum = request.getParameter("nuriNum");
+		String content = request.getParameter("content");
+		String writer = (String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber()));
 		
-		Nuriter n = new NuriterService().selectOne(num);
+		System.out.println("댓글 서블릿 도착: " + nuriNum + " " + content);
 		
-		String page = null;
+		int result = new NuriterService().insertNuriterComment(nuriNum, content, writer);
 		
-		if(n != null) {
-			page = "views/member/categoryDetail.jsp";
-			request.setAttribute("n", n);
-			request.setAttribute("num", num);
-			
-		}else {
-			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "게시판 상세 조회 실패");
+		ArrayList<HashMap<String, Object>> commentList = new NuriterService().selectNuriterComment(nuriNum);
+		
+		if(commentList != null) {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(commentList, response.getWriter());
 		}
-		RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
+		
 	}
 
 	/**
