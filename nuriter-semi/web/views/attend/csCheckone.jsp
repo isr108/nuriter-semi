@@ -301,7 +301,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <table width="80%" border="0" cellspacing="1" cellpadding="1">
 <tr>
        <td align ="right" style="border:1px solid #FFFFFF">
-             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendonedeteil.nu'" value="오늘"/>
+             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>'" value="오늘"/>
        </td>
 </tr>
 </table>
@@ -318,11 +318,11 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
        </tr>      
        <tr>
              <td align="center" >
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>" target="_self">
                            <b>&lt;&lt;</b><!-- 이전해 -->
                     </a>
                     <%if(month > 0 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>" target="_self">
                    
                            <b>&lt;</b><!-- 이전달 -->
                     </a>
@@ -334,13 +334,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
                     <%=month+1%>월
                     &nbsp;&nbsp;
                     <%if(month < 11 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>" target="_self">
                            <!-- 다음달 --><b>&gt;</b>
                     </a>
                     <%}else{%>
                            <b>&gt;</b>
                     <%} %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?year=<%=year+1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>" target="_self">
                            <!-- 다음해 --><b>&gt;&gt;</b>
                     </a>
              </td>
@@ -388,6 +388,10 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <TR>
 
 <%
+
+int test = 0;
+int test2 = 0;
+
 //처음 빈공란 표시
 for(int index = 1; index < start ; index++ )
 {
@@ -397,6 +401,8 @@ for(int index = 1; index < start ; index++ )
 
 for(int index = 1; index <= endDay; index++)
 {
+	   test++;
+		
        String color = "";
        if(newLine == 0){          color = "RED";
 
@@ -409,14 +415,17 @@ for(int index = 1; index <= endDay; index++)
        sUseDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index) : Integer.toString(index);
  
        int iUseDate = Integer.parseInt(sUseDate);
-            
-       String backColor = "#EFEFEF";
+        
+       String backColor = "white";
 
        if(iUseDate == intToday ) {
              backColor = "#c9c9c9";
+             test2 = test;
        } 
-       out.println("<TD id='today' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
+       out.println("<TD id='today"+test+"' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
 
+      	System.out.println("test2 : " +test2);
+       
 %>
 
        <font color='<%=color%>'>
@@ -462,6 +471,8 @@ while(newLine > 0 && newLine < 7)
 </div>
 </div>	
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
+
+
 	<script>
 		$(function(){
 			<%-- $("#listArea td").mouseenter(function(){
@@ -479,7 +490,6 @@ while(newLine > 0 && newLine < 7)
 			$("#checkbutton").click(function(){
 				var checkcode = $("#checkcode").val();
 				var userNum = $("#userNum").val();
-				
 				console.log(checkcode);
 				console.log(userNum);
 				$.ajax({
@@ -490,7 +500,9 @@ while(newLine > 0 && newLine < 7)
 					success:function(data){
 						if(data === "fail"){
 							alert("출석체크성공!!");
-							$("#today").parent().css({"bgcolor":"red"});
+							
+							var x = document.getElementById('today<%=test2%>');
+							x.style.background="#33ffff";
 						}else{
 							alert("출석체크실패!!")
 						}

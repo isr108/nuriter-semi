@@ -116,7 +116,7 @@ try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, checkcode);
 			rset = pstmt.executeQuery();
-			System.out.println("dao"+ checkcode);
+			System.out.println("dao 체크코드1 : "+ checkcode);
 			System.out.println("rest : " + rset);
 			
 			while(rset.next()){	
