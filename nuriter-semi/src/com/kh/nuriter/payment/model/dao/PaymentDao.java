@@ -10,6 +10,7 @@ import static com.kh.nuriter.common.JDBCTemplate.*;
 
 
 import com.kh.nuriter.payment.model.vo.Payment;
+import com.kh.nuriter.payment.model.vo.PaymentDetail;
 
 public class PaymentDao {
 	private Properties prop = new Properties();
@@ -72,10 +73,25 @@ public class PaymentDao {
 			
 		}
 		
-		
-		
-		
 		return result2;
+	}
+	public int InsertPaymentDetail(PaymentDetail pd, Connection con) {
+		int result3 =0;
+		PreparedStatement pstmt =null;
+		
+		String query =prop.getProperty("insertPaymentDetail");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return result3;
 	}
 
 }

@@ -892,7 +892,6 @@ public class NuriterDao {
          }
          
          return bossList;
-
 	}
 
 

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
 <% Nuriter n = (Nuriter)request.getAttribute("n"); 
-	String nuriNum=(String)request.getAttribute("num");
-	
+   String nuriNum=(String)request.getAttribute("num");
+   
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,13 +23,13 @@
 <title>categoryDetail</title>
 <style>
 #textBox{
-	width:400px;
-	height:auto;
-	overflow:hidden;
+   width:400px;
+   height:auto;
+   overflow:hidden;
 }
     
 hr {
-	width:90%;
+   width:90%;
 }
 .content{
    margin-top: 170px;
@@ -82,20 +82,20 @@ img{
 
 .likeOrAngry > div{
     margin-left: 10px;
-	border:2px solid #FFBF00;
-	float:left;
-	width: 210px;
-	border-radius: 4px;
-	cursor: pointer;
+   border:2px solid #FFBF00;
+   float:left;
+   width: 210px;
+   border-radius: 4px;
+   cursor: pointer;
 }
 
 .likeOrAngry > div:hover{
-	border:2px solid #FFBF00;
-	background:#F5D0A9;
-	float:left;
-	width: 210px;
-	border-radius: 4px;
-	opacity: 0.8;
+   border:2px solid #FFBF00;
+   background:#F5D0A9;
+   float:left;
+   width: 210px;
+   border-radius: 4px;
+   opacity: 0.8;
 }
 
 button {
@@ -127,12 +127,12 @@ button {
 }
 
 #textBox {
-	text-align:center;
+   text-align:center;
     margin-top: 30px;
 }
 
 .rightBox {
-	/* float:right; */
+   /* float:right; */
 }
 
 #popupDiv {  /* 팝업창 css */
@@ -142,30 +142,30 @@ button {
     height: 550px;
     display: none; 
     background:#D8D8D8;
-   	border:none;
+      border:none;
     
     }
 #textArea{
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:5px;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:5px;
 }
 .popBtn{
-	margin-top:10px;
-		
+   margin-top:10px;
+      
 }
 #popSendbtn{
-	background:#0080FF;
-	color:white;
-	margin-right:15px;
-	height:30px;
-	width:80px;
+   background:#0080FF;
+   color:white;
+   margin-right:15px;
+   height:30px;
+   width:80px;
 }
 #popCloseBtn{
-	background:#FFBF00;
-	color:white;
-	height:30px;
-	width:80px;
+   background:#FFBF00;
+   color:white;
+   height:30px;
+   width:80px;
 }
 
 .applyButton{
@@ -174,34 +174,34 @@ button {
    height:50px;
 }
 .likeOrAngry {
-	overflow:hidden;
+   overflow:hidden;
 }
 #nuri p{
-	margin-left:20px;
-	text-align:left;
-	height:auto;
+   margin-left:20px;
+   text-align:left;
+   height:auto;
 }
 #enterDiv {
-	margin-top:5px;
-	margin-bottom:5px;
+   margin-top:5px;
+   margin-bottom:5px;
 }
 
 #enter {
-	color: #424242;
-	font-weight: 600;
+   color: #424242;
+   font-weight: 600;
     border-radius: 4px;
-	background:#FFBF00;
+   background:#FFBF00;
 }
 #enter:hover {
-	color: #424242;
-	font-weight: 600;
+   color: #424242;
+   font-weight: 600;
     border-radius: 4px;
-	background:#FFBF00;
-	opacity: 0.6;
+   background:#FFBF00;
+   opacity: 0.6;
 }
 img { 
-	max-width: 100%; 
-	height: auto; 
+   max-width: 100%; 
+   height: auto; 
 }
 .commentDiv input[type=text]{
 	    border-radius: 3px;
@@ -223,10 +223,10 @@ img {
     border: 2px solid rgb(241, 196, 15); /* Green */
 }
 .commentBtn:hover {
-	width:100px;
-	height:100px;
-	background-color: rgb(241, 196, 15); /* Green */
-	font-family: 'Jua', sans-serif;
+   width:100px;
+   height:100px;
+   background-color: rgb(241, 196, 15); /* Green */
+   font-family: 'Jua', sans-serif;
     color: black;
     border-radius: 3px;
     font-size:17px;
@@ -244,7 +244,7 @@ img {
 <body>
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
-   
+
 <div class="content">
 	   <div class="leftBox">
 	   	<div class="images">
@@ -264,57 +264,57 @@ img {
    	   </div>
    
    <div class="rightBox">
-   	  <br>
-   	  
+        <br>
+        
       <div id="textBox">
-      	<font id="web-font" size="4"><%= n.getNuriTitle() %></font>
+         <font id="web-font" size="4"><%= n.getNuriTitle() %></font>
       </div>
       
       <br><br>
      <div id="info">
-     	
-     	<br>
+        
+        <br>
         
         <div id="nuri">
-	        <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-	        <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
-	        <hr>
-	        <p><font id="web-font">카테고리 : <%= n.getCategoryName() %></font></p>
-	        <hr>
-	        <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-	        <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-	        <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-	        <hr>
-	        <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-	        <hr>
-	        <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-	        <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
+           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
+           <hr>
+           <p><font id="web-font">카테고리 : <%= n.getCategoryName() %></font></p>
+           <hr>
+           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
+           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
+           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
+           <hr>
+           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
+           <hr>
+           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
+           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry" align="center">
         
-	        <div class="hobbyDiv">
-	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
-	        </div>
-	            
-	        <div>
-	             <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
-	        </div>
-	         
+           <div class="hobbyDiv">
+                <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
+           </div>
+               
+           <div>
+                <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
+           </div>
+            
             <div id="popupDiv" class="modal fade" role="dialog">
-	            <h2 id="web-font">누리터 신고</h2>
-	            <div id="textArea">
-		            <h5 id="web-font">신고 제목</h5>
-		            <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
-		            <h5 id="web-font">신고 내용</h5>
-		            <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
-	            </div>
-	            <div class="popBtn">
-		            <button id="popSendbtn">send</button>
-		            <button id="popCloseBtn">close</button>
-	            </div>
+               <h2 id="web-font">누리터 신고</h2>
+               <div id="textArea">
+                  <h5 id="web-font">신고 제목</h5>
+                  <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
+                  <h5 id="web-font">신고 내용</h5>
+                  <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
+               </div>
+               <div class="popBtn">
+                  <button id="popSendbtn">send</button>
+                  <button id="popCloseBtn">close</button>
+               </div>
            </div>
         </div>
          
@@ -323,11 +323,11 @@ img {
          </div>
          
     </div>
-    	<div id="nuri2">
-	        
+       <div id="nuri2">
+           
         </div>
     <div>
-    	
+       
     </div>
     
    </div>
@@ -376,31 +376,31 @@ $(function(){
 
 //셀렉트 박스
 $(function(){
-	$(function(){
-		$(".hobbyDiv").click(function(){
-			console.log("관심버튼눌림");
-			
-			var name = "<%= n.getNuriNum() %>";
-			
-			console.log(name);
-			
-			$.ajax({
-				url:"/ns/insertHobby.nu",
-				data:{name:name},
-				type:"get",
-				success:function(data){
-					
-					console.log(data);
-					
-					alert(data); 
-				},
-				error:function(data){
-					console.log(data);
-				}
-			});
-			
-		});
-	});
+   $(function(){
+      $(".hobbyDiv").click(function(){
+         console.log("관심버튼눌림");
+         
+         var name = "<%= n.getNuriNum() %>";
+         
+         console.log(name);
+         
+         $.ajax({
+            url:"/ns/insertHobby.nu",
+            data:{name:name},
+            type:"get",
+            success:function(data){
+               
+               console.log(data);
+               
+               alert(data); 
+            },
+            error:function(data){
+               console.log(data);
+            }
+         });
+         
+      });
+   });
 });
 
 $(function(){
@@ -487,7 +487,7 @@ function cash(){
           var userNum = '<%=loginUser.getUserNumber()%>';
           var nuriNum = '<%=n.getNuriNum()%>';
           var cardNum = rsp.apply_num;
-          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
+          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum+"&cardNum=" + cardNum; 
           console.log(loc);
     
           location.href=loc;
