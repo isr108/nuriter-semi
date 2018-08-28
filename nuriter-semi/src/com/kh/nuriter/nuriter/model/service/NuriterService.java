@@ -392,7 +392,7 @@ public class NuriterService {
 		close(con);
 		
 		return pictureList;
-
+	}
 	public int updateNuribossStatus(String num) {
 		Connection con = getConnection();
 		

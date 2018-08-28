@@ -739,8 +739,8 @@ public class NuriterDao {
 	          int endRow = startRow + limit - 1;
 	          
 	          pstmt.setString(1, userNum);
-	          pstmt.setInt(2, startRow);
-	          pstmt.setInt(3, endRow);
+	          /*pstmt.setInt(2, startRow);
+	          pstmt.setInt(3, endRow);*/
 	          rset = pstmt.executeQuery();
 	         
 	         if(rset != null){
@@ -783,105 +783,117 @@ public class NuriterDao {
 	}
 	
 	 public ArrayList<Nuriter> selectMyNuriList1(Connection con, int currentPage, int limit, String userNum) {
-	       PreparedStatement pstmt = null;
-	         ResultSet rset = null;
-	         
-	         ArrayList<Nuriter> list = null;
-	         
-	         String query = prop.getProperty("selectMyNuriList");
-	         System.out.println(query);
-	         try {
-	            //stmt = con.createStatement();
-	            //rset = stmt.executeQuery(query);
-	            pstmt = con.prepareStatement(query);
-	            
-	            //조회 시작 할 행 번호와 마지막 행 번호 계산
-	             int startRow = (currentPage - 1) * limit + 1;
-	             int endRow = startRow + limit - 1;
-	             
-	             pstmt.setString(1, userNum);
-	             pstmt.setInt(2, startRow);
-	             pstmt.setInt(3, endRow);
-	             rset = pstmt.executeQuery();
-	            
-	            if(rset != null){
-	               list = new ArrayList<Nuriter>();
-	               while(rset.next()){
-	                  Nuriter n = new Nuriter();
-	                  n.setNuriTitle(rset.getString("nuri_name"));
-	                  System.out.println(n.getNuriTitle());
-	                  n.setOwnerNum(rset.getString("nickname"));
-	                  System.out.println(n.getOwnerNum());
-	                  n.setStartDate(rset.getDate("start_date"));
-	                  System.out.println(n.getStartDate());
-	                  n.setEndDate(rset.getDate("end_date"));
-	                  System.out.println(n.getEndDate());
-	                  n.setPlace(rset.getString("place"));
-	                  System.out.println(n.getPlace());
-	                  n.setPrice(rset.getString("price"));
-	                  System.out.println(n.getPrice());
-	                  n.setApplicationDate(rset.getDate("application_date"));
-	                  System.out.println(n.getApplicationDate());
-	                  
-	                  list.add(n);
-	                  
-	               }
-	            }
-	            
-	            
-	         } catch (SQLException e) {
-	            e.printStackTrace();
-	         }finally{
-	            //close(stmt);
-	            close(rset);
-	            close(pstmt);
-	         }
-	         
-	         
-	         
-	         return list;
-	   }
+		 PreparedStatement pstmt = null;
+         ResultSet rset = null;
+         
+         ArrayList<Nuriter> list1 = null;
+         
+         String query = prop.getProperty("selectMyNuriList");
+         System.out.println(query);
+         try {
+            //stmt = con.createStatement();
+            //rset = stmt.executeQuery(query);
+            pstmt = con.prepareStatement(query);
+            
+            //조회 시작 할 행 번호와 마지막 행 번호 계산
+             int startRow = (currentPage - 1) * limit + 1;
+             int endRow = startRow + limit - 1;
+             
+             pstmt.setString(1, userNum);
+             pstmt.setInt(2, startRow);
+             pstmt.setInt(3, endRow);
+             rset = pstmt.executeQuery();
+            
+            if(rset != null){
+               list1 = new ArrayList<Nuriter>();
+               while(rset.next()){
+                  Nuriter n = new Nuriter();
+                  n.setNuriNum(rset.getString("nuri_number"));
+	               System.out.println(n.getNuriNum());
+	               n.setNuriTitle(rset.getString("nuri_name"));
+	               System.out.println(n.getNuriTitle());
+	               System.out.println("받았니?");
+	               n.setStartDate(rset.getDate("start_date"));
+	               System.out.println(n.getStartDate());
+	               n.setEndDate(rset.getDate("end_date"));
+	               System.out.println(n.getEndDate());
+	               n.setPlace(rset.getString("place"));
+	               System.out.println(n.getPlace());
+	               n.setPrice(rset.getString("price"));
+	               System.out.println(n.getPrice());
+	               n.setApplicationDate(rset.getDate("application_date"));
+	               System.out.println(n.getApplicationDate());
+                  
+                  list1.add(n);
+                  
+               }
+            }
+            
+            
+         } catch (SQLException e) {
+            e.printStackTrace();
+         }finally{
+            //close(stmt);
+            close(rset);
+            close(pstmt);
+         }
+         
+         
+         
+         return list1;
+   }  
 
-	public ArrayList<Nuriboss> selectNuribossList(Connection con) {
-		ArrayList<Nuriboss> bossList = null;
-		Statement stmt = null;
-		ResultSet rset = null;
-		Nuriboss nb = null;
-		
-		String query = prop.getProperty("selectNuribossList");
-		
-		try {
-			stmt = con.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
-			bossList = new ArrayList<Nuriboss>();
-			
-			while(rset.next()){
-				nb = new Nuriboss();
-				
-				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setCategoryNum(rset.getString("category_id"));
-				nb.setBossContent(rset.getString("newnuri_content"));
-				nb.setPotoPath(rset.getString("planfile_path"));
-				nb.setPotoName(rset.getString("planfile_name"));
-				nb.setApplyDate(rset.getDate("apply_date"));
-				
-				bossList.add(nb);
-			}
-			
-			System.out.println(bossList);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(stmt);
-		}
-		
-		return bossList;
-	}
+	 public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
+         ArrayList<Nuriboss> bossList = null;
+         PreparedStatement pstmt = null;
+         /*Statement stmt = null;*/
+         ResultSet rset = null;
+         Nuriboss nb = null;
+         
+         String query = prop.getProperty("selectNuribossList");
+         
+         try {
+            /*stmt = con.createStatement();
+            rset = stmt.executeQuery(query);*/
+            
+            pstmt = con.prepareStatement(query);
+            
+            int startRow = (currentPage - 1) * limit + 1;
+            int endRow = startRow + limit - 1;
+            
+            pstmt.setInt(1, startRow);
+            pstmt.setInt(2, endRow);
+            
+            rset = pstmt.executeQuery();
+            
+            bossList = new ArrayList<Nuriboss>();
+            
+            while(rset.next()){
+               nb = new Nuriboss();
+               
+               nb.setApplyNum(rset.getString("apply_id"));
+               nb.setUserNum(rset.getString("user_name"));
+               nb.setCategoryNum(rset.getString("category_name"));
+               nb.setBossContent(rset.getString("newnuri_content"));
+               nb.setPotoPath(rset.getString("planfile_path"));
+               nb.setPotoName(rset.getString("planfile_name"));
+               nb.setApplyDate(rset.getDate("apply_date"));
+               
+               bossList.add(nb);
+            }
+            
+            System.out.println(bossList);
+            
+         } catch (SQLException e) {
+            e.printStackTrace();
+         } finally {
+            close(rset);
+            close(pstmt);
+         }
+         
+         return bossList;
+
+      }
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
@@ -1194,7 +1206,7 @@ public class NuriterDao {
 		return result;
 	}
 
-	}
+
 	public int getNuribossListCount(Connection con) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -1347,9 +1359,17 @@ public class NuriterDao {
 				list.add(n);
 				System.out.println("누리터 DAO에서 list.add 성공");
 			}
-			
-			System.out.println("selectMyTemptingList: " + list);
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("selectMyTemptingList: " + list);
+		return list;
+				
+	}
+		
 	public int updateNuribossStatus(Connection con, String num) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -1364,11 +1384,11 @@ public class NuriterDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
+			
 			close(pstmt);
 		}
 		
-		return list;
+		return result;
 	}
 
 
