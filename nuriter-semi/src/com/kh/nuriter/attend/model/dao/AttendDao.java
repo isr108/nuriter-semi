@@ -78,7 +78,7 @@ private Properties prop = new Properties();
 			pstmt.setString(2, usernum);
 			
 			rset = pstmt.executeQuery();
-			System.out.println("dao 체크코드 : "+ checkcode);
+			System.out.println("dao 체크코드2 : "+ checkcode);
 			System.out.println("rest : " + rset);
 			
 			while(rset.next()){	

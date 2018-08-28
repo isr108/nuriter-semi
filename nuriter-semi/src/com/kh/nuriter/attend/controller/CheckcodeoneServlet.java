@@ -45,8 +45,8 @@ public class CheckcodeoneServlet extends HttpServlet {
 		System.out.println("서블릿 atcode:" + atcode);
 		
 		
-		/*Attend attend = new AttendService().attendCheck(checkcode,usernum);
-		System.out.println("attend: " + attend.getAttendCodeId());*/
+		Attend attend = new AttendService().attendCheck(checkcode,usernum);
+		/*System.out.println("attend: " + attend.getAttendCodeId());*/
 		/*if(attend.getAttendCodeId().equals(checkcode)){*/
 			
 			/*PrintWriter out = response.getWriter();
@@ -60,7 +60,8 @@ public class CheckcodeoneServlet extends HttpServlet {
 			
 		/*}else{*/
 		if(atcode.getAttendCodeid().equals(checkcode)){
-			int result = new AttendService().insertattend(checkcode, usernum);
+			if(attend == null){
+				int result = new AttendService().insertattend(checkcode, usernum);
 			/*String page = "";
 			
 			if(result>0){
@@ -75,7 +76,7 @@ public class CheckcodeoneServlet extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher(page);
 				view.forward(request, response);
 			}*/
-			
+			System.out.println(result);
 			PrintWriter out = response.getWriter();
 			
 			if(result >0){
@@ -86,8 +87,9 @@ public class CheckcodeoneServlet extends HttpServlet {
 			
 			out.flush();
 			out.close();
-		}
+			}
 		/*}*/
+		}
 	}
 
 	/**

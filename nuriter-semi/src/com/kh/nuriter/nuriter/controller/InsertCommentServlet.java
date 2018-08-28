@@ -1,29 +1,30 @@
 package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kh.nuriter.member.model.vo.Member;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
- * Servlet implementation class DeleteMyNuriServlet
+ * Servlet implementation class InsertCommentServlet
  */
-@WebServlet("/deleteMyNuri.nu")
-public class DeleteMyNuriServlet extends HttpServlet {
+@WebServlet("/insertComment.nu")
+public class InsertCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteMyNuriServlet() {
+    public InsertCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +33,22 @@ public class DeleteMyNuriServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
 		String nuriNum = request.getParameter("nuriNum");
-		System.out.println(nuriNum);
+		String content = request.getParameter("content");
+		String writer = (String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber()));
 		
-		String userNum = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber());
+		System.out.println("댓글 서블릿 도착: " + nuriNum + " " + content);
 		
-		System.out.println(userNum);
+		int result = new NuriterService().insertNuriterComment(nuriNum, content, writer);
 		
-		int result = new NuriterService().deleteMyNuri(userNum, nuriNum);
+		ArrayList<HashMap<String, Object>> commentList = new NuriterService().selectNuriterComment(nuriNum);
 		
-		if(result > 0){
-			response.sendRedirect("selectMyNuriList.nu");
-		}else{
-			request.setAttribute("msg", "누리터 종료 실패!");
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+		if(commentList != null) {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			new Gson().toJson(commentList, response.getWriter());
 		}
+		
 	}
 
 	/**
