@@ -842,7 +842,7 @@ public class NuriterDao {
 	         return list;
 	   }
 
-	public ArrayList<Nuriboss> selectNuribossList(Connection con) {
+	public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
 		ArrayList<Nuriboss> bossList = null;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -1194,7 +1194,7 @@ public class NuriterDao {
 		return result;
 	}
 
-	}
+
 	public int getNuribossListCount(Connection con) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -1347,9 +1347,17 @@ public class NuriterDao {
 				list.add(n);
 				System.out.println("누리터 DAO에서 list.add 성공");
 			}
-			
-			System.out.println("selectMyTemptingList: " + list);
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("selectMyTemptingList: " + list);
+		return list;
+				
+	}
+		
 	public int updateNuribossStatus(Connection con, String num) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -1364,11 +1372,11 @@ public class NuriterDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
+			
 			close(pstmt);
 		}
 		
-		return list;
+		return result;
 	}
 
 

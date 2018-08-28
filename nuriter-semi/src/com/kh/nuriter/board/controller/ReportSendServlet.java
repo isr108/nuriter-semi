@@ -1,6 +1,8 @@
 package com.kh.nuriter.board.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,14 +51,19 @@ public class ReportSendServlet extends HttpServlet {
 	
 
 		int result = new BoardService().InsertReportNuri(rNuri);
-
+		
+		String page="";
+		
 		if(result > 0){
 			System.out.println("성공");
+			page="views/member/categoryDetail.jsp";
+			
 		}else{
 			System.out.println("실패");
 
 		}
-
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 
 
 		System.out.println(nuriNum);
