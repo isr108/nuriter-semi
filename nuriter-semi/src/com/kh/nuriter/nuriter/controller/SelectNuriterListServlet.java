@@ -75,7 +75,7 @@ public class SelectNuriterListServlet extends HttpServlet {
 		
 		System.out.println(list);
 		
-		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList(currentPage, limit);
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList(currentPage, limit, category);
 		
 		System.out.println("pictureList => " + pictureList);
 		
