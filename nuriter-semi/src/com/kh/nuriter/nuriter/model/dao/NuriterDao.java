@@ -689,8 +689,8 @@ public class NuriterDao {
 	                  System.out.println(n.getNuriNum());
 	                  n.setNuriTitle(rset.getString("nuri_name"));
 	                  System.out.println(n.getNuriTitle());
-	                  n.setOwnerNum(rset.getString("nickname"));
-	                  System.out.println(n.getOwnerNum());
+	                  //n.setOwnerNum(rset.getString("nickname"));
+	                  //System.out.println(n.getOwnerNum());
 	                  n.setStartDate(rset.getDate("start_date"));
 	                  System.out.println(n.getStartDate());
 	                  n.setEndDate(rset.getDate("end_date"));
@@ -893,7 +893,8 @@ public class NuriterDao {
          
          return bossList;
 
-      }
+	}
+
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
