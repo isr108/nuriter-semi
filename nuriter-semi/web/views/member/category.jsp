@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -33,6 +34,9 @@
 
 
 <style>
+	#web-font-Nanum{
+		font-family: 'Song Myung', serif;
+	}
 
 	html{
    		height:100%;
@@ -205,17 +209,15 @@
    }
    
     .button{
-       width: 90px;
+     width: 90px;
      height: 40px;
      font-weight: 600;
      border-radius: 4px;
      background-color: rgb(241, 196, 15); 
-     color: white;
    }
    
    .button:hover {
      background-color: white; /* Green */
-     color: rgb(241, 196, 15);
      border: 2px solid rgb(241, 196, 15); /* Green */
    }
    
@@ -224,8 +226,7 @@
      height: 40px;
      font-weight: 600;
      border-radius: 4px;
-     background-color: rgb(241, 196, 15); 
-     color: white;
+     background-color: rgb(241, 196, 15);
    }
    
    #showMain button:hover {
@@ -235,7 +236,7 @@
    }
    
    #showRightButton button{
-       width: 150px;
+     width: 150px;
      height: 40px;
      font-weight: 600;
      border-radius: 4px;
@@ -327,7 +328,7 @@
      <div id="showRight">
      
         <div id="showRightButton">
-            <button class="button" onclick="location.href='/ns/views/member/nuriterOpen.jsp' ">누리터 개설하기</button>
+            <button id="web-font-Nanum" class="button" onclick="location.href='/ns/views/member/nuriterOpen.jsp' ">누리터 개설하기</button>
                <div class="select-control inline-block width-100px" align="right">
                <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)" >
                     <option value="recommendation_point">추천순</option>
@@ -344,11 +345,13 @@
         			HashMap<String,Object> hmap = pictureList.get(i);
         	%>
         		<table id="nuriterListArea">
-
-
            			<tr id="tableHiddenTop">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td id="priceTd" align="left">[<%= hmap.get("category_name") %>]</td>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
@@ -357,7 +360,7 @@
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
+           				<td id="priceTd" align="right"><%= hmap.get("price") %>원</td>
            			</tr>
             	</table>
 
@@ -423,6 +426,16 @@
   
   	$(function(){
 	 	$("#nuriterListArea td").mouseenter(function(){
+			$(this).parent().css({"cursor":"pointer"});
+	 	}).click(function(){
+	 			var num = $(this).parent().children("input").val();
+				console.log(num);
+				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+	 	});
+  	});
+  	
+  	$(function(){
+	 	$("#nuriterListArea th").mouseenter(function(){
 			$(this).parent().css({"cursor":"pointer"});
 	 	}).click(function(){
 	 			var num = $(this).parent().children("input").val();

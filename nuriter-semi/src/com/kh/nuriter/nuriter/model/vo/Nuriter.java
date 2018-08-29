@@ -22,13 +22,15 @@ public class Nuriter implements java.io.Serializable{
     private int attendCount; //총출석일수
     private String NickName; //닉네임
     private String categoryName; //카테고리 이름
+    private int interestCount; //관심 누리터가 선택된 인원 수
+    private int enterCount; //참가 신청된 인원 수
     
     public Nuriter() {}
-    
+
 	public Nuriter(String nuriNum, String ownerNum, String categoryNum, String nuriTitle, String content,
 			Date startDate, Date endDate, String startTime, String endTime, String place, String price,
 			Date applicationDate, String personnel, int reportCount, String progress, int attendCount, String nickName,
-			String categoryName) {
+			String categoryName, int interestCount, int enterCount) {
 		super();
 		this.nuriNum = nuriNum;
 		this.ownerNum = ownerNum;
@@ -48,6 +50,8 @@ public class Nuriter implements java.io.Serializable{
 		this.attendCount = attendCount;
 		NickName = nickName;
 		this.categoryName = categoryName;
+		this.interestCount = interestCount;
+		this.enterCount = enterCount;
 	}
 
 	public String getNuriNum() {
@@ -194,6 +198,22 @@ public class Nuriter implements java.io.Serializable{
 		this.categoryName = categoryName;
 	}
 
+	public int getInterestCount() {
+		return interestCount;
+	}
+
+	public void setInterestCount(int interestCount) {
+		this.interestCount = interestCount;
+	}
+
+	public int getEnterCount() {
+		return enterCount;
+	}
+
+	public void setEnterCount(int enterCount) {
+		this.enterCount = enterCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Nuriter [nuriNum=" + nuriNum + ", ownerNum=" + ownerNum + ", categoryNum=" + categoryNum
@@ -201,7 +221,8 @@ public class Nuriter implements java.io.Serializable{
 				+ endDate + ", startTime=" + startTime + ", endTime=" + endTime + ", place=" + place + ", price="
 				+ price + ", applicationDate=" + applicationDate + ", personnel=" + personnel + ", reportCount="
 				+ reportCount + ", progress=" + progress + ", attendCount=" + attendCount + ", NickName=" + NickName
-				+ ", categoryName=" + categoryName + "]";
+				+ ", categoryName=" + categoryName + ", interestCount=" + interestCount + ", enterCount=" + enterCount
+				+ "]";
 	}
         
 }

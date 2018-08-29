@@ -1,6 +1,8 @@
 package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,7 +46,6 @@ public class SelectNuriterOneServlet extends HttpServlet {
 			page = "views/member/categoryDetail.jsp";
 			request.setAttribute("n", n);
 			request.setAttribute("num", num);
-			
 		}else {
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시판 상세 조회 실패");
