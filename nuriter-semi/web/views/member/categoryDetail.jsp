@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
+    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
 <% Nuriter n = (Nuriter)request.getAttribute("n"); 
    String nuriNum=(String)request.getAttribute("num");
+   PaymentDetail detail =(PaymentDetail)request.getAttribute("pd");
    
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,9 +35,10 @@ hr {
 .content{
    margin-top: 170px;
    border:1px solid white;
+   width:40%;
    margin-left:auto;
    margin-right:auto;
-   width: 1400px;
+   width: 1200px;
    min-height: 935px;
 }
 
@@ -49,7 +51,7 @@ hr {
    border-radius: 6px;
    padding-top:50px;
    margin-top: 50px;
-   width:800px;
+   width:705px;
    height:auto;
    float:left;
    overflow:hidden;
@@ -204,22 +206,22 @@ img {
    height: auto; 
 }
 .commentDiv input[type=text]{
-	    border-radius: 3px;
-		margin-top:50px;
-	    width:690px;
-	    height:100px;
-		box-sizing: border-box;
-	    border-style: solid;
-	    border-color: rgb(241, 196, 15);
+       border-radius: 3px;
+      margin-top:50px;
+       width:600px;
+       height:100px;
+      box-sizing: border-box;
+       border-style: solid;
+       border-color: rgb(241, 196, 15);
 }
 .commentBtn {
-	width:100px;
-	height:100px;
-	background-color: #FFBF00; /* Green */
-	font-family: 'Jua', sans-serif;
+   width:100px;
+   height:100px;
+   background-color: rgb(241, 196, 15); /* Green */
+   font-family: 'Jua', sans-serif;
     color: black;
     border-radius: 3px;
-    font-size:17px;
+    font-size:15px;
     border: 2px solid rgb(241, 196, 15); /* Green */
 }
 .commentBtn:hover {
@@ -229,39 +231,28 @@ img {
    font-family: 'Jua', sans-serif;
     color: black;
     border-radius: 3px;
-    font-size:17px;
+    font-size:15px;
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
 }
-.commentDiv {
-	width:800px;
-}
-#commentSelectTable{
-	width:799px;
-}
+
 </style>
 </head>
 <body>
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
-
-<div class="content">
-	   <div class="leftBox">
-	   	<div class="images">
-	        <%= n.getContent() %>
-	   	</div>
-	  	
-      	<div class="commentDiv">
-      		<input type="text" id="web-font" name="comment" class="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
-      	</div>
-      	
-      	<br>
-      	
-      	<div class="commentSelectArea">
-				<table id="commentSelectTable">
-				</table>
-		</div>
-   	   </div>
+   
+<div class="content" align="center">
+      <div class="leftBox" align = "center">
+         <div class="images">
+           <%= n.getContent() %>
+         </div>
+        
+         <div class="commentDiv">
+            <input type="text" id="web-font" name="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
+         </div>
+      
+         </div>
    
    <div class="rightBox">
         <br>
@@ -293,7 +284,7 @@ img {
         
         <hr color="red" size="10px">
         
-        <div class="likeOrAngry" align="center">
+        <div class="likeOrAngry">
         
            <div class="hobbyDiv">
                 <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
@@ -318,8 +309,8 @@ img {
            </div>
         </div>
          
-         <div id="enterDiv" align="center">
-         	<button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
+         <div id="enterDiv">
+            <button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
          </div>
          
     </div>
@@ -335,44 +326,19 @@ img {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
-
-$(function(){
-	$(function(){
-		$(".commentBtn").click(function(){
-			
-			var nuriNum = "<%= n.getNuriNum() %>";
-			var content = $('.comment').val();
-			
-			$.ajax({
-				url:"/ns/insertComment.nu",
-				data:{nuriNum:nuriNum, content:content},
-				type:"get",
-				success:function(data){
-					
-					alert("댓글등록완료!"); 
-					
-					$table = $("#commentSelectTable");
-					$table.find("tr").remove();
-					
-					for(var key in data){
-						var $tr = $("<tr id='web-font'>");
-						$tr.text(data[key].nickname + "    " + data[key].comment_content + "    " + data[key].comment_date);
-						$table.append($tr);
-					}
-					
-					$("#commentSelectTable").show();
-					
-					
-				},
-				error:function(data){
-					console.log(data);
-				}
-			});
-			
-		});
-	});
-});
-
+/* Ext.onReady(function(){
+    Ext.MessageBox.confirm(
+       'Confirm 타이틀'
+       ,'Confirm 컨텐츠 메시지입니다.'
+       ,function(click_button){
+            if(click_button == "yes") {
+               alert("yes click");
+            } else {
+                alert("no click");
+            }
+       }
+   );
+}); */
 
 //셀렉트 박스
 $(function(){
@@ -502,5 +468,12 @@ function cash(){
  }
 
 </script>    
+<script>
+   $(function(){
+      if(<%=detail%>!= null){
+         alert('결제가 완료 되었습니다');
+      }
+   });
+</script>
 </body>
 </html>

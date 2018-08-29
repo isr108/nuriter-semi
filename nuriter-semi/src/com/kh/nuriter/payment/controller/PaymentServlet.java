@@ -18,7 +18,7 @@ import com.kh.nuriter.payment.model.vo.PaymentDetail;
  */
 @WebServlet("/payment.pms")
 public class PaymentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,68 +28,73 @@ public class PaymentServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid =request.getParameter("imp");
-		String userNum = request.getParameter("userNum");
-		String nuriNum = request.getParameter("nuriNum");
-		String cardNum = request.getParameter("cardNum");
-		System.out.println("cardNum : " + cardNum);
-		
-		
-		Payment p = new Payment();
-		p.setpId(pid);
-		p.setUserNum(userNum);
-		p.setNuriNum(nuriNum);
-		
-		int result =new PaymentService().InsertPayment(p); //결제
-		
-		Payment p1 = new Payment();
-		p1.setUserNum(userNum);
-		p1.setNuriNum(nuriNum);
-		
-		Payment p2 = new Payment();
-		
-		
-		int result2 =0; //참가신청
-		int result3 =0;//결제디테일
-		
-		PaymentDetail pd = new PaymentDetail();
-		pd.setPid(pid);
-		pd.setCardNum(cardNum);
-		
-		
-		
-    	String page="";
-		if(result >0){
-			 result2 = new PaymentService().InsertApplication(p1);
-		}else{
-			/*request.getAttribute();*/
-		}
-		
-		
-		if(result2 > 0){
-			/*page="views/member/categoryDetail.jsp";*/
-			result3 = new PaymentService().InsertPaymentDetail(pd);
-			System.out.println("성공");
-		}else{
-			System.out.println("실패");
-		}
-		
-		
-	/*	RequestDispatcher view = request.getRequestDispatcher(page);
-		view.forward(request, response);
-		*/
-	}
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      String pid =request.getParameter("imp");
+      String userNum = request.getParameter("userNum");
+      String nuriNum = request.getParameter("nuriNum");
+      String cardNum = request.getParameter("cardNum");
+      System.out.println("cardNum : " + cardNum);
+      
+      
+      Payment p = new Payment();
+      p.setpId(pid);
+      p.setUserNum(userNum);
+      p.setNuriNum(nuriNum);
+      
+      int result =new PaymentService().InsertPayment(p); //결제
+      
+      Payment p1 = new Payment();
+      p1.setUserNum(userNum);
+      p1.setNuriNum(nuriNum);
+      
+      Payment p2 = new Payment();
+      
+      
+      int result2 =0; //참가신청
+      int result3 =0;//결제디테일
+      
+      PaymentDetail pd = new PaymentDetail();
+      pd.setPid(pid);
+      pd.setCardNum(cardNum);
+      
+      
+      
+       String page="";
+      if(result >0){
+          result2 = new PaymentService().InsertApplication(p1);
+      }else{
+         System.out.println("실패");
+      }
+      
+      
+      if(result2 > 0){
+         result3 = new PaymentService().InsertPaymentDetail(pd);
+         System.out.println("성공");
+      }else{
+         System.out.println("실패");
+      }
+      if(result3 >0){
+         System.out.println("성공");
+         page="views/member/categoryDetail.jsp";
+         request.setAttribute("pd", pd);
+      }else{
+         System.out.println("실패");
+      }
+      
+      RequestDispatcher view = request.getRequestDispatcher(page);
+      view.forward(request, response);
+   
+   }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+   /**
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      // TODO Auto-generated method stub
+      doGet(request, response);
+   }
 
 }

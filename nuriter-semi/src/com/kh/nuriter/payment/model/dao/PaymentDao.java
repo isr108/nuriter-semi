@@ -83,9 +83,16 @@ public class PaymentDao {
 		
 		try {
 			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, pd.getPid());
+			pstmt.setString(2, pd.getCardNum());
+			
+			result3 = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			close(pstmt);
 		}
 		
 		

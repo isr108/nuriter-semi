@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
 <title>Insert title here</title>
 <style>
 	/*   #main1{
@@ -51,6 +55,7 @@
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/common/reportedMember.jsp">신고관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/selectNuribossList.nu">누리장관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/common/goneMember.jsp">탈퇴회원관리</a></li>
+        <li id="web-font" onclick="blackList();">누리장 신고관리</li>
         <hr class="colorgraph">
         <li id="web-font"><a style="font-size:1em;" href="#">게시글관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/admin/nuriPosts.jsp">누리터관리</a></li>
@@ -61,5 +66,17 @@
      </ul>
  <!-- </div>	 -->
  </div>	
+ 
+ <script>
+ function blackList(){
+	 locaton.href="<%=request.getContextPath()%>/reportlist.rl";
+	
+ }
+ </script>
+ 
+ 
+ 
+ 
+ 
 </body>
 </html>
