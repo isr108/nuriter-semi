@@ -142,6 +142,7 @@
 					<th><div style="width:50px">참가비</div></th>
 					<th><div style="width:100px">개설일자</div></th>
 					<th><div style="width:100px">참여종료하기</div></th>
+					<th><div style="width:100px">환불신청하기</div></th>
 				</tr>
 				
 				 <% for(Nuriter n : list){ %>
