@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.nuriter.attend.model.service.AttendService;
 import com.kh.nuriter.attend.model.vo.Attendprint;
+import com.kh.nuriter.attend.model.vo.Enter;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
 
@@ -36,6 +37,8 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nunum = request.getParameter("nunum");
 		String usernumber = request.getParameter("usernumber");
+		
+		ArrayList<Enter> en = new AttendService().enterprint(nunum);
 		
 		ArrayList<Attendprint> att = new AttendService().attendprint(nunum);
 		
