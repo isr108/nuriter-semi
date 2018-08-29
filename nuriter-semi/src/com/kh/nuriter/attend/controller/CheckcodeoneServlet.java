@@ -3,7 +3,6 @@ package com.kh.nuriter.attend.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,11 +35,14 @@ public class CheckcodeoneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String checkcode = request.getParameter("checkcode");
 		String usernum = request.getParameter("userNum");
+		String nunum = request.getParameter("nunum");
+		
+		System.out.println("서블릿 nunum : " + nunum);
 		System.out.println("서블릿 체크코드 : " + checkcode);
 		System.out.println("서블릿 usernum : " + usernum);
 			
-		AttendCode atcode = new AttendCodeService().codeCheck(checkcode);
-		String nunum = atcode.getNuriNumber();
+		AttendCode atcode = new AttendCodeService().codeCheck(nunum);
+		/*String nunum = atcode.getNuriNumber();*/
 		
 		System.out.println("서블릿 atcode:" + atcode);
 		
@@ -59,6 +61,7 @@ public class CheckcodeoneServlet extends HttpServlet {
 			out.close();*/
 			
 		/*}else{*/
+		PrintWriter out = response.getWriter();
 		if(atcode.getAttendCodeid().equals(checkcode)){
 			if(attend == null){
 				int result = new AttendService().insertattend(checkcode, usernum);
@@ -77,7 +80,7 @@ public class CheckcodeoneServlet extends HttpServlet {
 				view.forward(request, response);
 			}*/
 			System.out.println(result);
-			PrintWriter out = response.getWriter();
+			
 			
 			if(result >0){
 				out.append("fail");
@@ -87,6 +90,8 @@ public class CheckcodeoneServlet extends HttpServlet {
 			
 			out.flush();
 			out.close();
+			}else{
+				out.append("success");
 			}
 		/*}*/
 		}

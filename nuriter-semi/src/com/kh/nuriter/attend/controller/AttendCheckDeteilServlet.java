@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.nuriter.attend.model.service.AttendService;
+import com.kh.nuriter.attend.model.vo.Attend;
 import com.kh.nuriter.member.model.vo.Member;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
 import com.kh.nuriter.nuriter.model.vo.Nuriboss;
@@ -36,8 +38,14 @@ public class AttendCheckDeteilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nunum = request.getParameter("nunum");
+		String usernum= request.getParameter("usernumber");
 		
 		Nuriter n = new NuriterService().selectOpenOne(nunum);
+		
+		
+		ArrayList<Attend> attend = new AttendService().attendOk(usernum);
+		
+		System.out.println("서비스 attendOk attend : " + attend);
 		
 		String page ="";
 		
@@ -47,6 +55,7 @@ public class AttendCheckDeteilServlet extends HttpServlet {
 		if(n != null){
 			page = "views/attend/csCheckone.jsp";
 			request.setAttribute("n", n);
+			request.setAttribute("attend", attend);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패");

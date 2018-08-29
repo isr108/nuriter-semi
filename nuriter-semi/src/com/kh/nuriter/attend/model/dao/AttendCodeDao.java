@@ -98,7 +98,7 @@ try {
 		
 	}
 
-	public AttendCode codeCheck(Connection con, String checkcode) {
+	public AttendCode codeCheck(Connection con, String nunum) {
 		AttendCode atcode = null;
 		
 		PreparedStatement pstmt = null;
@@ -114,10 +114,10 @@ try {
 			rset = pstmt.executeQuery();*/
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, checkcode);
+			pstmt.setString(1, nunum);
 			rset = pstmt.executeQuery();
-			System.out.println("dao 체크코드1 : "+ checkcode);
-			System.out.println("rest : " + rset);
+			System.out.println("dao 체크코드1 : "+ nunum);
+			System.out.println("rest1 : " + rset);
 			
 			while(rset.next()){	
 				atcode = new AttendCode();
