@@ -461,5 +461,37 @@ public ArrayList<HashMap<String, Object>> selectNuriterComment(String nuriNum) {
 	return commentList;
 }
 
+public int updateMemberGrade(String num2) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateMemberGrade(con, num2);
+	
+	if(result > 0){
+		commit(con);
+	}else{
+		rollback(con);
+	}
+
+	close(con);
+
+	return result;
+}
+
+public int deleteNuriboss(String num) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().deleteNuriboss(con, num);
+	
+	if(result > 0){
+		commit(con);
+	}else{
+		rollback(con);
+	}
+
+	close(con);
+
+	return result;
+}
+
 
 }

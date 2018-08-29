@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*"%>
-<% 
-	Nuriter n = (Nuriter)request.getAttribute("n"); 
-	String nuriNum=(String)request.getAttribute("num");
+    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
+<% Nuriter n = (Nuriter)request.getAttribute("n"); 
+   String nuriNum=(String)request.getAttribute("num");
+   PaymentDetail detail =(PaymentDetail)request.getAttribute("pd");
+   
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -35,9 +37,10 @@ hr {
 .content{
    margin-top: 170px;
    border:1px solid white;
+   width:40%;
    margin-left:auto;
    margin-right:auto;
-   width: 1400px;
+   width: 1200px;
    min-height: 935px;
 }
 
@@ -50,7 +53,7 @@ hr {
    border-radius: 6px;
    padding-top:50px;
    margin-top: 50px;
-   width:800px;
+   width:705px;
    height:auto;
    float:left;
    overflow:hidden;
@@ -208,13 +211,13 @@ img {
 	height: auto; 
 }
 .commentDiv input[type=text]{
-	    border-radius: 3px;
-		margin-top:50px;
-	    width:690px;
-	    height:100px;
-		box-sizing: border-box;
-	    border-style: solid;
-	    border-color: rgb(241, 196, 15);
+       border-radius: 3px;
+      margin-top:50px;
+       width:600px;
+       height:100px;
+      box-sizing: border-box;
+       border-style: solid;
+       border-color: rgb(241, 196, 15);
 }
 .commentBtn {
 	width:100px;
@@ -265,12 +268,14 @@ img {
 #web-font-Nanum{
 	font-family: 'Song Myung', serif;
 }
+
 </style>
 </head>
 <body>
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
    
+
 <div class="content">
 	   <div class="leftBox">
 	   	<div class="images">
@@ -288,7 +293,7 @@ img {
 				</table>
 		</div>
    	   </div>
-   
+                                      
    <div class="rightBox">
    	  <br>
    	  
@@ -321,7 +326,7 @@ img {
         
         <hr color="red" size="10px">
         
-        <div class="likeOrAngry" align="center">
+        <div class="likeOrAngry">
         
 	        <div class="hobbyDiv">
 	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font" size="5px">관심누리터 등록</font>
@@ -348,6 +353,7 @@ img {
          
          <div id="enterDiv" align="center">
          	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
+
          </div>
          
     </div>
@@ -363,7 +369,6 @@ img {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
-
 $(function(){
 	$(function(){
 		window.onload=function(){
@@ -577,5 +582,12 @@ function cash(){
  }
 
 </script>    
+<script>
+   $(function(){
+      if(<%=detail%>!= null){
+         alert('결제가 완료 되었습니다');
+      }
+   });
+</script>
 </body>
 </html>

@@ -987,7 +987,9 @@ public class NuriterDao {
                nb = new Nuriboss();
                
                nb.setApplyNum(rset.getString("apply_id"));
-               nb.setUserNum(rset.getString("user_name"));
+               nb.setUserNum(rset.getString("user_number"));
+               nb.setUserNum(rset.getString("user_number"));
+               nb.setUserName(rset.getString("user_name"));
                nb.setCategoryNum(rset.getString("category_name"));
                nb.setBossContent(rset.getString("newnuri_content"));
                nb.setPotoPath(rset.getString("planfile_path"));
@@ -1689,7 +1691,6 @@ public class NuriterDao {
 		return commentList;
 	}
 
-
 	public int interestCount(Connection con, String num) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -1740,16 +1741,59 @@ public class NuriterDao {
 			}
 			
 			System.out.println(enterCount + "명이 신청을 했습니다.");
+      
+      } catch (SQLException e) {
+			  e.printStackTrace();
+		  } finally {
+        close(rset);
+			  close(pstmt);
+		}
+		
+		return enterCount;
+
+	}
+
+	public int updateMemberGrade(Connection con, String num2) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = prop.getProperty("updateMemberGradeEB");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num2);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public int deleteNuriboss(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteNuribossEB");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
-			close(pstmt);
+      
+      	close(pstmt);
 		}
-		
-		return enterCount;
-	}
+		return result;
 
+	}
 
 }
