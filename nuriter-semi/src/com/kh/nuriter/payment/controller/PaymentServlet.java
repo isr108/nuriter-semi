@@ -65,27 +65,29 @@ public class PaymentServlet extends HttpServlet {
        String page="";
       if(result >0){
           result2 = new PaymentService().InsertApplication(p1);
+          	System.out.println("성공1");
       }else{
-         System.out.println("실패");
+         System.out.println("실패1");
       }
       
       
       if(result2 > 0){
+    	  response.sendRedirect("/ns/views/member/categoryDetail.jsp");
          result3 = new PaymentService().InsertPaymentDetail(pd);
-         System.out.println("성공");
+         System.out.println("성공2");
       }else{
-         System.out.println("실패");
+         System.out.println("실패2");
       }
       if(result3 >0){
-         System.out.println("성공");
-         page="views/member/categoryDetail.jsp";
-         request.setAttribute("pd", pd);
+         System.out.println("성공3");
+         /*page="views/member/categoryDetail.jsp";
+         request.setAttribute("pd", pd);*/
       }else{
-         System.out.println("실패");
+         System.out.println("실패3");
       }
-      
-      RequestDispatcher view = request.getRequestDispatcher(page);
-      view.forward(request, response);
+      /*response.sendRedirect("/ns/views/member/categoryDetail.jsp");*/
+     /*RequestDispatcher view = request.getRequestDispatcher(page);
+     view.forward(request, response);*/
    
    }
 

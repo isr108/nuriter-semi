@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
 <% Nuriter n = (Nuriter)request.getAttribute("n"); 
    String nuriNum=(String)request.getAttribute("num");
-   PaymentDetail detail =(PaymentDetail)request.getAttribute("pd");
+   /* PaymentDetail detail =(PaymentDetail)request.getAttribute("pd"); */
    
 
 %>
@@ -583,11 +583,11 @@ function cash(){
 
 </script>    
 <script>
-   $(function(){
+   <%-- $(function(){
       if(<%=detail%>!= null){
          alert('결제가 완료 되었습니다');
       }
-   });
+   }); --%>
 </script>
 </body>
 </html>
