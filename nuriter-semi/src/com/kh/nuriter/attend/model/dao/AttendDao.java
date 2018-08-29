@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.kh.nuriter.attend.model.vo.Attend;
 import com.kh.nuriter.attend.model.vo.AttendCode;
 import com.kh.nuriter.attend.model.vo.Attendprint;
+import com.kh.nuriter.attend.model.vo.Enter;
 
 public class AttendDao {
 private Properties prop = new Properties();
@@ -177,10 +178,10 @@ private Properties prop = new Properties();
 			att = new ArrayList<Attendprint>();	
 			while(rset.next()){	
 				Attendprint attend1 = new Attendprint();
-				attend1.setAttendCodeId(rset.getString("attendCodeId"));
-				attend1.setNickName(rset.getString("nickName"));
-				attend1.setNuriNumber(rset.getString("nuriNumber"));
-				attend1.setAttendDate(rset.getDate("attendDate"));
+				attend1.setAttendCodeId(rset.getString("attendcode_id"));
+				attend1.setNickName(rset.getString("nickname"));
+				attend1.setNuriNumber(rset.getString("nuri_number"));
+				attend1.setAttendDate(rset.getDate("attend_date"));
 			
 				att.add(attend1);
 			}
@@ -195,6 +196,55 @@ private Properties prop = new Properties();
 		}
 		
 		return att;
+	}
+
+
+	public ArrayList<Enter> enterprint(Connection con, String nunum) {
+	 ArrayList<Enter> en = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		/*String query=null;*/		
+		String query = prop.getProperty("enterPrint");
+		
+		try {	
+			/*pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nunum);
+			pstmt.setString(2, nunum);
+			rset = pstmt.executeQuery();*/
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nunum);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("dao nunum : "+ nunum);
+			System.out.println("rest1 : " + rset);
+			
+			if(rset != null){
+			en = new ArrayList<Enter>();	
+			while(rset.next()){	
+				Enter enter = new Enter();
+				enter.setUserNumber(rset.getString("user_number"));
+				enter.setNickName(rset.getString("nickname"));
+				enter.setNuriNumber(rset.getString("nuri_number"));
+				enter.setEnterDate(rset.getDate("enter_date"));
+				enter.setTerminateDate(rset.getDate("terminate_date"));
+				enter.setPhone(rset.getString("phone"));
+			
+				en.add(enter);
+			}
+		 }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		return en;
 	}
 
 }

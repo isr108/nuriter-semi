@@ -13,6 +13,7 @@ import com.kh.nuriter.attend.model.dao.AttendDao;
 import com.kh.nuriter.attend.model.vo.Attend;
 import com.kh.nuriter.attend.model.vo.AttendCode;
 import com.kh.nuriter.attend.model.vo.Attendprint;
+import com.kh.nuriter.attend.model.vo.Enter;
 
 public class AttendService {
 
@@ -70,6 +71,13 @@ public class AttendService {
 		System.out.println("서비스 attendprint : " + att);
 		
 		return att;
+	}
+
+	public ArrayList<Enter> enterprint(String nunum) {
+		Connection con=getConnection();
+		
+		ArrayList<Enter> en = new AttendDao().enterprint(con, nunum);
+		return null;
 	}
 
 }
