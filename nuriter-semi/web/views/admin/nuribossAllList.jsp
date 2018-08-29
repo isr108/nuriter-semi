@@ -188,6 +188,8 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox">
 							<tr>
+								<th></th>
+								<th></th>
 								<th>누리장 승인일자</th>
 								<th>이름</th>
 								<th>카테고리</th>
@@ -198,13 +200,13 @@ button:hover {
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<input type="hidden" value="<%=nb.getApplyNum()%>">
-								<%-- <input type="text" values="<%=nb.getUserNum()%> %>"> --%>
+								<td id="test1"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
+								<td id="test2"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
 								<th><div style="color:#5AAEFF;">승인하기</button></th>
-								<td><div style="color:#FF5E00;">삭제하기</div></td>
+								<td id="test3"><div style="background:yellow; color:#FF5E00;">삭제하기</div></td>
 							</tr>
 							<%
 								}
@@ -214,24 +216,33 @@ button:hover {
 						
 						<script>
 						$(function(){
-							
 							$(".listBox td").mouseenter(function(){
 								$(this).parent().css({"background":"#eaeaea", "cursor":"pointer"});
 							}).mouseout(function(){
 								$(this).parent().css({"background":"white"});
 							}).click(function(){
-								var num = $(this).parent().children("input").val();
-								/* alert("야 !!! " + num); */
+								var num = $(this).parent().children("#test1").children("input").val();
+								alert("야 !!! " + num);
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
 							$(".listBox th").click(function(){
-								var num = $(this).parent().children("input").val();
-								console.log(num);
-								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?num="+num;
+								var applyNum = $(this).parent().children("#test1").children("input").val();
+								var userNum = $(this).parent().children("#test2").children("input").val();
+								console.log(applyNum);
+								console.log(userNum);
+								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
+								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							
-							
+							$(".listBox #test3").click(function(){
+								var applyNum = $(this).parent().children("#test1").children("input").val();
+								var userNum = $(this).parent().children("#test2").children("input").val();
+								console.log(applyNum);
+								console.log(userNum);
+								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
+								location.href="<%=request.getContextPath()%>/deleteNuriboss.nu?applyNum="+applyNum+"&userNum="+userNum;
+							});
 							
 						});
 						</script>

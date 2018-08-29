@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
- * Servlet implementation class UpdateNuriBossStatusServlet
+ * Servlet implementation class DeleteNuriBossServlet
  */
-@WebServlet("/updateNuribossStatus.nu")
-public class UpdateNuriBossStatusServlet extends HttpServlet {
+@WebServlet("/deleteNuriboss.nu")
+public class DeleteNuriBossServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateNuriBossStatusServlet() {
+    public DeleteNuriBossServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,23 +28,18 @@ public class UpdateNuriBossStatusServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("누리장 승인 받기 위한 서블릿 이동 완료!");
 		String num = request.getParameter("applyNum");
-		System.out.println(num);
-		
 		String num2 = request.getParameter("userNum");
-		System.out.println(num2);
 		
-		int result = new NuriterService().updateNuribossStatus(num);
-		int result2 = new NuriterService().updateMemberGrade(num2);
+		System.out.println("누리장신청번호 : " + num + " 유저번호 : " + num2);
 		
-		String page = "";
+		int result = new NuriterService().deleteNuriboss(num);
 		
-		if(result > 0 && result > 0){
-			System.out.println("누리장 승인 및 멤버 등급 변경 완료!");
+		
+		if(result > 0){
 			response.sendRedirect(request.getContextPath() + "/selectNuriBossDetailList.nu");
 		}else{
-			request.setAttribute("msg", "누리장 승인 실패!");
+			request.setAttribute("msg", "누리장 승인 거부 완료!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
