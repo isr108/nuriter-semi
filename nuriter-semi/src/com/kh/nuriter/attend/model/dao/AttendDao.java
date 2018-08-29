@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.nuriter.attend.model.vo.Attend;
@@ -200,13 +201,17 @@ private Properties prop = new Properties();
 
 
 	public ArrayList<Enter> enterprint(Connection con, String nunum) {
-	 ArrayList<Enter> en = null;
+		/*ArrayList<HashMap<String, Object>> en = null;
+		HashMap<String, Object> hmap = null;*/
+		ArrayList<Enter> en = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		/*String query=null;*/		
 		String query = prop.getProperty("enterPrint");
+		
+		System.out.println(query);
 		
 		try {	
 			/*pstmt = con.prepareStatement(query);
@@ -218,14 +223,17 @@ private Properties prop = new Properties();
 			pstmt.setString(1, nunum);
 			
 			rset = pstmt.executeQuery();
+			
 			System.out.println("dao nunum : "+ nunum);
 			System.out.println("rest1 : " + rset);
 			
 			if(rset != null){
-			en = new ArrayList<Enter>();	
-			while(rset.next()){	
+			/*en = new ArrayList<HashMap<String, Object>>();*/
+			en = new ArrayList<Enter>();
+			
+			while(rset.next()){
 				Enter enter = new Enter();
-				enter.setUserNumber(rset.getString("user_number"));
+				enter.setNuriNumber(rset.getString("user_number"));
 				enter.setNickName(rset.getString("nickname"));
 				enter.setNuriNumber(rset.getString("nuri_number"));
 				enter.setEnterDate(rset.getDate("enter_date"));
@@ -233,6 +241,18 @@ private Properties prop = new Properties();
 				enter.setPhone(rset.getString("phone"));
 			
 				en.add(enter);
+				
+				/*hmap = new HashMap<String, Object>();
+				
+				hmap.put("user_number", rset.getString("user_number"));
+				hmap.put("nickname",rset.getString("nickname"));
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("enter_date", rset.getDate("enter_date"));
+				hmap.put("terminate_date", rset.getDate("terminate_date"));
+				hmap.put("phone", rset.getString("phone"));
+				
+				en.add(hmap);*/
+				
 			}
 		 }
 			
@@ -244,6 +264,7 @@ private Properties prop = new Properties();
 			
 		}
 		
+		System.out.println("dao enterprint : " + en);
 		return en;
 	}
 

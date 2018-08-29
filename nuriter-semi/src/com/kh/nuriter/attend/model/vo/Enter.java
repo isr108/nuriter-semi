@@ -64,7 +64,7 @@ public class Enter {
 		this.terminateDate = terminateDate;
 	}
 	
-	public String Phone() {
+	public String getPhone() {
 		return phone;
 	}
 

@@ -2,6 +2,7 @@ package com.kh.nuriter.attend.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +39,10 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 		String nunum = request.getParameter("nunum");
 		String usernumber = request.getParameter("usernumber");
 		
+		/*ArrayList<HashMap<String, Object>> en = new AttendService().enterprint(nunum);*/
 		ArrayList<Enter> en = new AttendService().enterprint(nunum);
+		
+		System.out.println("서블릿 enterprint: " + en);
 		
 		ArrayList<Attendprint> att = new AttendService().attendprint(nunum);
 		
@@ -54,6 +58,8 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 		if(n != null){
 			page = "views/attend/csCheckjang.jsp";
 			request.setAttribute("n", n);
+			request.setAttribute("en", en);
+			request.setAttribute("att", att);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패");
