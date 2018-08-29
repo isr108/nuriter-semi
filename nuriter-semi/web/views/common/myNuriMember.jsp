@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.attend.model.vo.*"%>
  <% 
-	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
+	ArrayList<Enter> list = (ArrayList<Enter>)request.getAttribute("list");
  	System.out.println("list출력  : " + list);
  	PageInfo pi = (PageInfo)request.getAttribute("pi");
  	System.out.println("pi출력 : " + pi);
@@ -136,22 +136,21 @@
 					<th><div style="width:150px">누리원 이름</div></th>
 					<!-- <th><div style="width:100px">누리장명</div></th> -->
 					<th><div style="width:100px">연락처</div></th>
-					<th><div style="width:200px">계좌정보</div></th>
+					<!-- <th><div style="width:200px">계좌정보</div></th> -->
 					<th><div style="width:100px">출석정보</div></th>
 				</tr>
 				
-				 <% for(Nuriter n : list){ %>
+				 <% for(Enter e : list){ %>
 				<tr>
-					<input type="hidden" id="nuriNum" name="nuriNum" value="<%=n.getNuriNum()%>">
-				
-					<td><div class="content"><%=n.getNuriTitle()%></div></td>
+					<input type="hidden" id="userNum" name="userNum" value="<%=e.getUserNum()%>">
+					<td><div class="content"><%=e.getNickname()%></div></td>
 					<%-- <td><div class="content"><%=n.getOwnerNum()%></div></td> --%>
-					<td><div class="content"><%=n.getStartDate()%></div></td>
+					<%-- <td><div class="content"><%=n.getStartDate()%></div></td>
 					<td><div class="content"><%=n.getEndDate()%></div></td>
 					<td><div class="content"><%=n.getPlace()%></div></td>
-					<td><div class="content"><%=n.getPrice()%></div></td>
-					<td><div class="content"><%=n.getApplicationDate()%></div></td>
-					<td><div class="content"><input type="button" value="종료신청" onclick="deleteMyNuri();"></div></td>
+					<td><div class="content"><%=n.getPrice()%></div></td> --%>
+					<td><div class="content"><%=e.getPhone()%></div></td>
+					<td><div class="content"><input type="button" value="확인하기" onclick="checkMyNuriAttend();"></div></td>
 				</tr>
 				<% } %>
 				</tbody>
@@ -162,18 +161,18 @@
 			<!-- <div class="pageArea" align="center"> -->
 			<div class="pagination" align="center" id="web-font">
    			<br>
-   			<a href="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=1'"><<</a>
+   			<a href="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>
    			<a disabled><</a>
    			<% }else{ %>
-   			<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%=currentPage - 1%>'">&laquo;</a>
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=<%=currentPage - 1%>'">&laquo;</a>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
    				<a class="active" disabled><%= p %></a>
    			<%  }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= p %>'"><%= p %></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=<%= p %>'"><%= p %></a>
    			<%  } %>
    			
    			<% } %>
@@ -193,18 +192,11 @@
 
 </body>
 <script>
-function deleteMyNuri(){
+function checkMyNuriAttend(){
 	//var nuriNum = document.getElementById("nuriNum").value;
-	var nuriNum = $("#nuriNum").val(); 
-	console.log(nuriNum);
-	var answer = window.confirm('종료 후 재 신청이 불가능합니다. 그래도 종료하시겠습니까?');
-	<%-- var userNumber = <%=loginUser.getUserNumber()%> --%>
-	if(answer == true){
-		alert('종료 처리되었습니다.');
-		location.href="<%=request.getContextPath()%>/deleteMyNuri.nu?nuriNum=" + nuriNum;
-	}else{
-		alert('종료가 취소되었습니다.');
-	}
+	var userNum = $("#userNum").val(); 
+	console.log(userNum);
+		location.href="<%=request.getContextPath()%>/?userNum=" + userNum;
 };
 </script>
 </html>
