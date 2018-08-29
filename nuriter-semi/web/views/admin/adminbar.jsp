@@ -59,7 +59,7 @@
         <hr class="colorgraph">
         <li id="web-font"><a style="font-size:1em;" href="#">게시글관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/views/admin/nuriPosts.jsp">누리터관리</a></li>
-        <li id="web-font"><a href="<%=request.getContextPath()%>/views/admin/adminNotice.jsp">공지사항</a></li>
+        <li id="web-font"><a href="<%=request.getContextPath()%>/selectList.no">공지사항</a></li>
         <li id="web-font"><a href="#">고객문의관리</a></li>
         <li id="web-font"><a href="#">자주묻는질문</a></li>
         

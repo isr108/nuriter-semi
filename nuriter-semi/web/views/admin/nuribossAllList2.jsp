@@ -190,11 +190,10 @@ button:hover {
 							<tr>
 								<th></th>
 								<th></th>
-								<th>누리장 신청일자</th>
+								<th>누리장 승인일자</th>
 								<th>이름</th>
 								<th>카테고리</th>
-								<th>승인</th>
-								<th>삭제</th>
+								<th>승인취소</th>
 							</tr>
 							<%
 								for (Nuriboss nb : bossList) {
@@ -205,8 +204,7 @@ button:hover {
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<td id="test4"><div style="color:#5AAEFF; text-align:center;">승인하기</div></td>
-								<td id="test3"><div style="color:#FF5E00;">삭제하기</div></td>
+								<td id="test3"><div style="color:#FF5E00;">취소하기</div></td>
 							</tr>
 							<%
 								}
@@ -226,18 +224,6 @@ button:hover {
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
-							$(".listBox #test4").mouseenter(function(){
-								$(this).css({"background":"#dde8fc"});
-							}).mouseout(function(){
-								$(this).css({"background":"white"});
-							}).click(function(){
-								var applyNum = $(this).parent().children("#test1").children("input").val();
-								var userNum = $(this).parent().children("#test2").children("input").val();
-								console.log(applyNum);
-								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
-								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?applyNum="+applyNum+"&userNum="+userNum;
-							});
 							
 							$(".listBox #test3").mouseenter(function(){
 								$(this).css({"background":"#fed8cd"});
@@ -249,7 +235,7 @@ button:hover {
 								console.log(applyNum);
 								console.log(userNum);
 								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
-								location.href="<%=request.getContextPath()%>/deleteNuriboss.nu?applyNum="+applyNum+"&userNum="+userNum;
+								location.href="<%=request.getContextPath()%>/deleteNuriboss2.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							
 						});
@@ -260,31 +246,31 @@ button:hover {
 							<br>
 
 
-							<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=1'"><<</a>
+							<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu?currentPage=1'"><<</a>
 							<% if (currentPage <= 1) {%>
 							<a disabled><</button> 
 							<% } else { %> 
-							<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=<%=currentPage - 1%>'"><</a>
+							<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu?currentPage=<%=currentPage - 1%>'"><</a>
 							<% } %> 
 							<% for (int p = startPage; p <= endPage; p++) {
  								if (p == currentPage) { %> 
  									<a disabled><%=p%></a> 
  							 <% } else { %> 
- 							 <a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=<%=p%>'"><%=p%></a>
+ 							 <a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu?currentPage=<%=p%>'"><%=p%></a>
 							<%	} %> 
 							<% } %> 
 							<% if (currentPage >= maxPage) { %> 
 									<a disabled>></a> 
 							<% }else { %> 
-								<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=<%=currentPage + 1%>'">></a>
-							<% } %> <a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu?currentPage=<%=maxPage%>'">>></a>
+								<a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu?currentPage=<%=currentPage + 1%>'">></a>
+							<% } %> <a onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu?currentPage=<%=maxPage%>'">>></a>
 
 
 								<br> <br> <br>
 
 								<div id="search-select">
 									<select id="web-font">
-										<option id="web-font">신청일자</option>
+										<option id="web-font">승인일자</option>
 										<option id="web-font">이름</option>
 										<option id="web-font">카테고리</option>
 									</select>

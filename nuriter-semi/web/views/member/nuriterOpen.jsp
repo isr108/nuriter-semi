@@ -275,10 +275,6 @@
     $(document).ready(function(){
     	console.log("11");
     	console.log(loginUser==null);
-      if(loginUser == null){
-    	  console.log("22");
-      	response.sendRedirect("views/member/memberJoinForm.jsp");
-      }
     });
     
     //사진 출력

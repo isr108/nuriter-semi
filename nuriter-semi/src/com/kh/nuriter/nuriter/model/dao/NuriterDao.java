@@ -725,7 +725,8 @@ public class NuriterDao {
 				nb = new Nuriboss();
 
 				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_name"));
+				nb.setUserNum(rset.getString("user_number"));
+				nb.setUserName(rset.getString("user_name"));
 				nb.setCategoryNum(rset.getString("category_name"));
 				nb.setBossContent(rset.getString("newnuri_content"));
 				nb.setPotoPath(rset.getString("planfile_path"));
@@ -1795,5 +1796,6 @@ public class NuriterDao {
 		return result;
 
 	}
+
 
 }

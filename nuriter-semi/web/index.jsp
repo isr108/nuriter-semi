@@ -704,7 +704,6 @@
 	   </div>
 	   
 	   <div id="notice" onclick="goNotice();">
-	   <!-- <div id="notice" onclick="location.href='views/notice/notice.jsp'" align="left"> -->
 	   	<h4>공지사항</h4>
 	      <ul>
 	         <li>고객센터 운영시간 변경안내</li>
