@@ -198,10 +198,10 @@ button:hover {
 						<script>
 								$(function(){
 										
-									$(".listBox td").mouseenter(function(){
-										$(this).parent().css({"cursor":"pointer"});
+									$(".listBox #checkBtn").mouseenter(function(){
+										$(this).css({"cursor":"pointer", "background":"#dde8fc"});
 									}).mouseout(function(){
-										$(this).parent().css({"background":"white"});
+										$(this).css({"background":"white"});
 									}).click(function(){
 										var num = $(this).parent().children("input").val();
 										alert("야 !!! " + num);
@@ -257,8 +257,6 @@ button:hover {
 						<div class="pagination2" align="center">
 
 							<br>
-							<br>
-							<br>
 
 							<input type="button" align="center" class="button"
 								style="width: 200px;" value="신청회원 전체보기"
@@ -271,9 +269,9 @@ button:hover {
 					<div id="child3">
 						<h1 id="web-font">누리장 회원</h1>
 						<br>
-						<table border="2" id="web-font">
+						<table border="2" id="web-font" class="listBox2">
 							<tr>
-								<th width="400px">신청일자</th>
+								<th width="400px">승인일자</th>
 								<th width="400px">이름</th>
 								<th width="400px">카테고리</th>
 								<th width="400px">활동 계획서</th>
@@ -285,15 +283,32 @@ button:hover {
 								<input type="hidden" class="applyNum"
 									value="<%=nb2.getApplyNum()%>">
 								<td><%=nb2.getApplyDate()%></td>
-								<td><%=nb2.getUserNum()%></td>
+								<td><%=nb2.getUserName()%></td>
 								<td><%=nb2.getCategoryNum()%></td>
-								<td id="checkBtn" style="color: #5AAEFF;">확인하기</td>
+								<td id="checkBtn2" style="color: #5AAEFF;">확인하기</td>
 							</tr>
 							<%
 								}
 							%>
 							
 						</table>
+
+						<script>
+								$(function(){
+										
+									$(".listBox2 #checkBtn2").mouseenter(function(){
+										$(this).css({"cursor":"pointer", "background":"#dde8fc"});
+									}).mouseout(function(){
+										$(this).css({"background":"white"});
+									}).click(function(){
+										var num = $(this).parent().children("input").val();
+										alert("야 !!! " + num);
+										location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
+									});
+										
+								});
+									
+						</script>
 
 						<!-- 페이지처리 -->
 						<div class="pagination" align="center">
@@ -335,15 +350,16 @@ button:hover {
 
 						<div class="pagination2" align="center">
 
-							<br> <!-- <a href="#">&laquo;</a> <a href="#" class="active">1</a>
+							<br> 
+							<!-- <a href="#">&laquo;</a> <a href="#" class="active">1</a>
 							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#">6</a> <a href="#">&raquo;</a> --> <br> <br> <br>
+							<a href="#">6</a> <a href="#">&raquo;</a> --> 
 
 							<!-- <button id="web-font">누리장 전체보기</button> -->
 							<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossApplyList.jsp'">누리장 전체보기</button> --%>
 							<input type="button" class="button" style="width: 200px;"
 								value="누리장 전체보기"
-								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu'">
+								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu'">
 						</div>
 					</div>
 				</div>
