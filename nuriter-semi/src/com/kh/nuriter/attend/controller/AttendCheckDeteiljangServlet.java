@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.attend.model.service.AttendService;
+import com.kh.nuriter.attend.model.vo.Attendprint;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
-import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 import com.kh.nuriter.nuriter.model.vo.Nuriter;
-import com.kh.nuriter.nuriter.model.vo.PageInfo;
 
 /**
  * Servlet implementation class AttendCheckDeteiljangServlet
@@ -36,7 +35,11 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nunum = request.getParameter("nunum");
+		String usernumber = request.getParameter("usernumber");
 		
+		ArrayList<Attendprint> att = new AttendService().attendprint(nunum);
+		
+		System.out.println("서블릿 : att" + att );
 		
 		Nuriter n = new NuriterService().selectOpenOne(nunum);
 		

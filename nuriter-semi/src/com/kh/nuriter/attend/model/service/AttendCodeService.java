@@ -43,9 +43,9 @@ public class AttendCodeService {
 		return result;
 	}
 
-	public AttendCode codeCheck(String checkcode) {
+	public AttendCode codeCheck(String nunum) {
 		Connection con=getConnection();
-		AttendCode atcode = new AttendCodeDao().codeCheck(con, checkcode);
+		AttendCode atcode = new AttendCodeDao().codeCheck(con, nunum);
 		
 		commit(con);
 		

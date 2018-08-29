@@ -16,6 +16,8 @@
  	int startPage = pi.getStartPage();
  	int endPage = pi.getEndPage(); */
  	
+ 	String usernumber=request.getParameter("usernumber");
+ 	
  	Nuriter n = (Nuriter)request.getAttribute("n");
  	
  	String nunum = request.getParameter("nunum");
@@ -133,13 +135,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
    		float:left;
    		
    }
-   /* .calender1{
-   		/* width:100px; */
+    /* .calender1{
+   		width:100px; 
    		display:inline-block;
    		
-  /* } */
+   } */
   
-   td {font-family: "돋움"; font-size: 9pt; color:#595959;}
+   /* td {font-family: "돋움"; font-size: 9pt; color:#595959;}
 
              th {font-family: "돋움"; font-size: 9pt; color:#000000;}
 
@@ -158,7 +160,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 
             A:active { font-size:9pt; font-family:'Jua', sans-serif;color:red; text-decoration:none; }
 
-            A:hover { font-size:9pt; font-family:'Jua', sans-serif;color:red;text-decoration:none;}
+            A:hover { font-size:9pt; font-family:'Jua', sans-serif;color:red;text-decoration:none;} */
   
 </style>
 </head>
@@ -254,7 +256,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <table width="80%" border="0" cellspacing="1" cellpadding="1">
 <tr>
        <td align ="right" style="border:1px solid #FFFFFF">
-             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendcheckdeteiljang.nu'" value="오늘"/>
+             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;usernumber=<%=usernumber%>'" value="오늘"/>
        </td>
 </tr>
 </table>
@@ -271,11 +273,11 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
        </tr>      
        <tr>
              <td align="center" >
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <b>&lt;&lt;</b><!-- 이전해 -->
                     </a>
                     <%if(month > 0 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>&amp;usernumber=<%=usernumber%>" target="_self">
                    
                            <b>&lt;</b><!-- 이전달 -->
                     </a>
@@ -287,13 +289,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
                     <%=month+1%>월
                     &nbsp;&nbsp;
                     <%if(month < 11 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <!-- 다음달 --><b>&gt;</b>
                     </a>
                     <%}else{%>
                            <b>&gt;</b>
                     <%} %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?year=<%=year+1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <!-- 다음해 --><b>&gt;&gt;</b>
                     </a>
              </td>
@@ -341,6 +343,10 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <TR>
 
 <%
+int test = 0;
+int test2 = 0;
+
+
 //처음 빈공란 표시
 for(int index = 1; index < start ; index++ )
 {
@@ -350,6 +356,7 @@ for(int index = 1; index < start ; index++ )
 
 for(int index = 1; index <= endDay; index++)
 {
+	   test++;
        String color = "";
        if(newLine == 0){          color = "RED";
 
@@ -368,7 +375,7 @@ for(int index = 1; index <= endDay; index++)
        if(iUseDate == intToday ) {
              backColor = "#c9c9c9";
        } 
-       out.println("<TD valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
+       out.println("<TD <TD id='today"+test+"' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
 %>
 
        <font color='<%=color%>'>
@@ -410,22 +417,15 @@ while(newLine > 0 && newLine < 7)
 </DIV>
 </form>   
 </div>    
-    <div class="caleder1" style="width: 500px; height :300px; display:inline-block;margin-left: 2%;" align="center">
+    <div class="caleder1" style="width: 500px; height :300px; display:inline-block;margin-left: 13%;margin-top:  10%;" align="center">
     	<p style="width:50%">출석 누리원</p>
     	<table border="1" summary="" style="width:400px; height:30px;">
     		<tr>
-                    <th >이름</th>
-                    <th >출석</th>
+                <th style="text-align:center;">이름</th>
+                <th style="text-align:center;">출석</th>
                     
             </tr>
-            <tr>
-           		 <td>김정태</td>
-           		 <td></td>
-    		</tr>
-    		<tr>
-           		 <td>이선생</td>
-           		 <td></td>
-    		</tr>
+            
     	</table>
     
     </div>

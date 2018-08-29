@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*, com.kh.nuriter.member.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*, com.kh.nuriter.member.model.vo.*
+    ,com.kh.nuriter.attend.model.vo.*"%>
  
-<%--     <% Member loginUser = (Member)session.getAttribute("loginUser") --%>; %>
+<%--     <% Member loginUser = (Member)session.getAttribute("loginUser") --%>
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%@page import="java.util.Calendar"%>
@@ -15,11 +16,17 @@
  	int startPage = pi.getStartPage();
  	int endPage = pi.getEndPage(); */
  	
+ 	String usernumber=request.getParameter("usernumber");
+ 	
 	Nuriter n = (Nuriter)request.getAttribute("n");
- 	System.out.print("cscheckone n: " +n);
+ 	System.out.println("cscheckone n: " +n);
+ 	
+ 	ArrayList<Attend> attend = (ArrayList<Attend>)request.getAttribute("attend");
+ 	
+ 	System.out.println("attend one : " + attend);
  	
  	String nunum = request.getParameter("nunum");
- 	System.out.print("cscheckone nunum : " + nunum);
+ 	System.out.println("cscheckone nunum : " + nunum);
 %> 
 
 <%
@@ -268,6 +275,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 	</table>
 	<br>
 	<%-- <form id = "form1" action="<%=request.getContextPath()%>/checkcodeone.at" method="post"> --%>
+		<input type="hidden" id="nunum" name="nunum" value=<%=nunum%>>
 		<input type="hidden" id="userNum" name="userNum" value=<%=loginUser.getUserNumber()%>>
 		<input type="text" id="checkcode" name="checkcode" style="width: 250px; height: 30px;"
 						placeholder="출석코드">
@@ -301,7 +309,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <table width="80%" border="0" cellspacing="1" cellpadding="1">
 <tr>
        <td align ="right" style="border:1px solid #FFFFFF">
-             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>'" value="오늘"/>
+             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;usernumber=<%=usernumber%>'" value="오늘"/>
        </td>
 </tr>
 </table>
@@ -318,11 +326,11 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
        </tr>      
        <tr>
              <td align="center" >
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <b>&lt;&lt;</b><!-- 이전해 -->
                     </a>
                     <%if(month > 0 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>&amp;usernumber=<%=usernumber%>" target="_self">
                    
                            <b>&lt;</b><!-- 이전달 -->
                     </a>
@@ -334,13 +342,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
                     <%=month+1%>월
                     &nbsp;&nbsp;
                     <%if(month < 11 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <!-- 다음달 --><b>&gt;</b>
                     </a>
                     <%}else{%>
                            <b>&gt;</b>
                     <%} %>
-                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
                            <!-- 다음해 --><b>&gt;&gt;</b>
                     </a>
              </td>
@@ -416,12 +424,31 @@ for(int index = 1; index <= endDay; index++)
  
        int iUseDate = Integer.parseInt(sUseDate);
         
+       /* int attendDate = Integer.parseInt(attend.getAttendDate().toString()); */
+       System.out.println(iUseDate);
+       
        String backColor = "white";
 
        if(iUseDate == intToday ) {
              backColor = "#c9c9c9";
              test2 = test;
-       } 
+       }
+       for(Attend at: attend){
+    	 	 Date attendDate = at.getAttendDate();
+    	 	
+    	 	 SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
+
+    	 	 String to = transFormat.format(attendDate); 
+    	 	
+    	 	int attendDate1 = Integer.parseInt(to);
+    	 	
+    	 	if(iUseDate == attendDate1){
+    	    	   backColor = "#33ffff";
+    	 	
+    	 	}
+    	 	System.out.println("날짜 : " + attendDate1); 
+        
+       }
        out.println("<TD id='today"+test+"' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
 
       	System.out.println("test2 : " +test2);
@@ -490,13 +517,15 @@ while(newLine > 0 && newLine < 7)
 			$("#checkbutton").click(function(){
 				var checkcode = $("#checkcode").val();
 				var userNum = $("#userNum").val();
+				var nunum = $("#nunum").val();
 				console.log(checkcode);
 				console.log(userNum);
 				$.ajax({
 					url:"checkcodeone.at",
 					type:"post",
 					data:{checkcode:checkcode, 
-						userNum:userNum},
+						userNum:userNum,
+						nunum:nunum},
 					success:function(data){
 						if(data === "fail"){
 							alert("출석체크성공!!");

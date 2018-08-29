@@ -170,6 +170,8 @@
 	
 	<script>
 		$(function(){
+			var usernumber = <%=loginUser.getUserNumber()%>
+			
 			$("#listArea1 td").mouseenter(function(){
 				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
 			}).mouseout(function(){
@@ -177,13 +179,12 @@
 			}).click(function(){
 				console.log($(this).parent().children().eq(0).val());
 				var nunum = $(this).parent().children().eq(0).val();
-				location.href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum=" + nunum;
+				location.href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum="+nunum+"&usernumber="+usernumber;
 				
 			
 			});
 			
-		
-			
+
 			$("#listArea td").mouseenter(function(){
 				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
 			}).mouseout(function(){
@@ -191,7 +192,7 @@
 			}).click(function(){
 				console.log($(this).parent().children().eq(0).val());
 				var nunum = $(this).parent().children().eq(0).val();
-				location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=" + nunum;
+				location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum="+nunum+"&usernumber="+usernumber;
 				
 			
 			});
