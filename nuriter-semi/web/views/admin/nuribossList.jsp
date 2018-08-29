@@ -76,7 +76,7 @@
 
 .pagination {
 	width: 400px;
-	height: auto;
+	height: 45px;
 	overflow: hidden; /* 
 	    border-style: solid;
     	border-color: hotpink; */
@@ -204,7 +204,7 @@ button:hover {
 										$(this).parent().css({"background":"white"});
 									}).click(function(){
 										var num = $(this).parent().children("input").val();
-										/* alert("야 !!! " + num); */
+										alert("야 !!! " + num);
 										location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 									});
 										
@@ -254,27 +254,12 @@ button:hover {
 
 
 
-						<div class="pagination" align="center">
-
-							<!-- <br>
-					  
-					  <a href="#" >&laquo;</a>
-					  <a href="#" class="active">1</a>
-					  <a href="#" >2</a>
-					  <a href="#" >3</a>
-					  <a href="#" >4</a>
-					  <a href="#" >5</a>
-					  <a href="#" >6</a>
-					  <a href="#" >&raquo;</a> -->
-
-
+						<div class="pagination2" align="center">
 
 							<br>
 							<br>
 							<br>
 
-							<!-- <button id="web-font" onclick="location.href='/nu/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> -->
-							<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossAllList.jsp'">신청회원 전체보기</button> --%>
 							<input type="button" align="center" class="button"
 								style="width: 200px;" value="신청회원 전체보기"
 								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList.nu'">
@@ -314,7 +299,7 @@ button:hover {
 						<div class="pagination" align="center">
 
 							<br> <a
-								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=1'"><<</a>
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage2=1'"><<</a>
 							<%
 								if (currentPage2 <= 1) {
 							%>
@@ -322,7 +307,7 @@ button:hover {
 								</button> <%
 								} else {
 							%> <a
-								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=currentPage2 - 1%>'"><</a>
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage2=<%=currentPage2 - 1%>'"><</a>
 								<%
 								}
 							%> <%
@@ -331,7 +316,7 @@ button:hover {
 							%> <a disabled><%=p2%></a> <%
 								} else {
 							%> <a
-								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=p2%>'"><%=p2%></a>
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage2=<%=p2%>'"><%=p2%></a>
 								<%
 								}
 							%> <%
@@ -341,14 +326,14 @@ button:hover {
 							%> <a disabled>></a> <%
 								} else {
 							%> <a
-								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=currentPage2 + 1%>'">></a>
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage2=<%=currentPage2 + 1%>'">></a>
 								<%
 								}
 							%> <a
-								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=maxPage2%>'">>></a>
+								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage2=<%=maxPage2%>'">>></a>
 						</div>
 
-						<div class="pagination" align="center">
+						<div class="pagination2" align="center">
 
 							<br> <!-- <a href="#">&laquo;</a> <a href="#" class="active">1</a>
 							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>

@@ -70,7 +70,6 @@
  <script>
  function blackList(){
 	 location.href="<%=request.getContextPath()%>/reportlist.rl";
-	
  }
  </script>
  

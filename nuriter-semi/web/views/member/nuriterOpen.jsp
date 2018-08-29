@@ -250,11 +250,14 @@
 	    </div>
     </div>
     
-    <% }else{
-      request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
-      request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response);
-      
-   } %>
+    <% }else { %>
+    	
+    	<%
+    	 response.sendRedirect("memberJoinForm.jsp"); 
+    	%>
+      /* request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+      request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response); */
+  <% } %>
    
     <script>
 
@@ -265,7 +268,18 @@
       $("#titleImgArea").click(function(){
          $("#thumbnailImg1").click();
       });
+    	
+      
    });
+    
+    $(document).ready(function(){
+    	console.log("11");
+    	console.log(loginUser==null);
+      if(loginUser == null){
+    	  console.log("22");
+      	response.sendRedirect("views/member/memberJoinForm.jsp");
+      }
+    });
     
     //사진 출력
     function loadImg(value, num){
