@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		
 		//4. 받은 결과에 따라 뷰 페이지 내보내기
 		/*String page = "";*/
-		if(loginUser != null){
+		if(loginUser != null && !loginUser.getActivated().equals("N")){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			

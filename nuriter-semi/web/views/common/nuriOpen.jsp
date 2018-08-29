@@ -333,24 +333,23 @@ button{
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
         	%>
+        		<%-- <form action="<%=request.getContextPath()%>/selectMyNuriMember.nu" method="post"> --%>
         		<table id="nuriterListArea">
-
-
            			<tr id="tableHiddenTop">
-           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           				<input type="hidden" name="nuriNum" value="<%= hmap.get("nuri_number")%>">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px"></th>
            			</tr>
            			<tr align="center">
-           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap.get("nuri_name") %></td>
+           				<input type="hidden" name="nuriNum" value="<%= hmap.get("nuri_number")%>">
+            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap.get("nuri_name") %> </td>
 
            			</tr>
            			<tr id="tableHidden">
-           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
+           				<input type="hidden" name="nuriNum" value="<%= hmap.get("nuri_number")%>">
+           				<td id="priceTd" align="right" onclick="myNuriMember();"><%= hmap.get("price") %> 원</td>
            			</tr>
             	</table>
-
+				<!-- </form> -->
         	<%  System.out.println(hmap.get("nuri_number")); } %>
 
             
@@ -416,9 +415,10 @@ button{
 	 	$("#nuriterListArea td").mouseenter(function(){
 			$(this).parent().css({"cursor":"pointer"});
 	 	}).click(function(){
-	 			var num = $(this).parent().children("input").val();
-				console.log(num);
-				location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+	 			/* $("form").submit(); */
+	 		    var nuriNum = $(this).parent().children("input").val();
+				console.log(nuriNum);
+				location.href="<%=request.getContextPath()%>/selectMyNuriMember.at?nuriNum=" + nuriNum;
 	 	});
   	});
   </script>
