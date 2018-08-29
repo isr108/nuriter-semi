@@ -37,15 +37,27 @@ public class SelectNuriBossListServlet extends HttpServlet {
 		int currentPage;
 		int limit;
 		int maxPage;
-		int maxPage2;
 		int startPage;
 		int endPage;
 
+		int currentPage2;
+		int maxPage2;
+		int startPage2;
+		int endPage2;
+
 		currentPage = 1;
+		currentPage2 = 1;
 
 		if(request.getParameter("currentPage") != null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+
+		if(request.getParameter("currentPage2") != null){
+			currentPage2 = Integer.parseInt(request.getParameter("currentPage2"));
+		}
+		
+		System.out.println("1번 : " +currentPage  );
+		System.out.println("2번 : " +currentPage2  );
 
 		int listCount = new NuriterService().getNuribossListCount();
 		int listCount2 = new NuriterService().getNuribossListCount2();
@@ -54,25 +66,28 @@ public class SelectNuriBossListServlet extends HttpServlet {
 
 		maxPage = (int)((double)listCount / limit + 0.9);
 		maxPage2 = (int)((double)listCount2 / limit + 0.9);
-		
+
 		startPage = (((int)((double)currentPage / limit + 0.9)) -1) * limit + 1;
-		
+		startPage2 = (((int)((double)currentPage2 / limit + 0.9)) -1) * limit + 1;
+
 		endPage = startPage + limit - 1;
+		endPage2 = startPage2 + limit - 1;
+
 
 		if(maxPage < endPage){
 			endPage = maxPage;
 		}
-		
-		if(maxPage2 < endPage){
-			endPage = maxPage2;
+
+		if(maxPage2 < endPage2){
+			endPage2 = maxPage2;
 		}
 
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
-		PageInfo pi2 = new PageInfo(currentPage, listCount2, limit, maxPage2, startPage, endPage);
+		PageInfo pi2 = new PageInfo(currentPage2, listCount2, limit, maxPage2, startPage2, endPage2);
 
 		ArrayList<Nuriboss> bossList = new NuriterService().selectNuribossList(currentPage, limit);
-		ArrayList<Nuriboss> bossList2 = new NuriterService().selectNuribossList2(currentPage, limit);
-		
+		ArrayList<Nuriboss> bossList2 = new NuriterService().selectNuribossList2(currentPage2, limit);
+
 		System.out.println("누리보스 목록 불러오는 서블릿 이동 완료!");
 		System.out.println(bossList);
 		String page = "";
