@@ -1,6 +1,7 @@
 package com.kh.nuriter.payment.controller;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +37,29 @@ public class PaymentServlet extends HttpServlet {
       String userNum = request.getParameter("userNum");
       String nuriNum = request.getParameter("nuriNum");
       String cardNum = request.getParameter("cardNum");
-      System.out.println("cardNum : " + cardNum);
+      String terminateDate = request.getParameter("endDate");
+      
+      System.out.println(terminateDate);
+      
+      java.sql.Date endDate = null;
+      
+      if(terminateDate != "" || terminateDate != null) {
+         String[] dateArr = terminateDate.split("-");
+         
+         int[] arr = new int[dateArr.length];
+         
+         for(int i = 0; i < dateArr.length; i++) {
+            arr[i] = Integer.parseInt(dateArr[i]);
+         }
+         
+         endDate = new java.sql.Date(new GregorianCalendar(arr[0], arr[1] - 1, arr[2]).getTimeInMillis());
+         
+         System.out.println(endDate);
+      }else {
+    	  endDate = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
+      }
+      
+      
       
       
       Payment p = new Payment();
@@ -46,11 +69,11 @@ public class PaymentServlet extends HttpServlet {
       
       int result =new PaymentService().InsertPayment(p); //결제
       
-      Payment p1 = new Payment();
+      Payment p1 = new Payment(); //참가신청
       p1.setUserNum(userNum);
       p1.setNuriNum(nuriNum);
+      p1.setTerminateDate(endDate);
       
-      Payment p2 = new Payment();
       
       
       int result2 =0; //참가신청

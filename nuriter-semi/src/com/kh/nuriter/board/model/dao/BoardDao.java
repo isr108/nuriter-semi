@@ -117,9 +117,11 @@ public class BoardDao {
 				
 				rn.setBoardTitle(rset.getString("board_title"));
 				rn.setBoardContent(rset.getString("board_content"));
-				rn.setUserNum(rset.getInt("user_number"));
+				rn.setOwnerNickname(rset.getString("nuriboss"));
+				/*rn.setUserNum(rset.getInt("user_number"));*/
 				rn.setBoardDate(rset.getDate("board_date"));
-				rn.setN_ownerNum(rset.getString("owner_number"));
+				rn.setNuriNickname(rset.getString("reporter"));
+				/*rn.setN_ownerNum(rset.getString("owner_number"));*/
 				
 				rlist.add(rn);
 			

@@ -12,12 +12,15 @@ public class reportNuri implements java.io.Serializable {
 	private String nuriNum; //누리터 넘버
 	private String nuriRegi;//신고 여부
 	private String n_ownerNum;// 누리장번호 
+	private String ownerNickname;//누리장 닉네임
+	private String nuriNickname;//누리원 닉네임
+	
 	
 	public reportNuri(){}
 
 
 	public reportNuri(String boardNum, String boardTitle, String boardContent, int userNum, Date boardDate,
-			String boardSort, String nuriNum, String nuriRegi, String n_ownerNm) {
+			String boardSort, String nuriNum, String nuriRegi, String n_ownerNum , String ownerNickname ,String nuriNickname) {
 		super();
 		this.boardNum = boardNum;
 		this.boardTitle = boardTitle;
@@ -28,10 +31,33 @@ public class reportNuri implements java.io.Serializable {
 		this.nuriNum = nuriNum;
 		this.nuriRegi = nuriRegi;
 		this.n_ownerNum = n_ownerNum;
+		this.ownerNickname= ownerNickname;
+		this.nuriNickname = nuriNickname;
+		
 	}
 
 	
 	
+	public String getOwnerNickname() {
+		return ownerNickname;
+	}
+
+
+	public String getNuriNickname() {
+		return nuriNickname;
+	}
+
+
+	public void setOwnerNickname(String ownerNickname) {
+		this.ownerNickname = ownerNickname;
+	}
+
+
+	public void setNuriNickname(String nuriNickname) {
+		this.nuriNickname = nuriNickname;
+	}
+
+
 	public String getN_ownerNum() {
 		return n_ownerNum;
 	}
@@ -126,10 +152,12 @@ public class reportNuri implements java.io.Serializable {
 	public String toString() {
 		return "reportNuri [boardNum=" + boardNum + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent
 				+ ", userNum=" + userNum + ", boardDate=" + boardDate + ", boardSort=" + boardSort + ", nuriNum="
-				+ nuriNum + ", nuriRegi=" + nuriRegi + ", n_ownerNum=" + n_ownerNum + "]";
+				+ nuriNum + ", nuriRegi=" + nuriRegi + ", n_ownerNum=" + n_ownerNum + ", ownerNickname=" + ownerNickname
+				+ ", nuriNickname=" + nuriNickname + "]";
 	}
 
 
+	
 
 	
 	

@@ -62,6 +62,7 @@ public class PaymentDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, p1.getUserNum());
 			pstmt.setString(2, p1.getNuriNum());
+			pstmt.setDate(3,p1.getTerminateDate());
 			
 			result2 = pstmt.executeUpdate();
 			
@@ -94,8 +95,6 @@ public class PaymentDao {
 		}finally{
 			close(pstmt);
 		}
-		
-		
 		
 		
 		return result3;

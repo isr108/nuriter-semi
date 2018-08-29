@@ -529,7 +529,8 @@ function choice(){
     var pId = "imp_"+new Date().getTime() ;
     var userNum = '<%=loginUser.getUserNumber()%>';
     var nuriNum = '<%=n.getNuriNum()%>';
-    var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
+    var endDate ='<%=n.getEndDate()%>'
+    var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum=" + userNum +"&nuriNum=" + nuriNum +"&endDate=" + endDate; 
     console.log(loc);
 
     location.href=loc;
@@ -567,7 +568,8 @@ function cash(){
           var userNum = '<%=loginUser.getUserNumber()%>';
           var nuriNum = '<%=n.getNuriNum()%>';
           var cardNum = rsp.apply_num;
-          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
+          var endDate ='<%=n.getEndDate()%>'
+          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum +"&endDate=" + endDate; 
           console.log(loc);
     
           location.href=loc;
