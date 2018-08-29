@@ -745,7 +745,7 @@
 		} --%>
 		
 		$(function(){
-			$("button").click(function(){
+			$(".buttonLanguage").click(function(){
 				var name = $(this).attr('value');
 			    /* alert(name); */
 			    location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
