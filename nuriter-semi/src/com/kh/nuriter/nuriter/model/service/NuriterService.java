@@ -182,7 +182,11 @@ public class NuriterService {
          rollback(con);
       }
       
-      Nuriter n = new NuriterDao().selectOne(con, num);
+      int interest = new NuriterDao().interestCount(con, num); //관심 누리터 인원 가져오기
+      
+      int enterCount = new NuriterDao().enterCount(con, num); //관심 누리터 인원 가져오기
+      
+      Nuriter n = new NuriterDao().selectOne(con, num, interest, enterCount);
       
       close(con);
       

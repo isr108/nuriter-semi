@@ -583,7 +583,7 @@ public class NuriterDao {
 		return result;
 	}
 
-	public Nuriter selectOne(Connection con, String num) {
+	public Nuriter selectOne(Connection con, String num, int interest, int enterCount) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Nuriter n = null;
@@ -616,6 +616,8 @@ public class NuriterDao {
 				n.setPersonnel(rset.getString("PERSONNEL"));
 				n.setProgress(rset.getString("progress"));
 				n.setAttendCount(rset.getInt("attend_count"));
+				n.setInterestCount(interest);
+				n.setEnterCount(enterCount);
 			}
 
 		} catch (SQLException e) {
@@ -1689,6 +1691,67 @@ public class NuriterDao {
 		return commentList;
 	}
 
+	public int interestCount(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int interestCount = 0;
+		
+		String query = prop.getProperty("interestCount_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				interestCount = rset.getInt(1);
+			}
+			
+			System.out.println(interestCount + "명이 관심을 가지고 있습니다.");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return interestCount;
+	}
+
+
+	public int enterCount(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int enterCount = 0;
+		
+		String query = prop.getProperty("enterCount_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				enterCount = rset.getInt(1);
+			}
+			
+			System.out.println(enterCount + "명이 신청을 했습니다.");
+      
+      } catch (SQLException e) {
+			  e.printStackTrace();
+		  } finally {
+        close(rset);
+			  close(pstmt);
+		}
+		
+		return enterCount;
+
+	}
 
 	public int updateMemberGrade(Connection con, String num2) {
 		PreparedStatement pstmt = null;
@@ -1726,12 +1789,11 @@ public class NuriterDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
+      
+      	close(pstmt);
 		}
-		
-		
 		return result;
-	}
 
+	}
 
 }

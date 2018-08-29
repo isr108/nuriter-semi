@@ -4,6 +4,7 @@
    String nuriNum=(String)request.getAttribute("num");
    PaymentDetail detail =(PaymentDetail)request.getAttribute("pd");
    
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,6 +12,7 @@
 <meta charset=UTF-8">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
@@ -24,13 +26,13 @@
 <title>categoryDetail</title>
 <style>
 #textBox{
-   width:400px;
-   height:auto;
-   overflow:hidden;
+	width:400px;
+	height:auto;
+	overflow:hidden;
 }
     
 hr {
-   width:90%;
+	width:90%;
 }
 .content{
    margin-top: 170px;
@@ -84,20 +86,20 @@ img{
 
 .likeOrAngry > div{
     margin-left: 10px;
-   border:2px solid #FFBF00;
-   float:left;
-   width: 210px;
-   border-radius: 4px;
-   cursor: pointer;
+	border:2px solid #FFBF00;
+	float:left;
+	width: 210px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .likeOrAngry > div:hover{
-   border:2px solid #FFBF00;
-   background:#F5D0A9;
-   float:left;
-   width: 210px;
-   border-radius: 4px;
-   opacity: 0.8;
+	border:2px solid #FFBF00;
+	background:#F5D0A9;
+	float:left;
+	width: 210px;
+	border-radius: 4px;
+	opacity: 0.8;
 }
 
 button {
@@ -129,12 +131,12 @@ button {
 }
 
 #textBox {
-   text-align:center;
+	text-align:center;
     margin-top: 30px;
 }
 
 .rightBox {
-   /* float:right; */
+	/* float:right; */
 }
 
 #popupDiv {  /* 팝업창 css */
@@ -144,30 +146,30 @@ button {
     height: 550px;
     display: none; 
     background:#D8D8D8;
-      border:none;
+   	border:none;
     
     }
 #textArea{
-   margin-left:auto;
-   margin-right:auto;
-   margin-top:5px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:5px;
 }
 .popBtn{
-   margin-top:10px;
-      
+	margin-top:10px;
+		
 }
 #popSendbtn{
-   background:#0080FF;
-   color:white;
-   margin-right:15px;
-   height:30px;
-   width:80px;
+	background:#0080FF;
+	color:white;
+	margin-right:15px;
+	height:30px;
+	width:80px;
 }
 #popCloseBtn{
-   background:#FFBF00;
-   color:white;
-   height:30px;
-   width:80px;
+	background:#FFBF00;
+	color:white;
+	height:30px;
+	width:80px;
 }
 
 .applyButton{
@@ -176,34 +178,37 @@ button {
    height:50px;
 }
 .likeOrAngry {
-   overflow:hidden;
+	overflow:hidden;
+}
+#nuri {
+	font-size:20px;
 }
 #nuri p{
-   margin-left:20px;
-   text-align:left;
-   height:auto;
+	margin-left:20px;
+	text-align:left;
+	height:auto;
 }
 #enterDiv {
-   margin-top:5px;
-   margin-bottom:5px;
+	margin-top:5px;
+	margin-bottom:5px;
 }
 
 #enter {
-   color: #424242;
-   font-weight: 600;
+	color: #424242;
+	font-weight: 600;
     border-radius: 4px;
-   background:#FFBF00;
+	background:#FFBF00;
 }
 #enter:hover {
-   color: #424242;
-   font-weight: 600;
+	color: #424242;
+	font-weight: 600;
     border-radius: 4px;
-   background:#FFBF00;
-   opacity: 0.6;
+	background:#FFBF00;
+	opacity: 0.6;
 }
 img { 
-   max-width: 100%; 
-   height: auto; 
+	max-width: 100%; 
+	height: auto; 
 }
 .commentDiv input[type=text]{
        border-radius: 3px;
@@ -215,25 +220,53 @@ img {
        border-color: rgb(241, 196, 15);
 }
 .commentBtn {
-   width:100px;
-   height:100px;
-   background-color: rgb(241, 196, 15); /* Green */
-   font-family: 'Jua', sans-serif;
+	width:100px;
+	height:100px;
+	background-color: #FFBF00; /* Green */
+	font-family: 'Song Myung', serif;
     color: black;
     border-radius: 3px;
-    font-size:15px;
+    font-size:20px;
     border: 2px solid rgb(241, 196, 15); /* Green */
 }
 .commentBtn:hover {
-   width:100px;
-   height:100px;
-   background-color: rgb(241, 196, 15); /* Green */
-   font-family: 'Jua', sans-serif;
+	width:100px;
+	height:100px;
+	background-color: rgb(241, 196, 15); /* Green */
+	font-family: 'Song Myung', serif;
     color: black;
     border-radius: 3px;
-    font-size:15px;
+    font-size:20px;
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
+}
+.commentDiv {
+	width:800px;
+}
+#commentSelectTable{
+	width:799px;
+	font-size:24px;
+	border-bottom:2px solid rgb(241, 196, 15);
+}
+.commentSelectArea #commentSelectTable td{
+	font-size:24px;
+	border-bottom:2px solid rgb(241, 196, 15);
+}
+#commentSelectTable tr{
+	font-size:24px;
+}
+.commentSelectArea #commentSelectArea {
+	width:500px;
+	overflow:hidden;
+}
+#trImage {
+	width:150px;
+}
+.trNickName {
+	border-bottom:2px solid rgb(241, 196, 15);
+}
+#web-font-Nanum{
+	font-family: 'Song Myung', serif;
 }
 
 </style>
@@ -242,83 +275,93 @@ img {
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
    
-<div class="content" align="center">
-      <div class="leftBox" align = "center">
-         <div class="images">
-           <%= n.getContent() %>
-         </div>
-        
-         <div class="commentDiv">
-            <input type="text" id="web-font" name="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
-         </div>
-      
-         </div>
-   
+
+<div class="content">
+	   <div class="leftBox">
+	   	<div class="images">
+	        <%= n.getContent() %>
+	   	</div>
+	  	
+      	<div class="commentDiv">
+      		<input type="text" id="web-font" name="comment" class="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
+      	</div>
+      	
+      	<br><hr><br>
+      	
+      	<div class="commentSelectArea">
+				<table id="commentSelectTable">
+				</table>
+		</div>
+   	   </div>
+                                      
    <div class="rightBox">
-        <br>
-        
-      <div id="textBox">
-         <font id="web-font" size="4"><%= n.getNuriTitle() %></font>
+   	  <br>
+   	  
+      <div id="textBox" align="center">
+      	<font id="web-font-Nanum" size="5px"><%= n.getNuriTitle() %></font>
       </div>
       
       <br><br>
      <div id="info">
-        
-        <br>
+     	
+     	<br>
         
         <div id="nuri">
-           <p><font id="web-font">누리장 : <%= n.getNickName() %></font></p>
-           <p><font id="web-font">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
-           <hr>
-           <p><font id="web-font">카테고리 : <%= n.getCategoryName() %></font></p>
-           <hr>
-           <p><font id="web-font">누리터 활동상태: <%= n.getProgress() %></font></p>
-           <p><font id="web-font">시작일시: <%= n.getStartDate() %></font><br><font id="web-font">종료일시: <%= n.getEndDate() %></font></p>
-           <p><font id="web-font">총 출석 횟수: <%= n.getAttendCount() %></font>
-           <hr>
-           <p><font id="web-font">장소: <%= n.getPlace() %></font></p>
-           <hr>
-           <p><font id="web-font">가격(1인) : <%= n.getPrice() %> 원</font></p>
-           <p><font id="web-font">정원 : <%= n.getPersonnel() %> 명</font></p>
+	        <p><font id="web-font-Nanum">누리장 : <%= n.getNickName() %></font></p>
+	        <p><font id="web-font-Nanum">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
+	        <hr>
+	        <p><font id="web-font-Nanum">카테고리 : <%= n.getCategoryName() %></font></p>
+	        <hr>
+	        <p><font id="web-font-Nanum">누리터 활동상태: <%= n.getProgress() %></font></p>
+	        <p><font id="web-font-Nanum">시작일시: <%= n.getStartDate() %></font><br><font id="web-font-Nanum">종료일시: <%= n.getEndDate() %></font></p>
+	        <p><font id="web-font-Nanum">총 출석 횟수: <%= n.getAttendCount() %></font>
+	        <hr>
+	        <p><font id="web-font-Nanum">장소: <%= n.getPlace() %></font></p>
+	        <hr>
+	        <p><font id="web-font-Nanum">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font-Nanum">정원 : <%= n.getPersonnel() %> 명</font></p>
+	        <p><font id="web-font-Nanum">현재까지 신청된 인원은 <%= n.getEnterCount() %> 명 입니다.</font></p>
+	        <p><font id="web-font-Nanum">이 누리터는 <%= n.getInterestCount() %> 명의 관심을 받고있습니다.</font></p>
         </div>
         
         <hr color="red" size="10px">
         
         <div class="likeOrAngry">
         
-           <div class="hobbyDiv">
-                <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font">관심누리터 등록</font>
-           </div>
-               
-           <div>
-                <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font">게시글 신고</font>
-           </div>
-            
+	        <div class="hobbyDiv">
+	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font" size="5px">관심누리터 등록</font>
+	        </div>
+	            
+	        <div>
+	             <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font" size="5px">게시글 신고</font>
+	        </div>
+	         
             <div id="popupDiv" class="modal fade" role="dialog">
-               <h2 id="web-font">누리터 신고</h2>
-               <div id="textArea">
-                  <h5 id="web-font">신고 제목</h5>
-                  <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
-                  <h5 id="web-font">신고 내용</h5>
-                  <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
-               </div>
-               <div class="popBtn">
-                  <button id="popSendbtn">send</button>
-                  <button id="popCloseBtn">close</button>
-               </div>
+	            <h2 id="web-font">누리터 신고</h2>
+	            <div id="textArea">
+		            <h5 id="web-font">신고 제목</h5>
+		            <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
+		            <h5 id="web-font">신고 내용</h5>
+		            <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
+	            </div>
+	            <div class="popBtn">
+		            <button id="popSendbtn">send</button>
+		            <button id="popCloseBtn">close</button>
+	            </div>
            </div>
         </div>
          
-         <div id="enterDiv">
-            <button id="enter" onclick="choice();"><font id="web-font">누리터 신청하기</font></button>
+         <div id="enterDiv" align="center">
+         	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
+
          </div>
          
     </div>
-       <div id="nuri2">
-           
+    	<div id="nuri2">
+	        
         </div>
     <div>
-       
+    	
     </div>
     
    </div>
@@ -326,47 +369,118 @@ img {
       <%@ include file="../common/footer.jsp" %>
       
 <Script>
-/* Ext.onReady(function(){
-    Ext.MessageBox.confirm(
-       'Confirm 타이틀'
-       ,'Confirm 컨텐츠 메시지입니다.'
-       ,function(click_button){
-            if(click_button == "yes") {
-               alert("yes click");
-            } else {
-                alert("no click");
-            }
-       }
-   );
-}); */
+$(function(){
+	$(function(){
+		window.onload=function(){
+			var nuriNum = "<%= n.getNuriNum() %>";
+			var content = $('.comment').val();
+			
+			$.ajax({
+				url:"/ns/insertComment.nu",
+				data:{nuriNum:nuriNum, content:content},
+				type:"get",
+				success:function(data){
+					
+					$table = $("#commentSelectTable");
+					$table.find("tr").remove();
+					
+					for(var key in data){
+						var $trOne = $("<tr><td align='center' rowspan='4' id='trImage'><img src='images/board/ori.png'>");
+						var $trDate = $("<tr id='web-font'>");
+					    var $trContent = $("<tr id='web-font'>");
+					    var $trNickName = $("<tr class='trNickName' id='web-font' style='size= 1px;'>");
+						$trDate.text(data[key].comment_date);
+						$trContent.text(data[key].comment_content);
+						$trNickName.text(data[key].nickname);
+						$table.append($trOne);
+						$table.append($trDate);
+						$table.append($trContent);
+						$table.append($trNickName);
+					}
+					
+					$("#commentSelectTable").show();
+					
+					
+				},
+				error:function(data){
+					console.log(data);
+				}
+			});
+		}
+		
+		
+		$(".commentBtn").click(function(){
+			
+			var nuriNum = "<%= n.getNuriNum() %>";
+			var content = $('.comment').val();
+			
+			$.ajax({
+				url:"/ns/insertComment.nu",
+				data:{nuriNum:nuriNum, content:content},
+				type:"get",
+				success:function(data){
+					
+					$table = $("#commentSelectTable");
+					$table.find("tr").remove();
+					
+					for(var key in data){
+						var $trOne = $("<tr id='web-font'><td align='center' rowspan='4' id='trImage'><img src='images/board/ori.png'>");
+						var $trDate = $("<tr class='trDate' id='web-font'>");
+					    var $trContent = $("<tr class='trContent' id='web-font'>");
+					    var $trNickName = $("<tr class='trNickName' id='web-font'>");
+						$trDate.text(data[key].comment_date);
+						$trContent.text(data[key].comment_content);
+						$trNickName.text(data[key].nickname);
+						$table.append($trOne);
+						$table.append($trDate);
+						$table.append($trContent);
+						$table.append($trNickName);
+					}
+					
+					$input = $(".comment");
+					$input.val('');
+					
+					$("#commentSelectTable").show();
+					
+					
+				},
+				error:function(data){
+					console.log(data);
+				}
+			});
+			
+		});
+	});
+});
+
 
 //셀렉트 박스
 $(function(){
-   $(function(){
-      $(".hobbyDiv").click(function(){
-         console.log("관심버튼눌림");
-         
-         var name = "<%= n.getNuriNum() %>";
-         
-         console.log(name);
-         
-         $.ajax({
-            url:"/ns/insertHobby.nu",
-            data:{name:name},
-            type:"get",
-            success:function(data){
-               
-               console.log(data);
-               
-               alert(data); 
-            },
-            error:function(data){
-               console.log(data);
-            }
-         });
-         
-      });
-   });
+	$(function(){
+		$(".hobbyDiv").click(function(){
+			console.log("관심버튼눌림");
+			
+			var name = "<%= n.getNuriNum() %>";
+			
+			console.log(name);
+			
+			$.ajax({
+				url:"/ns/insertHobby.nu",
+				data:{name:name},
+				type:"get",
+				success:function(data){
+					
+					console.log(data);
+					
+					alert(data); 
+				},
+				error:function(data){
+					console.log(data);
+				}
+			});
+			
+		});
+	});
 });
 
 $(function(){
@@ -453,7 +567,7 @@ function cash(){
           var userNum = '<%=loginUser.getUserNumber()%>';
           var nuriNum = '<%=n.getNuriNum()%>';
           var cardNum = rsp.apply_num;
-          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum+"&cardNum=" + cardNum; 
+          var loc = contextPath + '/payment.pms?imp=' + uid + "&userNum=" + userNum +"&nuriNum=" + nuriNum; 
           console.log(loc);
     
           location.href=loc;
