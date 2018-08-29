@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*" %>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*,  com.kh.nuriter.attend.model.vo.*"%>
     
     
 <%@page import="java.text.SimpleDateFormat"%>
@@ -22,6 +22,11 @@
  	
  	String nunum = request.getParameter("nunum");
  	System.out.print("nunum : " + nunum);
+ 	
+ 	ArrayList<Enter> en = (ArrayList<Enter>)request.getAttribute("en");
+ 	/* ArrayList<HashMap<String, Object>> en = (ArrayList<HashMap<String, Object>>)request.getAttribute("en"); */
+ 	
+ 	ArrayList<Attendprint> att=(ArrayList<Attendprint>)request.getAttribute("att");
  	
 %> 
 
@@ -425,7 +430,21 @@ while(newLine > 0 && newLine < 7)
                 <th style="text-align:center;">출석</th>
                     
             </tr>
-            
+            <% 
+            	for(Enter e : en){ %>
+            		
+            		<tr>
+            			<td><%=e.getNickName() %></td>
+            		
+            		</tr>     
+           <% } %>
+           
+           <% for(Attendprint ad : att){ %>
+           		<tr>
+           				<td><%=ad.getNickName()%></td>
+           		</tr>
+           	
+           <%} %>
     	</table>
     
     </div>

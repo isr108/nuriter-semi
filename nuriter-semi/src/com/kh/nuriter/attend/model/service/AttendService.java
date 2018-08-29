@@ -7,6 +7,7 @@ import static com.kh.nuriter.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.nuriter.attend.model.dao.AttendCodeDao;
 import com.kh.nuriter.attend.model.dao.AttendDao;
@@ -76,8 +77,16 @@ public class AttendService {
 	public ArrayList<Enter> enterprint(String nunum) {
 		Connection con=getConnection();
 		
+		/*ArrayList<HashMap<String, Object>> en = new AttendDao().enterprint(con, nunum);*/
 		ArrayList<Enter> en = new AttendDao().enterprint(con, nunum);
-		return null;
+		
+		commit(con);
+		
+		close(con);
+		
+		System.out.println("서비스  enterprint : " + en);
+		
+		return en;
 	}
 
 }
