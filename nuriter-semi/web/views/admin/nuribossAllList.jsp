@@ -186,7 +186,7 @@ button:hover {
 					<div id="child2">
 						<h1 id="web-font">누리장 회원</h1>
 						<br>
-						<table border="2" id="web-font" class="listBox">
+						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
 								<th></th>
 								<th></th>
@@ -205,8 +205,8 @@ button:hover {
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<th><div style="color:#5AAEFF;">승인하기</button></th>
-								<td id="test3"><div style="background:yellow; color:#FF5E00;">삭제하기</div></td>
+								<td id="test4"><div style="color:#5AAEFF; text-align:center;">승인하기</div></td>
+								<td id="test3"><div style="color:#FF5E00;">삭제하기</div></td>
 							</tr>
 							<%
 								}
@@ -226,7 +226,7 @@ button:hover {
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
-							$(".listBox th").click(function(){
+							$(".listBox #test4").click(function(){
 								var applyNum = $(this).parent().children("#test1").children("input").val();
 								var userNum = $(this).parent().children("#test2").children("input").val();
 								console.log(applyNum);
@@ -292,14 +292,12 @@ button:hover {
 								</div> <br> <br>
 
 								<div id="submit" align="center">
-									<button id="web-font" onclick="deleteNuriboss();">누리장 삭제</button>
-									<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/deleteNuriboss.nu'">누리장 삭제</button> --%>
-									&nbsp;
-									<button id="web-font" onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu'">이전 페이지</button>
+									<!-- <button id="web-font" onclick="deleteNuriboss();">누리장 삭제</button> -->
+									<button id="web-font" onclick="goBefore();">이전 페이지</button>
 								</div>
 								<script>
-									function deleteNuriboss(){
-										$("#test").attr("action", "<%=request.getContextPath()%>/views/admin/deleteNuriboss.jsp");
+									function goBefore(){
+										$("#test").attr("action", "<%=request.getContextPath()%>/selectNuribossList.nu");
 									}
 								</script>
 						</div>
