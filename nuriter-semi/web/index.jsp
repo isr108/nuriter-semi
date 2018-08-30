@@ -138,20 +138,20 @@
    }
    #search{
    	  display: inline-block;
-      width:50%;
-      height:10%;
-      margin-left:25%;
+      width:790px;
+      height:70px;
+      margin-left:30%;
+      border-width: 6px;
+      border-style: solid;
+      border-color: rgb(241, 196, 15);
    }
    #searchBox{
-    width:80%;
-    height:60px;
+    width:710px;
+    height:55px;
     display: inline-block;
     color: white;
-    border-width: 6px;
-    border-style: solid;
-    border-color: rgb(241, 196, 15);
     font-family: 'Jua', sans-serif;
-    font-size: 20px; /* 글씨크기 */
+    font-size: 25px; /* 글씨크기 */
     text-align: center;
    }
    #searchBtn {
@@ -272,7 +272,7 @@
    	   overflow:hidden;
        margin-left:auto;
        margin-right:auto;
-       width: 930px;
+       width:930px;
        height:70%;
        float:center;
    }
@@ -365,6 +365,14 @@
     height:200px;
    	background:#BDBDBD;
    }
+   
+   input:focus { 
+   	outline: none; 
+   }
+   .searchButton{
+   	cursor: pointer;
+   	margin-bottom: 9px;
+   }
 </style>
 
 </head>
@@ -396,23 +404,25 @@
 	        <%} %>
    		</div>
   	</div>
-      
       <br><br><br><br><br><br><br><br>
+      <form id="searchNuriter" action="<%=request.getContextPath() %>/selectSearch.nu" method="get">
    		<div id="search" align="center">	
-      		<input type="text" id="searchBox" style="background-color:transparent;" value='운동, 언어, 공방, 요리 등의 다양한 취미를 즐겨보세요' onfocus="this.value=''"> 
-      		<img src="images/board/search.png" width="50" height="50">
+      		<input type="text" name="search" id="searchBox" style="background-color:transparent;border:0 solid black;" value='운동, 언어, 공방, 요리 등의 다양한 취미를 즐겨보세요' onfocus="this.value=''"> 
+      		<img src="images/board/search.png" width="55px" height="55px" class="searchButton">
       		<!-- <input type="button" id="searchBtn"> -->
   	 	</div>
-  	 	
+  	  </form>
   	 	<br><br><br><br><br><br><br><br>
    </div>
    
    
    <font id="web-font"><div id="category">
+   <div align="center">
    <h2>카테고리</h2>
+   </div>
    
    </div>
-   <div id="category1">
+   <div id="category1" align="center">
    <table>
        <tr>
          <td>
@@ -735,20 +745,21 @@
 		}
 		
 		function goNotice(){
-			location.href="<%=request.getContextPath()%>/selectList.no";			
+			location.href="<%=request.getContextPath()%>/selectList.no";
 		}
-		 
-		<%-- function goNuriterList(){
-			var name = $(this).attr('value');
-			alert(name);
-			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
-		} --%>
 		
 		$(function(){
 			$(".buttonLanguage").click(function(){
 				var name = $(this).attr('value');
 			    /* alert(name); */
 			    location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
+			});
+		});
+		
+		$(function(){
+			$(".searchButton").click(function(){
+				alert("검색 버튼 클릭");
+				$("#searchNuriter").submit();
 			});
 		});
 	

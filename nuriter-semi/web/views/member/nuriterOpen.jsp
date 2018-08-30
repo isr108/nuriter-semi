@@ -138,6 +138,11 @@
 		color: rgb(241, 196, 15);
 	}
 	.layer { display: none; }
+	.msg {
+		font-family: 'Nanum Pen Script', cursive;
+		font-size: 100px;
+		color: #F79F81;
+	}
 </style>
 </head>
 <body>
@@ -204,10 +209,6 @@
 					  <div id="titleImgArea">
 						 <img id="titleImg" width="495px" height="195px">
 					  </div>
-							
-					  <!-- <div id="summerText">
-					  	<button type="button" id="titleImgArea"><font id="web-font">사진등록</font></button>
-					  </div> -->
 					  
 					  <br>
 					  
@@ -241,7 +242,7 @@
 					  <br><br><br><br>
 					  
 					  <div id="submitDiv" align="center">
-		           		  <button type="submit" onclick="insert();"><font id="web-font" size=3px>개설하기</font></button>&nbsp;&nbsp;&nbsp;
+		           		  <button type="button" onclick="insert();"><font id="web-font" size=3px>개설하기</font></button>&nbsp;&nbsp;&nbsp;
 		           		  <button type="reset"><font id="web-font" size=3px>취소하기</font></button>
 	           		  </div>
 	           		  </form>
@@ -250,14 +251,14 @@
 	    </div>
     </div>
     
-    <% }else { %>
-    	
-    	<%
-    	 response.sendRedirect("memberJoinForm.jsp"); 
-    	%>
-      /* request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
-      request.getRequestDispatcher("../common/errorPage.jsp").forward(request, response); */
-  <% } %>
+    <% }else{ %>
+      <%@ include file="../common/categorybar.jsp" %>
+	  <div id="main" align="center">
+	  <h1 class="msg" align="center" id="web-font">로그인이 필요한 기능입니다.</h1>
+      <br><br><br><br>
+	  <a href="/ns/index.jsp"><font id="web-font" size="8px">메인으로 이동</font></a>
+	  </div>
+    <% } %>
    
     <script>
 
@@ -268,14 +269,7 @@
       $("#titleImgArea").click(function(){
          $("#thumbnailImg1").click();
       });
-    	
-      
    });
-    
-    $(document).ready(function(){
-    	console.log("11");
-    	console.log(loginUser==null);
-    });
     
     //사진 출력
     function loadImg(value, num){
@@ -300,12 +294,47 @@
     
     //개설하기 버튼
     function insert(){
-       var markupStr = $('#summernote').summernote('code');
-       console.log(markupStr);
-       
-       $(".summerText").val(markupStr);
-       
-      $("#insertForm").submit();
+      var category = $('option[name=category]').val();
+      var title = $('input[name=title]').val();
+      var startDate = $('input[name=fromDate]').val();
+      var endDate = $('input[name=toDate]').val();
+      var startTime = $('input[name=timepicker1]').val();
+      var endTime = $('input[name=timepicker2]').val();
+      var place = $('input[name=placeTwo]').val();
+      var markupStr = $('#summernote').summernote('code');
+      var price = $('input[name=price]').val();
+      var personnel = $('input[name=personnel]').val();
+      
+      /* alert(category);
+      alert(title);
+      alert(startDate);
+      alert(endDate);
+      alert(startTime);
+      alert(endTime);
+      alert(markupStr);
+      alert(price);
+      alert(personnel); */
+      
+      var arrayCheck = [ category, title, startDate, endDate, startTime, endTime, markupStr, price, personnel ];
+      var check = 0;
+      
+      for(var i = 0; i < arrayCheck.length; i++){
+    	  if(arrayCheck[i] == null){
+    		  check = 1;
+    	  }else if(arrayCheck[i] == ""){
+    		  check = 1;
+    	  }else if(arrayCheck[i] == undefined){
+    		  check = 1;
+    	  }
+      } 
+      
+      if(check == 1){
+    	  alert("누락된 정보가 존재 합니다.");
+      }else{
+    	  $(".summerText").val(markupStr);
+          
+          $("#insertForm").submit();
+      }
    }
     
     function sample6_execDaumPostcode() {
@@ -366,7 +395,7 @@
 					$select.find("option").remove();
 					
 					for(var key in data){
-						var $option = $("<option  name='category'>");
+						var $option = $("<option name='category'>");
 						$option.val(data[key].cno);
 						$option.text(data[key].cname);
 						$select.append($option);
