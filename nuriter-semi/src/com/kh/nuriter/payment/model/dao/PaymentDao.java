@@ -99,5 +99,29 @@ public class PaymentDao {
 		
 		return result3;
 	}
+	public int doRefundNuri(Connection con, String nuriNum, String userNum) {
+		  PreparedStatement pstmt = null;
+	      int result = 0;
+	      
+	      String query = prop.getProperty("doRefundNuri");
+	      
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setString(1, userNum);
+	         pstmt.setString(2, nuriNum);
+	         
+	         result = pstmt.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally{
+	         close(pstmt);
+	         
+	      }
+	      
+	      return result;
+	}
 
 }

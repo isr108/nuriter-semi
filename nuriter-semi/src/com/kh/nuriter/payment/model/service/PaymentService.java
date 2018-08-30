@@ -1,5 +1,6 @@
 package com.kh.nuriter.payment.model.service;
 
+import com.kh.nuriter.member.model.dao.MemberDao;
 import com.kh.nuriter.payment.model.dao.PaymentDao;
 import com.kh.nuriter.payment.model.vo.Payment;
 import com.kh.nuriter.payment.model.vo.PaymentDetail;
@@ -70,6 +71,22 @@ public class PaymentService {
 		
 		
 		return result3;
+	}
+
+	public int doRefundNuri(String nuriNum, String userNum) {
+		Connection con = getConnection();
+		
+		int result = new PaymentDao().doRefundNuri(con, nuriNum, userNum);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
 	}
 
 }
