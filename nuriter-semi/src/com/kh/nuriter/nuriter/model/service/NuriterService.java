@@ -534,6 +534,16 @@ public ArrayList<HashMap<String, Object>> selectSearchThumbnailList(int currentP
 	return pictureList;
 }
 
+public int getNuriPrice(String nuriNum) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().getNuriPrice(con, nuriNum);
+	
+	close(con);
+	
+	return result;
+}
+
 
 
 }

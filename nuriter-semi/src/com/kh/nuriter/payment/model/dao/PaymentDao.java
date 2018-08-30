@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 import static com.kh.nuriter.common.JDBCTemplate.*;
@@ -122,6 +123,60 @@ public class PaymentDao {
 	      }
 	      
 	      return result;
+	}
+	public int getTotalPayNum(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("getTotalPayNum");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		System.out.println("결제된 누리원 수 : " + result);
+		
+		return result;
+	}
+	public int getTotalPayNum2(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("getTotalPayNum2");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		System.out.println("환불처리된 누리원 수 : " + result);
+		
+		return result;
 	}
 
 }

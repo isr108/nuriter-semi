@@ -1841,14 +1841,16 @@ public class NuriterDao {
 				nu.setAttendCount(rset.getInt("attend_count"));
 				
 				list.add(nu);
-			} catch (SQLException e) {
+			}
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-				return list;
+		return list;
     }
+		
 
 	public int getSearchNuriterListCount(Connection con, String search) {
 		PreparedStatement pstmt = null;
@@ -1984,14 +1986,44 @@ public class NuriterDao {
 				hmap.put("upload_date", rset.getDate("upload_date"));
 
 				pictureList.add(hmap);
-		} catch (SQLException e) {
+			} 
+		}catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rset);
 			close(pstmt);
 		}
-      return pictureList;
+        return pictureList;
     }
+
+
+	public int getNuriPrice(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("getNuriPrice");
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		System.out.println("가격 : " + result);
+		return result;
+	}
 
 
 }
