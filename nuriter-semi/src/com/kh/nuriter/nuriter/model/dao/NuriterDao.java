@@ -1840,8 +1840,9 @@ public class NuriterDao {
 				nu.setProgress(rset.getString("progress"));
 				nu.setAttendCount(rset.getInt("attend_count"));
 				
-				list.add(nu);
-			} catch (SQLException e) {
+				list.add(nu); 
+			}
+		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
@@ -1984,7 +1985,8 @@ public class NuriterDao {
 				hmap.put("upload_date", rset.getDate("upload_date"));
 
 				pictureList.add(hmap);
-		} catch (SQLException e) {
+			} 
+		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
