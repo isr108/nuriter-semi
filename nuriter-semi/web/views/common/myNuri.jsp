@@ -83,7 +83,7 @@
 	    /* width:400px;
 	    height:60px;
 	    overflow:hidden; */
-	    padding-left: 45%;
+	    padding-left: 50%;
 	    margin: 20px 0;
 	    boder-radius:4px;
 	    pointer: cursor;

@@ -361,12 +361,12 @@ button{
              <!-- <div class="pageArea" align="center"> -->
              <div class="pagination" align="center" id="web-font">
              <br>
-             	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</a>
+             	<a href="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=1'"><<</a>
              	<% if(currentPage <= 1){ %>
              	<!-- <button disabled><</button> -->
              	<a disabled><</a>
              	<% }else{ %>
-             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%= currentPage - 1%>'">&laquo;</a>
 
              	<% } %>
              	<% for(int p = startPage; p <= endPage; p++){
@@ -375,7 +375,7 @@ button{
 
              	<a class="active" disabled><%= p %></a>
              	<%  }else{ %>
-             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= p %>'"><%= p %></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%= p %>'"><%= p %></a>
 
              	<%  } %>
              	<% } %>
@@ -383,9 +383,9 @@ button{
              	<% if(currentPage >= maxPage){ %>
              	<a disabled>></a>
              	<% }else{ %>
-             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage + 1%>'">></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%= currentPage + 1%>'">></a>
              	<% } %>
-             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
+             	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriOpenList.nu?currentPage=<%= maxPage %>'">>></a>
              </div>
         
     </div>

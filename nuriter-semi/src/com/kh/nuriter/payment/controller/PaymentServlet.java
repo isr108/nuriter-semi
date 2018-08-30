@@ -66,6 +66,11 @@ public class PaymentServlet extends HttpServlet {
       p.setpId(pid);
       p.setUserNum(userNum);
       p.setNuriNum(nuriNum);
+      int result5 = new PaymentService().checkPayment(userNum, nuriNum); // 이전에 결제 기록 확인
+      System.out.println("result 5 : " + result5);
+      
+      //이전에 결제 기록이 없다면 결제진행
+      if(result5 < 1){
       
       int result =new PaymentService().InsertPayment(p); //결제
       
@@ -82,6 +87,15 @@ public class PaymentServlet extends HttpServlet {
       PaymentDetail pd = new PaymentDetail();
       pd.setPid(pid);
       pd.setCardNum(cardNum);
+      
+      int result4 = 0;
+      result4 = new PaymentService().updateAttention(userNum, nuriNum);
+      if(result4 >0){
+    	  System.out.println("attention삭제 성공");
+      }else{
+    	  System.out.println("attention 삭제 실패");
+      }
+      
       
       
       
@@ -111,7 +125,11 @@ public class PaymentServlet extends HttpServlet {
       /*response.sendRedirect("/ns/views/member/categoryDetail.jsp");*/
      /*RequestDispatcher view = request.getRequestDispatcher(page);
      view.forward(request, response);*/
-   
+      }else{
+    	 response.getWriter().write(result5);
+    	 response.sendRedirect("selectNuriterOne.nu?num="+nuriNum);
+    	 System.out.println("결제기록 확인 후 결제불가 성공");
+      }
    }
 
    /**
