@@ -109,4 +109,37 @@ public class PaymentService {
 		return result;
 	}
 
+	public int updateAttention(String userNum, String nuriNum) {
+		Connection con = getConnection();
+		
+		int result = new PaymentDao().updateAttention(con, userNum, nuriNum);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+	public int checkPayment(String userNum, String nuriNum) {
+		Connection con = getConnection();
+		
+		int result = new PaymentDao().checkPayment(con, userNum, nuriNum);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return result;
+	}
+
+
 }

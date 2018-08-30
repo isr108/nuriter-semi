@@ -124,6 +124,7 @@ public class PaymentDao {
 	      
 	      return result;
 	}
+
 	public int getTotalPayNum(Connection con, String nuriNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -177,6 +178,54 @@ public class PaymentDao {
 		System.out.println("환불처리된 누리원 수 : " + result);
 		
 		return result;
+  }
+
+	public int updateAttention(Connection con, String userNum, String nuriNum) {
+		  PreparedStatement pstmt = null;
+	      int result = 0;
+	      
+	      String query = prop.getProperty("updateAttention");
+	      
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setString(1, userNum);
+	         pstmt.setString(2, nuriNum);
+	         
+	         result = pstmt.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally{
+	         close(pstmt);
+	         
+	      }
+	      
+	      return result;
+	}
+	public int checkPayment(Connection con, String userNum, String nuriNum) {
+		  PreparedStatement pstmt = null;
+	      int result = 0;
+	      
+	      String query = prop.getProperty("checkPayment");
+	      
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setString(1, userNum);
+	         pstmt.setString(2, nuriNum);
+	         
+	         result = pstmt.executeUpdate();
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally{
+	         close(pstmt);
+	         
+	      }
+	      
+	      return result;
 	}
 
 }

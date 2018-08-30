@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"
 	import="java.util.*,com.kh.nuriter.board.model.vo.*,com.kh.nuriter.notice.model.vo.*"%>
 <% ArrayList<reportNuri> list = (ArrayList<reportNuri>)request.getAttribute("rlist");
+
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 int listCount = pi.getListCount();
 int currentPage = pi.getCurrentPage();
@@ -36,8 +37,8 @@ int endPage = pi.getEndPage();
 
 table tr th {
 	text-align: center;
-	border: 1px solid lightgray;
-	height: 40px;
+	border: 1px solid black;
+	height: 50px;
 	background: rgb(241, 196, 15);
 }
 
@@ -79,16 +80,16 @@ button {
 	<br>
 	<%@ include file="adminbar.jsp"%>
 	<div class="main" id="web-font">
-		<h2>누리장 신고</h2>
+		<h2>누리장 신고LIST</h2>
 		<div class="reportList">
 			<div id="reportBtn" align="right">
-				<button id="rBtn"
-					style="width: 100px; height: 30px; background: #2E2E2E; color: white; border: 1px solid #E8DB1B;">신고
-					접수</button>
+				<%-- <button id="rBtn" onclick="location.href='<%=request.getContextPath()%>/reportapprove.rp?num=<%=rn.getBoardNum()%>'"
+					>신고
+					접수</button> --%>
 			</div>
 			<table id="listArea">
 				<tr>
-					<th width="50px"></th>
+				
 					<th width="200px">신고된 누리장</th>
 					<th width="200px">신고 제목</th>
 					<th width="500px">신고 사유</th>
@@ -99,8 +100,9 @@ button {
 				
 				<% for(reportNuri r : list){ %>
 				<tr class="testList">
-				<input type="hidden" value="<%=r.getBoardNum()%>">
-					<td><input type="checkbox"></td>
+				<input type="hidden" value="<%=r.getBoardNum()%>"name="boardNum">
+				<input type="hidden" value="<%=r.getN_ownerNum()%>" name="ownerNum">
+				<input type="hidden" value="<%=r.getUserNum()%>" name="userNum">	
 					<td><%=r.getOwnerNickname()%></td>
 					<td><%=r.getBoardTitle() %></td>
 					<td><%=r.getBoardContent() %></td>
@@ -145,9 +147,15 @@ button {
 		$(function(){
 			$('.testList').click(function(){
 				
-				var num = $(this).children("input").val();
+				var num = $("[name=boardNum]").val();
+				var userNum =$(this).children("input").val();
+				var ownerNum =$(this).children("input").val();
+				
+				
+				
+				console.log(bTitle);
 				console.log(num);
-				location.href="<%= request.getContextPath()%>/reportdetail.rd?num=" + num;
+				<%-- location.href="<%= request.getContextPath()%>/reportdetail.rd?num=" + num; --%>
 			 
 			});
 		});
