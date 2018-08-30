@@ -51,6 +51,43 @@ public class BoardService {
 		return rlist;
 	}
 
+	public reportNuri reportDetail(String num) {
+		Connection con = getConnection();
+		
+		
+		
+		reportNuri rn = new BoardDao().reporDetail(con,num);
+		
+		if(rn != null){
+			commit(con);
+			
+		}else{
+			rollback(con);
+			
+		}
+		close(con);
+		
+		return rn;
+	}
+
+
+
+	public int reportapprove(String num) {
+		Connection con = getConnection();
+		
+		int result =new BoardDao().reportapprove(con,num);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		
+		return result;
+	}
+
 	
 
 }
