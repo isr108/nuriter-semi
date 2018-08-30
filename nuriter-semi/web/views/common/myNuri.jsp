@@ -147,16 +147,20 @@
 				
 				 <% for(Nuriter n : list){ %>
 				<tr>
-					<input type="hidden" id="nuriNum" name="nuriNum" value="<%=n.getNuriNum()%>">
-				
-					<td><div class="content"><%=n.getNuriTitle()%></div></td>
+					
+					<td><div class="content"><%=n.getNuriTitle()%></div>
 					<%-- <td><div class="content"><%=n.getOwnerNum()%></div></td> --%>
 					<td><div class="content"><%=n.getStartDate()%></div></td>
 					<td><div class="content"><%=n.getEndDate()%></div></td>
 					<td><div class="content"><%=n.getPlace()%></div></td>
 					<td><div class="content"><%=n.getPrice()%></div></td>
 					<td><div class="content"><%=n.getApplicationDate()%></div></td>
-					<td><div class="content"><input type="button" value="종료신청" onclick="deleteMyNuri();"></div></td>
+					<td><div class="content">
+					<input type="button" class="termiBtn" value="종료신청">
+					<input type="hidden" class="nuriNum" name="nuriNum" value="<%=n.getNuriNum()%>">
+					<input type="hidden" class="userNum" name="userNum" value="<%=loginUser.getUserNumber()%>">
+					</div></td>
+					<td><div class="content"><input type="button" value="환불신청" onclick="doRefund();"></div>
 				</tr>
 				<% } %>
 				</tbody>
@@ -198,17 +202,32 @@
 
 </body>
 <script>
-function deleteMyNuri(){
-	//var nuriNum = document.getElementById("nuriNum").value;
-	var nuriNum = $("#nuriNum").val(); 
+	$(function(){
+		$('.termiBtn').on('click', function(){
+			var nuriNum = $(this).next('.nuriNum').val();
+			console.log(nuriNum);
+			var answer = window.confirm('해당 누리터를 종료하시겠습니까?');
+			<%-- var userNumber = <%=loginUser.getUserNumber()%> --%>
+			if(answer == true){
+				alert('종료 처리되었습니다.');
+				location.href="<%=request.getContextPath()%>/deleteMyNuri.nu?nuriNum=" + nuriNum;
+			}else{
+				alert('종료가 취소되었습니다.');
+			}
+		});
+	});
+
+function doRefund(){
+	var answer = window.confirm('환불 후 해당 누리터 재 신청이 불가능합니다. 그래도 환불하시겠습니까?');	
+	var nuriNum = $(".nuriNum").val();
+	var userNum = $(".userNum").val();
 	console.log(nuriNum);
-	var answer = window.confirm('종료 후 재 신청이 불가능합니다. 그래도 종료하시겠습니까?');
-	<%-- var userNumber = <%=loginUser.getUserNumber()%> --%>
+	console.log(userNum);
 	if(answer == true){
-		alert('종료 처리되었습니다.');
-		location.href="<%=request.getContextPath()%>/deleteMyNuri.nu?nuriNum=" + nuriNum;
+		alert('환불신청 완료되었습니다.');
+		location.href="<%=request.getContextPath()%>/doRefundNuri.pa?nuriNum=" + nuriNum + "&userNum=" + userNum;
 	}else{
-		alert('종료가 취소되었습니다.');
+		alert('환불이 취소되었습니다.');
 	}
 };
 </script>
