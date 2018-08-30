@@ -138,7 +138,7 @@
 				 <%} } %>
 			</table>
 		</div>	
-		
+		<br><br><br>
 		<div class="tableArea">
     <h3 align="left">개설중인 누리터</h3> 
 			<table align="center" id="listArea">
