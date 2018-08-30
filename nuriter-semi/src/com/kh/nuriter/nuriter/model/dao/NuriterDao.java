@@ -1842,7 +1842,9 @@ public class NuriterDao {
 				nu.setAttendCount(rset.getInt("attend_count"));
 				
 				list.add(nu);
-				}
+
+			}
+
 			} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
