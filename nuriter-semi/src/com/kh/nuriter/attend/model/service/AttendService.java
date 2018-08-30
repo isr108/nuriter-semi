@@ -64,6 +64,7 @@ public class AttendService {
 		Connection con=getConnection();
 		
 		ArrayList<Attendprint> att = new AttendDao().attendprint(con, nunum);
+		/*ArrayList<HashMap<String, Object>> att = new AttendDao().attendprint(con, nunum);*/
 		
 		commit(con);
 		

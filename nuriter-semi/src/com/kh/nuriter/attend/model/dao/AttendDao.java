@@ -154,6 +154,9 @@ private Properties prop = new Properties();
 
 
 	public ArrayList<Attendprint> attendprint(Connection con, String nunum) {
+		/*ArrayList<HashMap<String, Object>> att = null;
+		HashMap<String, Object> hmap = null;*/
+		
 		ArrayList<Attendprint> att = null;
 		
 		PreparedStatement pstmt = null;
@@ -176,8 +179,9 @@ private Properties prop = new Properties();
 			System.out.println("rest1 : " + rset);
 			
 			if(rset != null){
-			att = new ArrayList<Attendprint>();	
-			while(rset.next()){	
+			/*att = new ArrayList<HashMap<String, Object>>();*/
+			att = new ArrayList<Attendprint>();
+			while(rset.next()){
 				Attendprint attend1 = new Attendprint();
 				attend1.setAttendCodeId(rset.getString("attendcode_id"));
 				attend1.setNickName(rset.getString("nickname"));
@@ -185,6 +189,14 @@ private Properties prop = new Properties();
 				attend1.setAttendDate(rset.getDate("attend_date"));
 			
 				att.add(attend1);
+				/*hmap = new HashMap<String, Object>();
+				
+				hmap.put("attendcode_id", rset.getString("attendcode_id"));
+				hmap.put("nickname",rset.getString("nickname"));
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("attend_date", rset.getDate("attend_date"));
+				
+				att.add(hmap);	*/
 			}
 		 }
 			

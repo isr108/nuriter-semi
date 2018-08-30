@@ -45,6 +45,7 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 		System.out.println("서블릿 enterprint: " + en);
 		
 		ArrayList<Attendprint> att = new AttendService().attendprint(nunum);
+		/*ArrayList<HashMap<String, Object>> att = new AttendService().attendprint(nunum);*/
 		
 		System.out.println("서블릿 : att" + att );
 		
