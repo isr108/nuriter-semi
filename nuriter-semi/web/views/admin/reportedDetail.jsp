@@ -76,6 +76,7 @@ button{
 					<td>신고자  <input type="text" value="<%=rn.getNuriNickname() %>"></td>
 					<td>신고된 누리장 <input type="text" value="<%=rn.getOwnerNickname()%>"></td>
 					<td>신고된 날짜 <input type="text" value="<%=rn.getBoardDate()%>"></td>
+					
 				</tr>
 				<tr>
 					<td>내용</td>
@@ -86,7 +87,15 @@ button{
 				</tr>
 			</table>
 				<div id="reportBtn">
-					<button onclick="location.href='<%=request.getContextPath()%>/reportapprove.rp?num=<%=rn.getBoardNum()%>'">승인하기</button>
+					<form action="<%=request.getContextPath()%>/reportapprove.rp">
+					<button type='submit'>승인하기</button>
+					<input type="hidden" value="<%=rn.getBoardNum()%>" name="num">
+					<input type="hidden" value="<%=rn.getUserNum()%>" name="userNum">
+					<input type="hidden" value="<%=rn.getN_ownerNum()%>" name="ownerNum">
+					<input type="hidden" value="<%=rn.getBoardContent() %>" name="bContent">
+					<input type="hidden" value="<%=rn.getBoardTitle()%>" name="bTitle">
+					<input type="hidden" value="<%=rn.getBoardDate()%>" name="bDate">
+					</form>
 				</div>
 		</div>
 

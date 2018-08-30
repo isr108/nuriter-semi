@@ -33,15 +33,18 @@ public class ReportapproveServlet extends HttpServlet {
 		
 		 int result = new BoardService().reportapprove(num);
 		 
+		 
+		 
+		 
+		 
 		 if(result >0){
 			 response.sendRedirect(request.getContextPath()+"/reportlist.rl");
-			 System.out.println("오니");
 		 }else{
 				request.setAttribute("msg", "공지사항 수정 실패!");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
-				 
-	
+		
+		 
 	
 	}
 

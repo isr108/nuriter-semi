@@ -443,7 +443,7 @@ for(int index = 1; index <= endDay; index++)
     	 	int attendDate1 = Integer.parseInt(to);
     	 	
     	 	if(iUseDate == attendDate1){
-    	    	   backColor = "#33ffff";
+    	    	   backColor = "#D65BC1";
     	 	
     	 	}
     	 	System.out.println("날짜 : " + attendDate1); 
@@ -531,7 +531,7 @@ while(newLine > 0 && newLine < 7)
 							alert("출석체크성공!!");
 							
 							var x = document.getElementById('today<%=test2%>');
-							x.style.background="#33ffff";
+							x.style.background="#D65BC1";
 						}else{
 							alert("출석체크실패!!")
 						}

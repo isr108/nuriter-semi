@@ -32,8 +32,16 @@ public class ReportDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String num = request.getParameter("num");
-
-
+		String userNum = request.getParameter("userNum");
+		String ownerNum = request.getParameter("ownerNum");
+		
+		
+		
+		System.out.println("num : "+num);
+		System.out.println("userNum : "+userNum);
+		System.out.println("ownerNum :"+ownerNum);
+		
+		
 		reportNuri rn = new BoardService().reportDetail(num);
 
 		String page = "";
