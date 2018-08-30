@@ -392,7 +392,7 @@ for(int index = 1; index <= endDay; index++)
        
        <%       
        out.println("<BR>");
-       /* out.println(iUseDate); */
+       out.println(iUseDate);
        out.println("<BR>");
               
        //기능 제거  
@@ -439,7 +439,7 @@ while(newLine > 0 && newLine < 7)
              int test4=0;
              
              int test5=0;
-             int test6=1;
+             int test6=0;
              String name=" ";
              for(Enter e : en){ 
               	test3++;
@@ -456,21 +456,31 @@ while(newLine > 0 && newLine < 7)
         	 <%	for(Attendprint ad : att){
         	 		test5++;
             		name=ad.getNickName();
-            	System.out.println(name);
-            			test6 = test5;
+            		System.out.println(name);
+            		test6 = test5;
             }%>
+             <%
+            
+            	String[] names = new String[att.size()];
+            	for(int i=0; i<att.size(); i++){
+            		names[i] = att.get(i).getNickName();
+            	
+            %>
           </table>
             	<script>
+            	<%-- var names = <%=names%>
+            	console.log(names); --%>
  				$(function(){
-            	for(var b=1; b<=<%=att.size()%>; b++){
-         	  		var name="<%=name%>";
-            	}
- 					for(var a=1; a<=<%=test4%>; a++){
- 	            		 
- 	            		console.log(a);
- 	            	  	/* var x = document.getElementById("test"+a); */
- 	            	  	var x = $("#test"+a).text();
- 	            	  console.log("이름: "+x);
+ 
+            		<%-- for(var b=0; b<=<%=att.size()%>; b++){ --%>
+            			var name="<%=names[i]%>";
+            			console.log(name);
+         	  		 	 <%-- var name = "<%=att.get(i).getNickName() %>";  --%>
+ 						for(var a=1; a<=<%=test4%>; a++){
+ 	            			console.log(a);
+ 	            	  		/* var x = document.getElementById("test"+a); */
+ 	            	  		var x = $("#test"+a).text();
+ 	            	  		console.log("이름: "+x);
  	            	  
  	            	 if(x==name)
  	            	{
@@ -479,7 +489,8 @@ while(newLine > 0 && newLine < 7)
 						y.style.background="#33ffff"; --%>
  	            		  } 
 
- 					}
+ 						}
+ 					/* } */
     			/* for(var ee=1; ee<=test; test++){
    					if(test5==test4){
          			$("#test").text("V");
@@ -488,7 +499,7 @@ while(newLine > 0 && newLine < 7)
 				});
 				</script>
             		   
-          
+          <%}%>
            <%-- <table border="1" summary="" style="width:100px; height:30px;">
            <tr>
            		<th style="text-align:center;">출석</th>

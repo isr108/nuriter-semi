@@ -854,6 +854,7 @@ public class NuriterDao {
 	          int startRow = (currentPage - 1) * limit + 1;
 	          int endRow = startRow + limit - 1;
 	          
+	          System.out.println(userNum);
 	          pstmt.setString(1, userNum);
 	          /*pstmt.setInt(2, startRow);
 	          pstmt.setInt(3, endRow);*/
@@ -904,7 +905,7 @@ public class NuriterDao {
          
          ArrayList<Nuriter> list1 = null;
          
-         String query = prop.getProperty("selectMyNuriList1");
+         String query = prop.getProperty("selectMyNuriList");
          System.out.println(query);
          try {
             //stmt = con.createStatement();
@@ -1841,7 +1842,9 @@ public class NuriterDao {
 				nu.setAttendCount(rset.getInt("attend_count"));
 				
 				list.add(nu);
+
 			}
+
 			} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
