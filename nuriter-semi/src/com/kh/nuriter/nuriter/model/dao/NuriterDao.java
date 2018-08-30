@@ -1798,4 +1798,60 @@ public class NuriterDao {
 	}
 
 
+	public ArrayList<Nuriter> selectEndedNuriterList(Connection con, int currentPage, int limit, String userNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Nuriter> list = null;
+		Nuriter nu = null;
+		
+		String query = prop.getProperty("selectEndedNuriterList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, userNum);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Nuriter>();
+			
+			while(rset.next()){
+				nu = new Nuriter();
+				nu.setNuriNum(rset.getString("nuri_number"));
+				nu.setOwnerNum(rset.getString("owner_number"));
+				nu.setOwnerName(rset.getString("user_name"));
+				nu.setCategoryName(rset.getString("category_name"));
+				nu.setNuriTitle(rset.getString("nuri_name"));
+				nu.setContent(rset.getString("ncontent"));
+				nu.setStartDate(rset.getDate("start_date"));
+				nu.setEndDate(rset.getDate("end_date"));
+				nu.setStartTime(rset.getString("start_time"));
+				nu.setPlace(rset.getString("place"));
+				nu.setPrice(rset.getString("price"));
+				nu.setApplicationDate(rset.getDate("application_date"));
+				nu.setPersonnel(rset.getString("personnel"));
+				nu.setReportCount(rset.getInt("report_count"));
+				nu.setProgress(rset.getString("progress"));
+				nu.setAttendCount(rset.getInt("attend_count"));
+				
+				list.add(nu);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+
+
 }

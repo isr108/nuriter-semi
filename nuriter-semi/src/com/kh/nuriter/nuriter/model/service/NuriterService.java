@@ -493,6 +493,16 @@ public int deleteNuriboss(String num) {
 	return result;
 }
 
+public ArrayList<Nuriter> selectEndedNuriterList(int currentPage, int limit, String userNum) {
+	Connection con = getConnection();
+    
+    ArrayList<Nuriter> list = new NuriterDao().selectEndedNuriterList(con, currentPage, limit, userNum);
+    
+    close(con);
+    
+    return list;
+}
+
 
 
 }
