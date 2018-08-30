@@ -493,6 +493,36 @@ public int deleteNuriboss(String num) {
 	return result;
 }
 
+public int getSearchNuriterListCount(String search) {
+	Connection con = getConnection();
+    
+    int listCount = new NuriterDao().getSearchNuriterListCount(con, search);
+    
+    close(con);
+    
+    return listCount;
+}
+
+public ArrayList<Nuriter> selectSearcgNuriterList(String search) {
+	Connection con = getConnection();
+    
+    ArrayList<Nuriter> list = new NuriterDao().selectSearchNuriterList(con, search);
+   
+    close(con);
+    
+   return list;
+}
+
+public ArrayList<HashMap<String, Object>> selectSearchThumbnailList(int currentPage, int limit, String search) {
+	Connection con = getConnection();
+	
+	ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectSearchThumbnailList(con, currentPage, limit, search);
+	
+	close(con);
+
+	return pictureList;
+}
+
 
 
 }

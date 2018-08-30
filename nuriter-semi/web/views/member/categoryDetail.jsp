@@ -37,10 +37,9 @@ hr {
 .content{
    margin-top: 170px;
    border:1px solid white;
-   width:40%;
    margin-left:auto;
    margin-right:auto;
-   width: 1200px;
+   width: 1300px;
    min-height: 935px;
 }
 
@@ -268,6 +267,32 @@ img {
 #web-font-Nanum{
 	font-family: 'Song Myung', serif;
 }
+.update {
+	width: 705px;
+}
+.update button{
+	margin-top:10px;
+	width:120px;
+	height:40px;
+	background-color: #FFBF00; /* Green */
+	font-family: 'Song Myung', serif;
+    color: black;
+    border-radius: 3px;
+    font-size:20px;
+    border: 2px solid rgb(241, 196, 15); /* Green */
+}
+.update button:hover{
+	margin-top:10px;
+	width:120px;
+	height:40px;
+	background-color: #FFBF00; /* Green */
+	font-family: 'Song Myung', serif;
+    color: black;
+    border-radius: 3px;
+    font-size:20px;
+    border: 2px solid rgb(241, 196, 15); /* Green */
+    opacity: 0.6;
+}
 
 </style>
 </head>
@@ -281,6 +306,12 @@ img {
 	   	<div class="images">
 	        <%= n.getContent() %>
 	   	</div>
+	   	
+	  	<% if(loginUser.getUserNumber() == Integer.parseInt(n.getOwnerNum())){ %>
+		  	<div class="update" align="right">
+		  		<button class="updateBtn">누리터 수정</button>
+		  	</div>
+	  	<% } %>
 	  	
       	<div class="commentDiv">
       		<input type="text" id="web-font" name="comment" class="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
@@ -326,7 +357,7 @@ img {
         
         <hr color="red" size="10px">
         
-        <div class="likeOrAngry">
+        <div class="likeOrAngry" align="center">
         
 	        <div class="hobbyDiv">
 	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font" size="5px">관심누리터 등록</font>
@@ -453,6 +484,12 @@ $(function(){
 	});
 });
 
+$(function(){
+	$(".updateBtn").click(function(){
+		alert("수정하기 버튼 눌림");
+		location.href="<%=request.getContextPath()%>/views/member/nuribossApply.jsp";
+	});
+});
 
 //셀렉트 박스
 $(function(){
@@ -473,6 +510,8 @@ $(function(){
 					console.log(data);
 					
 					alert(data); 
+					
+					location.reload();
 				},
 				error:function(data){
 					console.log(data);
@@ -583,13 +622,6 @@ function cash(){
     });
  }
 
-</script>    
-<script>
-   <%-- $(function(){
-      if(<%=detail%>!= null){
-         alert('결제가 완료 되었습니다');
-      }
-   }); --%>
 </script>
 </body>
 </html>
