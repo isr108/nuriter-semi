@@ -115,6 +115,7 @@ public class BoardDao {
 			while(rset.next()){
 				rn = new reportNuri();
 				
+				rn.setBoardNum(rset.getString("board_number"));
 				rn.setBoardTitle(rset.getString("board_title"));
 				rn.setBoardContent(rset.getString("board_content"));
 				rn.setOwnerNickname(rset.getString("nuriboss"));
@@ -135,6 +136,70 @@ public class BoardDao {
 		}
 		System.out.println(rlist);
 		return rlist;
+	}
+
+
+	public reportNuri reporDetail(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		reportNuri rn =null;
+		
+		String query =prop.getProperty("reportDetail");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				rn = new reportNuri();
+				
+				rn.setBoardNum(rset.getString("board_number"));
+				rn.setBoardTitle(rset.getString("board_title"));
+				rn.setBoardContent(rset.getString("board_content"));
+				rn.setOwnerNickname(rset.getString("nuriboss"));
+				/*rn.setUserNum(rset.getInt("user_number"));*/
+				rn.setBoardDate(rset.getDate("board_date"));
+				rn.setNuriNickname(rset.getString("reporter"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		
+		return rn;
+	}
+
+
+	public int reportapprove(Connection con, String num) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("reportapprove");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1,num);
+			
+			result = pstmt.executeUpdate();
+			System.out.println("다오 업"+result);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 }

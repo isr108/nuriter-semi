@@ -99,6 +99,7 @@ button {
 				
 				<% for(reportNuri r : list){ %>
 				<tr class="testList">
+				<input type="hidden" value="<%=r.getBoardNum()%>">
 					<td><input type="checkbox"></td>
 					<td><%=r.getOwnerNickname()%></td>
 					<td><%=r.getBoardTitle() %></td>
@@ -140,6 +141,16 @@ button {
 				onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= maxPage %>'">>></button>
 		</div>
 	</div>
-	
+	<script>
+		$(function(){
+			$('.testList').click(function(){
+				
+				var num = $(this).children("input").val();
+				console.log(num);
+				location.href="<%= request.getContextPath()%>/reportdetail.rd?num=" + num;
+			 
+			});
+		});
+	</script>
 </body>
 </html>
