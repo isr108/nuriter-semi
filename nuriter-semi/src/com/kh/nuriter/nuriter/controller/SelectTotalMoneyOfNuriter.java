@@ -1,4 +1,4 @@
-package com.kh.nuriter.board.controller;
+package com.kh.nuriter.nuriter.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.nuriter.board.model.sevice.BoardService;
-import com.kh.nuriter.board.model.vo.reportNuri;
+import com.kh.nuriter.nuriter.model.service.NuriterService;
+import com.kh.nuriter.payment.model.service.PaymentService;
 
 /**
- * Servlet implementation class ReportapproveServlet
+ * Servlet implementation class SelectTotalMoneyOfNuriter
  */
-@WebServlet("/reportapprove.rp")
-public class ReportapproveServlet extends HttpServlet {
+@WebServlet("/selectNuriTotalMoney.nu")
+public class SelectTotalMoneyOfNuriter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportapproveServlet() {
+    public SelectTotalMoneyOfNuriter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +29,19 @@ public class ReportapproveServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String num =request.getParameter("num");
+		System.out.println("해당 누리터의 결제완료된 총 금액을 나타낼 서블릿 이동 완료!");
+		String nuriNum = request.getParameter("nuriNum");
+		System.out.println("누리터번호 : " + nuriNum);
 		
-		 int result = new BoardService().reportapprove(num);
-		 
-		 
-		 
-		 
-		 
-		 if(result >0){
-			 response.sendRedirect(request.getContextPath()+"/reportlist.rl");
-		 }else{
-				request.setAttribute("msg", "공지사항 수정 실패!");
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			}
+		int totalPayNum = new PaymentService().getTotalPayNum(nuriNum);
+		System.out.println(totalPayNum);
 		
-		 
-	
+		int totalPayNum2 = new PaymentService().getTotalPayNum2(nuriNum);
+		System.out.println(totalPayNum2);
+		
+		int price = new NuriterService().getNuriPrice(nuriNum);
+		System.out.println("누리터 가격 : " + price);
+		
 	}
 
 	/**

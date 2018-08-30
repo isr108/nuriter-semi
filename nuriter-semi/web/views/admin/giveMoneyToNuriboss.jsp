@@ -178,8 +178,8 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<!-- <th></th>
-								<th></th> -->
+								<th></th>
+								<!-- <th></th> -->
 								<th>이름</th>
 								<th>누리터명</th>
 								<th>카테고리</th>
@@ -192,8 +192,8 @@ button:hover {
 								for (Nuriter nu : list) {
 							%>
 							<tr>
-								<%-- <td id="test1"><input type="hidden" value="<%=%>"></td>
-								<td id="test2"><input type="hidden" value="<%=%>"></td> --%>
+								<td id="nuriNum"><input type="hidden" value="<%=nu.getNuriNum()%>"></td>
+								<%-- <td id="test2"><input type="hidden" value="<%=%>"></td> --%>
 								<td><%=nu.getOwnerName() %></td>
 								<td><%=nu.getNuriTitle() %></td>
 								<td><%=nu.getCategoryName() %></td>
@@ -210,13 +210,23 @@ button:hover {
 						<script>
 							$(function(){
 								$(".listBox #giveMoney").mouseenter(function(){
-									$(this).css({"background":"#fed8cd"});
+									$(this).css({"background":"#fed8cd", "cursor":"pointer"});
 								}).mouseout(function(){
 									$(this).css({"background":"white"});
 								}).click(function(){
 									location.href="<%=request.getContextPath()%>/deleteNuribossAfterGiveMoney.nu";
 								});
-							});u
+								
+								$(".listBox td").mouseenter(function(){
+									$(this).parent().css({"background":"#eaeaea"});
+								}).mouseout(function(){
+									$(this).parent().css({"background":"white"});
+								}).click(function(){
+									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
+									alert("누리터번호는 " + nuriNum);
+									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum=" + nuriNum;
+								});
+							});
 						</script>
 
 						<div class="pagination" align="center">

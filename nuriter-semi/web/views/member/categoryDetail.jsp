@@ -11,7 +11,7 @@
 <head>
 <meta charset=UTF-8">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -430,7 +430,7 @@ img {
 </div>
       <%@ include file="../common/footer.jsp" %>
       
-<Script>
+<script>
 $(function(){
 	$(function(){
 		window.onload=function(){
@@ -588,38 +588,44 @@ $(function(){
             
          });
  });
-</Script>  
+</script>  
 <script>
 function choice(){
-  if(<%= n.getPrice() %> != 0){
-     cash();
-     
-  }else{
-    var contextPath = '<%= request.getContextPath() %>';
-    var pId = "imp_"+new Date().getTime() ;
-    var userNum = '<%=loginUser.getUserNumber()%>';
-    var nuriNum = '<%=n.getNuriNum()%>';
-    var endDate ='<%=n.getEndDate()%>'
-    var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum=" + userNum +"&nuriNum=" + nuriNum +"&endDate=" + endDate; 
-    console.log(loc);
+	var answer = window.confirm("환불 후 재결제는 불가능합니다. 계속 진행하시겠습니까?");
+	if(answer==true){
+  		if(<%=n.getPrice()%> != 0){
+    	 	cash();
+     	}else{
+    		var contextPath = '<%=request.getContextPath()%>';
+   			var pId = "imp_"+new Date().getTime() ;
+    		var userNum = '<%=loginUser.getUserNumber()%>';
+    		var nuriNum = '<%=n.getNuriNum()%>';
+    		var endDate ='<%=n.getEndDate()%>';
+			var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum="
+						+ userNum + "&nuriNum=" + nuriNum + "&endDate="
+						+ endDate;
+				console.log(loc);
 
-    location.href=loc;
-  }
+				location.href = loc;
+			}
+	}else{
+		alert("신청이 취소되었습니다.");
+		}
 }
+	
 
+	function cash() {
+		alert('전송');
 
-function cash(){
- alert('전송');
- 
-    var IMP = window.IMP; // 생략가능
-       IMP.init('imp43582013');  // 가맹점 식별 코드
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp43582013'); // 가맹점 식별 코드
 
-       IMP.request_pay({
-          pg : 'inicis', // 결제방식
-           pay_method : 'card',   // 결제 수단
-           merchant_uid : 'merchant_' + new Date().getTime(),
-          name : '주문명: 결제 테스트',   // order 테이블에 들어갈 주문명 혹은 주문 번호
-           amount : '<%=n.getPrice()%>',   // 결제 금액
+		IMP.request_pay({
+			pg : 'inicis', // 결제방식
+			pay_method : 'card', // 결제 수단
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : '주문명: 결제 테스트', // order 테이블에 들어갈 주문명 혹은 주문 번호
+			amount : '<%=n.getPrice()%>',   // 결제 금액
            buyer_email : '<%=loginUser.getUserEmail()%>',// 구매자 email
           buyer_name :  '<%=loginUser.getUserName()%>',   // 구매자 이름
            buyer_tel :  '<%=loginUser.getPhone()%>',   // 구매자 전화번호
@@ -651,7 +657,7 @@ function cash(){
           
        }
     });
- }
+	}
 
 </script>
 </body>
