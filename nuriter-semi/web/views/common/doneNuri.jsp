@@ -77,13 +77,15 @@
 		width:auto;
 		height:auto;
 	}
-	
-	.pagination {
+	#web-font{
+	align:center;
+	}
+	 .pagination {
   		display:inline-blick;
 	    /* width:400px;
 	    height:60px;
 	    overflow:hidden; */
-	    padding-left: 45%;
+	    padding-left: 50%;
 	    margin: 20px 0;
 	    boder-radius:4px;
 	    pointer: cursor;
@@ -161,20 +163,20 @@
 			<br>
 			<!-- 페이지처리 -->
 			<!-- <div class="pageArea" align="center"> -->
-			<div class="pagination" align="center" id="web-font">
+			<div class="pagination" id="web-font">
    			<br>
-   			<a href="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=1'"><<</a>
+   			<a href="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>
    			<a disabled><</a>
    			<% }else{ %>
-   			<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%=currentPage - 1%>'">&laquo;</a>
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=<%=currentPage - 1%>'">&laquo;</a>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
-   				<a disabled><%= p %></a>
+   				<a class="active" disabled><%= p %></a>
    			<%  }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= p %>'"><%= p %></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=<%= p %>'"><%= p %></a>
    			<%  } %>
    			
    			<% } %>
@@ -182,9 +184,9 @@
    			<% if(currentPage >= maxPage){ %>
    				<a disabled>></a>
    			<% }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= currentPage + 1%>'">></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= maxPage %>'">>></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=<%= maxPage %>'">>></a>
    		</div>
 		</div>
 			
