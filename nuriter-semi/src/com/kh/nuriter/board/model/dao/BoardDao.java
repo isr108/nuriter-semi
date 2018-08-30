@@ -119,10 +119,10 @@ public class BoardDao {
 				rn.setBoardTitle(rset.getString("board_title"));
 				rn.setBoardContent(rset.getString("board_content"));
 				rn.setOwnerNickname(rset.getString("nuriboss"));
-				/*rn.setUserNum(rset.getInt("user_number"));*/
+				rn.setUserNum(rset.getInt("user_number"));
 				rn.setBoardDate(rset.getDate("board_date"));
 				rn.setNuriNickname(rset.getString("reporter"));
-				/*rn.setN_ownerNum(rset.getString("owner_number"));*/
+				rn.setN_ownerNum(rset.getString("owner_number"));
 				
 				rlist.add(rn);
 			
@@ -134,7 +134,6 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(rlist);
 		return rlist;
 	}
 
@@ -160,7 +159,8 @@ public class BoardDao {
 				rn.setBoardTitle(rset.getString("board_title"));
 				rn.setBoardContent(rset.getString("board_content"));
 				rn.setOwnerNickname(rset.getString("nuriboss"));
-				/*rn.setUserNum(rset.getInt("user_number"));*/
+				rn.setUserNum(rset.getInt("user_number"));
+				rn.setN_ownerNum(rset.getString("owner_number"));
 				rn.setBoardDate(rset.getDate("board_date"));
 				rn.setNuriNickname(rset.getString("reporter"));
 			}
@@ -190,7 +190,7 @@ public class BoardDao {
 			pstmt.setString(1,num);
 			
 			result = pstmt.executeUpdate();
-			System.out.println("다오 업"+result);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

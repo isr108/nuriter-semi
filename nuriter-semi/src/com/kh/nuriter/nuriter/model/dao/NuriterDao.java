@@ -1841,6 +1841,7 @@ public class NuriterDao {
 				nu.setAttendCount(rset.getInt("attend_count"));
 				
 				list.add(nu);
+			}
 			} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -1984,6 +1985,7 @@ public class NuriterDao {
 				hmap.put("upload_date", rset.getDate("upload_date"));
 
 				pictureList.add(hmap);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
