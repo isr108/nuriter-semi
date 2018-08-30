@@ -1,3 +1,5 @@
+<%@page import="com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.Adapter"%>
+<%@page import="oracle.net.aso.e"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*,  com.kh.nuriter.attend.model.vo.*"%>
     
@@ -27,6 +29,7 @@
  	/* ArrayList<HashMap<String, Object>> en = (ArrayList<HashMap<String, Object>>)request.getAttribute("en"); */
  	
  	ArrayList<Attendprint> att=(ArrayList<Attendprint>)request.getAttribute("att");
+ 	/* ArrayList<HashMap<String, Object>> att = (ArrayList<HashMap<String, Object>>)request.getAttribute("att"); */
  	
 %> 
 
@@ -430,14 +433,66 @@ while(newLine > 0 && newLine < 7)
                 <th style="text-align:center;">출석</th>
                     
             </tr>
-            <% 
-            	for(Enter e : en){ %>
-            		
-            		<tr>
-            			<td><%=e.getNickName() %></td>
-            		
-            		</tr>     
-           <% } %>
+             
+             <%
+             int test3=0;
+             int test4=0;
+             
+             int test5=0;
+             int test6=1;
+             String name=" ";
+             for(Enter e : en){ 
+              	test3++;
+              	
+              	
+              	test4 = test3;
+             %>
+            	<tr>	
+          		<td id ="test<%=test4%>"><%=e.getNickName()%></td>
+          		<td id ="t<%=test4%>"></td>
+          		</tr>
+        	 <% }%>
+        	 	
+        	 <%	for(Attendprint ad : att){
+        	 		test5++;
+            		name=ad.getNickName();
+            	System.out.println(name);
+            			test6 = test5;
+            }%>
+          </table>
+            	<script>
+ 				$(function(){
+            	for(var b=1; b<=<%=att.size()%>; b++){
+         	  		var name="<%=name%>";
+            	}
+ 					for(var a=1; a<=<%=test4%>; a++){
+ 	            		 
+ 	            		console.log(a);
+ 	            	  	/* var x = document.getElementById("test"+a); */
+ 	            	  	var x = $("#test"+a).text();
+ 	            	  console.log("이름: "+x);
+ 	            	  
+ 	            	 if(x==name)
+ 	            	{
+						$("#t"+a).text("V");
+ 	            		<%-- var y = document.getElementById('t<%=test4%>');
+						y.style.background="#33ffff"; --%>
+ 	            		  } 
+
+ 					}
+    			/* for(var ee=1; ee<=test; test++){
+   					if(test5==test4){
+         			$("#test").text("V");
+    				}
+    			} */
+				});
+				</script>
+            		   
+          
+           <%-- <table border="1" summary="" style="width:100px; height:30px;">
+           <tr>
+           		<th style="text-align:center;">출석</th>
+           </tr>
            
            <% for(Attendprint ad : att){ %>
            		<tr>
@@ -445,12 +500,13 @@ while(newLine > 0 && newLine < 7)
            		</tr>
            	
            <%} %>
-    	</table>
+    	</table> --%>
     
     </div>
      
 </div>
 </div>
+
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
 	<script>
 		$("#p1").text.val=1;
