@@ -23,8 +23,8 @@ public class Member implements java.io.Serializable{
 	private String reportedUser;
 	private String activated;
 	private Date activatedDate;
-	
-	
+	private String refundNuriterName;
+	private int refundNuriterPrice;
 	
 	public Member(){}
 
@@ -33,7 +33,7 @@ public class Member implements java.io.Serializable{
 	public Member(int userNumber, String userEmail, String password, String userName, String nickName, String phone,
 			String address, Date birthDate, String grade, Date gradeDate, String bankName, String bankNumber,
 			String hobby, Date enrollDate, String accountSort, String token, String reportedUser, String activated,
-			Date activatedDate) {
+			Date activatedDate, String refundNuriterName, int refundNuriterPrice) {
 		super();
 		this.userNumber = userNumber;
 		this.userEmail = userEmail;
@@ -54,6 +54,8 @@ public class Member implements java.io.Serializable{
 		this.reportedUser = reportedUser;
 		this.activated = activated;
 		this.activatedDate = activatedDate;
+		this.refundNuriterName = refundNuriterName;
+		this.refundNuriterPrice = refundNuriterPrice;
 	}
 
 
@@ -284,6 +286,30 @@ public class Member implements java.io.Serializable{
 		this.activatedDate = activatedDate;
 	}
 
+	
+
+	public String getRefundNuriterName() {
+		return refundNuriterName;
+	}
+
+
+
+	public void setRefundNuriterName(String refundNuriterName) {
+		this.refundNuriterName = refundNuriterName;
+	}
+
+	
+
+	public int getRefundNuriterPrice() {
+		return refundNuriterPrice;
+	}
+
+
+
+	public void setRefundNuriterPrice(int refundNuriterPrice) {
+		this.refundNuriterPrice = refundNuriterPrice;
+	}
+
 
 
 	@Override
@@ -293,13 +319,11 @@ public class Member implements java.io.Serializable{
 				+ ", birthDate=" + birthDate + ", grade=" + grade + ", gradeDate=" + gradeDate + ", bankName="
 				+ bankName + ", bankNumber=" + bankNumber + ", hobby=" + hobby + ", enrollDate=" + enrollDate
 				+ ", accountSort=" + accountSort + ", token=" + token + ", reportedUser=" + reportedUser
-				+ ", activated=" + activated + ", activatedDate=" + activatedDate + "]";
+				+ ", activated=" + activated + ", activatedDate=" + activatedDate + ", refundNuriterName="
+				+ refundNuriterName + ", refundNuriterPrice=" + refundNuriterPrice + "]";
 	}
 
-	
-	
 
-	
-	
-	
+
+
 }

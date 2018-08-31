@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, com.kh.nuriter.member.model.vo.*"%>
+	import="java.util.*, com.kh.nuriter.member.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
 <%
-	Member m = (Member)request.getAttribute("m");
-	int numberOfPeople1 = (int)(request.getAttribute("numberOfPeople1"));
-	int numberOfPeople2 = (int)(request.getAttribute("numberOfPeople2"));
-	int price = (int)(request.getAttribute("price"));
-	String ownerNum = request.getAttribute("ownerNum").toString();	
+	ArrayList<Member> refundList = (ArrayList<Member>) request.getAttribute("refundList");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 
 <!DOCTYPE html>
@@ -126,6 +128,16 @@
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
 }
 
+#search-select {
+	display: inline;
+}
+
+#search-web-font {
+	margin-left: 15px;
+	font-family: 'Jua', sans-serif;
+	font-size: 150%;
+}
+
 select {
 	height: 40px;
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
@@ -165,64 +177,86 @@ button:hover {
 	<%--  <%@ include file="../common/categorybar.jsp" %> --%>
 	<%-- <%@ include file="../common/myPage_left.jsp" %> --%>
 	<div id="main1">
-		<%@ include file="adminbar.jsp"%>
+		<%@ include file="../admin/adminbar.jsp"%>
 		<!-- </div> -->
 
 		<div id="main" align="center">
-			<form id="test" action="<%=request.getContextPath()%>/selectNuribossNuriterList.nu?userNum=<%=ownerNum%>" method="post">
-			
+			<form id="test">
 				<div id="child">
 					<div id="child2">
-						<h1 id="web-font">지급정보</h1>
+						<h1 id="web-font">환불요청 회원</h1>
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<th>누리장 이름</th>
-								<th>총결제인원</th>
-								<th>환불인원</th>
-								<th>누리터 참가비</th>
-								<th>지급될 돈</th>
+								<!-- <th style="display:none;"></th> -->
+								<th style="display:none;"></th>
+								<th>회원이름</th>
+								<th>누리터명</th>
 								<th>은행명</th>
 								<th>계좌번호</th>
-								<th>지급하기</th>
-								<th>지급여부</th>
+								<th>환불된 가격</th>
+								<th>환불승인</th>
 							</tr>
-							
-							
+							<%
+								for (Member m : refundList) {
+							%>
 							<tr>
-								<input type="hidden" value=<%=ownerNum%>>
-								<td style="color:rgb(139, 195, 74);"><%=m.getUserName() %></td>
-								<td><%=numberOfPeople1 %></td>
-								<td><%=numberOfPeople2 %></td>
-								<td><%=price %></td>
-								<td><%=numberOfPeople1 * price %></td>
-								<td style="color:rgb(90, 174, 255);"><%=m.getBankName() %></td>
-								<td style="color:rgb(90, 174, 255);"><%=m.getBankNumber() %></td>
-								<td id="giveMoney"><div style="color:#FF5E00;">지급하기</div></td>
-								<td>ㅛㅛ</td>
+								<%-- <td id="test1" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>--%>
+								<td id="getUserNum" style="display:none;"><input type="hidden" value="<%=m.getUserNumber()%>"></td>
+								<td><%=m.getUserName()%></td>
+								<td><%=m.getRefundNuriterName()%></td>
+								<td><%=m.getBankName()%></td>
+								<td><%=m.getBankNumber()%></td>
+								<td><%=m.getRefundNuriterPrice()%></td>
+								<td id="goRefund">승인</td>
 							</tr>
+							<%
+								}
+							%>
 							
 						</table>
 						
 						<script>
-							$(function(){
-								$(".listBox #giveMoney").mouseenter(function(){
-									$(this).css({"background":"#fed8cd", "cursor":"pointer"});
-								}).mouseout(function(){
-									$(this).css({"background":"white"});
-								}).click(function(){
-									location.href="<%=request.getContextPath()%>/updatePayStatus.nu";
-								});
+						$(function(){
+							$(".listBox #goRefund").mouseenter(function(){
+								$(this).css({"cursor":"pointer", "background":"#dde8fc"});
+							}).mouseout(function(){
+								$(this).css({"background":"white"});
+							}).click(function(){
+								var num = $(this).parent().children("#getUserNum").children("input").val();
+								location.href="<%=request.getContextPath()%>/updateRefundMember.rm?num=" + num;
 							});
+							
+						});
 						</script>
 
 						<div class="pagination" align="center">
 
+							<br>
+
+
+							<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=1'"><<</a>
+							<% if (currentPage <= 1) {%>
+							<a disabled><</button> 
+							<% } else { %> 
+							<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage - 1%>'"><</a>
+							<% } %> 
+							<% for (int p = startPage; p <= endPage; p++) {
+ 								if (p == currentPage) { %> 
+ 									<a disabled><%=p%></a> 
+ 							 <% } else { %> 
+ 							 <a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=p%>'"><%=p%></a>
+							<%	} %> 
+							<% } %> 
+							<% if (currentPage >= maxPage) { %> 
+									<a disabled>></a> 
+							<% }else { %> 
+								<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage + 1%>'">></a>
+							<% } %> <a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=maxPage%>'">>></a>
+
+
 								<br> <br> <br>
 
-								<div id="eb" align="center">
-									 <button id="web-font" >이전 페이지</button>
-								</div>
 								
 						</div>
 					</div>

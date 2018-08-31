@@ -178,8 +178,8 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<th></th>
-								<th></th>
+								<th style="display:none;"></th>
+								<th style="display:none;"></th>
 								<th>이름</th>
 								<th>누리터명</th>
 								<th>카테고리</th>
@@ -192,8 +192,8 @@ button:hover {
 								for (Nuriter nu : list) {
 							%>
 							<tr>
-								<td id="nuriNum"><input type="hidden" value="<%=nu.getNuriNum()%>"></td>
-								<td id="ownerNum"><input type="hidden" value="<%=nu.getOwnerNum()%>"></td>
+								<td id="nuriNum" style="display:none;"><input type="hidden" value="<%=nu.getNuriNum()%>"></td>
+								<td id="ownerNum" style="display:none;"><input type="hidden" value="<%=nu.getOwnerNum()%>"></td>
 								<td><%=nu.getOwnerName() %></td>
 								<td><%=nu.getNuriTitle() %></td>
 								<td><%=nu.getCategoryName() %></td>
@@ -210,7 +210,7 @@ button:hover {
 						<script>
 							$(function(){
 								$(".listBox #giveMoney").mouseenter(function(){
-									$(this).css({"background":"#fed8cd", "cursor":"pointer"});
+									$(this).css({"background":"#dde8fc", "cursor":"pointer"});
 								}).mouseout(function(){
 									$(this).css({"background":"white"});
 								}).click(function(){
@@ -220,16 +220,7 @@ button:hover {
 									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
 								});
 								
-								<%-- $(".listBox td").mouseenter(function(){
-									$(this).parent().css({"background":"#eaeaea"});
-								}).mouseout(function(){
-									$(this).parent().css({"background":"white"});
-								}).click(function(){
-									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
-									var ownerNum = $(this).parent().children("#ownerNum").children("input").val();
-									alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum);
-									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
-								}); --%>
+								
 							});
 						</script>
 

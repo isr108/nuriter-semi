@@ -188,22 +188,26 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<th></th>
-								<th></th>
+								<th style="display:none;"></th>
+								<th style="display:none;"></th>
 								<th>누리장 승인일자</th>
 								<th>이름</th>
 								<th>카테고리</th>
+								<th>활동계획서</th>
+								<th>누리터</th>
 								<th>승인취소</th>
 							</tr>
 							<%
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<td id="test1"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
-								<td id="test2"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
+								<td id="test1" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
+								<td id="test2" style="display:none;"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
 								<td><%=nb.getApplyDate()%></td>
-								<td id="myNuri"><%=nb.getUserName()%></td>
+								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
+								<td id="goDetail" style="color:#5AAEFF;">확인하기</td>
+								<td id="myNuri" style="color:rgb(139, 195, 74);">완료된 누리터 확인</td>
 								<td id="test3"><div style="color:#FF5E00;">취소하기</div></td>
 							</tr>
 							<%
@@ -214,19 +218,20 @@ button:hover {
 						
 						<script>
 						$(function(){
-							$(".listBox td").mouseenter(function(){
-								$(this).parent().css({"background":"#eaeaea", "cursor":"pointer"});
+							
+							
+							$(".listBox #goDetail").mouseenter(function(){
+								$(this).css({"cursor":"pointer", "background":"#dde8fc"});
 							}).mouseout(function(){
-								$(this).parent().css({"background":"white"});
+								$(this).css({"background":"white"});
 							}).click(function(){
 								var num = $(this).parent().children("#test1").children("input").val();
-								alert("야 !!! " + num);
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
 							
 							$(".listBox #test3").mouseenter(function(){
-								$(this).css({"background":"#fed8cd"});
+								$(this).css({"cursor":"pointer", "background":"#fed8cd"});
 							}).mouseout(function(){
 								$(this).css({"background":"white"});
 							}).click(function(){
@@ -239,7 +244,7 @@ button:hover {
 							});
 							
 							$(".listBox #myNuri").mouseenter(function(){
-								$(this).css({"background":"#fec00766"});
+								$(this).css({"cursor":"pointer", "background":"rgb(225, 239, 207)"});
 							}).mouseout(function(){
 								$(this).css({"background":"white"});
 							}).click(function(){

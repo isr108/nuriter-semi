@@ -182,6 +182,42 @@ public class MemberService {
 		return m;
 	}
 
+	public int getRefundMemberCount() {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().getRefundMemberCount(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectRefundNuriMember(int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Member> refundList = new MemberDao().selectRefundNuriMember(con, currentPage, limit);
+		
+		close(con);
+		
+		return refundList;
+	}
+
+	public int updateRefundNumber(String num) {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().updateRefundNumber(con, num);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		
+		return result;
+	}
+
+	
+
 	
 
 	/*public int snsloginMember(Member m) {

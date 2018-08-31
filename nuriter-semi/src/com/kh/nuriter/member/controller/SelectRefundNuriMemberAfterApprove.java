@@ -1,4 +1,4 @@
-package com.kh.nuriter.nuriter.controller;
+package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DeleteNuriBossAfterGiveMoney
+ * Servlet implementation class SelectRefundNuriMemberAfterApprove
  */
-@WebServlet("/deleteNuribossAfterGiveMoney.nu")
-public class DeleteNuriBossAfterGiveMoney extends HttpServlet {
+@WebServlet("/selectRefundNuriMember2.rm")
+public class SelectRefundNuriMemberAfterApprove extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteNuriBossAfterGiveMoney() {
+    public SelectRefundNuriMemberAfterApprove() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,10 @@ public class DeleteNuriBossAfterGiveMoney extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("누리장에게 돈을 지급하는 서블릿 이동 완료!");
+		System.out.println("환불승인 후 목록 조회하는 서블릿 이동!");
+		String num = request.getParameter("num");
+		System.out.println(num);
+		
 	}
 
 	/**
