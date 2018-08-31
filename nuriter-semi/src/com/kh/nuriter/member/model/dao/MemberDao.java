@@ -739,6 +739,41 @@ public class MemberDao {
 	      return result;
 	}
 
+	public Member selectNuriBossInfo(Connection con, String ownerNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member m = null;
+		
+		String query = prop.getProperty("selectNuriBossInfo");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, ownerNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+				m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+				m.setUserName(rset.getString("user_name"));
+				m.setPhone(rset.getString("phone"));
+				m.setBankName(rset.getString("bank_name"));
+				m.setBankNumber(rset.getString("bank_number"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(m);
+		
+		return m;
+	}
+
+	
+
 	
 
 }

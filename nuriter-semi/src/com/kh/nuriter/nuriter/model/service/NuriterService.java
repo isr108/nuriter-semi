@@ -544,6 +544,16 @@ public int getNuriPrice(String nuriNum) {
 	return result;
 }
 
+public String getOwnerNum(String nuriNum) {
+	Connection con = getConnection();
+	
+	String ownerNum = new NuriterDao().getOwnerNum(con, nuriNum);
+	
+	close(con);
+	
+	return ownerNum;
+}
+
 
 
 }
