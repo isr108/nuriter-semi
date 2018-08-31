@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+	import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.nuriter.model.vo.*"%>
 <%
 	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
