@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -993,60 +995,6 @@ public class NuriterDao {
          return bossList;
 	}
 
-	public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
-		ArrayList<Nuriboss> bossList = null;
-		PreparedStatement pstmt = null;
-		/* Statement stmt = null; */
-		ResultSet rset = null;
-		Nuriboss nb = null;
-
-		String query = prop.getProperty("selectNuribossList");
-
-		try {
-			/*
-			 * stmt = con.createStatement(); rset = stmt.executeQuery(query);
-			 */
-
-			pstmt = con.prepareStatement(query);
-
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
-			rset = pstmt.executeQuery();
-
-			bossList = new ArrayList<Nuriboss>();
-
-			while (rset.next()) {
-				nb = new Nuriboss();
-
-				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setUserName(rset.getString("user_name"));
-				nb.setCategoryNum(rset.getString("category_name"));
-				nb.setBossContent(rset.getString("newnuri_content"));
-				nb.setPotoPath(rset.getString("planfile_path"));
-				nb.setPotoName(rset.getString("planfile_name"));
-				nb.setApplyDate(rset.getDate("apply_date"));
-
-				bossList.add(nb);
-			}
-
-			System.out.println(bossList);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-
-		return bossList;
-	}
-
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
 		PreparedStatement pstmt = null;
@@ -2005,6 +1953,8 @@ public class NuriterDao {
 			close(rset);
 			close(pstmt);
 		}
+		
+		return pictureList;
   }
 
 
@@ -2033,6 +1983,58 @@ public class NuriterDao {
 		}
 		
 		System.out.println("가격 : " + result);
+		return result;
+	}
+
+	public int updateNuriter(Connection con, String nuriNum, String title, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateNuriter_Park");
+		
+		System.out.println(nuriNum);
+		System.out.println(title);
+		System.out.println(content);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, nuriNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, String nuriNum, String title, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateBoard_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, nuriNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
 		return result;
 	}
 }

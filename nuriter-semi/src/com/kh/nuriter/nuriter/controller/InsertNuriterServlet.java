@@ -99,23 +99,24 @@ public class InsertNuriterServlet extends HttpServlet {
 					String placeOne = multiRequest.getParameter("placeOne");
 					String placeTwo = multiRequest.getParameter("placeTwo");
 					String placeTree = multiRequest.getParameter("placeTree");
-					String place = placeOne + " " + placeTwo + " " + placeTree;
+					String place = placeOne + " [ " + placeTwo + " ] " + placeTree;
 					String summerText = multiRequest.getParameter("summerText");
 					String price = multiRequest.getParameter("price");
 					String personnel = multiRequest.getParameter("personnel");
+					int attendCount = Integer.parseInt(multiRequest.getParameter("count")); 
 					
-					System.out.println(writer);
+					/*System.out.println(writer);
 					System.out.println(category);
 					System.out.println(title);
 					System.out.println(fromDate);
 					System.out.println(toDate);
 					System.out.println(startTime);
-					System.out.println(endTime);
+					System.out.println(endTime);*/
 					System.out.println(place);
-					System.out.println(price);
+					/*System.out.println(price);
 					System.out.println(personnel);
 					System.out.println(saveFiles);
-					System.out.println(originFiles);
+					System.out.println(originFiles);*/
 					
 					java.sql.Date startDay = null;
 					
@@ -160,11 +161,11 @@ public class InsertNuriterServlet extends HttpServlet {
 					n.setStartDate(startDay); //시작일
 					n.setEndDate(endDay); //종료일
 					n.setStartTime(startTime + " ~ " + endTime); //시작 종료시간
-					/*n.setEndTime(endTime);*/
 					n.setPlace(place); //장소
 					n.setContent(summerText); //내용
 					n.setPrice(price); //가격
 					n.setPersonnel(personnel); //총원
+					n.setAttendCount(attendCount); //총 출석일수
 					
 					//Attachment객체 생성해서 arrayList객체 생성
 					ArrayList<Attachment> fileList = new ArrayList<Attachment>();
