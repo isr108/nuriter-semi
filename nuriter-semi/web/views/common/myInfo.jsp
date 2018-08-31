@@ -10,7 +10,7 @@
 
 <style>
 #myInfoPage {
-	margin-top: 13%;
+	margin-top: 15%;
 	margin-left: 0 auto;
 	marign-right: 0 auto;
 	font-family: 'Jua', sans-serif;
