@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.attend.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.member.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
  <% 
-	ArrayList<Enter> list = (ArrayList<Enter>)request.getAttribute("list");
- 	System.out.println("list출력  : " + list);
- 	PageInfo pi = (PageInfo)request.getAttribute("pi");
- 	System.out.println("pi출력 : " + pi);
- 	int listCount = pi.getListCount();
- 	int currentPage = pi.getCurrentPage();
- 	int maxPage = pi.getMaxPage();
- 	int startPage = pi.getStartPage();
- 	int endPage = pi.getEndPage();
+ 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+ 	String nuriNum = (String)request.getAttribute("nuriNum");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,12 +22,12 @@
 		height:auto;
 		background:white;
 		color:lightblack;
-		margin-top:1%;
+		margin-top:20%;
 		margin-left:auto;
 		margin-right:auto;
 		/* margin-top:280px; */
 	}
-	h2{
+	#h2{
 	font-family: 'Jua', sans-serif;
 	}
 	table {
@@ -41,7 +40,7 @@
 	.tableArea {
 		width:650px;
 		height:auto;
-		margin-left:5%;
+		margin-left:12%;
 		margin-right:auto;
 	}
 	.searchArea {
@@ -126,31 +125,26 @@
 	<%@ include file="/views/common/myPage_left.jsp" %>
 	<div class="outer">
 		<br>
-		<h2 align="center">참여중인 누리원</h2>
+		<h2 align="center" id="h2">누리원 명단</h2>
+		<hr>
 		<div class="tableArea" align="center">
 			<table id="listArea">
 				<tbody>
 				<tr>
-					<!-- <th width="250px">누리터번호</th> -->
-					<!-- <th width="150px">누리장</th> -->
+					<input type="hidden" id="bossNum" value="<%=loginUser.getUserNumber()%>">
 					<th><div style="width:150px">누리원 이름</div></th>
-					<!-- <th><div style="width:100px">누리장명</div></th> -->
 					<th><div style="width:100px">연락처</div></th>
-					<!-- <th><div style="width:200px">계좌정보</div></th> -->
 					<th><div style="width:100px">출석정보</div></th>
-				</tr>
-				
-				 <% for(Enter e : list){ %>
+				</tr>				
+				 <% for(Member m : list){ %>
 				<tr>
-					<input type="hidden" id="userNum" name="userNum" value="<%=e.getUserNum()%>">
-					<td><div class="content"><%=e.getNickname()%></div></td>
-					<%-- <td><div class="content"><%=n.getOwnerNum()%></div></td> --%>
-					<%-- <td><div class="content"><%=n.getStartDate()%></div></td>
-					<td><div class="content"><%=n.getEndDate()%></div></td>
-					<td><div class="content"><%=n.getPlace()%></div></td>
-					<td><div class="content"><%=n.getPrice()%></div></td> --%>
-					<td><div class="content"><%=e.getPhone()%></div></td>
-					<td><div class="content"><input type="button" value="확인하기" onclick="checkMyNuriAttend();"></div></td>
+					<td><div class="content"><%=m.getNickName()%></div></td>
+					<td><div class="content"><%=m.getPhone()%></div></td>
+					<td><div class="content">
+					<input type="button" class="checkBtn" value="확인하기">
+					<input type="hidden" class="nuriNum" name="nuriNum" value="<%=nuriNum%>">
+					<input type="hidden" class="userNum" value="<%=m.getUserNumber()%>">
+					</div></td>
 				</tr>
 				<% } %>
 				</tbody>
@@ -180,23 +174,25 @@
    			<% if(currentPage >= maxPage){ %>
    				<a disabled>></a>
    			<% }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= currentPage + 1%>'">></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= maxPage %>'">>></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=<%= maxPage %>'">>></a>
    		</div>
 		</div>
-			
-   		
-   	<%@ include file="../common/footer.jsp" %>
+   	 <%@ include file="../common/footer.jsp" %>
 		</div>
 
 </body>
 <script>
-function checkMyNuriAttend(){
-	//var nuriNum = document.getElementById("nuriNum").value;
-	var userNum = $("#userNum").val(); 
-	console.log(userNum);
-		location.href="<%=request.getContextPath()%>/?userNum=" + userNum;
-};
+	$(function(){
+		$('.checkBtn').on('click', function(){
+			var nunum = $(this).next('.nuriNum').val();
+			console.log(nunum);
+			var usernumber = $('#bossNum').val();
+			console.log(usernumber);
+			location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=" + nunum + "&usernumber=" + usernumber;
+			});
+		});
+	
 </script>
 </html>
