@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -992,6 +994,7 @@ public class NuriterDao {
          
          return bossList;
 	}
+
 
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
@@ -1981,6 +1984,58 @@ public class NuriterDao {
 		}
 		
 		System.out.println("가격 : " + result);
+		return result;
+	}
+
+	public int updateNuriter(Connection con, String nuriNum, String title, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateNuriter_Park");
+		
+		System.out.println(nuriNum);
+		System.out.println(title);
+		System.out.println(content);
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, nuriNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, String nuriNum, String title, String content) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateBoard_Park");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, nuriNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
 		return result;
 	}
 }
