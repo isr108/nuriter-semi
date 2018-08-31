@@ -152,23 +152,31 @@ margin-top:10%;
 				<button id="bButton" onclick="location.href='quaInquire.jsp'">게시글 작성</button>
 			</div>
 			<div class="bulletin" class="web-font">
-				<table id="bulletinTable">
-					<tr class="tHead">
-					 <td>NO.</td>
-					 <td>제목</td>
-					 <td>이름</td>
-					</tr>
-					<tr class="tBody">
-						<td>1</td>
-						<td>내용</td>
-						<td>허민지</td>
-					</tr>
-					<tr class="tBody">
-						<td>2</td>
-						<td>내용</td>
-						<td>채은비</td>
-					</tr>
-				</table>
+				<table id="listArea">
+            <tr>
+            
+               <th width="200px">신고된 누리장</th>
+               <th width="200px">신고 제목</th>
+               <th width="500px">신고 사유</th>
+               <th width="200px">신고자</th>
+               <th width="200px">신고날짜</th>
+            </tr>
+
+            
+           <%--   <% for(reportNuri r : list){ %> --%>
+           <%--  <tr class="testList">
+            <input type="hidden" value="<%=r.getBoardNum()%>"name="boardNum">
+            <input type="hidden" value="<%=r.getN_ownerNum()%>" name="ownerNum">
+            <input type="hidden" value="<%=r.getUserNum()%>" name="userNum">
+               <td><%=r.getOwnerNickname()%></td>
+               <td name="bTitle"><%=r.getBoardTitle() %></td>
+               <td name="bContent"><%=r.getBoardContent() %></td>
+               <td><%=r.getNuriNickname() %></td>
+               <td name="bDate"><%=r.getBoardDate() %></td>
+            </tr> --%>
+            
+           <%-- <% } %> --%>
+         </table>
 			</div>
 		</div>
 	</div>
