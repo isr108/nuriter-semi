@@ -25,7 +25,7 @@
 	<div id="main" align="center">
 		<h1 align="center" id="web-font"><%= msg %></h1>
 		<br><br><br><br>
-		<a href="/ns/index.jsp"><font id="web-font" size="8px">메인으로 이동</font></a>
+		<a href="<%=request.getContextPath()%>"><font id="web-font" size="8px">메인으로 이동</font></a>
 	</div>
 </body>
 </html>

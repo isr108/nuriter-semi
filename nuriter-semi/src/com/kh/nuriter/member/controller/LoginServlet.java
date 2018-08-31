@@ -2,7 +2,10 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
  * Servlet implementation class LoginServlet
@@ -48,15 +52,18 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("로그인 유저 : " + loginUser);
 		
 		//4. 받은 결과에 따라 뷰 페이지 내보내기
-		/*String page = "";*/
+		String page = "";
 		if(loginUser != null && !loginUser.getActivated().equals("N")){
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
+			ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
 			
-			/*page ="index.jsp";
-			System.out.println(page);*/
-			response.sendRedirect("index.jsp");
-			
+			/*page ="index.jsp";*/
+			/*page ="request.getContextPath()/";*/
+			System.out.println(page);
+			/*response.sendRedirect("index.jsp");*/
+			request.setAttribute("pictureList", pictureList);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}else{
 			/*page = "views/common/errorPage.jsp";*/
