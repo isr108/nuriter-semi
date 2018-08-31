@@ -111,7 +111,7 @@
    }
    
    table tr th{
-    background: #eaeaea;
+    background:rgb(241, 196, 15);
    	text-align:center;
    	height:50px;
    }
@@ -146,6 +146,7 @@
     margin-right: 10px;
     
    }
+ 
    
 </style>
 </head>

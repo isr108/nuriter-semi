@@ -25,6 +25,7 @@ public class Member implements java.io.Serializable{
 	private Date activatedDate;
 	private String refundNuriterName;
 	private int refundNuriterPrice;
+	private Date refundNuriterDate;
 	
 	public Member(){}
 
@@ -33,7 +34,7 @@ public class Member implements java.io.Serializable{
 	public Member(int userNumber, String userEmail, String password, String userName, String nickName, String phone,
 			String address, Date birthDate, String grade, Date gradeDate, String bankName, String bankNumber,
 			String hobby, Date enrollDate, String accountSort, String token, String reportedUser, String activated,
-			Date activatedDate, String refundNuriterName, int refundNuriterPrice) {
+			Date activatedDate, String refundNuriterName, int refundNuriterPrice, Date refundNuriterDate) {
 		super();
 		this.userNumber = userNumber;
 		this.userEmail = userEmail;
@@ -56,6 +57,7 @@ public class Member implements java.io.Serializable{
 		this.activatedDate = activatedDate;
 		this.refundNuriterName = refundNuriterName;
 		this.refundNuriterPrice = refundNuriterPrice;
+		this.refundNuriterDate = refundNuriterDate;
 	}
 
 
@@ -310,6 +312,18 @@ public class Member implements java.io.Serializable{
 		this.refundNuriterPrice = refundNuriterPrice;
 	}
 
+	
+
+	public Date getRefundNuriterDate() {
+		return refundNuriterDate;
+	}
+
+
+
+	public void setRefundNuriterDate(Date refundNuriterDate) {
+		this.refundNuriterDate = refundNuriterDate;
+	}
+
 
 
 	@Override
@@ -320,9 +334,9 @@ public class Member implements java.io.Serializable{
 				+ bankName + ", bankNumber=" + bankNumber + ", hobby=" + hobby + ", enrollDate=" + enrollDate
 				+ ", accountSort=" + accountSort + ", token=" + token + ", reportedUser=" + reportedUser
 				+ ", activated=" + activated + ", activatedDate=" + activatedDate + ", refundNuriterName="
-				+ refundNuriterName + ", refundNuriterPrice=" + refundNuriterPrice + "]";
+				+ refundNuriterName + ", refundNuriterPrice=" + refundNuriterPrice + ", refundNuriterDate="
+				+ refundNuriterDate + "]";
 	}
-
 
 
 

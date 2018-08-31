@@ -216,6 +216,26 @@ public class MemberService {
 		return result;
 	}
 
+	public int getRefundMemberCount2() {
+		Connection con = getConnection();
+		
+		int result = new MemberDao().getRefundMemberCount2(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectRefundNuriMember2(int currentPage2, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Member> refundList2 = new MemberDao().selectRefundNuriMember2(con, currentPage2, limit);
+		
+		close(con);
+		
+		return refundList2;
+	}
+
 	
 
 	

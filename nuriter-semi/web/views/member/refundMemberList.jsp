@@ -3,12 +3,21 @@
 	import="java.util.*, com.kh.nuriter.member.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
 <%
 	ArrayList<Member> refundList = (ArrayList<Member>) request.getAttribute("refundList");
+	ArrayList<Member> refundList2 = (ArrayList<Member>) request.getAttribute("refundList2");
+	
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
 	int listCount = pi.getListCount();
 	int currentPage = pi.getCurrentPage();
 	int maxPage = pi.getMaxPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
+	
+	PageInfo pi2 = (PageInfo) request.getAttribute("pi2");
+	int listCount2 = pi2.getListCount();
+	int currentPage2 = pi2.getCurrentPage();
+	int maxPage2 = pi2.getMaxPage();
+	int startPage2 = pi2.getStartPage();
+	int endPage2 = pi2.getEndPage();
 %>
 
 <!DOCTYPE html>
@@ -95,8 +104,8 @@
 	border: 1px solid rgb(241, 196, 15);
 }
 
-.pagination a:hover:not(.active) {
-	background-color : #ddd;
+.pagination a:hover:not (.active ) {
+	background-color: #ddd;
 }
 
 .pagination a:first-child {
@@ -167,18 +176,14 @@ button:hover {
 	/* 	border-style: solid;
     border-color: red; */
 }
-
-
 </style>
 </head>
 <body>
-	<!-- <div> -->
 	<%@ include file="../common/logoAndLogbutton.jsp"%>
 	<%--  <%@ include file="../common/categorybar.jsp" %> --%>
 	<%-- <%@ include file="../common/myPage_left.jsp" %> --%>
 	<div id="main1">
 		<%@ include file="../admin/adminbar.jsp"%>
-		<!-- </div> -->
 
 		<div id="main" align="center">
 			<form id="test">
@@ -186,36 +191,36 @@ button:hover {
 					<div id="child2">
 						<h1 id="web-font">환불요청 회원</h1>
 						<br>
-						<table border="2" id="web-font" class="listBox" style="align:center;">
+						<table border="2" id="web-font" class="listBox"
+							style="align: center;">
 							<tr>
-								<!-- <th style="display:none;"></th> -->
-								<th style="display:none;"></th>
+								<th style="display: none;"></th>
 								<th>회원이름</th>
 								<th>누리터명</th>
 								<th>은행명</th>
 								<th>계좌번호</th>
-								<th>환불된 가격</th>
+								<th>환불될 가격</th>
 								<th>환불승인</th>
 							</tr>
 							<%
 								for (Member m : refundList) {
 							%>
 							<tr>
-								<%-- <td id="test1" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>--%>
-								<td id="getUserNum" style="display:none;"><input type="hidden" value="<%=m.getUserNumber()%>"></td>
+								<td id="getUserNum" style="display: none;"><input
+									type="hidden" value="<%=m.getUserNumber()%>"></td>
 								<td><%=m.getUserName()%></td>
 								<td><%=m.getRefundNuriterName()%></td>
 								<td><%=m.getBankName()%></td>
 								<td><%=m.getBankNumber()%></td>
 								<td><%=m.getRefundNuriterPrice()%></td>
-								<td id="goRefund">승인</td>
+								<td id="goRefund" style="color:rgb(90, 174, 255);">승인하기</td>
 							</tr>
 							<%
 								}
 							%>
-							
+
 						</table>
-						
+
 						<script>
 						$(function(){
 							$(".listBox #goRefund").mouseenter(function(){
@@ -232,33 +237,108 @@ button:hover {
 
 						<div class="pagination" align="center">
 
-							<br>
-
-
-							<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=1'"><<</a>
+							<br> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=1'"><<</a>
 							<% if (currentPage <= 1) {%>
-							<a disabled><</button> 
-							<% } else { %> 
-							<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage - 1%>'"><</a>
-							<% } %> 
-							<% for (int p = startPage; p <= endPage; p++) {
- 								if (p == currentPage) { %> 
- 									<a disabled><%=p%></a> 
- 							 <% } else { %> 
- 							 <a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=p%>'"><%=p%></a>
-							<%	} %> 
-							<% } %> 
-							<% if (currentPage >= maxPage) { %> 
-									<a disabled>></a> 
-							<% }else { %> 
-								<a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage + 1%>'">></a>
-							<% } %> <a onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=maxPage%>'">>></a>
+							<a disabled><
+								</button> <% } else { %> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage - 1%>'"><</a>
+								<% } %> <% for (int p = startPage; p <= endPage; p++) {
+ 								if (p == currentPage) { %> <a disabled><%=p%></a> <% } else { %>
+								<a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=p%>'"><%=p%></a>
+								<%	} %> <% } %> <% if (currentPage >= maxPage) { %> <a disabled>></a>
+								<% }else { %> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage + 1%>'">></a>
+								<% } %> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=maxPage%>'">>></a>
 
 
 								<br> <br> <br>
-
-								
 						</div>
+					</div>
+
+					<hr>
+
+					<div id="child3">
+						<h1 id="web-font">환불승인 회원</h1>
+						<br>
+						<table border="2" id="web-font" class="listBox2">
+							<tr>
+								<th style="display: none;"></th>
+								<th>회원이름</th>
+								<th>누리터명</th>
+								<th>은행명</th>
+								<th>계좌번호</th>
+								<th>환불된 가격</th>
+								<th>환불날짜</th>
+							</tr>
+							<%
+								for (Member m : refundList2) {
+							%>
+							<tr>
+								<td id="getUserNum" style="display: none;"><input
+									type="hidden" value="<%=m.getUserNumber()%>"></td>
+								<td><%=m.getUserName()%></td>
+								<td><%=m.getRefundNuriterName()%></td>
+								<td><%=m.getBankName()%></td>
+								<td><%=m.getBankNumber()%></td>
+								<td><%=m.getRefundNuriterPrice()%></td>
+								<td><%=m.getRefundNuriterDate() %></td>
+							</tr>
+							<%
+								}
+							%>
+
+						</table>
+
+						<script>
+						$(function(){
+							
+							
+						});
+									
+						</script>
+
+						<!-- 페이지처리 -->
+						<div class="pagination" align="center">
+
+							<br> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=1'"><<</a>
+							<%
+								if (currentPage2 <= 1) {
+							%>
+							<a disabled><
+								</button> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=<%=currentPage2 - 1%>'"><</a>
+								<%
+								}
+							%> <%
+								for (int p2 = startPage2; p2 <= endPage2; p2++) {
+									if (p2 == currentPage2) {
+							%> <a disabled><%=p2%></a> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=<%=p2%>'"><%=p2%></a>
+								<%
+								}
+							%> <%
+								}
+							%> <%
+								if (currentPage2 >= maxPage2) {
+							%> <a disabled>></a> <%
+								} else {
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=<%=currentPage2 + 1%>'">></a>
+								<%
+								}
+							%> <a
+								onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=<%=maxPage2%>'">>></a>
+						</div>
+
+						
 					</div>
 				</div>
 			</form>
