@@ -539,9 +539,46 @@ public int getNuriPrice(String nuriNum) {
 	
 	int result = new NuriterDao().getNuriPrice(con, nuriNum);
 	
+	if(result > 0) {
+		commit(con);
+	}
+	else {
+		rollback(con);
+	}
+	
 	close(con);
 	
 	return result;
+}
+
+public int updateNuriter(String nuriNum, String title, String content) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateNuriter(con, nuriNum, title, content);
+	
+	close(con);
+	
+	return result;
+}
+
+public int updateBoard(String nuriNum, String title, String content) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateBoard(con, nuriNum, title, content);
+	
+	close(con);
+	
+	return result;
+}
+
+public String getOwnerNum(String nuriNum) {
+	Connection con = getConnection();
+	
+	String ownerNum = new NuriterDao().getOwnerNum(con, nuriNum);
+	
+	close(con);
+	
+	return ownerNum;
 }
 
 

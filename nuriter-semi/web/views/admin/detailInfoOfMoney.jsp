@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+	import="java.util.*, com.kh.nuriter.member.model.vo.*"%>
 <%
-	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	Member m = (Member)request.getAttribute("m");
+	int numberOfPeople1 = (int)(request.getAttribute("numberOfPeople1"));
+	int numberOfPeople2 = (int)(request.getAttribute("numberOfPeople2"));
+	int price = (int)(request.getAttribute("price"));
+	String ownerNum = request.getAttribute("ownerNum").toString();	
 %>
 
 <!DOCTYPE html>
@@ -171,39 +169,36 @@ button:hover {
 		<!-- </div> -->
 
 		<div id="main" align="center">
-			<form id="test">
+			<form id="test" action="<%=request.getContextPath()%>/selectNuribossNuriterList.nu?userNum=<%=ownerNum%>" method="post">
+			
 				<div id="child">
 					<div id="child2">
-						<h1 id="web-font">완료된 누리터</h1>
+						<h1 id="web-font">지급정보</h1>
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<th></th>
-								<th></th>
-								<th>이름</th>
-								<th>누리터명</th>
-								<th>카테고리</th>
-								<th>시작일</th>
-								<th>종료일</th>
-								<th>확인</th>
+								<th>누리장 이름</th>
+								<th>총결제인원</th>
+								<th>환불인원</th>
+								<th>누리터 참가비</th>
+								<th>지급될 돈</th>
+								<th>은행명</th>
+								<th>계좌번호</th>
+								<th>지급하기</th>
 							</tr>
 							
-							<%
-								for (Nuriter nu : list) {
-							%>
+							
 							<tr>
-								<td id="nuriNum"><input type="hidden" value="<%=nu.getNuriNum()%>"></td>
-								<td id="ownerNum"><input type="hidden" value="<%=nu.getOwnerNum()%>"></td>
-								<td><%=nu.getOwnerName() %></td>
-								<td><%=nu.getNuriTitle() %></td>
-								<td><%=nu.getCategoryName() %></td>
-								<td><%=nu.getStartDate() %></td>
-								<td><%=nu.getEndDate() %></td>
-								<td id="giveMoney"><div style="color:rgb(90, 174, 255);">지급정보 확인하기</div></td>
+								<input type="hidden" value=<%=ownerNum%>>
+								<td style="color:rgb(139, 195, 74);"><%=m.getUserName() %></td>
+								<td><%=numberOfPeople1 %></td>
+								<td><%=numberOfPeople2 %></td>
+								<td><%=price %></td>
+								<td><%=numberOfPeople1 * price %></td>
+								<td style="color:rgb(90, 174, 255);"><%=m.getBankName() %></td>
+								<td style="color:rgb(90, 174, 255);"><%=m.getBankNumber() %></td>
+								<td id="giveMoney"><div style="color:#FF5E00;">지급하기</div></td>
 							</tr>
-							<%
-								}
-							%>
 							
 						</table>
 						
@@ -214,61 +209,19 @@ button:hover {
 								}).mouseout(function(){
 									$(this).css({"background":"white"});
 								}).click(function(){
-									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
-									var ownerNum = $(this).parent().children("#ownerNum").children("input").val();
-									alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum);
-									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
+									location.href="<%=request.getContextPath()%>/deleteNuribossAfterGiveMoney.nu";
 								});
-								
-								<%-- $(".listBox td").mouseenter(function(){
-									$(this).parent().css({"background":"#eaeaea"});
-								}).mouseout(function(){
-									$(this).parent().css({"background":"white"});
-								}).click(function(){
-									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
-									var ownerNum = $(this).parent().children("#ownerNum").children("input").val();
-									alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum);
-									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
-								}); --%>
 							});
 						</script>
 
 						<div class="pagination" align="center">
 
-							<br>
-
-
-							<a onclick="location.href='<%=request.getContextPath()%>/selectNuribossNuriterList.nu?currentPage=1'"><<</a>
-							<% if (currentPage <= 1) {%>
-							<a disabled><</button> 
-							<% } else { %> 
-							<a onclick="location.href='<%=request.getContextPath()%>/selectNuribossNuriterList.nu?currentPage=<%=currentPage - 1%>'"><</a>
-							<% } %> 
-							<% for (int p = startPage; p <= endPage; p++) {
- 								if (p == currentPage) { %> 
- 									<a disabled><%=p%></a> 
- 							 <% } else { %> 
- 							 <a onclick="location.href='<%=request.getContextPath()%>/selectNuribossNuriterList.nu?currentPage=<%=p%>'"><%=p%></a>
-							<%	} %> 
-							<% } %> 
-							<% if (currentPage >= maxPage) { %> 
-									<a disabled>></a> 
-							<% }else { %> 
-								<a onclick="location.href='<%=request.getContextPath()%>/selectNuribossNuriterList.nu?currentPage=<%=currentPage + 1%>'">></a>
-							<% } %> <a onclick="location.href='<%=request.getContextPath()%>/selectNuribossNuriterList.nu?currentPage=<%=maxPage%>'">>></a>
-
-
 								<br> <br> <br>
 
-								<div id="submit" align="center">
-									<!-- <button id="web-font" onclick="deleteNuriboss();">누리장 삭제</button> -->
-									<button id="web-font" onclick="goBefore();">이전 페이지</button>
+								<div id="eb" align="center">
+									 <button id="web-font" >이전 페이지</button>
 								</div>
-								<script>
-									function goBefore(){
-										$("#test").attr("action", "<%=request.getContextPath()%>/selectNuriBossDetailList2.nu");
-									}
-								</script>
+								
 						</div>
 					</div>
 				</div>

@@ -5,7 +5,9 @@
    String nuriNum=(String)request.getAttribute("num");
    request.setAttribute("n", n);
 %>
-<jsp:forward page="categoryUpdateDetail.jsp"/>
+
+<%-- <% pageContext.forward( "categoryUpdateDetail.jsp" );  %> --%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +18,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
@@ -306,9 +308,14 @@ img {
 	   	</div>
 	   	
 	  	<% if(loginUser.getUserNumber() == Integer.parseInt(n.getOwnerNum())){ %>
-		  	<div class="update" align="right">
-		  		<button class="updateBtn">누리터 수정</button>
-		  	</div>
+	  	    <form class="writeForm" action="<%=request.getContextPath()%>/requestNuriter.nu" method="post">
+	  	    	<input type="hidden" value="<%= n.getNuriNum() %>" name="nuriNum">
+	  	    	<input type="hidden" value="<%= n.getNuriTitle() %>" name="nuriTitle">
+	  	    	<input type="hidden" value='<%= n.getContent() %>' name="content">
+			  	<div class="update" align="right">
+			  		<button type="button" class="updateBtn">누리터 수정</button>
+			  	</div>
+		  	</form>
 	  	<% } %>
 	  	
       	<div class="commentDiv">
@@ -328,6 +335,7 @@ img {
    	  
       <div id="textBox" align="center">
       	<font id="web-font-Nanum" size="5px"><%= n.getNuriTitle() %></font>
+      	<input type="hidden" value="<%=n.getNuriTitle()%>" id="nuriTitle" name="nuriTitle">
       </div>
       
       <br><br>
@@ -518,7 +526,7 @@ $(function(){
 $(function(){
 	$(".updateBtn").click(function(){
 		alert("수정하기 버튼 눌림");
-		location.href="<%=request.getContextPath()%>/views/member/nuribossApply.jsp";
+		$(".writeForm").submit();
 	});
 });
 

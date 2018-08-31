@@ -6,6 +6,7 @@ import static com.kh.nuriter.common.JDBCTemplate.getConnection;
 import static com.kh.nuriter.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.nuriter.member.model.dao.MemberDao;
 import com.kh.nuriter.member.model.vo.Member;
@@ -170,6 +171,18 @@ public class MemberService {
 				
 		return result;
 	}
+
+	public Member selectNuriBossInfo(String ownerNum) {
+		Connection con = getConnection();
+		
+		Member m = new MemberDao().selectNuriBossInfo(con, ownerNum);
+		
+		close(con);
+		
+		return m;
+	}
+
+	
 
 	/*public int snsloginMember(Member m) {
 		Connection con=getConnection();

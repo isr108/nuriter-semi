@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.nuriter.model.vo.*"%>
  <% 
 	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
  	System.out.println("list출력  : " + list);
@@ -197,6 +197,8 @@
 		</div>
 			
    		
+
+   <%-- 	<%@ include file="../common/footer.jsp" %> --%>
 		</div>
    	<%@ include file="../common/footer.jsp" %>
 

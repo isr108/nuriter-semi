@@ -88,6 +88,25 @@ public class BoardService {
 		return result;
 	}
 
+	public int InsertRegister(reportNuri rn2) {
+		int result =0;
+		Connection con = getConnection();
+		
+		
+		result = new BoardDao().InsertRegister(con,rn2);
+		
+		if(result>0){
+			commit(con);
+			
+		}else{
+			rollback(con);
+		}
+		close(con);
+		
+		
+		return result;
+	}
+
 	
 
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+       pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.nuriter.model.vo.*"%>
 
 <%@page import="java.text.SimpleDateFormat"%>
 
@@ -36,7 +36,7 @@
 		height:auto;
 		background:white;
 		color:lightblack;
-		margin-top:13%;
+		margin-top:15%;
 		margin-left:auto;
 		margin-right:auto;
 		/* margin-top:280px; */
