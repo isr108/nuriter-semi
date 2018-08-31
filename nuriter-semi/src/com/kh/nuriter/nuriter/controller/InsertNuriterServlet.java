@@ -99,7 +99,7 @@ public class InsertNuriterServlet extends HttpServlet {
 					String placeOne = multiRequest.getParameter("placeOne");
 					String placeTwo = multiRequest.getParameter("placeTwo");
 					String placeTree = multiRequest.getParameter("placeTree");
-					String place = placeOne + " [ " + placeTwo + " ] " + placeTree;
+					String place = placeOne + " | " + placeTwo + " | " + placeTree;
 					String summerText = multiRequest.getParameter("summerText");
 					String price = multiRequest.getParameter("price");
 					String personnel = multiRequest.getParameter("personnel");

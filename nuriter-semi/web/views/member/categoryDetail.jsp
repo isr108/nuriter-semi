@@ -291,9 +291,9 @@ img {
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
 }
-#map{
+/* #map{
 	border: 2px solid rgb(241, 196, 15); /* Green */
-}
+} */
 </style>
 </head>
 <body>
@@ -309,8 +309,8 @@ img {
 	   	
 	  	<% if(loginUser.getUserNumber() == Integer.parseInt(n.getOwnerNum())){ %>
 	  	    <form class="writeForm" action="<%=request.getContextPath()%>/requestNuriter.nu" method="post">
-	  	    	<input type="hidden" value="<%= n.getNuriNum() %>" name="nuriNum">
-	  	    	<input type="hidden" value="<%= n.getNuriTitle() %>" name="nuriTitle">
+	  	    	<input type="hidden" value='<%= n.getNuriNum() %>' name="nuriNum">
+	  	    	<input type="hidden" value='<%= n.getNuriTitle() %>' name="nuriTitle">
 	  	    	<input type="hidden" value='<%= n.getContent() %>' name="content">
 			  	<div class="update" align="right">
 			  		<button type="button" class="updateBtn">누리터 수정</button>
@@ -335,7 +335,8 @@ img {
    	  
       <div id="textBox" align="center">
       	<font id="web-font-Nanum" size="5px"><%= n.getNuriTitle() %></font>
-      	<input type="hidden" value="<%=n.getNuriTitle()%>" id="nuriTitle" name="nuriTitle">
+      	<input type="hidden" value='
+      	<%=n.getNuriTitle()%>' id="nuriTitle" name="nuriTitle">
       </div>
       
       <br><br>
@@ -354,12 +355,56 @@ img {
 	        <p><font id="web-font-Nanum">총 출석 횟수: <%= n.getAttendCount() %></font>
 	        <hr>
 	        <p><font id="web-font-Nanum">장소: <%= n.getPlace() %></font></p>
+	        <div id="map" style="width:450px;height:400px;"></div>
+			  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32a364f56c1e2fe3c30aa773daa80f7e&libraries=services"></script>
+			  <script>
+			  var place = '<%= n.getPlace() %>';
+			  var fruits = place.split("|")[1];
+			  
+			  var container = document.getElementById('map');
+			  var options = {
+			  center: new daum.maps.LatLng(37.555268, 126.970673),
+			  level: 3
+			  };
+				
+			  var map = new daum.maps.Map(container, options);
+			  
+			   // 주소-좌표 변환 객체를 생성합니다
+			  var geocoder = new daum.maps.services.Geocoder();
+		
+			  // 주소로 좌표를 검색합니다
+			  geocoder.addressSearch(fruits, function(result, status) {
+		
+			      // 정상적으로 검색이 완료됐으면 
+			       if (status === daum.maps.services.Status.OK) {
+		
+			          var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+		
+			          // 결과값으로 받은 위치를 마커로 표시합니다
+			          var marker = new daum.maps.Marker({
+			              map: map,
+			              position: coords
+			          });
+		
+			          // 인포윈도우로 장소에 대한 설명을 표시합니다
+			          var infowindow = new daum.maps.InfoWindow({
+			              content: '<div style="width:150px;text-align:center;padding:6px 0;"><font id="web-font">누리터 장소</font></div>'
+			          });
+			          infowindow.open(map, marker);
+		
+			          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			          map.setCenter(coords);
+			      } 
+			  });    
+			  </script>
+   		</div>
+   		
 	        <hr>
-	        <p><font id="web-font-Nanum">가격(1인) : <%= n.getPrice() %> 원</font></p>
-	        <p><font id="web-font-Nanum">정원 : <%= n.getPersonnel() %> 명</font></p>
-	        <p><font id="web-font-Nanum">현재까지 신청된 인원은 <%= n.getEnterCount() %> 명 입니다.</font></p>
-	        <p><font id="web-font-Nanum">이 누리터는 <%= n.getInterestCount() %> 명의 관심을 받고있습니다.</font></p>
-        </div>
+	        <p><font id="web-font-Nanum" size="4px">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font-Nanum" size="4px">정원 : <%= n.getPersonnel() %> 명</font></p>
+	        <p><font id="web-font-Nanum" size="4px">현재까지 신청된 인원은 <%= n.getEnterCount() %> 명 입니다.</font></p>
+	        <p><font id="web-font-Nanum" size="4px">이 누리터는 <%= n.getInterestCount() %> 명의 관심을 받고있습니다.</font></p>
+        
         
         <hr color="red" size="10px">
         
@@ -392,48 +437,9 @@ img {
          	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
 
          </div>
-         
+         </div>
+         <br><br>
     </div>
-    <div id="map" style="width:450px;height:400px;"></div>
-	  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32a364f56c1e2fe3c30aa773daa80f7e&libraries=services"></script>
-	  <script>
-	  var container = document.getElementById('map');
-	  var options = {
-	  center: new daum.maps.LatLng(37.555268, 126.970673),
-	  level: 3
-	  };
-		
-	  var map = new daum.maps.Map(container, options);
-	  
-	   // 주소-좌표 변환 객체를 생성합니다
-	  var geocoder = new daum.maps.services.Geocoder();
-
-	  // 주소로 좌표를 검색합니다
-	  geocoder.addressSearch('서울 강남구 강남대로 302', function(result, status) {
-
-	      // 정상적으로 검색이 완료됐으면 
-	       if (status === daum.maps.services.Status.OK) {
-
-	          var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-	          // 결과값으로 받은 위치를 마커로 표시합니다
-	          var marker = new daum.maps.Marker({
-	              map: map,
-	              position: coords
-	          });
-
-	          // 인포윈도우로 장소에 대한 설명을 표시합니다
-	          var infowindow = new daum.maps.InfoWindow({
-	              content: '<div style="width:150px;text-align:center;padding:6px 0;"><font id="web-font">누리터 장소</font></div>'
-	          });
-	          infowindow.open(map, marker);
-
-	          // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	          map.setCenter(coords);
-	      } 
-	  });    
-	  </script>
-   </div>
    
 </div>
       <%@ include file="../common/footer.jsp" %>
@@ -448,7 +454,7 @@ $(function(){
 			$.ajax({
 				url:"/ns/insertComment.nu",
 				data:{nuriNum:nuriNum, content:content},
-				type:"get",
+				type:"post",
 				success:function(data){
 					
 					$table = $("#commentSelectTable");
@@ -525,7 +531,6 @@ $(function(){
 
 $(function(){
 	$(".updateBtn").click(function(){
-		alert("수정하기 버튼 눌림");
 		$(".writeForm").submit();
 	});
 });

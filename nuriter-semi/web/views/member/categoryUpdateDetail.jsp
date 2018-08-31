@@ -152,9 +152,9 @@ button {
     <form class="updateFrom" action="<%=request.getContextPath() %>/updateNuriter.nu" method="post">
 	<div class="content">
 		<div class="title" align="left">
-			<input type="hidden" value="<%= nuriNum %>" name="nuriNum">
+			<input type="hidden" value='<%= nuriNum %>' name="nuriNum">
 			<h3 id="web-font">누리터명</h3>
-			<input type="text" id="nuriterTitle" class="web-font" value="<%= nuriTitle %>" name="nuriTitle">
+			<input type="text" id="nuriterTitle" class="web-font" value='<%= nuriTitle %>' name="nuriTitle">
 		</div>
 		
 		<div class="leftBox">

@@ -751,14 +751,12 @@
 		$(function(){
 			$(".buttonLanguage").click(function(){
 				var name = $(this).attr('value');
-			    /* alert(name); */
 			    location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
 			});
 		});
 		
 		$(function(){
 			$(".searchButton").click(function(){
-				alert("검색 버튼 클릭");
 				$("#searchNuriter").submit();
 			});
 		});

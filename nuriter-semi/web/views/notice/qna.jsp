@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.kh.nuriter.notice.model.vo.Notice.*"%>
+	<%
+	
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +13,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 .colorgraph {
 
@@ -49,15 +54,6 @@ ul.navi2 li a {
 	font-family: 'Jua', sans-serif;
 }
 
-#nuriList {
-	/* position: fixed; */
-	width: 734px;
-	height: 74px;
-	margin-top: 50px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 #listTable {
 	text-align: center;
 	width: 100%;
@@ -73,31 +69,12 @@ ul.navi2 li a {
 .showRight {
 	float: right;
 	/* border: 3px solid black; */
-	height: 500px;
+	height: 800px;
 	width: 80%;
 	margin-right: 105px;
+	background:red;
 }
-.bulletin{
-    width: 100%;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
- 
-}
-.tHead{
- background: rgb(241, 196, 15);
- text-align:center;
- 
-}
-#bulletinTable{
-height:100px;
-width:68%;
-/* margin-left:300px; */
-margin-left:auto;
-margin-right:auto;
 
-
-}
 
 #bButton{
 
@@ -106,21 +83,27 @@ margin-right:auto;
  text-color:white;
  float:right;
 }
-.tBody{
-text-align:center;
-border-bottom:1px solid lightgray;
-}
-.b{
+
+.buttonArea{
 height:100px;
 width:68%;
 /* margin-left:300px; */
 margin-left:auto;
 margin-right:auto;
-margin-top:10%;
+margin-top:5%;
 }
 
-#qnaColor{
-	background-color:rgb(224, 224, 224);
+
+table tr th {
+   text-align: center;
+   border: 1px solid black;
+   height: 50px;
+   background: rgb(241, 196, 15);
+}
+#listArea{
+	margin-right:auto;
+	margin-left:auto;
+	
 }
 
 </style>
@@ -148,23 +131,20 @@ margin-top:10%;
 			<%@ include file="../admin/adminbar.jsp" %>
 		<% } %>
 		<div class="showRight">
-			<div class="b">
+			<div class="buttonArea">
 				<button id="bButton" onclick="location.href='quaInquire.jsp'">게시글 작성</button>
 			</div>
-			<div class="bulletin" class="web-font">
-				<table id="listArea">
+			 <table id="listArea">
             <tr>
             
-               <th width="200px">신고된 누리장</th>
-               <th width="200px">신고 제목</th>
-               <th width="500px">신고 사유</th>
-               <th width="200px">신고자</th>
-               <th width="200px">신고날짜</th>
+               <th width="200px">문의제목</th>
+               <th width="500px">문의내용</th>
+               <th width="100px">문의자</th>
+               <th width="100px">문의날짜</th>
             </tr>
-
-            
-           <%--   <% for(reportNuri r : list){ %> --%>
-           <%--  <tr class="testList">
+            <tr>
+            	 <%--  <% for(reportNuri r : list){ %>
+            <tr class="testList">
             <input type="hidden" value="<%=r.getBoardNum()%>"name="boardNum">
             <input type="hidden" value="<%=r.getN_ownerNum()%>" name="ownerNum">
             <input type="hidden" value="<%=r.getUserNum()%>" name="userNum">
@@ -173,19 +153,14 @@ margin-top:10%;
                <td name="bContent"><%=r.getBoardContent() %></td>
                <td><%=r.getNuriNickname() %></td>
                <td name="bDate"><%=r.getBoardDate() %></td>
-            </tr> --%>
+            </tr>
             
-           <%-- <% } %> --%>
-         </table>
-			</div>
+            <% } %> --%>
+            </tr>
+			</table>
+			
 		</div>
 	</div>
-	<script>
-		$(function(){
-			$(".tBody").click(function(){
-				location.href="quaDetail.jsp";
-			});
-		});
-	</script>
+
 </body>
 </html>

@@ -54,7 +54,7 @@ public class PaymentServlet extends HttpServlet {
 
 			endDate = new java.sql.Date(new GregorianCalendar(arr[0], arr[1] - 1, arr[2]).getTimeInMillis());
 
-			System.out.println(endDate);
+
 		}else {
 			endDate = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
 		}
@@ -95,48 +95,28 @@ public class PaymentServlet extends HttpServlet {
 			}else{
 				System.out.println("attention 삭제 실패");
 			}
-		
+
 			String page="";
-			if(result >0){
-	            result2 = new PaymentService().InsertApplication(p1);
-	            System.out.println("성공1");
-	         }else{
-	            System.out.println("실패1");
-	         }
-
-
-	         if(result2 > 0){
-
-	            result3 = new PaymentService().InsertPaymentDetail(pd);
-	            System.out.println("성공2");
-	         }else{
-	            System.out.println("실패2");
-	         }
-
-
-	         if(result3 >0){
-	            System.out.println("성공3");
-
-	         }else{
-	            System.out.println("실패3");
-	         }
-		}	
-	/*		if(result>0&& result2>0 && result3>0){
-				System.out.println("성공");
+			result2 = new PaymentService().InsertApplication(p1);
+			result3 = new PaymentService().InsertPaymentDetail(pd);
+			if(result>0 && result2>0 && result3>0){
+				System.out.println("payment 성공이다,");
 				page="/selectNuriterOne.nu?num="+nuriNum;
 				request.getRequestDispatcher(page).forward(request, response);
-				
+
 			}else{
 				System.out.println("실패");
 			}
-			
-		}*/else{
+
+
+
+		}else{
 			response.getWriter().write(result5);
 			response.sendRedirect("selectNuriterOne.nu?num="+nuriNum);
 			System.out.println("결제기록 확인 후 결제불가 성공");
 		}
-			
-	         
+
+
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

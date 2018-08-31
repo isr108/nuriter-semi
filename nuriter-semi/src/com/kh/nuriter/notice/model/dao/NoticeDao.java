@@ -226,5 +226,67 @@ public class NoticeDao {
 		
 		return result;
 	}
+	public int Insertqna(Notice n, Connection con) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("insertqna");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, n.getbTitle());
+			pstmt.setString(2, n.getbContent());
+			pstmt.setString(3, n.getUserNumber());
+			pstmt.setDate(4, n.getbDate());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			
+		}
+		
+		
+		
+		return result;
+	}
+	public ArrayList<Notice> SelectqnaList(Connection con, int currentPage, int limit) {
+		ArrayList<Notice> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice n = null;
+		
+		String query = prop.getProperty("selectqnaList");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			int startNum =(currentPage -1)* limit + 1;
+			int endNum = startNum + limit-1;
+			
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Notice>();
+			
+			//이부분 마무으리..
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		return list;
+	}
 
 }
