@@ -90,6 +90,21 @@ public class AttendService {
 		return en;
 	}
 
+	public ArrayList<Attendprint> attendprint2(String nunum, String date) {
+		Connection con=getConnection();
+		
+		ArrayList<Attendprint> att2 = new AttendDao().attendprint2(con, nunum, date);
+		/*ArrayList<HashMap<String, Object>> att = new AttendDao().attendprint(con, nunum);*/
+		
+		commit(con);
+		
+		close(con);
+		
+		System.out.println("서비스 attendprint : " + att2);
+		
+		return att2;
+  }
+  
 	public int getListCount(String nuriNum) {
 		Connection con = getConnection();        
 	    int listCount = new AttendDao().getListCount(con, nuriNum);
@@ -107,6 +122,7 @@ public class AttendService {
 	    close(con);
 	         
 	    return list;
+
 	}
 
 }

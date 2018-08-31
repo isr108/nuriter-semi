@@ -566,22 +566,20 @@ public class MemberDao {
 			
 			System.out.println("sw: " + sw);
 			if(sw==1){
-				/*query=prop.getProperty("loginMember");
+				query=prop.getProperty("loginMember");
 				
 				pst=con.prepareStatement(query);
 				pst.setString(1, m.getUserEmail());
 				
 				result=pst.executeUpdate();
-				*/
-				/*if(result>0){*/
-					result=99;
-				/*}*/
-				/*else{
-					result=0;
-				}*/
 				
+				if(result>0){
+					result=99;
+				}
+				else{
+					result=0;
+				}	
 			}
-			
 			else{
 				query=prop.getProperty("insertMember2");
 				
@@ -592,8 +590,7 @@ public class MemberDao {
 				
 				result=pst.executeUpdate();
 				
-				result=99;
-				
+				/*result=99;	*/
 			}
 			
 			

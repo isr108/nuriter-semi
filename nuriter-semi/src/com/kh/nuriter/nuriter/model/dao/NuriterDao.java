@@ -1014,7 +1014,6 @@ public class NuriterDao {
          return bossList;
 	}
 
-
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
 		PreparedStatement pstmt = null;
@@ -1995,8 +1994,8 @@ public class NuriterDao {
 			close(rset);
 			close(pstmt);
 		}
-        return pictureList;
-    }
+		return pictureList;
+  }
 
 
 

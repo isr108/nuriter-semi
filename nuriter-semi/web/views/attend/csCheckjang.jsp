@@ -28,9 +28,13 @@
  	ArrayList<Enter> en = (ArrayList<Enter>)request.getAttribute("en");
  	/* ArrayList<HashMap<String, Object>> en = (ArrayList<HashMap<String, Object>>)request.getAttribute("en"); */
  	
- 	ArrayList<Attendprint> att=(ArrayList<Attendprint>)request.getAttribute("att");
+ 	/* ArrayList<Attendprint> att=(ArrayList<Attendprint>)request.getAttribute("att"); */
+ 	ArrayList<Attendprint> att2=(ArrayList<Attendprint>)request.getAttribute("att2");
  	/* ArrayList<HashMap<String, Object>> att = (ArrayList<HashMap<String, Object>>)request.getAttribute("att"); */
  	
+ 	
+ 	 int datejang = Integer.parseInt((String)request.getAttribute("datejang"));
+ 	 	System.out.println("jang : " + datejang); 
 %> 
 
 <%
@@ -64,6 +68,10 @@ int newLine = 0;
 Calendar todayCal = Calendar.getInstance();
 SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
 int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+int intToday2 = intToday-10000;
+int intToday3 = intToday-100;
+int intToday4 = intToday+100;
+int intToday5 = intToday+10000;
 %>
     
 <!DOCTYPE html>
@@ -199,7 +207,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 				<%-- <tr onclick="location.href='<%=request.getContextPath()%>/views/attend/csCheckone.jsp'"> --%>
 				
 				<tr>
-					<%-- <input type="hidden" value="<%= n.getNuriNum()%>"> --%>
+					 <input type="hidden" value="<%= n.getNuriNum()%>">
 					<td><div style="width:100px; text-align:center; display:inline-block;">누리터명</div></td>
 					<td>
 					<div style="width:100px; text-align:center; display:inline-block;"><%=n.getNuriTitle()%></div></td>
@@ -264,7 +272,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <table width="80%" border="0" cellspacing="1" cellpadding="1">
 <tr>
        <td align ="right" style="border:1px solid #FFFFFF">
-             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;usernumber=<%=usernumber%>'" value="오늘"/>
+             <input type="button" onclick="location.href='<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;usernumber=<%=usernumber%>&amp;date=<%=intToday %>'" value="오늘"/>
        </td>
 </tr>
 </table>
@@ -279,13 +287,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
              <td height="10">
              </td>
        </tr>      
-       <tr>
+       <tr>	
              <td align="center" >
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year-1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>&amp;date=<%=intToday%>" target="_self">
                            <b>&lt;&lt;</b><!-- 이전해 -->
                     </a>
                     <%if(month > 0 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>&amp;usernumber=<%=usernumber%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month-1%>&amp;usernumber=<%=usernumber%>&amp;date=<%=intToday%>" target="_self">
                    
                            <b>&lt;</b><!-- 이전달 -->
                     </a>
@@ -297,13 +305,13 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
                     <%=month+1%>월
                     &nbsp;&nbsp;
                     <%if(month < 11 ){ %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>&amp;usernumber=<%=usernumber%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year%>&amp;month=<%=month+1%>&amp;usernumber=<%=usernumber%>&amp;date=<%=intToday%>" target="_self">
                            <!-- 다음달 --><b>&gt;</b>
                     </a>
                     <%}else{%>
                            <b>&gt;</b>
                     <%} %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>&amp;day=<%=intToday%>" target="_self">
                            <!-- 다음해 --><b>&gt;&gt;</b>
                     </a>
              </td>
@@ -353,7 +361,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <%
 int test = 0;
 int test2 = 0;
-
+int date1 =0;
 
 //처음 빈공란 표시
 for(int index = 1; index < start ; index++ )
@@ -376,23 +384,45 @@ for(int index = 1; index <= endDay; index++)
        sUseDate += Integer.toString(month+1).length() == 1 ? "0" + Integer.toString(month+1) : Integer.toString(month+1);
        sUseDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index) : Integer.toString(index);
  
-       int iUseDate = Integer.parseInt(sUseDate);
-            
-       String backColor = "#EFEFEF";
+        int iUseDate = Integer.parseInt(sUseDate);
+        date1 = iUseDate;    
+       String backColor = "white";
 
        if(iUseDate == intToday ) {
              backColor = "#c9c9c9";
-       } 
+             test2 = test;
+        
+       } else if(iUseDate == datejang){
+       	backColor = "#D65BC1";
+       	test2 = test;
+       }
        out.println("<TD <TD id='today"+test+"' valign='top' align='left' height='52px' bgcolor='"+backColor+"' nowrap>");
 %>
-
+<script>
+$(function(){
+	var usernumber = <%=loginUser.getUserNumber()%>
+	<%-- var nunum = <%=n.getNuriNum()%>; --%>
+	
+	$("#today<%=test%>").click(function(){
+		/* console.log($(this).parent().children().eq(0).val()); */
+		/*  var nunum = $(this).parent().children().eq(0).val(); */
+		 var nunum = "<%=n.getNuriNum()%>";
+		 var date = <%=iUseDate%>
+		 var year = <%=year%>
+		 month = <%=month%>
+		location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum="+nunum+"&usernumber="+usernumber+"&year="+year+"&month="+month+"&date="+date;
+		
+	
+	});
+});	
+</script>
        <font color='<%=color%>'>
              <%=index%>
        </font>
        
        <%       
        out.println("<BR>");
-       out.println(iUseDate);
+       /* out.println(iUseDate); */
        out.println("<BR>");
               
        //기능 제거  
@@ -434,84 +464,60 @@ while(newLine > 0 && newLine < 7)
                     
             </tr>
              
-             <%
-             int test3=0;
-             int test4=0;
-             
-             int test5=0;
-             int test6=0;
-             String name=" ";
-             for(Enter e : en){ 
-              	test3++;
-              	
-              	
-              	test4 = test3;
-             %>
-            	<tr>	
-          		<td id ="test<%=test4%>"><%=e.getNickName()%></td>
-          		<td id ="t<%=test4%>"></td>
-          		</tr>
-        	 <% }%>
-        	 	
-        	 <%	for(Attendprint ad : att){
-        	 		test5++;
-            		name=ad.getNickName();
-            		System.out.println(name);
-            		test6 = test5;
-            }%>
-             <%
-            
-            	String[] names = new String[att.size()];
-            	for(int i=0; i<att.size(); i++){
-            		names[i] = att.get(i).getNickName();
-            	
-            %>
-          </table>
-            	<script>
-            	<%-- var names = <%=names%>
-            	console.log(names); --%>
- 				$(function(){
- 
-            		<%-- for(var b=0; b<=<%=att.size()%>; b++){ --%>
-            			var name="<%=names[i]%>";
-            			console.log(name);
-         	  		 	 <%-- var name = "<%=att.get(i).getNickName() %>";  --%>
- 						for(var a=1; a<=<%=test4%>; a++){
- 	            			console.log(a);
- 	            	  		/* var x = document.getElementById("test"+a); */
- 	            	  		var x = $("#test"+a).text();
- 	            	  		console.log("이름: "+x);
- 	            	  
- 	            	 if(x==name)
- 	            	{
-						$("#t"+a).text("V");
- 	            		<%-- var y = document.getElementById('t<%=test4%>');
-						y.style.background="#33ffff"; --%>
- 	            		  } 
-
- 						}
- 					/* } */
-    			/* for(var ee=1; ee<=test; test++){
-   					if(test5==test4){
-         			$("#test").text("V");
-    				}
-    			} */
-				});
-				</script>
-            		   
-          <%}%>
-           <%-- <table border="1" summary="" style="width:100px; height:30px;">
-           <tr>
-           		<th style="text-align:center;">출석</th>
-           </tr>
-           
-           <% for(Attendprint ad : att){ %>
-           		<tr>
-           				<td><%=ad.getNickName()%></td>
-           		</tr>
+       
+          
+       <%
+          int test3=0;
+          int test4=0;
+          
+          int test5=0;
+          int test6=0;
+          String name=" ";
+          for(Enter e : en){ 
+           	test3++;
            	
-           <%} %>
-    	</table> --%>
+           	
+           	test4 = test3;
+          %>
+         	<tr>	
+       		<td id ="test<%=test4%>"><%=e.getNickName()%></td>
+       		<td id ="t<%=test4%>"></td>
+       		</tr>
+     	 <% }%>
+     	 	
+     	 <%	for(Attendprint ad : att2){
+     	 		test5++;
+         		name=ad.getNickName();
+         		System.out.println(name);
+         		test6 = test5;
+         }%>
+          <%
+         
+         	String[] names = new String[att2.size()];
+         	for(int i=0; i<att2.size(); i++){
+         		names[i] = att2.get(i).getNickName();
+         	
+         %>
+       </table>
+         	<script>
+				$(function(){
+         			var name="<%=names[i]%>";
+         			console.log(name);
+						for(var a=1; a<=<%=test4%>; a++){
+	            			console.log(a);
+	            	  		var x = $("#test"+a).text();
+	            	  		console.log("이름: "+x);
+	            	  
+	            	 	if(x==name)
+	            		{
+							$("#t"+a).text("V");
+	            		} 
+
+				  }
+				});
+         	
+				</script> 
+		<%} %>
     
     </div>
      

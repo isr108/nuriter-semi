@@ -197,8 +197,10 @@
 		</div>
 			
    		
+
    <%-- 	<%@ include file="../common/footer.jsp" %> --%>
 		</div>
+   	<%@ include file="../common/footer.jsp" %>
 
 </body>
 <script>
