@@ -414,7 +414,7 @@
 	    	$.ajax({
 				url:"/ns/category.nu",
 				data:{name:name},
-				type:"get",
+				type:"post",
 				success:function(data){
 					console.log(data);
 					

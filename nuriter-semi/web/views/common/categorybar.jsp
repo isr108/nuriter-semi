@@ -178,7 +178,7 @@
       /* width:80%; */
   /*  } */
    
-   /* #iBox{
+   /* # {
       display: inline-block;
       margin-top: 5px; */
       /* margin-left: 30px; */
@@ -323,70 +323,81 @@
 	<nav id="nuriBavBar1" class="top-0 is-nav-white is-fixed">
         <div class="wrapper">
           <ul class="navi">
-               <li id="web-font" ><a href="/bs/views/Login.html">언어</a>
+               <li id="web-font" value="C1"><a href="/bs/views/Login.html">언어</a>
                	 <ul>
-               		<li id="web-font" class="na"><a href="#">영어</a></li>
-               		<li id="web-font" class="na"><a href="#">중국어</a></li>
-               		<li id="web-font" class="na"><a href="#">일본어</a></li>
-               		<li id="web-font" class="na"><a href="#">아랍어</a></li>
-               		
+               		<li id="web-font" class="na" value="C11"><a href="#">영어</a></li>
+               		<li id="web-font" class="na" value="C12"><a href="#">중국어</a></li>
+               		<li id="web-font" class="na" value="C13"><a href="#">일본어</a></li>
+               		<li id="web-font" class="na" value="C14"><a href="#">아랍어</a></li>
                	</ul> 
                	</li>	
-               <li id="web-font"><a href="/bs/views/mypage.html">공방</a>
+               <li id="web-font" value="C2"><a href="/bs/views/mypage.html">공방</a>
                	<ul>
-               		<li id="web-font" class="na"><a href="#">목공</a></li>
-               		<li id="web-font" class="na"><a href="#">가죽</a></li>
-               		<li id="web-font" class="na"><a href="#">플로리스트</a></li>
+               		<li id="web-font" class="na" value="C15"><a href="#">목공</a></li>
+               		<li id="web-font" class="na" value="C16"><a href="#">가죽</a></li>
+               		<li id="web-font" class="na" value="C17"><a href="#">플로리스트</a></li>
                		
                	</ul> 
                </li>
-               <li id="web-font"><a href="/bs/views/roadmap.html">요리</a>
+               <li id="web-font" value="C3"><a href="/bs/views/roadmap.html">요리</a>
                	<ul>
-               		<li id="web-font" class="na"><a href="#">한식</a></li>
-               		<li id="web-font" class="na"><a href="#">중식</a></li>
-               		<li id="web-font" class="na"><a href="#">일식</a></li>
-               		<li id="web-font" class="na"><a href="#">양식</a></li>
+               		<li id="web-font" class="na" value="C18"><a href="#">한식</a></li>
+               		<li id="web-font" class="na" value="C19"><a href="#">중식</a></li>
+               		<li id="web-font" class="na" value="C20"><a href="#">일식</a></li>
+               		<li id="web-font" class="na" value="C21"><a href="#">양식</a></li>
                		
                	</ul> 
                </li>
-               <li id="web-font"><a href="/bs/views/hobby.html">운동</a>
+               <li id="web-font" value="C4"><a href="/bs/views/hobby.html">운동</a>
                <ul>
-               	<li id="web-font" class="na"><a href="#">축구</a></li>
-               	<li id="web-font" class="na"><a href="#">야구</a></li>
-               	<li id="web-font" class="na"><a href="#">농구</a></li>
-               	<li id="web-font" class="na"><a href="#">수영</a></li>
+               	<li id="web-font" class="na" value="C9"><a href="#">축구</a></li>
+               	<li id="web-font" class="na" value="C10"><a href="#">야구</a></li>
                	</ul>
                </li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">음악</a>
+               <li id="web-font" value="C5" onclick="goNuriList();">음악
                <ul>
-               	<li id="web-font" class="na"><a href="#">악기</a></li>
-               	<li id="web-font" class="na"><a href="#">보컬</a></li>
-               	<li id="web-font" class="na"><a href="#">작곡</a></li>
+               	<li id="web-font" class="na" value="C22" onclick="goNuriList();">악기</li>
+               	<li id="web-font" class="na" value="C23" onclick="goNuriList();">보컬</li>
+               	<li id="web-font" class="na" value="C24" onclick="goNuriList();">작곡</li>
                	</ul>
                </li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">컴퓨터</a>
+               <li id="web-font" value="C6">컴퓨터
                <ul>
-               	<li id="web-font" class="na"><a href="#">양식</a></li>
-               	<li id="web-font" class="na"><a href="#">양식</a></li>
-               	<li id="web-font" class="na"><a href="#">양식</a></li>
+               	<li id="web-font" class="na" value="C25" onclick="goNuriList();">소프트웨어</li>
+               	<li id="web-font" class="na" value="C26" onclick="goNuriList();">하드웨어</li>
                	</ul>
                </li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">문화</a>
+               <li id="web-font" value="C7">문화
                <ul>
-               	<li id="web-font" class="na"><a href="#">영화</a></li>
-               	<li id="web-font" class="na"><a href="#">미술관</a></li>
-               	<li id="web-font" class="na"><a href="#">공연</a></li>
+               	<li id="web-font" class="na" value="C27" onclick="goNuriList();">영화</li>
+               	<li id="web-font" class="na" value="C28" onclick="goNuriList();">미술관</li>
+               	<li id="web-font" class="na" value="C29" onclick="goNuriList();">공연</li>
                </ul>
-               </li>
-               <li id="web-font"><a href="/bs/views/nuritaShow.html">기타</a>
+               </li> 
+               <li id="web-font" value="C8">기타
                	<ul>
-               	<li id="web-font" class="na"><a href="#">낚시</a></li>
+               	<li id="web-font" class="na" value="C30" onclick="goNuriList();">낚시</li>
                </ul>
                </li>
           </ul>
         </div>
         <hr class="colorgraph">
   </nav> 
-  
+  <script>
+  	
+  	function goNuriList(){
+  		$(".na").click(function(){
+  			var name = $(this).attr('value');
+  			alert(name);
+  		});
+			
+		    <%-- location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name; --%>
+  	};
+  	
+  	
+  		
+  		
+  		<%-- location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name; --%>
+  </script>
 </body>
 </html>
