@@ -90,7 +90,7 @@
 	    <%@ include file="../common/myPage_left.jsp" %>
 	</div>
 	<% if(loginUser != null){ %>
-	<form action="<%=request.getContextPath() %>/insertBoss.nu" method="get" id="insertForm">
+	<form action="<%=request.getContextPath() %>/insertBoss.nu" method="post" id="insertForm">
 		<div id="main" align="center">
 			<div id="child">
 				<div id="child2" align="left">
