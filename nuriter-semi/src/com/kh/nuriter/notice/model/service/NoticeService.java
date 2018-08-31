@@ -83,7 +83,7 @@ public class NoticeService {
 	}
 
 	public int deleteNotice(String num) {
-Connection con = getConnection();
+		Connection con = getConnection();
 		
 		int result = new NoticeDao().deleteNotice(con, num);
 		
@@ -97,5 +97,39 @@ Connection con = getConnection();
 		
 		return result;
 	}
+	
+	
+	
+	
+	//qna
+	public int Insertqna(Notice n) {
+		int result = 0;
+		Connection con = getConnection();
+		
+		result = new NoticeDao().Insertqna(n,con);
+		
+		if(result >0){
+			commit(con);
+		}else{
+			rollback(con);
+			
+		}
+		close(con);
+		
+		return result;
+	}
 
+	public ArrayList<Notice> SelectqnaList(int currentPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Notice> list = new NoticeDao().SelectqnaList(con,currentPage,limit);
+		
+		close(con);
+		
+		
+		
+		return list;
+	}
+
+	
+	
 }
