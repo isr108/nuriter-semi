@@ -188,8 +188,8 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
-								<th></th>
-								<th></th>
+								<th style="display:none;"></th>
+								<th style="display:none;"></th>
 								<th>누리장 신청일자</th>
 								<th>이름</th>
 								<th>카테고리</th>
@@ -200,8 +200,8 @@ button:hover {
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<td id="test1"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
-								<td id="test2"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
+								<td id="test1" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
+								<td id="test2" style="display:none;"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
