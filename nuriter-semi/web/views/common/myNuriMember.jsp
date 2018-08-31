@@ -22,7 +22,7 @@
 		height:auto;
 		background:white;
 		color:lightblack;
-		margin-top:20%;
+		margin-top:15%;
 		margin-left:auto;
 		margin-right:auto;
 		/* margin-top:280px; */
@@ -144,6 +144,7 @@
 					<input type="button" class="checkBtn" value="확인하기">
 					<input type="hidden" class="nuriNum" name="nuriNum" value="<%=nuriNum%>">
 					<input type="hidden" class="userNum" value="<%=m.getUserNumber()%>">
+					<input type="hidden" class="nickName" value="<%=m.getNickName()%>">
 					</div></td>
 				</tr>
 				<% } %>
@@ -179,7 +180,6 @@
    				<a onclick="location.href='<%= request.getContextPath()%>/selectMyMemberList.at?currentPage=<%= maxPage %>'">>></a>
    		</div>
 		</div>
-   	 <%@ include file="../common/footer.jsp" %>
 		</div>
 
 </body>
@@ -189,8 +189,9 @@
 			var nunum = $(this).next('.nuriNum').val();
 			console.log(nunum);
 			var usernumber = $('#bossNum').val();
+			var nickName = $('.nickName').val();
 			console.log(usernumber);
-			location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=" + nunum + "&usernumber=" + usernumber;
+			location.href="<%=request.getContextPath()%>/mynuriMemberAttend.at?nunum=" + nunum + "&usernumber=" + usernumber + "&nickName=" + nickName; 
 			});
 		});
 	

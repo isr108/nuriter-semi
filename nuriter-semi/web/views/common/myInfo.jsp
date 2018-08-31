@@ -265,10 +265,13 @@ a {
 					password = data;
 					if(password != oldPassword2){
 						alert("기존 비밀번호가 일치하지 않습니다.");
+					}else if(newPassword != newPassword2){
+						alert("새 비밀번호가 일치하지 않습니다.");
 					}else{
 						window.confirm("정보변경이 완료되었습니다.");
-						$("#updatePage").submit(); 
+						$("#updatePage").submit();			
 					}
+					
 					},
 					error : function(data, status, msg) {
 					console.log("서버전송 실패!");
