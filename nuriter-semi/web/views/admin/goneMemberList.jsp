@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.nuriter.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.admin.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
  <% 
-	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
  	System.out.println("list출력  : " + list);
  	PageInfo pi = (PageInfo)request.getAttribute("pi");
  	System.out.println("pi출력 : " + pi);
@@ -122,45 +122,40 @@
 
 </style>
 </head>
-<body>
-	<%@ include file="/views/common/myPage_left.jsp" %>
-	<%@ include file="/views/common/myNuriList.jsp" %>	
+<body>	
 	<div class="outer">
 		<br>
-		<h2 align="center">참여중인 누리터</h2>
+		<h2 align="center">탈퇴 회원 목록</h2>
 		<div class="tableArea" align="center">
 			<table id="listArea">
 				<tbody>
 				<tr>
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
-					<th><div style="width:150px">누리터명</div></th>
+					<th><div style="width:100px">회원번호</div></th>
 					<!-- <th><div style="width:100px">누리장명</div></th> -->
-					<th><div style="width:100px">시작일시</div></th>
-					<th><div style="width:100px">종료일시</div></th>
-					<th><div style="width:200px">장소</div></th>
-					<th><div style="width:50px">참가비</div></th>
-					<th><div style="width:100px">개설일자</div></th>
-					<th><div style="width:100px">참여종료하기</div></th>
-					<th><div style="width:100px">환불신청하기</div></th>
+					<th><div style="width:200px">아이디</div></th>
+					<th><div style="width:100px">이름</div></th>
+					<th><div style="width:200px">닉네임</div></th>
+					<th><div style="width:400px">주소</div></th>
+					<th><div style="width:100px">연락처</div></th>
+					<th><div style="width:100px">가입일</div></th>
+					<th><div style="width:100px">탈퇴일</div></th>
 				</tr>
 				
-				 <% for(Nuriter n : list){ %>
+				 <% for(Member m : list){ %>
 				<tr>
 					
-					<td><div class="content"><%=n.getNuriTitle()%></div>
+					<td><div class="content"><%=m.getUserNumber()%></div>
 					<%-- <td><div class="content"><%=n.getOwnerNum()%></div></td> --%>
-					<td><div class="content"><%=n.getStartDate()%></div></td>
-					<td><div class="content"><%=n.getEndDate()%></div></td>
-					<td><div class="content"><%=n.getPlace()%></div></td>
-					<td><div class="content"><%=n.getPrice()%></div></td>
-					<td><div class="content"><%=n.getApplicationDate()%></div></td>
-					<td><div class="content">
-					<input type="button" class="termiBtn" value="종료신청">
-					<input type="hidden" class="nuriNum" name="nuriNum" value="<%=n.getNuriNum()%>">
-					<input type="hidden" class="userNum" name="userNum" value="<%=loginUser.getUserNumber()%>">
-					</div></td>
-					<td><div class="content"><input type="button" value="환불신청" onclick="doRefund();"></div>
+					<td><div class="content"><%=m.getUserEmail()%></div></td>
+					<td><div class="content"><%=m.getUserName()%></div></td>
+					<td><div class="content"><%=m.getNickName()%></div></td>
+					<td><div class="content"><%=m.getAddress()%></div></td>
+					<td><div class="content"><%=m.getPhone()%></div></td>
+					<td><div class="content"><%=m.getEnrollDate()%></div></td>
+					<td><div class="content"><%=m.getActivatedDate()%></div></td>
+					<!-- <td><div class="content"><input type="button" value="환불신청" onclick="doRefund();"></div></td> -->
 				</tr>
 				<% } %>
 				</tbody>
@@ -171,18 +166,18 @@
 			<!-- <div class="pageArea" align="center"> -->
 			<div class="pagination" align="center" id="web-font">
    			<br>
-   			<a href="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=1'"><<</a>
+   			<a href="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>
    			<a disabled><</a>
    			<% }else{ %>
-   			<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%=currentPage - 1%>'">&laquo;</a>
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%=currentPage - 1%>'">&laquo;</a>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
    				<a class="active" disabled><%= p %></a>
    			<%  }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= p %>'"><%= p %></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%= p %>'"><%= p %></a>
    			<%  } %>
    			
    			<% } %>
@@ -190,9 +185,9 @@
    			<% if(currentPage >= maxPage){ %>
    				<a disabled>></a>
    			<% }else{ %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= currentPage + 1%>'">></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
-   				<a onclick="location.href='<%= request.getContextPath()%>/selectMyNuriList.nu?currentPage=<%= maxPage %>'">>></a>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%= maxPage %>'">>></a>
    		</div>
 		</div>
 			
