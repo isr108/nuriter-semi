@@ -10,13 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 import com.kh.nuriter.attend.model.vo.Attend;
-import com.kh.nuriter.attend.model.vo.AttendCode;
 import com.kh.nuriter.attend.model.vo.Attendprint;
 import com.kh.nuriter.attend.model.vo.Enter;
+import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.vo.Nuriter;
 
 public class AttendDao {
 private Properties prop = new Properties();
@@ -278,6 +278,83 @@ private Properties prop = new Properties();
 		
 		System.out.println("dao enterprint : " + en);
 		return en;
+	}
+
+
+	public int getListCount(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		int listCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("listCount");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setString(1, nuriNum);
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+
+	public ArrayList<Member> selectMyNuriMemberList(Connection con, int currentPage, int limit, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		ArrayList<Member> list = null;
+
+		String query = prop.getProperty("selectMyNuriMemberList");
+
+		try {
+			// stmt = con.createStatement();
+			// rset = stmt.executeQuery(query);
+			pstmt = con.prepareStatement(query);
+
+			// 조회 시작 할 행 번호와 마지막 행 번호 계산
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+
+			pstmt.setString(1, nuriNum);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+
+			if (rset != null) {
+				list = new ArrayList<Member>();
+				while (rset.next()) {
+					Member m = new Member();
+					m.setUserNumber(rset.getInt("user_number"));
+					m.setNickName(rset.getString("nickname"));
+					System.out.println(m.getNickName());
+					m.setPhone(rset.getString("phone"));
+					System.out.println(m.getPhone());
+
+					list.add(m);
+
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// close(stmt);
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
 	}
 
 }

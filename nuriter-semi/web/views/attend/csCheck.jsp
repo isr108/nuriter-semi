@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.nuriter.model.vo.*"%>
 <% 
 	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
 	ArrayList<Nuriter> list1 = (ArrayList<Nuriter>)request.getAttribute("list1");
@@ -29,7 +29,7 @@
 		height:auto;
 		background:white;
 		color:lightblack;
-		margin-top:13%;
+		margin-top:15%;
 		margin-left:auto;
 		margin-right:auto;
 		/* margin-top:280px; */
