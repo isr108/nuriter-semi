@@ -125,8 +125,9 @@ public class BoardDao {
 				rn.setN_ownerNum(rset.getString("owner_number"));
 				
 				rlist.add(rn);
-			
+				System.out.println("리스트"+rlist);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,6 +199,35 @@ public class BoardDao {
 			close(pstmt);
 		}
 		
+		
+		return result;
+	}
+
+
+	public int InsertRegister(Connection con, reportNuri rn2) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		String query = prop.getProperty("insertRegister");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, rn2.getUserNum()+"");
+			pstmt.setString(2, rn2.getBoardTitle());
+			pstmt.setString(3, rn2.getBoardContent());
+			pstmt.setDate(4, rn2.getBoardDate());
+			pstmt.setString(5,rn2.getN_ownerNum());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			
+		}
 		
 		return result;
 	}

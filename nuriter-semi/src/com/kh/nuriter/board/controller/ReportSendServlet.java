@@ -56,7 +56,8 @@ public class ReportSendServlet extends HttpServlet {
 		
 		if(result > 0){
 			System.out.println("성공");
-			/*page="views/member/categoryDetail.jsp";*/
+			page="/selectNuriterOne.nu?num="+nuriNum;
+			request.getRequestDispatcher(page).forward(request, response);
 			
 		}else{
 			System.out.println("실패");

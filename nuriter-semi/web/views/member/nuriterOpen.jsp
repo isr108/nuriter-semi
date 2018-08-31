@@ -143,6 +143,20 @@
 		font-size: 100px;
 		color: #F79F81;
 	}
+	.number {
+		width:50px;
+	}
+	/* .hr { 
+    display: block;
+    background: rgb(241, 196, 15);
+    color: rgb(241, 196, 15);
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}  */
 </style>
 </head>
 <body>
@@ -181,19 +195,29 @@
 					  
 					  <br><br>
 					  
+					  <hr class="hr">
 					  <h3 id="web-font">기간</h3>
 					  <div class="startDate">
 					  	 <%@ include file="../common/datePicker.jsp" %>
 					  </div>
 					  
-					  <br><br>
+					  <br><hr class="hr"><br>
 					        
 					  <h3 id="web-font">시간</h3>
 					  <div class="time">
 					  	 <%@ include file="../common/timePicker.jsp" %>
 					  </div>
 					  
-					  <br><br>
+					  
+					  <br><hr class="hr"><br>
+					  
+					  <h3 id="web-font">총 출석 일자</h3>
+					  <div class="count">
+						 <input class="number" id="web-font" type="number" value="0" step="1" min="0" max="90" name="count">
+					  </div>
+					  
+					  
+					  <br><hr class="hr"><br>
 					  
 					  <h3 id="web-font">장소</h3>
 					  <div id="placeDiv">
@@ -203,6 +227,7 @@
 						  <input type="text" id="sample6_address2" placeholder="상세주소" name="placeTree">
 					  </div>
 					  
+					  <hr class="hr">
 					  <br>
 					  
 					  <h3 id="web-font">대표 이미지</h3>
@@ -216,6 +241,8 @@
 					  	<input type="file" id="thumbnailImg1" name="thumbnailImg1" multiple onchange="loadImg(this, 1)">
 					  </div>
 					  
+					  <hr class="hr">
+					  
 					  <h3 id="web-font">누리터 내용</h3>
 					  <div id="summerText">
 						  <div id="summertextChild">
@@ -223,7 +250,7 @@
 						  </div>
 					  </div>
 					  
-					  <br>
+					  <br><hr class="hr">
 					  
 					  <input type="hidden" id="web-font" class="summerText" name="summerText">
 					  
@@ -232,7 +259,7 @@
 						  <input type="text" id="web-font" name="price">
 					  </div>
 					  
-					  <br>
+					  <br><hr class="hr">
 					  
 					  <h3 id="web-font">정원</h3>
 					  <div id="summerText">

@@ -2,7 +2,9 @@
     pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
 <% 
    Nuriter n = (Nuriter)request.getAttribute("n");
-System.out.println("누리터 : " +  n);
+   String nuriNum = request.getParameter("nuriNum");
+   String nuriTitle = request.getParameter("nuriTitle");
+   String content = request.getParameter("content");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,7 +29,7 @@ System.out.println("누리터 : " +  n);
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
         /* summernote에서 이미지 업로드시 실행할 함수 */
 	 	 function sendFile(file, editor) {
             // 파일 전송을 위한 폼생성
@@ -53,7 +55,7 @@ System.out.println("누리터 : " +  n);
 
 	 	    });	
 	 	} 
-	</script>
+	</script> -->
 	
 <style>
 #textBox{
@@ -146,42 +148,32 @@ button {
 <body>
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
-    <form name="writeForm" action="./summernote_insert.jsp" method="post">
+    
+    <form class="updateFrom" action="<%=request.getContextPath() %>/updateNuriter.nu" method="post">
 	<div class="content">
 		<div class="title" align="left">
+			<input type="hidden" value="<%= nuriNum %>" name="nuriNum">
 			<h3 id="web-font">누리터명</h3>
-			<input type="text" id="nuriterTitle" class="web-font" name="title" value="<%= n.getNuriTitle() %>">
+			<input type="text" id="nuriterTitle" class="web-font" value="<%= nuriTitle %>" name="nuriTitle">
 		</div>
 		
 		<div class="leftBox">
 			<div class="images">
 			<h3 id="web-font">내용</h3>
 			
+			<form name="writeForm" action="./summernote_insert.jsp" method="post">
 			<div align="center">
-			<textarea id="summernote"><%= n.getContent() %></textarea>
-	        <script>
-	             $(document).ready(function() {
-	                $('#summernote').summernote({ // summernote를 사용하기 위한 선언
-	                    height: 400,
-						 callbacks: { // 콜백을 사용
-	                        // 이미지를 업로드할 경우 이벤트를 발생
-						    onImageUpload: function(files, editor, welEditable) {
-						    	  console.log(files);
-					        	  console.log(editor);
-					        	  console.log(welEditable);
-					        	  
-					        	 /*  var opt = {};
-						          for (var i = files.length - 1; i >= 0; i--) {
-						        	files[i]; //해당파일들을 ajax로 한번씩 FormData로담아서 보내거나 다양하게 처리하시믄됩니다.		        	
-						          } */
-							     sendFile(files[0], this); 
-							}
-						} 
-					});
-				}); 
-	
-	
-			</script>
+			<textarea id="summernote"><%= content %></textarea>
+			<input type="hidden" id="web-font" class="summerText" name="summerText">
+        <script>
+             $(document).ready(function() {
+                $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+                    height: 400
+				});
+			}); 
+
+
+		</script>
 			</div>
 		   	</div>
 			<div class="update" align="center">
@@ -192,9 +184,14 @@ button {
 <br><br><br><br><br>
 <%@ include file="../common/footer.jsp" %>
 </form>
+
 <script>
 	$(".updateBtn").click(function(){
-		alert("수정 버튼 클릭");
+		var markupStr = $('#summernote').summernote('code');
+		
+		$(".summerText").val(markupStr);
+        
+        $(".updateFrom").submit();
 	});
 </script>
     
