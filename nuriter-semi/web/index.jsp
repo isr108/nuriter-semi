@@ -299,8 +299,8 @@
    
     #listBox{
    border:1px solid black;
-    height: 363px;
-    width: 695.9px;
+    height: 365px;
+    width: 698px;
     /* margin-left:auto;
     margin-right:auto; */
     margin:auto;
@@ -680,7 +680,7 @@
    
    <br><br><br><br>
    
-   <div class="padding-top-50 padding-bottom-50 margin-top-90 bg-color-gray">
+   <%-- <div class="padding-top-50 padding-bottom-50 margin-top-90 bg-color-gray">
    <div id="container">
    <div class="row"><div class="col-xs-4 padding-side-0 text-center">
    <br><br>
@@ -729,8 +729,8 @@
 	             상담시간 : 평일 10:30 ~ 18:30<br>
 	      *토요일 및 공휴일 휴무</h4>
 	      <input type ="button" id="callMe" value="전화 전 클릭" onclick="location.href='<%=request.getContextPath()%>/views/notice/fnq.jsp'">
-      </div>
-      </font>
+      </div>--%>
+      </font> 
     <script>
 		function logout(){
 			var check = window.confirm('로그아웃 하시겠습니까?');

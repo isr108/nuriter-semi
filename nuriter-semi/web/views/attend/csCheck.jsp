@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
+
+<%@page import="java.text.SimpleDateFormat"%>
+
 <% 
 	ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list");
 	ArrayList<Nuriter> list1 = (ArrayList<Nuriter>)request.getAttribute("list1");
@@ -12,6 +15,10 @@
  	
  	System.out.print("참여 : "+list1);
  	System.out.print("개설 : " +list);
+ 	
+ 	Calendar todayCal = Calendar.getInstance();
+ 	SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+ 	int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 %>
 <!DOCTYPE html>
 <html>
@@ -171,7 +178,7 @@
 	<script>
 		$(function(){
 			var usernumber = <%=loginUser.getUserNumber()%>
-			
+			var date = <%=intToday%>
 			$("#listArea1 td").mouseenter(function(){
 				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
 			}).mouseout(function(){
@@ -192,7 +199,7 @@
 			}).click(function(){
 				console.log($(this).parent().children().eq(0).val());
 				var nunum = $(this).parent().children().eq(0).val();
-				location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum="+nunum+"&usernumber="+usernumber;
+				location.href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum="+nunum+"&usernumber="+usernumber+"&date="+date;
 				
 			
 			});

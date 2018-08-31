@@ -993,60 +993,6 @@ public class NuriterDao {
          return bossList;
 	}
 
-	public ArrayList<Nuriboss> selectNuribossList(Connection con, int currentPage, int limit) {
-		ArrayList<Nuriboss> bossList = null;
-		PreparedStatement pstmt = null;
-		/* Statement stmt = null; */
-		ResultSet rset = null;
-		Nuriboss nb = null;
-
-		String query = prop.getProperty("selectNuribossList");
-
-		try {
-			/*
-			 * stmt = con.createStatement(); rset = stmt.executeQuery(query);
-			 */
-
-			pstmt = con.prepareStatement(query);
-
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit - 1;
-
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
-			rset = pstmt.executeQuery();
-
-			bossList = new ArrayList<Nuriboss>();
-
-			while (rset.next()) {
-				nb = new Nuriboss();
-
-				nb.setApplyNum(rset.getString("apply_id"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setUserNum(rset.getString("user_number"));
-				nb.setUserName(rset.getString("user_name"));
-				nb.setCategoryNum(rset.getString("category_name"));
-				nb.setBossContent(rset.getString("newnuri_content"));
-				nb.setPotoPath(rset.getString("planfile_path"));
-				nb.setPotoName(rset.getString("planfile_name"));
-				nb.setApplyDate(rset.getDate("apply_date"));
-
-				bossList.add(nb);
-			}
-
-			System.out.println(bossList);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-
-		return bossList;
-	}
-
 	public Nuriter selectOpenOne(Connection con, String nunum) {
 		Nuriter n = new Nuriter();
 		PreparedStatement pstmt = null;
@@ -2005,6 +1951,9 @@ public class NuriterDao {
 			close(rset);
 			close(pstmt);
 		}
+		return pictureList;
+		
+		
   }
 
 

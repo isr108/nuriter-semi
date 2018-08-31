@@ -80,14 +80,20 @@ public class SnsLoginServlet extends HttpServlet {
 
 			}else{
 				int result=new MemberService().snsMember(m);
-				System.out.println("서블릿 result : " + result);
-				
+
+				if(result==99){
+					response.sendRedirect("index.jsp");
+				}else if(result<99&&result>0){
+					request.setAttribute("msg", "회원가입 성공!!");
+					request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+				}else{	
 				/*page = "views/common/errorPage.jsp";*/
 				/*page = "views/common/errorPage.jsp";*/
 				/*request.setAttribute("msg", "로그인 에러!!!");*/
-				request.setAttribute("msg", "로그인 실패!!");
+				request.setAttribute("msg", "로그인 및 회원가입 실패!!");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-				
+				}
+				System.out.println("서블릿 result : " + result);
 			}
 		/*}
 		else if(result<99&&result>0){

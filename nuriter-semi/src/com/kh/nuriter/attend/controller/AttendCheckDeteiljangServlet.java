@@ -38,6 +38,12 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nunum = request.getParameter("nunum");
 		String usernumber = request.getParameter("usernumber");
+		String date = request.getParameter("date");
+		
+		
+		String datejang = date;
+		
+		System.out.println("서블릿 오는 date : " + date);
 		
 		/*ArrayList<HashMap<String, Object>> en = new AttendService().enterprint(nunum);*/
 		ArrayList<Enter> en = new AttendService().enterprint(nunum);
@@ -45,6 +51,8 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 		System.out.println("서블릿 enterprint: " + en);
 		
 		ArrayList<Attendprint> att = new AttendService().attendprint(nunum);
+		
+		ArrayList<Attendprint> att2 = new AttendService().attendprint2(nunum, date);
 		/*ArrayList<HashMap<String, Object>> att = new AttendService().attendprint(nunum);*/
 		
 		System.out.println("서블릿 : att" + att );
@@ -55,12 +63,14 @@ public class AttendCheckDeteiljangServlet extends HttpServlet {
 		
 		System.out.println(n);
 		
-		
+		System.out.println("datejang: " + datejang);
 		if(n != null){
 			page = "views/attend/csCheckjang.jsp";
 			request.setAttribute("n", n);
 			request.setAttribute("en", en);
-			request.setAttribute("att", att);
+			/*request.setAttribute("att", att);*/
+			request.setAttribute("att2", att2);
+			request.setAttribute("datejang", datejang);
 		}else{
 			page = "views/common/errorPage.jsp";
 			request.setAttribute("msg", "게시글 상세보기 실패");

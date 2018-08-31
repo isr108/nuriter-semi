@@ -280,4 +280,64 @@ private Properties prop = new Properties();
 		return en;
 	}
 
+
+	public ArrayList<Attendprint> attendprint2(Connection con, String nunum, String date) {
+		/*ArrayList<HashMap<String, Object>> att2 = null;
+		HashMap<String, Object> hmap2 = null;*/
+		
+		ArrayList<Attendprint> att2 = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		/*String query=null;*/		
+		String query = prop.getProperty("attendPrint2");
+		
+		try {	
+			/*pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nunum);
+			pstmt.setString(2, nunum);
+			rset = pstmt.executeQuery();*/
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(2, nunum);
+			pstmt.setString(1, date);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("dao nunum : "+ nunum);
+			System.out.println("rest1 : " + rset);
+			
+			if(rset != null){
+			/*att2 = new ArrayList<HashMap<String, Object>>();*/
+			att2 = new ArrayList<Attendprint>();
+			while(rset.next()){
+				Attendprint attend1 = new Attendprint();
+				attend1.setAttendCodeId(rset.getString("attendcode_id"));
+				attend1.setNickName(rset.getString("nickname"));
+				attend1.setNuriNumber(rset.getString("nuri_number"));
+				attend1.setAttendDate(rset.getDate("attend_date"));
+			
+				att2.add(attend1);
+				/*hmap = new HashMap<String, Object>();
+				
+				hmap.put("attendcode_id", rset.getString("attendcode_id"));
+				hmap.put("nickname",rset.getString("nickname"));
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("attend_date", rset.getDate("attend_date"));
+				
+				att.add(hmap);	*/
+			}
+		 }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		return att2;
+	}
+
 }
