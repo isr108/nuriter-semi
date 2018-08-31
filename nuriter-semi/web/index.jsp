@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.nuriter.member.model.vo.*" import="java.io.util.*"%>
+    pageEncoding="UTF-8" import="com.kh.nuriter.member.model.vo.*, com.kh.nuriter.nuriter.model.vo.PageInfo, java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
  
-<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
+<% Member loginUser = (Member)session.getAttribute("loginUser");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -474,7 +474,18 @@
    </table>
    </div>
   <!-- <font id="web-font">  -->
-   
+ <% 
+/*  ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list") */; 
+ ArrayList<HashMap<String,Object>> pictureList = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList");
+ /* PageInfo pi = (PageInfo)request.getAttribute("pi");
+ int listCount = pi.getListCount();
+ int currentPage = pi.getCurrentPage();
+ int maxPage = pi.getMaxPage();
+ int startPage = pi.getStartPage();
+ int endPage = pi.getEndPage(); */
+  
+ %>
+ 
    <!-- <div data-text-content="true" style="font-size:16px;" class="recommendText"> -->
   <div id="recommendText"><!-- <font id="web-font"> -->
       <h2>마감임박 누리터</h2>
@@ -483,71 +494,35 @@
    <br>
    <div id="listBox">
    
-   <div id="listBox1">
-   		  <table>
-       <tr>
-         <td style="height:30px; width:226px;">운동</td>
-      </tr>
-      <tr>
-         <td style="height:110px; width:226px; text-align:center" >
-         	<table>
-         		<tr>
-         			<td rowspan=2>
-         				 <img width="80px" height="90px" src="images/board/cat.png">
-         			</td>
-         			<td>
-         				같이 축구하실분 구합니다.
-         			</td>
-         		</tr>
-         		<tr>
-         			<td>
-         				D-3
-         			</td>
-         		</tr>
-         	</table>
-        </td>
-      </tr>
-      <tr>
-         <td style="height:110px; width:226px;" >
-         	<table>
-         		<tr>
-         			<td rowspan=2>
-         				 <img width="80px" height="90px" src="images/board/cat.png">
-         			</td>
-         			<td>
-         				같이 축구하실분 구합니다.
-         			</td>
-         		</tr>
-         		<tr>
-         			<td>
-         				D-2
-         			</td>
-         		</tr>
-         	</table>
-        </td>
-      </tr>
-      <tr>
-         <td style="height:110px; width:226px;" >
-         	<table>
-         		<tr>
-         			<td rowspan=2>
-         				 <img width="80px" height="90px" src="images/board/cat.png">
-         			</td>
-         			<td>
-         				야구 보러가실 분 구합니다.
-         			</td>
-         		</tr>
-         		<tr>
-         			<td>
-         				D-1
-         			</td>
-         		</tr>
-         	</table>
-        </td>
-      </tr>
-   </table>
-   </div>
-   <div id="listBox2">
+    
+   		 <%
+        		for(int i = 0; i < pictureList.size(); i++){
+        			HashMap<String,Object> hmap = pictureList.get(i);
+        	%>
+        	<div id="listBox1">
+        		<table id="nuriterListArea">
+           			<tr id="tableHiddenTop">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td id="priceTd" align="left">[<%= hmap.get("category_name") %>]</td>
+           			</tr>
+           			<tr align="center">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap.get("nuri_name") %></td>
+
+           			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td id="priceTd" align="right"><%= hmap.get("price") %>원</td>
+           			</tr>
+            	</table>
+			</div>
+        	<%  System.out.println(hmap.get("nuri_number")); } %> 
+  
+   <!-- <div id="listBox2">
      <table>
        <tr>
          <td style="height:30px; width:226px;">문화</td>
@@ -674,7 +649,7 @@
         </td>
       </tr>
    </table>
-   </div>
+   </div> -->
    
    </div>
    
@@ -741,7 +716,7 @@
 		}
 		
 		function home(){
-			location.href='<%=request.getContextPath()%>/home';
+			location.href='<%=request.getContextPath()%>/';
 		}
 		
 		function goNotice(){

@@ -581,6 +581,16 @@ public String getOwnerNum(String nuriNum) {
 	return ownerNum;
 }
 
+public ArrayList<HashMap<String, Object>> selectThumbnailList1() {
+	Connection con = getConnection();
+	
+	ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectThumbnailList1(con);
+	
+	close(con);
+
+	return pictureList;
+}
+
 
 
 }

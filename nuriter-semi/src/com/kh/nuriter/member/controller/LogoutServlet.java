@@ -1,11 +1,17 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
  * Servlet implementation class LogoutServlet
@@ -29,10 +35,17 @@ public class LogoutServlet extends HttpServlet {
 		/*// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());*/
 		System.out.println("오니?");
+		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+		/*String page = "";*/
 		
 		request.getSession().invalidate();
+		/*page = "index.jsp";
 		
-		response.sendRedirect("index.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);*/
+		request.setAttribute("pictureList", pictureList);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+		/*response.sendRedirect("index.jsp");*/
 	}
 
 	/**

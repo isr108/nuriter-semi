@@ -1,6 +1,8 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
  * Servlet implementation class SnsLoginServlet
@@ -70,13 +73,18 @@ public class SnsLoginServlet extends HttpServlet {
 			Member loginUser = new MemberService().snsloginMember(userEmail);
 			System.out.println("서블릿  유저: " +loginUser);
 			
+			/*String page = "";*/
 			if(loginUser != null){
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
-				
-				/*page ="index.jsp";
-				System.out.println(page);*/
-				response.sendRedirect("index.jsp");
+				ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+				/*page ="index.jsp";*/
+				/*System.out.println(page);*/
+				/*response.sendRedirect("<%=request.getContextPath()%>/");*/
+				/*RequestDispatcher view=request.getRequestDispatcher(page);
+				view.forward(request, response);*/
+				request.setAttribute("pictureList", pictureList);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 
 			}else{
 				int result=new MemberService().snsMember(m);
@@ -101,10 +109,7 @@ public class SnsLoginServlet extends HttpServlet {
 		}
 		else{
 			request.setAttribute("msg", "로그인 및 가입 실패");
-		}
-		*/
-		/*RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		view.forward(request, response);*/
+		}*/
 	}
 
 	/**

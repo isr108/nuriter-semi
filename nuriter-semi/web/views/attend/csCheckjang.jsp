@@ -109,7 +109,7 @@ int intToday5 = intToday+10000;
    		/* border-color: red; 
    	  	display:inline-block; */
 		width:100%;
-		height:300px;
+		height:500px;
 		/* background:black;
 		color:white; */
 		margin-left:5%;
@@ -147,7 +147,7 @@ int intToday5 = intToday+10000;
    .check1{
    		width:250px;
    		display:inline-block;
-   		margin-top:1%;
+   		margin-top:10%;
    		float:left;
    		
    }
@@ -190,7 +190,7 @@ int intToday5 = intToday+10000;
    <br><br><br>
    
     
-   <div id=#main1>
+<div id=#main1>
 <%@ include file="../common/logoAndLogbutton.jsp" %>
 
 <hr class="colorgraph">
@@ -249,7 +249,7 @@ int intToday5 = intToday+10000;
 		<p id="p1" style="width:250px; height:30px; border:1px solid black"></p>
 		<input class="web-font1" id ="checkcode" type="button" style="width: 250px; height: 30px;" value="출석코드 발급">
 	
-		<br><br>
+		<%-- <br><br>
 	
 		<input class ="web-font1" type="button" style="width: 120px; height: 30px;" value="누리터 종료">			
     
@@ -260,7 +260,7 @@ int intToday5 = intToday+10000;
     	<br><br>
     
     	<input class ="web-font1" type="button" style="width: 250px; height: 30px;" value="불량누리원 신고하기"
-    	onclick="location.href='<%=request.getContextPath()%>/views/member/reportPage.jsp'">	
+    	onclick="location.href='<%=request.getContextPath()%>/views/member/reportPage.jsp'">	 --%>
     
     </div>
 
@@ -311,7 +311,7 @@ int intToday5 = intToday+10000;
                     <%}else{%>
                            <b>&gt;</b>
                     <%} %>
-                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>&amp;day=<%=intToday%>" target="_self">
+                    <a href="<%=request.getContextPath()%>/attendcheckdeteiljang.nu?nunum=<%=nunum%>&amp;year=<%=year+1%>&amp;month=<%=month%>&amp;usernumber=<%=usernumber%>&amp;date=<%=intToday%>" target="_self">
                            <!-- 다음해 --><b>&gt;&gt;</b>
                     </a>
              </td>
@@ -432,10 +432,10 @@ $(function(){
        if(newLine == 7)
        {
          out.println("</TR>");
-         if(index <= endDay)
+         /* if(index <= endDay)
          {
            out.println("<TR>");
-         }
+         } */
          newLine=0;
        }
 }
@@ -455,17 +455,14 @@ while(newLine > 0 && newLine < 7)
 </DIV>
 </form>   
 </div>    
-    <div class="caleder1" style="width: 500px; height :300px; display:inline-block;margin-left: 13%;margin-top:  10%;" align="center">
+    <div class="caleder1" style="width: 500px; height :300px; display:inline-block;margin-left:14%;margin-top:  10%;" align="center">
     	<p style="width:50%">출석 누리원</p>
     	<table border="1" summary="" style="width:400px; height:30px;">
     		<tr>
                 <th style="text-align:center;">이름</th>
                 <th style="text-align:center;">출석</th>
                     
-            </tr>
-             
-       
-          
+            </tr>   
        <%
           int test3=0;
           int test4=0;
@@ -518,13 +515,9 @@ while(newLine > 0 && newLine < 7)
          	
 				</script> 
 		<%} %>
+ </div>   
     
-    </div>
      
-</div>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
 	<script>
 		$("#p1").text.val=1;
 		
@@ -551,7 +544,9 @@ while(newLine > 0 && newLine < 7)
 		
 	</script>
 	
+</div>
+</div>
   </font>
-  <%@ include file="../common/footer.jsp" %>    
+   <%@ include file="../common/footer.jsp" %> 
 </body>
 </html>

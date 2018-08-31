@@ -2106,4 +2106,65 @@ public class NuriterDao {
 		return result;
 	}
 
+
+	public ArrayList<HashMap<String, Object>> selectThumbnailList1(Connection con) {
+		ArrayList<HashMap<String, Object>> pictureList = null;
+		HashMap<String, Object> hmap = null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		String query = prop.getProperty("selectNuriterThumbnailMap1");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			/*int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);*/
+			
+			rset = pstmt.executeQuery();
+
+			pictureList = new ArrayList<HashMap<String, Object>>();
+
+			while(rset.next()){
+				hmap = new HashMap<String, Object>();
+
+				hmap.put("nuri_number", rset.getString("nuri_number"));
+				hmap.put("owner_number", rset.getString("owner_number"));
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("nuri_name", rset.getString("nuri_name"));
+				hmap.put("category_name", rset.getString("category_name"));
+				hmap.put("ncontent", rset.getString("ncontent"));
+				hmap.put("start_date", rset.getDate("start_date"));
+				hmap.put("end_date", rset.getString("end_date"));
+				hmap.put("start_time", rset.getString("start_time"));
+				hmap.put("place", rset.getString("place"));
+				hmap.put("price", rset.getInt("price"));
+				hmap.put("application_date", rset.getDate("application_date"));
+				hmap.put("personnel", rset.getInt("personnel"));
+				/*hmap.put("progress", rset.getString("PROGRESS"));*/
+				/*hmap.put("attend", rset.getShort("attend_count"));*/
+				hmap.put("fid", rset.getString("fid"));
+				hmap.put("origin_name", rset.getString("origin_name"));
+				hmap.put("change_name", rset.getString("change_name"));
+				hmap.put("file_path", rset.getString("file_path"));
+				hmap.put("upload_date", rset.getDate("upload_date"));
+
+				pictureList.add(hmap);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+
+		return pictureList;
+	}
+
 }
