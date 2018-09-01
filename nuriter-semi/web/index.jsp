@@ -10,6 +10,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href="/lib/bootstrap.min.css"> -->
+  <!-- <script src="/lib/jquery-1.12.2.min.js"></script>
+  <script src="/lib/bootstrap.min.js"></script> -->
+  
 <title>Insert title here</title>
 
 
@@ -300,7 +307,7 @@
     #listBox{
    border:1px solid black;
     height: 365px;
-    width: 698px;
+    width: 710px;
     /* margin-left:auto;
     margin-right:auto; */
     margin:auto;
@@ -309,8 +316,8 @@
    
     #listBox1{
    border:1px solid black;
-    /* height: 362px;
-    width: 682px; */
+    height: 362px;
+   /*  width: 682px; */
     /* margin-left:auto;
     margin-right:auto; */
     margin:auto;
@@ -373,6 +380,55 @@
    	cursor: pointer;
    	margin-bottom: 9px;
    }
+   
+   #tableHiddenTop {
+   	border-top: 1px solid #D8D8D8;
+   	border-bottom: 1px solid #D8D8D8;
+   }
+   #tableHidden{
+   	border-bottom: 1px solid #D8D8D8;
+   }
+   
+    *{margin:0;padding:0;}
+	ul,li{list-style:none;}
+	#slide{height:40px;position:relative;overflow:hidden;}
+	#slide ul{width:400%;height:100%;transition:1s;}
+	#slide ul:after{content:"";display:block;clear:both;}
+	#slide li{float:left;width:25%;height:100%;}
+	/* #slide li:nth-child(1){background-repeat:no-repeat; background-size:100% 100%;}
+	#slide li:nth-child(2){background-repeat:no-repeat; background-size:100% 100%;}
+	#slide li:nth-child(3){background-repeat:no-repeat; background-size:100% 100%;}
+	#slide li:nth-child(4){background-repeat:no-repeat; background-size:100% 100%;} */
+	#slide input{display:none;}
+	#slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
+	#slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
+	#pos1:checked~ul{margin-left:0%;}
+	#pos2:checked~ul{margin-left:-100%;}
+	#pos3:checked~ul{margin-left:-200%;}
+	/* #pos4:checked~ul{margin-left:-300%;} */
+	#pos1:checked~.pos>label:nth-child(1){background:#666;}
+	#pos2:checked~.pos>label:nth-child(2){background:#666;}
+	#pos3:checked~.pos>label:nth-child(3){background:#666;}
+	/* #pos4:checked~.pos>label:nth-child(4){background:#666;} */
+	
+	#olc{
+		margin-top:20px;
+	}
+	
+	.carousel-indicators {
+    position: inherit;
+    bottom: 10px;
+    left: 50%;
+    z-index: 15;
+    width: 60%;
+    padding-left: 0;
+    margin-top: 1%;
+    margin-left: 20%;
+    text-align: center;
+    list-style: none;
+	}
+  }
+   
 </style>
 
 </head>
@@ -477,12 +533,14 @@
  <% 
 /*  ArrayList<Nuriter> list = (ArrayList<Nuriter>)request.getAttribute("list") */; 
  ArrayList<HashMap<String,Object>> pictureList = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList");
- /* PageInfo pi = (PageInfo)request.getAttribute("pi");
+ ArrayList<HashMap<String,Object>> pictureList2 = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList2");
+ ArrayList<HashMap<String,Object>> pictureList3 = (ArrayList<HashMap<String,Object>>)request.getAttribute("pictureList3");
+ /*  PageInfo pi = (PageInfo)request.getAttribute("pi");
  int listCount = pi.getListCount();
  int currentPage = pi.getCurrentPage();
  int maxPage = pi.getMaxPage();
  int startPage = pi.getStartPage();
- int endPage = pi.getEndPage(); */
+ int endPage = pi.getEndPage();  */
   
  %>
  
@@ -492,9 +550,17 @@
     
    </div>
    <br>
-   <div id="listBox">
    
-    
+  <div class="container">      	
+  <div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <div id="listBox">
    		 <%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
@@ -518,9 +584,162 @@
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<td id="priceTd" align="right"><%= hmap.get("price") %>원</td>
            			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td id="d-day" align="right">Day-<%= hmap.get("start_date") %>일</td>
+           			</tr>
             	</table>
 			</div>
         	<%  System.out.println(hmap.get("nuri_number")); } %> 
+      </div>
+</div>
+      <div class="item">
+       	 <div id="listBox">
+   		 <%
+        		for(int i = 0; i < pictureList2.size(); i++){
+        			HashMap<String,Object> hmap2 = pictureList2.get(i);
+        	%>
+        	<div id="listBox1">
+        		<table id="nuriterListArea">
+           			<tr id="tableHiddenTop">
+           				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap2.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
+           				<td id="priceTd" align="left">[<%= hmap2.get("category_name") %>]</td>
+           			</tr>
+           			<tr align="center">
+           				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
+            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap2.get("nuri_name") %></td>
+
+           			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
+           				<td id="priceTd" align="right"><%= hmap2.get("price") %>원</td>
+           			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
+           				<td id="d-day" align="right">Day-<%= hmap2.get("start_date") %>일</td>
+           			</tr>
+            	</table>
+			</div>
+        	<%  System.out.println(hmap2.get("nuri_number")); } %>
+      </div>
+    </div>
+      <div class="item">
+        <div id="listBox">
+   		 <%
+        		for(int i = 0; i < pictureList3.size(); i++){
+        			HashMap<String,Object> hmap3 = pictureList3.get(i);
+        	%>
+        	<div id="listBox1">
+        		<table id="nuriterListArea">
+           			<tr id="tableHiddenTop">
+           				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap3.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
+           				<td id="priceTd" align="left">[<%= hmap3.get("category_name") %>]</td>
+           			</tr>
+           			<tr align="center">
+           				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
+            			<td id="titleTd" align="left"  style="width:230px;overflow:hiddem;text-overflow:ellipsis;"><%= hmap3.get("nuri_name") %></td>
+
+           			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
+           				<td id="priceTd" align="right"><%= hmap3.get("price") %>원</td>
+           			</tr>
+           			<tr id="tableHidden">
+           				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
+           				<td id="d-day" align="right">Day-<%= hmap3.get("start_date") %>일</td>
+           			</tr>
+            	</table>
+			</div>
+        	<%  System.out.println(hmap3.get("nuri_number")); } %>
+      </div>
+</div>
+     <!--  <div class="item">
+        <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>Flowers</h3>
+          <p>Beatiful flowers in Kolymbari, Crete.</p>
+        </div>
+      </div> -->
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <!-- <a class="left carousel-control" href="#myCarousel" role="button">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a> -->
+  </div>
+ <div id="olc">
+<ol class="carousel-indicators">
+      <li class="item1 active"></li>
+      <li class="item2"></li>
+      <li class="item3"></li>   
+      <!-- <li class="item4"></li> -->
+</ol>
+</div>
+ 
+</div>
+
+<script>
+$(document).ready(function(){
+    // Activate Carousel
+    $("#myCarousel").carousel();
+    
+    // Enable Carousel Indicators
+    $(".item1").click(function(){
+        $("#myCarousel").carousel(0);
+    });
+    $(".item2").click(function(){
+        $("#myCarousel").carousel(1);
+    });
+    $(".item3").click(function(){
+        $("#myCarousel").carousel(2);
+    });
+   /*  $(".item4").click(function(){
+        $("#myCarousel").carousel(3);
+    }); */
+    
+    // Enable Carousel Controls
+    /* $(".left").click(function(){
+        $("#myCarousel").carousel("prev");
+    });
+    $(".right").click(function(){
+        $("#myCarousel").carousel("next");
+    });  */
+});
+</script>
+       	
+        	
+  <!-- <div id="slide">
+	<input type="radio" name="pos" id="pos1" checked onclick="move()">
+	<input type="radio" name="pos" id="pos2" onclick="move()">
+	<input type="radio" name="pos" id="pos3" onclick="move()">
+	<input type="radio" name="pos" id="pos4" onclick="move()">
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<p class="pos">
+		<label for="pos1"></label>
+		<label for="pos2"></label>
+		<label for="pos3"></label>
+		<label for="pos4"></label>
+	</p>
+</div> -->
   
    <!-- <div id="listBox2">
      <table>

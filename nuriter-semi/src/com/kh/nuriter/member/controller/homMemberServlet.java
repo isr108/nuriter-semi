@@ -80,8 +80,12 @@ public class homMemberServlet extends HttpServlet {
 		System.out.println(list);*/
 		
 		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+		ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+		ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
 		
 		System.out.println("pictureList => " + pictureList);
+		System.out.println("pictureList => " + pictureList2);
+		System.out.println("pictureList => " + pictureList3);
 
 		//4. 받은 결과에 따라 뷰 페이지 내보내기
 		/*String page = "";
@@ -91,6 +95,8 @@ public class homMemberServlet extends HttpServlet {
 			/*request.setAttribute("list", list);*/
 			/*request.setAttribute("pi", pi);*/
 			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("pictureList2", pictureList2);
+			request.setAttribute("pictureList3", pictureList3);
 			/*page ="index.jsp";
 			System.out.println(page);*/
 			
