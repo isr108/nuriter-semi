@@ -591,6 +591,26 @@ public ArrayList<HashMap<String, Object>> selectThumbnailList1() {
 	return pictureList;
 }
 
+public ArrayList<HashMap<String, Object>> selectThumbnailList2() {
+	Connection con = getConnection();
+	
+	ArrayList<HashMap<String, Object>> pictureList2 = new NuriterDao().selectThumbnailList2(con);
+	
+	close(con);
+
+	return pictureList2;
+}
+
+public ArrayList<HashMap<String, Object>> selectThumbnailList3() {
+	Connection con = getConnection();
+	
+	ArrayList<HashMap<String, Object>> pictureList3 = new NuriterDao().selectThumbnailList3(con);
+	
+	close(con);
+
+	return pictureList3;
+}
+
 
 
 }
