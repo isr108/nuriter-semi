@@ -719,6 +719,27 @@ $(document).ready(function(){
         $("#myCarousel").carousel("next");
     });  */
 });
+
+$(function(){
+ 	$("#nuriterListArea td").mouseenter(function(){
+		$(this).parent().css({"cursor":"pointer"});
+ 	}).click(function(){
+ 			var num = $(this).parent().children("input").val();
+			console.log(num);
+			location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+ 	});
+	});
+	
+	$(function(){
+ 	$("#nuriterListArea th").mouseenter(function(){
+		$(this).parent().css({"cursor":"pointer"});
+ 	}).click(function(){
+ 			var num = $(this).parent().children("input").val();
+			console.log(num);
+			location.href="<%=request.getContextPath()%>/selectNuriterOne.nu?num=" + num;
+ 	});
+	});
+
 </script>
        	
         	

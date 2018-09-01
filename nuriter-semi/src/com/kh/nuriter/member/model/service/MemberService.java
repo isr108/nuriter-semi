@@ -216,6 +216,16 @@ public class MemberService {
 		return result;
 	}
 
+	public ArrayList<Member> selectAll() {
+		Connection con = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectAll(con);
+		
+		close(con);
+		
+		return list;
+	}
+
 	
 
 	
