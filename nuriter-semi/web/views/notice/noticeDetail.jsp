@@ -10,30 +10,19 @@
 <style>
 	
 	#main{
-   	border:1px solid white;
-   	min-height:90%:
+   	/* border:1px solid white;
+   	min-height:90%: */
+   	
+   	width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin-top: 70px;
    }
    
-   #web-font{
+   .web-font{
       font-family: 'Jua', sans-serif;
    } 
 
-	.colorgraph {
-      width: 98%;
-        height: 3px;
-        border-top: 0;
-        background: rgb(241, 196, 15);
-        border-radius: 3px;
-   }
-
-
-	#showLeft{
-       float:left;
-       width:10%;
-       font-size:20px;
-       display: inline-block;
-   }
-   
    ul.navi2 li a {
       float: center;
       font-size: 15px;
@@ -47,25 +36,27 @@
    }
    
    #noticeDetail{
-   	border:1px solid blue;
+   	/* border:1px solid blue;
    	width:40%;
    	margin-left:auto;
    	margin-right:auto;
    	width: 1080px;
    	min-height: 800px;
-   	background:#eaeaea;
+   	background:#eaeaea; */
+   	
+   	width: 60%;
+   	border:2px solid white;
+   	margin-right: 19%;
+   	float: right;
+   	overflow: hidden;
+   	background:rgb(248, 223, 125);
    }
    
    #upBox{
-   	border:1px solid red;
    	width:100%;
-   	height:50px;
+   	height:70px;
    }
    
-   #upBox > label {
-    font-size:20px;
-   	float: left;
-   }
    
    #tableArea{
      border:1px solid white;
@@ -73,30 +64,25 @@
      height:480px;
    }
    
-   
+   #btnBox button {
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
 </style>
 </head>
 <body>
 <%@ include file="../common/logoAndLogbutton.jsp" %>
 
 <div id="main">
- <br><br> <br><br>
- 	<hr class="colorgraph">
-    
-	<div id="showLeft" >
-     <ul class="navi2" style="list-style-type:none">
-        <hr class="colorgraph">
-        <li id="web-font"><a href="#">공지사항</a></li>
-        <hr class="colorgraph">
-     </ul>
-   	</div>
+ 	<%@ include file="../admin/adminbar.jsp"%>
  	
  	<div id="noticeDetail" align="center">
  		<div id="upBox" align="center">
-   			<label>공지 사항</label>
+   			<h1 class="web-font">공지사항</h1>
    		</div>
  		<div class="tableArea">
- 		<table>
+ 		<table class="web-font">
 				<tr>
 					<td>제목</td>
 					<td colspan="3">
@@ -123,13 +109,13 @@
 					<td colspan="4">
 						<textarea name="content" 
 						cols="108" rows="30" 
-						style="resize:none" readonly><%= n.getbContent() %></textarea>
+						style="resize:none;" readonly><%= n.getbContent() %></textarea>
 					</td>
 				</tr>
 				
 			</table>
  			<br>
-			<div align="center">
+			<div align="center" id="btnBox" class="web-font">
 				<button onclick="location.href='<%=request.getContextPath() %>/selectList.no'">이전</button>&nbsp;
 				<% if(loginUser != null 
 					&& loginUser.getUserEmail().equals("admin")){ %>
@@ -140,6 +126,5 @@
  	</div>
 </div>
 
-	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

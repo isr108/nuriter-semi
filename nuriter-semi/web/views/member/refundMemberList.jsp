@@ -79,9 +79,6 @@
    font-family: 'Jua', sans-serif;
 }
 
-#submit>button {
-   width: 150px;
-}
 
 .pagination {
    width: 400px;
@@ -118,18 +115,7 @@
    border-bottom-right-radius: 5px;
 }
 
-.pagination>button {
-   width: 200px;
-}
-/* hr { 
-       display: block;
-       margin-top: 0.5em;
-       margin-bottom: 0.5em;
-       margin-left: auto;
-       margin-right: auto;
-       border-style: inset;
-       border-width: 10px;
-   } */
+
 #child2 table, #child3 table {
    width: 700px;
    height: auto;
@@ -137,36 +123,6 @@
    border-radius: 5px; /* iOS 둥근모서리 제거 */
 }
 
-#search-select {
-   display: inline;
-}
-
-#search-web-font {
-   margin-left: 15px;
-   font-family: 'Jua', sans-serif;
-   font-size: 150%;
-}
-
-select {
-   height: 40px;
-   border-radius: 5px; /* iOS 둥근모서리 제거 */
-   background: rgb(241, 196, 15);
-}
-
-button {
-   width: 90px;
-   height: 40px;
-   font-weight: 600;
-   border-radius: 4px;
-   background-color: rgb(241, 196, 15);
-   color: white;
-}
-
-button:hover {
-   background-color: white; /* Green */
-   color: rgb(241, 196, 15);
-   border: 2px solid rgb(241, 196, 15); /* Green */
-}
 
 #main1 {
    width: 100%;
@@ -241,7 +197,7 @@ button:hover {
                         onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=1'"><<</a>
                      <% if (currentPage <= 1) {%>
                      <a disabled><
-                        </button> <% } else { %> <a
+                        </a> <% } else { %> <a
                         onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage=<%=currentPage - 1%>'"><</a>
                         <% } %> <% for (int p = startPage; p <= endPage; p++) {
                          if (p == currentPage) { %> <a disabled><%=p%></a> <% } else { %>
@@ -309,7 +265,7 @@ button:hover {
                         if (currentPage2 <= 1) {
                      %>
                      <a disabled><
-                        </button> <%
+                        </a> <%
                         } else {
                      %> <a
                         onclick="location.href='<%=request.getContextPath()%>/selectRefundNuriMember.rm?currentPage2=<%=currentPage2 - 1%>'"><</a>
@@ -344,8 +300,7 @@ button:hover {
          </form>
       </div>
    </div>
-   <script>
-    </script>
+   
    <br>
    <br>
    <br>
