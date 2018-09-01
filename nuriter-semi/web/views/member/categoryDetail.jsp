@@ -291,10 +291,19 @@ img {
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
 }
-#map{
+
+#notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 500px;
+    margin-bottom: 40px;
+}
+ #map{
 	border: 2px solid rgb(241, 196, 15); /* Green */
 	margin-left:15px;
 } 
+
 </style>
 </head>
 <body>

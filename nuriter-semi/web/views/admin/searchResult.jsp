@@ -260,7 +260,7 @@
    /* 	border-style: solid;
     border-color: red; */
    }
-   
+
    #notice {
     float: center;
     display: inline-block;
@@ -348,7 +348,7 @@
 				<input type="radio" id="findName" name="searchCondition" value="findName">
 				<label for="findName">이름으로 찾기</label>
 				<input type="radio" id="findNickname" name="searchCondition" value="findNickname">
-				<label for="findNickname">닉네임으로 찾기</label>
+				<label for=findNickname>닉네임으로 찾기</label>
 				<br>
 				<div id="idNameBox">
 					<input type="search" name="searchValue">
@@ -397,28 +397,7 @@
 				<th style="width:300px; text-align:center;">계좌번호</th>
 				<th style="width:300px; text-align:center;">가입일</th>
 			</tr>
-		<!-- 	<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>성별</th>
-				<th>나이</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
-				<th>취미</th>
-				<th>가입일</th>
-			</tr>
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>성별</th>
-				<th>나이</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
-				<th>취미</th>
-				<th>가입일</th>
-			</tr> -->
+
 			
 			 <% for(Member m : list){ %>
 			<tr>

@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 import com.kh.nuriter.member.model.dao.MemberDao;
 import com.kh.nuriter.member.model.vo.Member;
-import com.kh.nuriter.nuriter.model.dao.NuriterDao;
-import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 
 public class MemberService {
 
@@ -266,7 +264,39 @@ public class MemberService {
 			      }
 			      
 			      return result;
-			   }	   
+			   }
+
+		public ArrayList<Member> searchId(String userId) {
+			Connection con = getConnection();
+			
+			ArrayList<Member> list = new MemberDao().searchId(con, userId);
+			
+			close(con);
+			
+			return list;
+		}
+
+		public ArrayList<Member> searchName(String userName) {
+			Connection con = getConnection();
+			
+			ArrayList<Member> list = new MemberDao().searchName(con, userName);
+			
+			System.out.println("서비스 :" + userName);
+			
+			close(con);
+			
+			return list;
+		}
+
+		public ArrayList<Member> searchNickname(String userNickname) {
+			Connection con = getConnection();
+			
+			ArrayList<Member> list = new MemberDao().searchNickname(con, userNickname);
+			
+			close(con);
+			
+			return list;
+		}	   
 
 	/*public int snsloginMember(Member m) {
 		Connection con=getConnection();

@@ -27,6 +27,7 @@
    		height:100%;
    }
    body{
+    width:100%;
    	 height:100%;
    }
    #main{
@@ -54,12 +55,12 @@
       /* width:80%; */
    }
    
-   #iBox{
+   #iBoxlogo{
   	 background-color:white;
   	 display: inline-block;
       /* margin-top: 5px; */
       /* margin-left: 30px; */
-      width:200%;
+      width:100%;
       /* height:30%; */
       /*  height: 40px; */
    }
@@ -165,6 +166,7 @@
    
    /* 네비바 고정 */
    #nuriBavBar.is-fixed {
+   width:100%;
     position: fixed;
     /* 하단 경계선 */
     /*  border-bottom: 1px solid #ffd400; */
@@ -216,7 +218,7 @@
 	}
 	
 	</script>    --%>
-	<div id="iBox"><font id="web-font">
+	<div id="iBoxlogo"><font id="web-font">
         <!-- <label id="head" href='../../index.jsp'><font id="web-font">누리터</font></label> -->
        <font id="web-font"><a id="head" href="#home" onclick="home()">누리터</a></font> 
         <div id="search" align="center">
@@ -245,7 +247,7 @@
         		<% if(!loginUser.getUserEmail().equals("admin")){ %>
 					<button class="button" onclick="location.href='<%=request.getContextPath()%>/selectMyNuriList.nu?'">마이페이지</button>
 				<% }else{ %>
-					<button class="button" onclick="location.href='<%=request.getContextPath()%>/views/admin/adminPage.jsp'">관리페이지</button>
+					<button class="button" onclick="location.href='<%=request.getContextPath()%>/selectAll'">관리페이지</button>
 				<% } %>
         
         <%} %>

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.nuriter.member.model.vo.Member;
-import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -1079,7 +1078,179 @@ public class MemberDao {
 			      
 			      System.out.println("업데이트 완료 ? " + result);
 			      return result;
-			   }	   
+			   }
+
+		public ArrayList<Member> searchId(Connection con, String userId) {
+			ArrayList<Member> list = null;
+			/*Statement stmt = null;
+			ResultSet rset = null;*/
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = prop.getProperty("searchId");
+			/*System.out.println(query);*/
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setString(1, userId);
+				
+				rset = pstmt.executeQuery();
+				
+				
+				if(rset != null){
+					list = new ArrayList<Member>();
+					
+					while(rset.next()){
+						Member m = new Member();
+						
+						m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+						m.setUserEmail(rset.getString("user_email"));
+						m.setPassword(rset.getString("user_pwd"));
+						m.setUserName(rset.getString("user_name"));
+						m.setNickName(rset.getString("nickname"));
+						m.setAddress(rset.getString("address"));
+						m.setPhone(rset.getString("phone"));
+						m.setHobby(rset.getString("hobby"));
+						m.setBirthDate(rset.getDate("birth_date"));
+						m.setEnrollDate(rset.getDate("enroll_date"));
+						m.setGrade(rset.getString("grade"));
+						m.setGradeDate(rset.getDate("grade_date"));
+						m.setBankName(rset.getString("bank_name"));
+						m.setBankNumber(rset.getString("bank_number"));
+						m.setAccountSort(rset.getString("account_sort"));
+						m.setToken(rset.getString("token"));
+						m.setReportedUser(rset.getString("reported_user"));
+						m.setActivated(rset.getString("activated"));
+						m.setActivatedDate(rset.getDate("activated_date"));
+						list.add(m);
+					}
+					/*System.out.println(list);*/
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(pstmt);
+				close(rset);
+			}
+			
+			
+			return list;
+		}
+	
+
+		public ArrayList<Member> searchName(Connection con, String userName) {
+			ArrayList<Member> list = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = prop.getProperty("searchName");
+			System.out.println(userName);
+			System.out.println(query);
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, userName);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset != null){
+					list = new ArrayList<Member>();
+					
+					while(rset.next()){
+						Member m = new Member();
+						
+						m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+						m.setUserEmail(rset.getString("user_email"));
+						m.setPassword(rset.getString("user_pwd"));
+						m.setUserName(rset.getString("user_name"));
+						m.setNickName(rset.getString("nickname"));
+						m.setAddress(rset.getString("address"));
+						m.setPhone(rset.getString("phone"));
+						m.setHobby(rset.getString("hobby"));
+						m.setBirthDate(rset.getDate("birth_date"));
+						m.setEnrollDate(rset.getDate("enroll_date"));
+						m.setGrade(rset.getString("grade"));
+						m.setGradeDate(rset.getDate("grade_date"));
+						m.setBankName(rset.getString("bank_name"));
+						m.setBankNumber(rset.getString("bank_number"));
+						m.setAccountSort(rset.getString("account_sort"));
+						m.setToken(rset.getString("token"));
+						m.setReportedUser(rset.getString("reported_user"));
+						m.setActivated(rset.getString("activated"));
+						m.setActivatedDate(rset.getDate("activated_date"));
+						list.add(m);
+					}
+					System.out.println(list);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(pstmt);
+				close(rset);
+			}
+			
+			
+			return list;
+		}
+
+		public ArrayList<Member> searchNickname(Connection con, String userNickname) {
+			ArrayList<Member> list = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = prop.getProperty("searchNickName");
+			System.out.println(userNickname);
+			System.out.println(query);
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, userNickname);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset != null){
+					list = new ArrayList<Member>();
+					
+					while(rset.next()){
+						Member m = new Member();
+						
+						m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+						m.setUserEmail(rset.getString("user_email"));
+						m.setPassword(rset.getString("user_pwd"));
+						m.setUserName(rset.getString("user_name"));
+						m.setNickName(rset.getString("nickname"));
+						m.setAddress(rset.getString("address"));
+						m.setPhone(rset.getString("phone"));
+						m.setHobby(rset.getString("hobby"));
+						m.setBirthDate(rset.getDate("birth_date"));
+						m.setEnrollDate(rset.getDate("enroll_date"));
+						m.setGrade(rset.getString("grade"));
+						m.setGradeDate(rset.getDate("grade_date"));
+						m.setBankName(rset.getString("bank_name"));
+						m.setBankNumber(rset.getString("bank_number"));
+						m.setAccountSort(rset.getString("account_sort"));
+						m.setToken(rset.getString("token"));
+						m.setReportedUser(rset.getString("reported_user"));
+						m.setActivated(rset.getString("activated"));
+						m.setActivatedDate(rset.getDate("activated_date"));
+						list.add(m);
+					}
+					System.out.println(list);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(pstmt);
+				close(rset);
+			}
+			
+			
+			return list;
+		}
+
+		
 }
 
 

@@ -19,8 +19,8 @@
       font-family: 'Jua', sans-serif;
    }
    #showLeft{
-       border-style: solid; 
-        border-color: red;
+       /* border-style: solid; 
+        border-color: red; */
        width:10%;
       /*  height:15%; */
        font-size:20px;
@@ -56,7 +56,7 @@
         <li id="web-font"><a href="<%=request.getContextPath()%>/selectNuribossList.nu">누리장관리</a></li>
 
         <li id="web-font"><a href="<%=request.getContextPath()%>/selectGoneMemberList.nu">탈퇴회원관리</a></li>
-        <li id="web-font" onclick="blackList();">누리장 신고관리</li>
+        <li id="web-font"><a href="#" onclick="blackList();">누리장 신고관리</a></li>
         <li id="web-font"><a href="<%=request.getContextPath()%>/selectRefundNuriMember.rm">환불회원관리</a></li>
 
         <hr class="colorgraph">
