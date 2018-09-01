@@ -124,13 +124,13 @@
 	
    
    #showMain{
-    border-style: solid;
-    border-color: black;
+    /* border-style: solid;
+    border-color: black; */
     display: inline-block;
-    width: 700px;
+    width: 1000px;
     height: 50%;
     /* float: center; */
-    margin-left:13%;
+    margin-left:5%;
     margin-bottom:1%;
 
    }
@@ -141,7 +141,7 @@
     width: 900px;
     height: 100%;
     float: right;
-    margin-right: 20%
+    margin-right: 30%
     /* float: center; */
     /* margin-left:13%;
     margin-bottom:1%; */
@@ -375,8 +375,21 @@
 			
 		</script>
 		<br>
-		<table align="center" border="1" style="width:600px">
+		<table align="center" border="1" style="width:1200px">
 			<tr>
+				<th style="width:500px;">유저번호</th>
+				<th style="width:500px;">이메일</th>
+				<th style="width:500px;">이름</th>
+				<th style="width:500px;">닉네임</th>
+				<th style="width:500px;">전화번호</th>
+				<th style="width:500px;">주소</th>
+				<th style="width:500px;">생일</th>
+				<th style="width:500px;">취미</th>
+				<th style="width:500px;">은행명</th>
+				<th style="width:500px;">계좌번호</th>
+				<th style="width:500px;">가입일</th>
+			</tr>
+		<!-- 	<tr>
 				<th>아이디</th>
 				<th>이름</th>
 				<th>성별</th>
@@ -397,32 +410,23 @@
 				<th>주소</th>
 				<th>취미</th>
 				<th>가입일</th>
-			</tr>
-			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>성별</th>
-				<th>나이</th>
-				<th>이메일</th>
-				<th>전화번호</th>
-				<th>주소</th>
-				<th>취미</th>
-				<th>가입일</th>
-			</tr>
+			</tr> -->
 			
-			<%-- <% for(Member m : list){ %>
+			 <% for(Member m : list){ %>
 			<tr>
-				<td><%= m.getUserId() %></td>
+				<td><%= m.getUserNumber() %></td>
+				<td><%= m.getUserEmail() %></td>
 				<td><%= m.getUserName() %></td>
-				<td><%= m.getGender() %></td>
-				<td><%= m.getAge() %></td>
-				<td><%= m.getEmail() %></td>
+				<td><%= m.getNickName() %></td>
 				<td><%= m.getPhone() %></td>
 				<td><%= m.getAddress() %></td>
+				<td><%= m.getBirthDate() %></td>
 				<td><%= m.getHobby() %></td>
+				<td><%= m.getBankName() %></td>
+				<td><%= m.getBankNumber() %></td>
 				<td><%= m.getEnrollDate() %></td>
 			</tr>	
-			<% } %> --%>
+			<% } %>
 		</table>
  	</div>
  </div>

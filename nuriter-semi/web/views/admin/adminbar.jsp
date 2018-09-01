@@ -74,6 +74,11 @@
  function blackList(){
 	 location.href="<%=request.getContextPath()%>/reportlist.rl";
  }
+ 
+ function selectAll(){
+		location.href="<%=request.getContextPath()%>/selectAll";
+		
+	}
  </script>
  
  

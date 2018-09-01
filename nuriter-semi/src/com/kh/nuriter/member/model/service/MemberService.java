@@ -203,6 +203,16 @@ public class MemberService {
 	      return list;
 	}
 
+	public ArrayList<Member> selectAll() {
+		Connection con = getConnection();
+		
+		ArrayList<Member> list = new MemberDao().selectAll(con);
+		
+		close(con);
+		
+		return list;
+	}
+
 	
 
 	/*public int snsloginMember(Member m) {

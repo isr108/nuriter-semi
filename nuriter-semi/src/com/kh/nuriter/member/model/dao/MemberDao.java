@@ -37,7 +37,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("loginCheck");
+		String query = prop.getProperty("selectAll");
 		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
@@ -845,6 +845,59 @@ public class MemberDao {
         }
         
         return list;
+	}
+
+	public ArrayList<Member> selectAll(Connection con) {
+		ArrayList<Member> list = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectAll");
+		
+		try {
+			stmt = con.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			list = new ArrayList<Member>();
+			
+			while(rset.next()){
+				Member m = new Member();
+				
+				m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+				m.setUserEmail(rset.getString("user_email"));
+				m.setPassword(rset.getString("user_pwd"));
+				m.setUserName(rset.getString("user_name"));
+				m.setNickName(rset.getString("nickname"));
+				m.setAddress(rset.getString("address"));
+				m.setPhone(rset.getString("phone"));
+				m.setHobby(rset.getString("hobby"));
+				m.setBirthDate(rset.getDate("birth_date"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+				m.setGrade(rset.getString("grade"));
+				m.setGradeDate(rset.getDate("grade_date"));
+				m.setBankName(rset.getString("bank_name"));
+				m.setBankNumber(rset.getString("bank_number"));
+				m.setAccountSort(rset.getString("account_sort"));
+				m.setToken(rset.getString("token"));
+				m.setReportedUser(rset.getString("reported_user"));
+				m.setActivated(rset.getString("activated"));
+				m.setActivatedDate(rset.getDate("activated_date"));
+				
+			
+				list.add(m);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		
+	
+		return list;
 	}
 
 	

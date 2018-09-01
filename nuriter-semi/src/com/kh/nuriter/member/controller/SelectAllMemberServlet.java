@@ -32,8 +32,8 @@ public class SelectAllMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		//ArrayList<Member> list = new MemberService().selectAll();
+		
+		ArrayList<Member> list = new MemberService().selectAll();
 		
 		String page = "";
 		
@@ -47,7 +47,7 @@ public class SelectAllMemberServlet extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
-		*/
+		
 		
 	}
 
