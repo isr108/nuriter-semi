@@ -37,7 +37,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("selectAll");
+		String query = prop.getProperty("loginCheck");
 		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
@@ -901,9 +901,185 @@ public class MemberDao {
 	}
 
 	
+	public ArrayList<Member> selectRefundNuriMember(Connection con, int currentPage, int limit) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      ArrayList<Member> refundList = null;
+	      Member m = null;
+	      
+	      String query = prop.getProperty("selectRefundMember");
+	      
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         
+	         int startRow = (currentPage - 1) * limit + 1;
+	            int endRow = startRow + limit - 1;
+	            
+	            pstmt.setInt(1, startRow);
+	            pstmt.setInt(2, endRow);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         refundList = new ArrayList<Member>();
+	         
+	         while(rset.next()){
+	            m = new Member();
+	            
+	            m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+	            m.setUserEmail(rset.getString("user_email"));
+	            m.setUserName(rset.getString("user_name"));
+	            m.setRefundNuriterName(rset.getString("nuri_name"));
+	            m.setNickName(rset.getString("nickname"));
+	            m.setPhone(rset.getString("phone"));
+	            m.setGrade(rset.getString("grade"));
+	            m.setBankName(rset.getString("bank_name"));
+	            m.setBankNumber(rset.getString("bank_number"));
+	            m.setRefundNuriterPrice(rset.getInt("price"));
+	            
+	            refundList.add(m);
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	         close(rset);
+	      }
+	      System.out.println(refundList);
+	      
+	      return refundList;
+	   }
 
+	   public ArrayList<Member> selectRefundNuriMember2(Connection con, int currentPage2, int limit) {
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      ArrayList<Member> refundList2 = null;
+	      Member m = null;
+	      
+	      String query = prop.getProperty("selectRefundMember2");
+	      
+	      try {
+	         pstmt = con.prepareStatement(query);
+	         
+	         int startRow = (currentPage2 - 1) * limit + 1;
+	            int endRow = startRow + limit - 1;
+	            
+	            pstmt.setInt(1, startRow);
+	            pstmt.setInt(2, endRow);
+	            
+	            rset = pstmt.executeQuery();
+	         
+	         refundList2 = new ArrayList<Member>();
+	         
+	         while(rset.next()){
+	            m = new Member();
+	            
+	            m.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+	            m.setUserEmail(rset.getString("user_email"));
+	            m.setUserName(rset.getString("user_name"));
+	            m.setRefundNuriterName(rset.getString("nuri_name"));
+	            m.setNickName(rset.getString("nickname"));
+	            m.setPhone(rset.getString("phone"));
+	            m.setGrade(rset.getString("grade"));
+	            m.setBankName(rset.getString("bank_name"));
+	            m.setBankNumber(rset.getString("bank_number"));
+	            m.setRefundNuriterPrice(rset.getInt("price"));
+	           /* m.setRefundNuriterDate(rset.getDate("refund_date"));*/
+	            
+	            refundList2.add(m);
+	         }
+	            
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	         close(rset);
+	      }
+	      System.out.println(refundList2); 
+	      
+	      return refundList2;
+	   }
 	
+	   
+	   
+	   public int getRefundMemberCount(Connection con) {
+		      Statement stmt = null;
+		      ResultSet rset = null;
+		      int result = 0;
+		      
+		      String query = prop.getProperty("getRefundMemberCount");
+		      
+		      try {
+		         stmt = con.createStatement();
+		         rset = stmt.executeQuery(query);
+		         
+		         if(rset.next()){
+		            result = rset.getInt(1);
+		         }
+		         
+		         
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         close(rset);
+		         close(stmt);
+		      }
+		      
+		      System.out.println("환불된 회원 수 : " + result);
+		      return result;
+		   }
 
+		   public int getRefundMemberCount2(Connection con) {
+		      Statement stmt = null;
+		      ResultSet rset = null;
+		      int result = 0;
+		      
+		      String query = prop.getProperty("getRefundMemberCount2");
+		      
+		      try {
+		         stmt = con.createStatement();
+		         rset = stmt.executeQuery(query);
+		         
+		         if(rset.next()){
+		            result = rset.getInt(1);
+		         }
+		      } catch (SQLException e) {
+		         // TODO Auto-generated catch block
+		         e.printStackTrace();
+		      } finally {
+		         close(rset);
+		         close(stmt);
+		      }
+		      
+		      System.out.println("환불 처리된 회원 수 : " + result);
+		      return result;
+		   }   
+
+		   
+		   
+		   public int updateRefundNumber(Connection con, String num) {
+			      PreparedStatement pstmt = null;
+			      int result = 0;
+			      
+			      String query = prop.getProperty("updateRefundNumber");
+			      
+			      try {
+			         pstmt = con.prepareStatement(query);
+			         pstmt.setString(1, num);
+			         pstmt.setString(2, num);
+			         
+			         result = pstmt.executeUpdate();
+			         
+			      } catch (SQLException e) {
+			         e.printStackTrace();
+			      } finally {
+			         close(pstmt);
+			      }
+			      
+			      System.out.println("업데이트 완료 ? " + result);
+			      return result;
+			   }	   
 }
 
 

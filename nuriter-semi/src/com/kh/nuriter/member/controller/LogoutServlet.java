@@ -36,6 +36,8 @@ public class LogoutServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());*/
 		System.out.println("오니?");
 		ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+		ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+		ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
 		/*String page = "";*/
 		
 		request.getSession().invalidate();
@@ -44,6 +46,8 @@ public class LogoutServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);*/
 		request.setAttribute("pictureList", pictureList);
+		request.setAttribute("pictureList2", pictureList2);
+		request.setAttribute("pictureList3", pictureList3);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		/*response.sendRedirect("index.jsp");*/
 	}

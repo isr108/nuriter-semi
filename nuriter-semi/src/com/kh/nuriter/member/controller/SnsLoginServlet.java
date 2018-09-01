@@ -78,12 +78,16 @@ public class SnsLoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
 				ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+				ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+				ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
 				/*page ="index.jsp";*/
 				/*System.out.println(page);*/
 				/*response.sendRedirect("<%=request.getContextPath()%>/");*/
 				/*RequestDispatcher view=request.getRequestDispatcher(page);
 				view.forward(request, response);*/
 				request.setAttribute("pictureList", pictureList);
+				request.setAttribute("pictureList2", pictureList2);
+				request.setAttribute("pictureList3", pictureList3);
 				request.getRequestDispatcher("index.jsp").forward(request, response);
 
 			}else{
