@@ -291,9 +291,10 @@ img {
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
 }
-/* #map{
+#map{
 	border: 2px solid rgb(241, 196, 15); /* Green */
-} */
+	margin-left:15px;
+} 
 </style>
 </head>
 <body>
@@ -355,7 +356,7 @@ img {
 	        <p><font id="web-font-Nanum">총 출석 횟수: <%= n.getAttendCount() %></font>
 	        <hr>
 	        <p><font id="web-font-Nanum">장소: <%= n.getPlace() %></font></p>
-	        <div id="map" style="width:450px;height:400px;"></div>
+	        <div id="map" style="width:420px;height:400px;"></div>
 			  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32a364f56c1e2fe3c30aa773daa80f7e&libraries=services"></script>
 			  <script>
 			  var place = '<%= n.getPlace() %>';
