@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import com.kh.nuriter.member.model.dao.MemberDao;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.dao.NuriterDao;
+import com.kh.nuriter.nuriter.model.vo.Nuriboss;
 
 public class MemberService {
 
@@ -182,41 +184,24 @@ public class MemberService {
 		return m;
 	}
 
-	public int getRefundMemberCount() {
-		Connection con = getConnection();
-		
-		int result = new MemberDao().getRefundMemberCount(con);
-		
-		close(con);
-		
-		return result;
+	public int getGoneMemberListCount() {
+		  Connection con = getConnection();
+	      
+	      int listCount = new MemberDao().getGoneMemberListCount(con);
+	      
+	      close(con);
+	      
+	      return listCount;
 	}
 
-	public ArrayList<Member> selectRefundNuriMember(int currentPage, int limit) {
+	public ArrayList<Member> selectGoneMemberList(int currentPage, int limit) {
 		Connection con = getConnection();
-		
-		ArrayList<Member> refundList = new MemberDao().selectRefundNuriMember(con, currentPage, limit);
-		
-		close(con);
-		
-		return refundList;
+	     ArrayList<Member> list = new MemberDao().selectGoneMemberList(con, currentPage, limit);
+	      
+	      close(con);
+	      
+	      return list;
 	}
-
-	public int updateRefundNumber(String num) {
-		Connection con = getConnection();
-		
-		int result = new MemberDao().updateRefundNumber(con, num);
-		
-		if(result > 0){
-			commit(con);
-		}else{
-			rollback(con);
-		}
-		
-		return result;
-	}
-
-	
 
 	
 
