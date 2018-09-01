@@ -57,12 +57,18 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
 			ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+			ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+			ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
+			
+			
 			
 			/*page ="index.jsp";*/
 			/*page ="request.getContextPath()/";*/
 			System.out.println(page);
 			/*response.sendRedirect("index.jsp");*/
 			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("pictureList2", pictureList2);
+			request.setAttribute("pictureList3", pictureList3);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}else{

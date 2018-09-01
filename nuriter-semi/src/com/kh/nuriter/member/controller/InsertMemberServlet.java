@@ -1,7 +1,9 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
  * Servlet implementation class InsertMemberServlet
@@ -115,16 +118,23 @@ public class InsertMemberServlet extends HttpServlet {
 		String page = "";
 		
 		if(result > 0){
-			/*page = "/views/common/successPage.jsp";
-			request.setAttribute("msg", "회원 가입에 성공하셨습니다!! 환영합니다!");*/
-			response.sendRedirect(request.getContextPath() + "/home");
+			ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+			ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+			ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
+			
+			page = "index.jsp";
+			request.setAttribute("msg", "회원 가입에 성공하셨습니다!! 환영합니다!");
+			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("pictureList2", pictureList2);
+			request.setAttribute("pictureList3", pictureList3);
+			/*response.sendRedirect(request.getContextPath() + "/home");*/
 		}else{
 			page = "/views/common/errorPage.jsp";
 			request.setAttribute("msg", "회원 가입에 실패하셨습니다!!");
-			RequestDispatcher view = request.getRequestDispatcher(page);
-			view.forward(request, response);
 		
 		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 		
 
 	}

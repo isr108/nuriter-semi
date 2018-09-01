@@ -48,10 +48,14 @@ public class deleteMemberServlet extends HttpServlet {
 		if(result > 0) {
 			session.invalidate();
 			ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+			ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+			ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
 			/*response.sendRedirect("index.jsp");*/
 			/*RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);*/
 			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("pictureList2", pictureList2);
+			request.setAttribute("pictureList3", pictureList3);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "회원 탈퇴 실패!!");
