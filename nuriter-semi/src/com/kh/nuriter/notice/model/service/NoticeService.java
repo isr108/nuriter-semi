@@ -130,6 +130,18 @@ public class NoticeService {
 		return list;
 	}
 
+	public int QnaListCount() {
+		Connection con = getConnection();
+		
+		int listCount = new NoticeDao().QnaListCount(con);
+		
+		close(con);
+		
+		
+		
+		return listCount;
+	}
+
 	
 	
 }

@@ -1,8 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.kh.nuriter.notice.model.vo.Notice.*"%>
-	<%
-	
-	%>
+   pageEncoding="UTF-8"
+   import="java.util.*, com.kh.nuriter.board.model.vo.*, com.kh.nuriter.notice.model.vo.PageInfo, com.kh.nuriter.notice.model.vo.*"%>
+<% ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+int listCount = pi.getListCount();
+int currentPage = pi.getCurrentPage();
+int maxPage = pi.getMaxPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+
+
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -143,20 +153,15 @@ table tr th {
                <th width="100px">문의날짜</th>
             </tr>
             <tr>
-            	 <%--  <% for(reportNuri r : list){ %>
+            <% for(Notice n : list){ %>
             <tr class="testList">
-            <input type="hidden" value="<%=r.getBoardNum()%>"name="boardNum">
-            <input type="hidden" value="<%=r.getN_ownerNum()%>" name="ownerNum">
-            <input type="hidden" value="<%=r.getUserNum()%>" name="userNum">
-               <td><%=r.getOwnerNickname()%></td>
-               <td name="bTitle"><%=r.getBoardTitle() %></td>
-               <td name="bContent"><%=r.getBoardContent() %></td>
-               <td><%=r.getNuriNickname() %></td>
-               <td name="bDate"><%=r.getBoardDate() %></td>
+            <input type="hidden" value="<%=n.getbNumber()%>"name="boardNum">
+           	<td><%=n.getbTitle() %></td>
+           	<td><%=n.getbContent() %></td>
+            <td><%=loginUser.getNickName() %></td> 
+            <td><%=n.getbDate() %></td>
             </tr>
-            
-            <% } %> --%>
-            </tr>
+            <% } %>
 			</table>
 			
 		</div>

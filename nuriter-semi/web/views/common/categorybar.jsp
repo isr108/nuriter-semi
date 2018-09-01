@@ -16,8 +16,6 @@
    #wrapper {
        width:100%;
        background-color: white;
-       
-           /*margin : 0 auto ;*/
    }
    
   /*  #tableDiv{
@@ -49,13 +47,14 @@
     
    .navi{
    	 background-color: #fff;
+   	 font-size:30px;
+   	 
    	 /* height:20%; */
    } 
-   ul.navi li {
+   .navi li {
       display: inline-block;
-      /* margin:auto;  */
+      /* margin-left:50px; */
       text-align:center;
-       /* height:30px; */
       margin-top:2%;
      
    }
@@ -323,60 +322,60 @@
 	<nav id="nuriBavBar1" class="top-0 is-nav-white is-fixed">
         <div class="wrapper">
           <ul class="navi">
-               <li id="web-font" value="C1"><a href="/bs/views/Login.html">언어</a>
+               <li id="web-font" value="C1" class="parentsNa" onclick="goParentsNuriList();">언어
                	 <ul>
-               		<li id="web-font" class="na" value="C11"><a href="#">영어</a></li>
-               		<li id="web-font" class="na" value="C12"><a href="#">중국어</a></li>
-               		<li id="web-font" class="na" value="C13"><a href="#">일본어</a></li>
-               		<li id="web-font" class="na" value="C14"><a href="#">아랍어</a></li>
+               		<li id="web-font" class="na" value="C11" onclick="goNuriList();">영어</li>
+               		<li id="web-font" class="na" value="C12" onclick="goNuriList();">중국어</li>
+               		<li id="web-font" class="na" value="C13" onclick="goNuriList();">일본어</li>
+               		<li id="web-font" class="na" value="C14" onclick="goNuriList();">아랍어</li>
                	</ul> 
                	</li>	
-               <li id="web-font" value="C2"><a href="/bs/views/mypage.html">공방</a>
+               <li id="web-font" value="C2" class="parentsNa" onclick="goParentsNuriList();">공방
                	<ul>
-               		<li id="web-font" class="na" value="C15"><a href="#">목공</a></li>
-               		<li id="web-font" class="na" value="C16"><a href="#">가죽</a></li>
-               		<li id="web-font" class="na" value="C17"><a href="#">플로리스트</a></li>
+               		<li id="web-font" class="na" value="C15" onclick="goNuriList();">목공</li>
+               		<li id="web-font" class="na" value="C16" onclick="goNuriList();">가죽</li>
+               		<li id="web-font" class="na" value="C17" onclick="goNuriList();">플로리스트</li>
                		
                	</ul> 
                </li>
-               <li id="web-font" value="C3"><a href="/bs/views/roadmap.html">요리</a>
+               <li id="web-font" value="C3" class="parentsNa" onclick="goParentsNuriList();">요리
                	<ul>
-               		<li id="web-font" class="na" value="C18"><a href="#">한식</a></li>
-               		<li id="web-font" class="na" value="C19"><a href="#">중식</a></li>
-               		<li id="web-font" class="na" value="C20"><a href="#">일식</a></li>
-               		<li id="web-font" class="na" value="C21"><a href="#">양식</a></li>
+               		<li id="web-font" class="na" value="C18" onclick="goNuriList();">한식</li>
+               		<li id="web-font" class="na" value="C19" onclick="goNuriList();">중식</li>
+               		<li id="web-font" class="na" value="C20" onclick="goNuriList();">일식</li>
+               		<li id="web-font" class="na" value="C21" onclick="goNuriList();">양식</li>
                		
                	</ul> 
                </li>
-               <li id="web-font" value="C4"><a href="/bs/views/hobby.html">운동</a>
+               <li id="web-font" value="C4" class="parentsNa" onclick="goParentsNuriList();">운동
                <ul>
-               	<li id="web-font" class="na" value="C9"><a href="#">축구</a></li>
-               	<li id="web-font" class="na" value="C10"><a href="#">야구</a></li>
+               	<li id="web-font" class="na" value="C9" onclick="goNuriList();">축구</li>
+               	<li id="web-font" class="na" value="C10" onclick="goNuriList();">야구</li>
                	</ul>
                </li>
-               <li id="web-font" value="C5" onclick="goNuriList();">음악
+               <li id="web-font" value="C5" class="parentsNa" onclick="goParentsNuriList();">음악
                <ul>
                	<li id="web-font" class="na" value="C22" onclick="goNuriList();">악기</li>
                	<li id="web-font" class="na" value="C23" onclick="goNuriList();">보컬</li>
                	<li id="web-font" class="na" value="C24" onclick="goNuriList();">작곡</li>
                	</ul>
                </li>
-               <li id="web-font" value="C6">컴퓨터
+               <li id="web-font" value="C6" class="parentsNa" onclick="goParentsNuriList();">컴퓨터
                <ul>
                	<li id="web-font" class="na" value="C25" onclick="goNuriList();">소프트웨어</li>
                	<li id="web-font" class="na" value="C26" onclick="goNuriList();">하드웨어</li>
                	</ul>
                </li>
-               <li id="web-font" value="C7">문화
+               <li id="web-font" value="C7" class="parentsNa" onclick="goParentsNuriList();">문화
                <ul>
                	<li id="web-font" class="na" value="C27" onclick="goNuriList();">영화</li>
                	<li id="web-font" class="na" value="C28" onclick="goNuriList();">미술관</li>
                	<li id="web-font" class="na" value="C29" onclick="goNuriList();">공연</li>
                </ul>
                </li> 
-               <li id="web-font" value="C8">기타
+               <li id="web-font" value="C8" class="parentsNa" onclick="goParentsNuriList();">기타
                	<ul>
-               	<li id="web-font" class="na" value="C30" onclick="goNuriList();">낚시</li>
+               	<li id="web-font" class="na" value="C30" >낚시</li> <!-- onclick="goNuriList();" -->
                </ul>
                </li>
           </ul>
@@ -385,19 +384,19 @@
   </nav> 
   <script>
   	
-  	function goNuriList(){
+  	<%-- function goNuriList(){
   		$(".na").click(function(){
   			var name = $(this).attr('value');
-  			alert(name);
+  			location.href="<%=request.getContextPath()%>/SelectNurinerChildList.no?name="+name;
   		});
-			
-		    <%-- location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name; --%>
+  	}; --%>
+  	
+   function goParentsNuriList(){
+  		$(".parentsNa").click(function(){
+  			var name = $(this).attr('value');
+  			location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name;
+  		});
   	};
-  	
-  	
-  		
-  		
-  		<%-- location.href="<%=request.getContextPath()%>/selectNuriterList.no?name="+name; --%>
   </script>
 </body>
 </html>
