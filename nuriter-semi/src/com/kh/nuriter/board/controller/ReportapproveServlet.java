@@ -30,8 +30,8 @@ public class ReportapproveServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String num =request.getParameter("num");
-		
-		 int result = new BoardService().reportapprove(num);
+		String ownerNum = request.getParameter("ownerNum");
+		 int result = new BoardService().reportapprove(ownerNum);
 		 
 		 
 		 

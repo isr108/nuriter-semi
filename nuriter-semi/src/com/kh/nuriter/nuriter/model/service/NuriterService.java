@@ -591,6 +591,7 @@ public ArrayList<HashMap<String, Object>> selectThumbnailList1() {
 	return pictureList;
 }
 
+
 public ArrayList<HashMap<String, Object>> selectThumbnailList2() {
 	Connection con = getConnection();
 	
@@ -609,6 +610,37 @@ public ArrayList<HashMap<String, Object>> selectThumbnailList3() {
 	close(con);
 
 	return pictureList3;
+}
+  
+public int getNuriterChildListCount(String category) {
+	Connection con = getConnection();
+    
+    int listCount = new NuriterDao().getNuriterChildListCount(con, category);
+    
+    close(con);
+    
+    return listCount;
+}
+
+public ArrayList<Nuriter> selectNuriterChildList(String category) {
+	Connection con = getConnection();
+    
+    ArrayList<Nuriter> list = new NuriterDao().selectNuriterChildList(con, category);
+   
+    close(con);
+    
+   return list;
+}
+
+public ArrayList<HashMap<String, Object>> selectChildThumbnailList(int currentPage, int limit, String category) {
+	Connection con = getConnection();
+	
+	ArrayList<HashMap<String, Object>> pictureList = new NuriterDao().selectChildThumbnailList(con, currentPage, limit, category);
+	
+	close(con);
+
+	return pictureList;
+
 }
 
 

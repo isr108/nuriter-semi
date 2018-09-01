@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.admin.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.kh.nuriter.nuriter.model.vo.PageInfo, com.kh.nuriter.member.model.vo.*"%>
  <% 
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
  	System.out.println("list출력  : " + list);
@@ -19,6 +19,7 @@
 <title>Insert title here</title>
 <style>
 	.outer{
+	
 		width:850px;
 		height:auto;
 		background:white;
@@ -26,6 +27,7 @@
 		margin-top:1%;
 		margin-left:auto;
 		margin-right:auto;
+		
 		/* margin-top:280px; */
 	}
 	h2{
@@ -120,10 +122,16 @@
 	    pointer: cursor;
 	
 
+
 </style>
 </head>
-<body>	
+<body>
+<%@ include file="../common/logoAndLogbutton.jsp"%>
 	<div class="outer">
+<%@ include file="adminbar.jsp"%>	
+
+
+
 		<br>
 		<h2 align="center">탈퇴 회원 목록</h2>
 		<div class="tableArea" align="center">
@@ -197,34 +205,4 @@
    	
 
 </body>
-<script>
-	$(function(){
-		$('.termiBtn').on('click', function(){
-			var nuriNum = $(this).next('.nuriNum').val();
-			console.log(nuriNum);
-			var answer = window.confirm('해당 누리터를 종료하시겠습니까?');
-			<%-- var userNumber = <%=loginUser.getUserNumber()%> --%>
-			if(answer == true){
-				alert('종료 처리되었습니다.');
-				location.href="<%=request.getContextPath()%>/deleteMyNuri.nu?nuriNum=" + nuriNum;
-			}else{
-				alert('종료가 취소되었습니다.');
-			}
-		});
-	});
-
-function doRefund(){
-	var answer = window.confirm('환불 후 해당 누리터 재 신청이 불가능합니다. 그래도 환불하시겠습니까?');	
-	var nuriNum = $(".nuriNum").val();
-	var userNum = $(".userNum").val();
-	console.log(nuriNum);
-	console.log(userNum);
-	if(answer == true){
-		alert('환불신청 완료되었습니다.');
-		location.href="<%=request.getContextPath()%>/doRefundNuri.pa?nuriNum=" + nuriNum + "&userNum=" + userNum;
-	}else{
-		alert('환불이 취소되었습니다.');
-	}
-};
-</script>
 </html>
