@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class BoardService {
 
-	public int InsertReportNuri(board rNuri) {
+	public int InsertReportNuri(reportNuri rNuri) {
 		int result =0;
 		Connection con = getConnection();
 		
@@ -72,10 +72,10 @@ public class BoardService {
 
 
 
-	public int reportapprove(String num) {
+	public int reportapprove(String ownerNum) {
 		Connection con = getConnection();
 		
-		int result =new BoardDao().reportapprove(con,num);
+		int result =new BoardDao().reportapprove(con,ownerNum);
 		
 		if(result >0){
 			commit(con);

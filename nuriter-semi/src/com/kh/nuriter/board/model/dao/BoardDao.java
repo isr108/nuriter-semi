@@ -34,7 +34,7 @@ public class BoardDao {
 
 
 	//넣기
-	public int InsertReportNuri(Connection con, board rNuri) {
+	public int InsertReportNuri(Connection con, reportNuri rNuri) {
 		int result =0;
 		PreparedStatement pstmt = null;
 		
@@ -45,7 +45,8 @@ public class BoardDao {
 			pstmt.setString(1, rNuri.getBoardTitle());
 			pstmt.setString(2, rNuri.getBoardContent());
 			pstmt.setString(3, (rNuri.getUserNum())+"");
-			pstmt.setString(4, rNuri.getNuriNum());
+			pstmt.setString(4, rNuri.getN_ownerNum());
+		
 			
 			result = pstmt.executeUpdate();
 			
@@ -180,7 +181,7 @@ public class BoardDao {
 	}
 
 
-	public int reportapprove(Connection con, String num) {
+	public int reportapprove(Connection con, String ownerNum) {
 		int result =0;
 		PreparedStatement pstmt = null;
 		
@@ -188,7 +189,7 @@ public class BoardDao {
 		
 		try {
 			pstmt =con.prepareStatement(query);
-			pstmt.setString(1,num);
+			pstmt.setString(1,ownerNum);
 			
 			result = pstmt.executeUpdate();
 			

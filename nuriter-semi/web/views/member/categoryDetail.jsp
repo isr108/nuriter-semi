@@ -594,8 +594,9 @@ $(function(){
             var rContent = $("div textarea").val();
          
             var nuriNum = '<%=n.getNuriNum()%>';
+            var ownerNum ='<%=n.getOwnerNum()%>';
             
-            location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent;
+            location.href="<%=request.getContextPath()%>/reportSend.rs?nuriNum="+ nuriNum+"&rTitle="+rTitle+"&rContent="+rContent+"&rOwnerNum="+ownerNum;
             alert("신고가 접수 되었습니다");
             
             

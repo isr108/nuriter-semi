@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.nuriter.board.model.sevice.BoardService;
 import com.kh.nuriter.board.model.vo.board;
+import com.kh.nuriter.board.model.vo.reportNuri;
 import com.kh.nuriter.member.model.vo.Member;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
@@ -40,15 +41,23 @@ public class ReportSendServlet extends HttpServlet {
 		String rContent = request.getParameter("rContent");
 		String rUser = String.valueOf(((Member)(request.getSession().getAttribute("loginUser"))).getUserNumber());
 		String nuriNum =request.getParameter("nuriNum");
-	
+		String ownerNum = request.getParameter("rOwnerNum");
 
 
-		board rNuri = new board();
+		/*board rNuri = new board();
 		rNuri.setBoardTitle(rTitle);
 		rNuri.setBoardContent(rContent);
 		rNuri.setUserNum(rUser);
 		rNuri.setNuriNum(nuriNum);
-	
+		rNuri.set
+	*/
+			reportNuri rNuri = new reportNuri();
+			rNuri.setBoardTitle(rTitle);
+			rNuri.setBoardContent(rContent);
+			rNuri.setUserNum(Integer.parseInt(rUser));
+			rNuri.setNuriNum(nuriNum);
+			rNuri.setN_ownerNum(ownerNum);
+			
 
 		int result = new BoardService().InsertReportNuri(rNuri);
 		
