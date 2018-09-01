@@ -70,6 +70,7 @@ public class ReportListServlet extends HttpServlet {
 		
 		if(rlist != null){
 			page="views/admin/reportedNuriboss.jsp";
+		
 			request.setAttribute("rlist", rlist);
 			request.setAttribute("pi", pi);
 			

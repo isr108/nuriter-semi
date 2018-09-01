@@ -274,19 +274,53 @@ public class NoticeDao {
 			
 			list = new ArrayList<Notice>();
 			
-			//이부분 마무으리..
+			while(rset.next()){
+				n = new Notice();
+				
+				n.setbTitle(rset.getString("board_title"));
+				n.setbContent(rset.getString("board_content"));
+				n.setUserNumber(rset.getString("user_number"));
+				n.setbDate(rset.getDate("board_date"));
+				
+				list.add(n);
+				
+				System.out.println("민지 n : "+n);
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+	}
+	public int QnaListCount(Connection con) {
+		int listCount =0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("qnaListCount");
+		
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()){
+				listCount = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(stmt);
+			close(rset);
 		}
 		
-		
-		
-		
-		
-		
-		return list;
+		return listCount;
 	}
 
 }

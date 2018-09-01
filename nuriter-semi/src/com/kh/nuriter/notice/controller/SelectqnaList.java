@@ -3,13 +3,14 @@ package com.kh.nuriter.notice.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.nuriter.board.model.sevice.BoardService;
+
 import com.kh.nuriter.notice.model.service.NoticeService;
 import com.kh.nuriter.notice.model.vo.Notice;
 import com.kh.nuriter.notice.model.vo.PageInfo;
@@ -46,7 +47,7 @@ public class SelectqnaList extends HttpServlet {
 			currentPage =Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		int listCount = new BoardService().reportListCount();
+		int listCount = new NoticeService().QnaListCount();
 		
 		limit =10;
 		
@@ -63,6 +64,18 @@ public class SelectqnaList extends HttpServlet {
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
 		ArrayList<Notice> list = new NoticeService().SelectqnaList(currentPage,limit);
+		
+		String page = "";
+		if(list != null){
+			page="views/notice/qna.jsp";
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
+		}else{
+			page="views/common/errorPage.jsp";
+			request.setAttribute("msg", "실패 ");
+		}
+		RequestDispatcher view = request.getRequestDispatcher(page);
+		view.forward(request, response);
 		
 	}
 
