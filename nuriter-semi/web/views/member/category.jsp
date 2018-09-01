@@ -202,6 +202,7 @@
       margin-left: 8%;
       width:90%;
       height:10%;
+      font-size:15px;
    }
    
    #web-font{
@@ -308,6 +309,13 @@
     td {
     	display: inline-block; width: 200px; white-space: nowrap; overflow: hidden;
     }
+    .input-xs{
+    	font-family: 'Do Hyeon', sans-serif;
+    	font-size:20px;
+    	width:100px;
+    	height:auto;
+    	radius: 5px;
+    }
 </style>
 </head>
 <body>
@@ -330,7 +338,7 @@
         <div id="showRightButton">
             <button id="web-font-Nanum" class="button" onclick="location.href='/ns/views/member/nuriterOpen.jsp' ">누리터 개설하기</button>
                <div class="select-control inline-block width-100px" align="right">
-               <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)" >
+               <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)">
                     <option value="recommendation_point">추천순</option>
                     <option value="ranking_points" selected=" ">랭킹순</option>
                     <option value="created_at">신규등록순</option>
@@ -347,11 +355,15 @@
         		<table id="nuriterListArea">
            			<tr id="tableHiddenTop">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>           			
            			</tr>
            			<tr>
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
            				<td id="priceTd" align="left">[<%= hmap.get("category_name") %>]</td>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td>&nbsp;&nbsp;<%= hmap.get("start_date")%> ~ <%= hmap.get("end_date")%></td>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">

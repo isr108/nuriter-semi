@@ -65,6 +65,9 @@ public class SelectqnaList extends HttpServlet {
 		
 		ArrayList<Notice> list = new NoticeService().SelectqnaList(currentPage,limit);
 		
+		System.out.println("왔어?");
+		System.out.println("민지야오니 : "+list);
+		
 		String page = "";
 		if(list != null){
 			page="views/notice/qna.jsp";

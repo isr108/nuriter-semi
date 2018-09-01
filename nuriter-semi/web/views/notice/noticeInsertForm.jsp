@@ -7,34 +7,54 @@
 <title>Insert title here</title>
 <style>
 	#main{
-   	  border:1px solid black;
-   	  min-height:90%;
+   	  /* border:1px solid black;
+   	  min-height:90%; */
+   	  
+   	  width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin-top: 70px;
+   	  
     }
     #notice{
-   	  border:1px solid blue;
-   	  width:40%;
-   	  margin-left:auto;
-   	  margin-right:auto;
-   	  width: 1080px;
-   	  min-height: 700px;
-   	  background-color:#eaeaea;
+   	  width: 60%;
+   	  border:1px solid white;
+   	  margin-right: 19%;
+   	  float: right;
+   	  overflow: hidden;
+   	  background:rgb(248, 223, 125);
     }
+    
     #tableArea{
-    	border:1px solid red;
+    	/* border:1px solid black; */
     	width:80%;
     }
+    
+    .web-font{
+      font-family: 'Jua', sans-serif;
+   }
+   
+   #btnBox button {
+    background: white;
+    color: black;
+    border: 1px solid black;
+   }
 </style>
 </head>
 <body>
 	<%@ include file="../common/logoAndLogbutton.jsp" %>
-	<%-- <%if(loginUser != null && loginUser.getUserId().equals("admin")){ %> --%>
+	
+	<%if(loginUser != null && loginUser.getUserEmail().equals("admin")){ %>
+	
 	<div id="main">
-	<br><br> <br><br>
+		
+		<%@ include file="../admin/adminbar.jsp"%>
+	
 		<div id="notice" align="center">
-		  <h2 align="center">공지 사항 작성</h2>
+		  <h1 class="web-font">공지 사항 작성</h1>
 		  <div id="tableArea">
 		  	<form action="<%=request.getContextPath() %>/insert.no" method="post">
-		  		<table align="center">
+		  		<table align="center" class="web-font">
 		  			<tr>
 		  				<td>제목</td>
 		  				<td colspan="3"><input type="text" size="95%" name="title"></td>
@@ -43,7 +63,7 @@
 		  				<td>작성자</td>
 		  				<td>
 		  					<input type="text" value="<%=loginUser.getNickName()%>" name="writer" readonly>
-		  					<input type="text" value="<%=loginUser.getUserNumber()%>" name="userNumber">
+		  					<input type="hidden" value="<%=loginUser.getUserNumber()%>" name="userNumber">
 		  				</td>
 		  				<td>작성일</td>
 						<td><input type="date" name="date"></td>
@@ -61,7 +81,7 @@
 					</tr>
 		  		</table>
 		  		<br>
-		  		<div align="center">
+		  		<div align="center" id="btnBox" class="web-font">
 						<button type="reset">취소하기</button>
 						<button type="submit">등록하기</button>
 			    </div>
@@ -70,11 +90,10 @@
 		</div>
 	</div>
 	
-	<%-- <%}else{ 
+	<%}else{ 
 		request.setAttribute("msg", "잘못된 경로로 접근하셨습니다!");
 		request.getRequestDispatcher("../common/errorPage.jsp");
-	} %> --%>
+	} %>
 	
-	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

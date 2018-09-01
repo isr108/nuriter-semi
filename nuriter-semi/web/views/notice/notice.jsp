@@ -12,39 +12,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>Insert title here</title>
+
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Jua"
+   rel="stylesheet">
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+   src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+
+<title>공지사항</title>
 <style>
 
 	#main{
-   	/* width:170%; */
-   	border:1px solid white;
-   	min-height:90%:
+   	width: 100%;
+    height: 100%;
+    display: inline-block;
+    margin-top: 70px;
    }
    
-   #web-font{
-      font-family: 'Jua', sans-serif;
-   } 
+   .web-font {
+   	font-family: 'Jua', sans-serif;
+	} 
 
-	.colorgraph {
-      width: 98%;
-        height: 3px;
-        border-top: 0;
-        background: rgb(241, 196, 15);
-        border-radius: 3px;
-   }
-
-
-	#showLeft{
-     /*  border-style: solid; */
-       /* border-color: red; */
-       float:left;
-       width:10%;
-      /*  height:15%; */
-       font-size:20px;
-       display: inline-block;
-   }
-   
    ul.navi2 li a {
       float: center;
       font-size: 15px;
@@ -60,12 +55,11 @@
    }
    
    #notice{
-   	border:1px solid blue;
-   	width:40%;
-   	margin-left:auto;
-   	margin-right:auto;
-   	width: 1080px;
-   	min-height: 935px;
+   	width: 60%;
+   	border:1px solid white;
+   	margin-right: 19%;
+   	float: right;
+   	overflow: hidden;
    }
    
    #upBox{
@@ -111,7 +105,7 @@
    }
    
    table tr th{
-    background: #eaeaea;
+    background: white;
    	text-align:center;
    	height:50px;
    }
@@ -121,59 +115,65 @@
    	height:50px;
    }
    
-   #noticeUpdate{
-     border:1px solid white;
-     width:100%;
-     height:410px;
-   }
    
-   #noticeUpdate > input[type='text']{
-    margin-top: 10px;
-   	width:100%;
-   }
    
-   #noticeUpdate > textarea{
-    width:100%;
-    height:300px;
-    margin-top: 20px;
-   }
+   .pagination {
+   width: 400px;
+   height: auto;
    
-   #noticeUpdate input[type='button']{
-   	width: 100px;
-    height: 40px;
-    float:right;
-    margin-top: 5px;
-    margin-right: 10px;
-    
-   }
+}
+   
+   .pagination a {
+   color: black;
+   padding: 8px 16px;
+   text-decoration: none;
+   border: 1px solid #ddd;
+}
+
+.pagination a.active {
+   background-color: rgb(241, 196, 15);
+   color: white;
+   border: 1px solid rgb(241, 196, 15);
+}
+
+.pagination a:hover:not (.active ) {
+   background-color: #ddd;
+}
+
+.pagination a:first-child {
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+}
+
+#btnBox button {
+    background: rgb(127, 182, 64);
+    color: white;
+    border: none;
+}
    
 </style>
 </head>
 <body>
 	<%@ include file="../common/logoAndLogbutton.jsp" %>
 	
-<div id="main">
- <br><br> <br><br>
-    <hr class="colorgraph">
-    
-	<div id="showLeft" >
-     <ul class="navi2" style="list-style-type:none">
-        <hr class="colorgraph">
-        <li id="web-font"><a href="#">공지사항</a></li>
-        <hr class="colorgraph">
-        
-     </ul>
-   	</div>
+	<div id="main">
+		<%@ include file="../admin/adminbar.jsp"%>
+
    	
    	<div id="notice" align="center">
    		<div id="upBox" align="center">
-   			<label>공지사항</label>
+   			<h1 class="web-font">공지사항</h1>
    			<div id="btnBox">
    			
    			<% if(loginUser != null 
 			     && loginUser.getUserEmail().equals("admin")){ %>
 			     
-   			  <button onclick="location.href='views/notice/noticeInsertForm.jsp'">작성하기</button>
+   			  <button onclick="location.href='views/notice/noticeInsertForm.jsp'" class="web-font">작성하기</button>
    			  
    			<% } %>
    			
@@ -181,7 +181,7 @@
    		</div>
    	
    		<div id="noticeList">
-   			<table border="1" width="100%" height="40%" id="listArea">
+   			<table border="2" width="100%" height="40%" id="listArea" class="web-font">
    				<tr>
 					<th width="10%">글번호</th>
 					<th width="35%">글제목</th>
@@ -203,29 +203,29 @@
    		</div>
    		
    		<!-- 페이지처리 -->
-   		<div class="pageArea" align="center">
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=1'"><<</button>
+   		<div class="pagination" align="center">
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>
-   			<button disabled><</button>
+   			<a disabled><</a>
    			<% }else{ %>
-   			<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%=currentPage - 1%>'"><</button>
+   			<a onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%=currentPage - 1%>'"><</a>
    			<% } %>
    			<% for(int p = startPage; p <= endPage; p++){
    				if(p == currentPage){	
    			%>
-   				<button disabled><%= p %></button>
+   				<a disabled><%= p %></a>
    			<%  }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= p %>'"><%= p %></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= p %>'"><%= p %></a>
    			<%  } %>
    			
    			<% } %>
    			
    			<% if(currentPage >= maxPage){ %>
-   				<button disabled>></button>
+   				<a disabled>></a>
    			<% }else{ %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= currentPage + 1%>'">></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
-   				<button onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= maxPage %>'">>></button>
+   				<a onclick="location.href='<%= request.getContextPath()%>/selectList.no?currentPage=<%= maxPage %>'">>></a>
    		</div>
    		
    	</div>
@@ -234,7 +234,7 @@
 	<script>
 		$(function(){
 			$("#listArea td").mouseenter(function(){
-				$(this).parent().css({"background":"darkgray", "cursor":"pointer"});
+				$(this).parent().css({"background":"rgb(245, 250, 240)", "cursor":"pointer"});
 			}).mouseout(function(){
 				$(this).parent().css({"background":"white"});
 			}).click(function(){
