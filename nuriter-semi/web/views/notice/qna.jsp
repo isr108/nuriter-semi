@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"
-   import="java.util.*, com.kh.nuriter.board.model.vo.*, com.kh.nuriter.notice.model.vo.PageInfo, com.kh.nuriter.notice.model.vo.*"%>
-<% ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+   import="java.util.*, com.kh.nuriter.notice.model.vo.PageInfo, com.kh.nuriter.notice.model.vo.*"%>
+ <% ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 
 PageInfo pi = (PageInfo)request.getAttribute("pi");
 int listCount = pi.getListCount();
@@ -10,9 +10,7 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 
-
-
-%>
+%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -115,6 +113,15 @@ table tr th {
 	margin-left:auto;
 	
 }
+table tr td {
+   text-align: center;
+   border: 1px solid lightgray;
+   height: 40px;
+}
+.pageArea {
+   margin-top: 30%;
+   height: 500px;
+}
 
 </style>
 </head>
@@ -134,7 +141,7 @@ table tr th {
 				<li class="web-font"><a href="#">고객센터</a></li>
 				<hr class="colorgraph">
 				<li class="web-font"><a href="fnq.jsp">자주묻는질문</a></li>
-				<li class="web-font" id="qnaColor"><a href="qna.jsp">1:1 문의하기</a></li>
+				<li class="web-font" id="qnaColor"><a href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 			</ul>
 		</div>
 		<%}else{ %>
@@ -153,19 +160,48 @@ table tr th {
                <th width="100px">문의날짜</th>
             </tr>
             <tr>
-            <% for(Notice n : list){ %>
+           <% for(Notice n : list){ %>
             <tr class="testList">
             <input type="hidden" value="<%=n.getbNumber()%>"name="boardNum">
            	<td><%=n.getbTitle() %></td>
            	<td><%=n.getbContent() %></td>
-            <td><%=loginUser.getNickName() %></td> 
+            <td><%=n.getUserNumber() %></td> 
             <td><%=n.getbDate() %></td>
             </tr>
             <% } %>
 			</table>
-			
-		</div>
-	</div>
+			 <div class="pageArea" align="center">
+         <button
+            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=1'"><<</button>
+         <% if(currentPage <= 1){ %>
+         <button disabled><</button>
+         <% }else{ %>
+         <button
+            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%=currentPage - 1%>'"><</button>
+         <% } %>
+         <% for(int p = startPage; p <= endPage; p++){
+               if(p == currentPage){   
+            %>
+         <button disabled><%= p %></button>
+         <%  }else{ %>
+         <button
+            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= p %>'"><%= p %></button>
+         <%  } %>
+
+         <% } %>
+
+         <% if(currentPage >= maxPage){ %>
+         <button disabled>></button>
+         <% }else{ %>
+         <button
+            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= currentPage + 1%>'">></button>
+         <% } %>
+         <button
+            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= maxPage %>'">>></button>
+      </div> 
+		
+		
+	
 
 </body>
 </html>

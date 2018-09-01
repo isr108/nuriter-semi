@@ -236,7 +236,7 @@ public class NoticeDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, n.getbTitle());
 			pstmt.setString(2, n.getbContent());
-			pstmt.setString(3, n.getUserNumber());
+			pstmt.setInt(3, Integer.parseInt(n.getUserNumber()));
 			pstmt.setDate(4, n.getbDate());
 			
 			result = pstmt.executeUpdate();
@@ -277,9 +277,10 @@ public class NoticeDao {
 			while(rset.next()){
 				n = new Notice();
 				
+				n.setbNumber(rset.getString("board_number"));
 				n.setbTitle(rset.getString("board_title"));
 				n.setbContent(rset.getString("board_content"));
-				n.setUserNumber(rset.getString("user_number"));
+				n.setUserNumber(rset.getString("nickname"));
 				n.setbDate(rset.getDate("board_date"));
 				
 				list.add(n);
