@@ -20,7 +20,7 @@
       float:center;
    	  display:inline-block;
       font-size: 15px;
-      margin-left: 300px;
+     /*  margin-left: 500px; */
       margin-bottom: 40px;
    }
    #help{

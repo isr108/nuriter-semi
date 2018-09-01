@@ -1,4 +1,4 @@
-/*package com.kh.nuriter.member.controller;
+package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,24 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
 
-*//**
+/**
  * Servlet implementation class SearchMemberServlet
- *//*
+ */
 @WebServlet("/searchMember")
-public class serachMemberServlet extends HttpServlet {
+public class SearchMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    *//**
+    /**
      * @see HttpServlet#HttpServlet()
-     *//*
-    public serachMemberServlet() {
+     */
+    public SearchMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	*//**
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 *//*
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
@@ -42,8 +42,8 @@ public class serachMemberServlet extends HttpServlet {
 		
 		if(searchCondition.equals("findId")){
 			String userId = request.getParameter("searchValue");
-			
-			list= new MemberService().searchId(userId);
+			System.out.println(userId);
+			list = new MemberService().searchId(userId);
 			
 		}else if(searchCondition.equals("findName")){
 			String userName = request.getParameter("searchValue");
@@ -51,34 +51,37 @@ public class serachMemberServlet extends HttpServlet {
 			list = new MemberService().searchName(userName);
 			
 		}else{
-			String gender = request.getParameter("gender");
-			
-			list = new MemberService().searchGender(gender);
+			String userNickname = request.getParameter("searchValue");
+			System.out.println(userNickname);
+			list = new MemberService().searchNickname(userNickname);
 			
 		}
 		
-		String page ="/views/admin/searchResult.jsp";
+		String page = "views/admin/searchResult.jsp";
 		
-		if(list !=null || list.size() >0) {
+		if(list != null || list.size() > 0){
 			request.setAttribute("list", list);
-			request.setAttribute("searchCondition", searchCondition);
+			request.setAttribute("searchCondition", searchCondition);		
 		}else{
-			request.setAttribute("msg", "검색결과가 없습니다.");
-			request.setAttribute("searchCondition",searchCondition);
+			request.setAttribute("msg", "검색 결과가 없습니다");
+			request.setAttribute("searchCondition", searchCondition);
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 		
+		
+		
+		
+		
 	}
 
-	*//**
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 *//*
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 }
-*/

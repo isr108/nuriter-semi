@@ -313,8 +313,8 @@
     /* border-bottom: 1px solid #ffd400; */
     background-color: #fff;
     top: 0;
-     margin-top:68px;
-    z-index: 10;
+    margin-top:69px;
+    /* z-index: 10; */
     }
 </style>	
 </head>

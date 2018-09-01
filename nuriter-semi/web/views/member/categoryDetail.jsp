@@ -291,8 +291,16 @@ img {
     border: 2px solid rgb(241, 196, 15); /* Green */
     opacity: 0.6;
 }
+
+#notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 500px;
+    margin-bottom: 40px;
+}
 /* #map{
-	border: 2px solid rgb(241, 196, 15); /* Green */
+	border: 2px solid rgb(241, 196, 15); /* Green *
 } */
 </style>
 </head>

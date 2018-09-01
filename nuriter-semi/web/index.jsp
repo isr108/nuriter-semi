@@ -305,7 +305,7 @@
    }
    
     #listBox{
-   border:1px solid black;
+   /* border:1px solid black; */
     height: 365px;
     width: 710px;
     /* margin-left:auto;
@@ -353,7 +353,7 @@
       float:center;
    	  display:inline-block;
       font-size: 15px;
-      margin-left: 170px;
+      margin-left: 300px;
       margin-bottom: 40px;
    }
    #notice:hover{
@@ -427,7 +427,25 @@
     text-align: center;
     list-style: none;
 	}
+	
+	.carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: rgba(0,0,0,0);
   }
+  
+  .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000\9;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid gray;
+    border-radius: 10px;
    
 </style>
 
