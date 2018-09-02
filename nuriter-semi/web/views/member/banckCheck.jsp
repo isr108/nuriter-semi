@@ -17,12 +17,19 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/common/ext_util.js"></script><!-- 외부 유틸 js -->
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/common/constants.js"></script><!-- 상수 js --> 
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/common/common.js"></script><!-- 사용자정의 js --> 
+<% 
+ String username=request.getParameter("userName");
+ String phone = request.getParameter("phone");
+ String bancknumber = request.getParameter("bancknumber");
+ String day = request.getParameter("day");
+
+ %>
 
 <style>
 	.container {
 	width: 100%;
 	max-width: 400px;
-	margin-top: 150px;
+	margin-top: 50px;
 	margin-bottom: 100px;
 	padding: 40px 40px;
 	font-family: Roboto, 'Noto Sans KR', sans-serif;
@@ -70,7 +77,7 @@ p {
 </style>
 </head>
 <body>
-	<%@ include file="../common/logoAndLogbutton.jsp"%>
+	<%-- <%@ include file="../common/logoAndLogbutton.jsp"%> --%>
 	
     
 	<div class="container">
@@ -82,7 +89,7 @@ p {
     <button class="form-control btn btn-danger" data-toggle="modal" data-target="#myModal">위험안내 확인하기</button>
     </div>
     <hr>
-	<h3 align="center" style="font-size:24px">계좌실명인증</h3>
+	<!-- <h3 align="center" style="font-size:24px">계좌실명인증</h3> -->
 	<br>
 	
 	<input type="hidden" class="input-sm" id="client_id" name="client_id" value="l7xx6b2d557bc8a44b4fa6670114b6856595">
@@ -90,7 +97,7 @@ p {
 	<input type="hidden" class="input-sm" id="token" name="token">
 	<input type="hidden" class="input-sm" id="account_holder_info_type" name="account_holder_info_type">
 	
-	<form id="real_nameFrm" action="<%=request.getContextPath() %>/updateInvestorMember" method="post">
+	<form id="real_nameFrm" action="<%=request.getContextPath() %>/banckCheck" method="post">
 	<input type="hidden" id="userId" name="userId">
 	<input type="hidden" class="input-sm" id="tran_dtime" name="tran_dtime">
 	<input type="hidden" class="input-sm" id="bank_code_std" name="bank_code_std">
@@ -138,19 +145,17 @@ p {
 	</select>
 	</div>
 	<br>
-	<label style="font-size:14px"> 계좌주(투자자 이름) </label><br>
-    <input type="text" class="input-sm" id="name" name="name" >
+	<label style="font-size:14px"> 계좌주(회원 이름) </label><br>
+    <input type="text" class="input-sm" id="name" name="name" value=<%=username%> readonly required>
     <label style="font-size:14px"> 연락처 </label><br>
-    <input type="text" class="input-sm" id="phone" name="phone" >
-
-	
+    <input type="text" class="input-sm" id="phone" name="phone" value=<%=phone%> readonly required>
 	<label style="font-size:14px"> 계좌번호 </label><br>
-    <input type="text" class="input-sm" id="account_num" name="account_num" maxlength="16" placeholder="'-'없이 입력하세요" required>
+    <input type="text" class="input-sm" id="account_num" name="account_num" maxlength="16" placeholder="'-'없이 입력하세요" value="bancknumber" required>
 	<div class="error-accountNum">
 	<label style="color: red; font-style: italic;">계좌번호는 숫자만 입력하실 수 있습니다.</label>
 	</div>
 	<label style="font-size:14px"> 생년월일 </label><br>
-	<input type="text" class="input-sm" id="account_holder_info" name="account_holder_info" maxlength="6" placeholder="ex. 880101과 같이 6자리로 입력하세요" required>
+	<input type="text" class="input-sm" id="account_holder_info" name="account_holder_info" maxlength="6" placeholder="ex. 880101과 같이 6자리로 입력하세요" value="day" required>
 	<div class="error-birthNum">
 	<label style="color: red; font-style: italic; font-size:14px;">생년월일은 숫자만 입력하실 수 있습니다.</label>
 	</div>
@@ -160,14 +165,14 @@ p {
 	</form>
     
 		<br>
-		<button class="form-control btn btn-primary" id="btnRealNameInquiry" type="button">투자자 인증받기</button>
+		<button class="form-control btn btn-primary" id="btnRealNameInquiry" type="button">계좌 실명 인증받기</button>
     <hr>
-    <p>* 투자 인증을 진행하기 위해서는 회원님의 투자자 정보가 실제 정보와 일치해야 합니다. 위의 공란을작성하여 계좌실명인증을 진행해 주시기 바랍니다.</p>
+    <p>* 실명 인증을 진행하기 위해서는 회원님의 계좌 정보가 실제 정보와 일치해야 합니다. 위의 공란을작성하여 계좌실명인증을 진행해 주시기 바랍니다.</p>
     
 	</div>
 	
 	<div>
-		<%@ include file="../common/footer.jsp"%>
+		<%-- <%@ include file="../common/footer.jsp"%> --%>
 	    </div>
 	    
 	    <!-- Modal -->
@@ -330,8 +335,13 @@ p {
 	    		//console.log(data.rsp_code);
 	    		if(data.rsp_code=="A0000" && data.account_holder_name==$("#name").val()){
 	    		
-	    				$("#real_nameFrm").submit();
-	    				//alert("투자자 인증에 성공하였습니다.");}
+	    				/* $("#real_nameFrm").submit(); */
+	    				alert("계좌 인증에 성공하였습니다.");
+	    				
+	    				if(arert == true){
+	    					self.close();
+	    				}
+	    				/* self.close(); */
 	    	
 	    		}else{
 	    			alert("입력 정보가 일치하지 않아 계좌실명인증이 불가합니다. 입력 정보를 다시 한 번 확인해주세요.");

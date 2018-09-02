@@ -312,7 +312,7 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td><input type="text" name="userName" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td><input id ="userName" type="text" name="userName" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -322,12 +322,12 @@
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><input type="date" name="birthdate" style="width:100%;" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
+				<td><input id = "date" type="date" name="birthdate" style="width:100%;" <%-- value="<%=loginUser.getUserName()%>" --%>></td>
 				<td></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="tel" name="phone" <%-- value="<%=loginUser.getPhone()%>" --%>></td>
+				<td><input id = "phone" type="tel" name="phone" <%-- value="<%=loginUser.getPhone()%>" --%>></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -343,7 +343,7 @@
 			</tr>
 			<tr>
 				<th><label>계좌번호</label></th>
-				<td><input type="text" name="banknumber"></td>
+				<td><input id="bancknumber" type="text" name="banknumber"></td>
 				<td width=100px><div id="banckCheck" style="background-color:darkgray">계좌인증</div></td>
 				<td></td>
 			</tr>
@@ -457,9 +457,52 @@
 						alert("인증되었습니다.");
 					}
 				});
+
+				<%-- $("#btn_id").click(function(){
+					var w = window.open("about:blank","width=500, height=700");
+				     
+				     // value 가져옴
+				        var userName=  $("#userName").val();
+				        var phone =  $("#phone").val();
+				        var bancknumber = $("#bancknumber").val();
+				        var date = $("#date").val();
+				        	    
+				        // 어떤 데이터를 보낼것인가?
+				         var regi_data= {"userName":userName,"phone":phone,
+				        				 "bancknumber":bancknumber, "date":date
+				        				};
+				        $.ajax({
+				            url:"/ns/banckCheck",
+				            type:"post",
+				            data:regi_data,
+				            
+				            success : eventSuccess,
+				            
+				            error:function(data){
+				                console.log("실패");
+				            }//error
+				            
+				            
+				            
+				        });//ajax
+				            
+				        function eventSuccess(data)
+				        {
+				        	//여기서 팝업된 창의 주소를 변경하자.
+				        	w.location.href = "<%=request.getContextPath()%>/views/member/banckCheck.jsp";
+				        }
+				    }); --%>
 				
-				$("#banckCheck").click(function(){
-					location.href='<%=request.getContextPath()%>/views/member/banckCheck.jsp';
+				 $("#banckCheck").click(function(){
+					 var userName=  $("#userName").val();
+				        var phone =  $("#phone").val();
+				        var bancknumber = $("#bancknumber").val();
+				        var date = $("#date").val();
+					<%-- window.open("<%=request.getContextPath()%>/banckCheck?userName="+usrName+"&phone="+phone+"&bancknumber="+bancknumber+"&date="+date, "", "width=500, height=700"); --%>
+					window.open("<%=request.getContextPath()%>/views/member/banckCheck.jsp", "", "width=500, height=700");
+					<%-- location.href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum="+nunum+"&usernumber="+usernumber; --%>
+					
+					<%-- location.href='<%=request.getContextPath()%>/views/member/banckCheck.jsp'; --%>
 				});
 				
 			});
