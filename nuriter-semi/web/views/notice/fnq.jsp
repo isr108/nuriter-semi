@@ -95,16 +95,6 @@ ul.navi2 li a {
 	color: #FF4500;
 }
 
-.bulletin {
-	width: 100%;
-	height: 300px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5%;
-}
-
-
-
 
 #fnqColor {
 	background-color: rgb(224, 224, 224);
@@ -128,7 +118,10 @@ ul.navi2 li a {
 	margin-left: auto;
 	margin-top: 50px;
 	font-family: 'Jua', sans-serif;
+	border:none;
+	
 }
+
 #textArea {
 	float: right;
 	height: 500px;
@@ -152,56 +145,22 @@ h3:hover{
 	<br>
 	
 	<div class="mainArea">
-		
+		<%if(loginUser !=null && loginUser.equals("admin")){ %>
+		<%@ include file="../admin/adminbar.jsp"%>
+		<%}else{ %>
 		<div class="menuArea">
 			<div id="showLeft">
 				<ul class="navi2" style="list-style-type: none">
 					<hr class="colorgraph">
 					<!-- 기능 -->
-					<li class="web-font"><a href="fnq.jsp">고객센터</a></li>
+					<li class="web-font"><a href="./fnq.jsp">고객센터</a></li>
 					<hr class="colorgraph">
-					<li class="web-font" id=fnqColor><a href="fnq.jsp">자주묻는질문</a></li>
+					<li class="web-font" id=fnqColor><a href="./fnq.jsp">자주묻는질문</a></li>
 					<li class="web-font"><a href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 				</ul>
 			</div>
 		</div>
-
-
-		<!-- 	<div class="textArea" class="web-font">
-			<h2 align="center" style="margin-top: 30px;">자주묻는질문</h2>
-
-			<div class="uiSearch">
-				<div class="ui icon input">
-					<input class="prompt" type="text"> <i class="search icon"></i>
-				</div>
-			</div>
-			<div class="bulletin" id="web-font">
-				<table id="bulletinTable">
-					<tr class="tHead">
-						<td>NO.</td>
-						<td>제목</td>
-						<td>이름</td>
-					</tr>
-						<tr id="tBody">
-							<td>1</td>
-							<td>내용</td>
-							<td>관리자</td>
-						</tr>
-					<tr id="tBody">
-						<td>2</td>
-						<td>내용</td>
-						<td>관리잔</td>
-					</tr>
-				</table>
-					<div class="container">
-  						<div id="demo" class="collapse">
-   							<h5 align="center"> Q.질문</h5>
-   							<p align="center">A. 대답</p>
-  					</div>
-						</div>
-			</div>
-
-		</div> -->
+		<%} %>
 		<div id="textArea">
 			<h1 id="web-font" align="center" style="margin-top: 30px;">자주 묻는
 				질문</h1>
@@ -232,11 +191,6 @@ h3:hover{
 						부탁드립니다. * 무료 백신 : [V3 Lite], [네이버백신], [알약] 인터넷을 이용하는 스마트한 용사님이라면
 						모두 알만한 아주 기본적인 안전 수칙이지만 지키지 않는다면 아무런 소용이 없습니다. 작지만 큰 효과를 가져오는 예방방법
 						이용하여 안전한 메이플스토리 이용을 해주시면 감사하겠습니다.</p>
-					<!-- 	<ul>
-					<li>List item one</li>
-					<li>List item two</li>
-					<li>List item three</li>
-				</ul> -->
 				</div>
 				<h3>Q.비매너는 어떻게 신고할까요?</h3>
 				<div>
@@ -253,6 +207,7 @@ h3:hover{
 	</div>
 	<script>
 		$(function() {
+		/* 	$("#accordion").css('border','none'); */
 			$("#accordion").accordion();
 		});
 		

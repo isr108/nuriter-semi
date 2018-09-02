@@ -60,9 +60,6 @@
       font-family: 'Jua', sans-serif;
    }
    
-   /*  #web-font a{
-      text-decoration: none;
-   } */
    
    #head{
       margin-left:3%;
@@ -70,22 +67,18 @@
       color: rgb(241, 196, 15);
       font-size:3em;
       text-decoration: none;
-      /* padding:8px; */
-      /* width:80%; */
+
    }
    
    #iBox{
       display: inline-block;
       margin-top: 5px;
-      /* margin-left: 30px; */
       width:100%;
       height:10%;
-      /*  height: 40px; */
+
    }
    
   #form1{
-   /* border-style: solid;
-    border-color: red;  */
   	width:300px;
   	height:150px;
   	padding:0;
@@ -93,8 +86,6 @@
   }
   
   #form2{
-    /* border-style: solid;
-    border-color: red; */
   	width:300px;
   	height:100%;;
   	padding:0;
@@ -103,8 +94,6 @@
   
   #login1{
   	display:inline-block;
-   /*  border-style: solid;
-    border-color: red; */
   	width:100%;
   	min-height:90%;
   }
@@ -118,15 +107,11 @@
   
   #login2{
  	display:inline-block;
-  	 /*border-style: solid;  */
-   /*  border-color: red; */
   	width:30%;
   	height:100%;
   }
   #login3{
  	display:inline-block;
-    /* border-style: solid;  
-    border-color: red;  */
   	height:15%;
   	float:right;
   }

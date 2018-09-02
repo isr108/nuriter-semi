@@ -48,13 +48,12 @@ ul.navi2 li a {
 	height: 900px;
 	width: 80%;
 	margin-right: 30px;
-	border: 3px solid black;
+
 }
 
 #web-font {
 	font-family: 'Jua', sans-serif;
 }
-
 
 #qnaDetail {
 	font-family: 'Jua', sans-serif;
@@ -70,63 +69,75 @@ ul.navi2 li a {
 	width: 100%;
 	height: 480px;
 }
-.commentDiv input[type=text]{
-       border-radius: 3px;
-      margin-top:50px;
-       width:600px;
-       height:100px;
-      box-sizing: border-box;
-       border-style: solid;
-       border-color: rgb(241, 196, 15);
-}
-.commentBtn {
-	width:100px;
-	height:100px;
-	background-color: #FFBF00; /* Green */
-    color: black;
-    border-radius: 3px;
-    font-size:15px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
-}
-.commentBtn:hover {
-	width:100px;
-	height:100px;
-	background-color: rgb(241, 196, 15); /* Green */
-    color: black;
-    border-radius: 3px;
-    font-size:15px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
-    opacity: 0.6;
-}
-.commentDiv {
-	width:800px;
-}
-#commentSelectTable{
-	width:799px;
-/* 	font-size:24px; */
-	border-bottom:2px solid rgb(241, 196, 15);
-}
-.commentSelectArea #commentSelectTable td{
-	/* font-size:24px; */
-	border-bottom:2px solid rgb(241, 196, 15);
-}
-#commentSelectTable tr{
-/* 	font-size:24px; */
-}
-.commentSelectArea #commentSelectArea {
-	width:500px;
-	overflow:hidden;
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
-/* table tr td {
-	 font-size:15px;
-} */
-#trImage {
-	width:50px;
-	height:50px;
+.commentDiv input[type=text] {
+	border-radius: 3px;
+	margin-top: 50px;
+	width: 600px;
+	height: 100px;
+	box-sizing: border-box;
+	border-style: solid;
+	border-color: rgb(241, 196, 15);
 }
+
+.commentBtn {
+	width: 100px;
+	height: 100px;
+	background-color: #FFBF00; /* Green */
+	font-family: 'Jua', sans-serif;
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
+}
+
+.commentBtn:hover {
+	width: 100px;
+	height: 100px;
+	background-color: rgb(241, 196, 15); /* Green */
+	font-family: 'Song Myung', serif;
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
+	opacity: 0.6;
+}
+
+.commentDiv {
+	width: 800px;
+}
+
+#commentSelectTable {
+	width: 799px;
+	font-size: 24px;
+	border-bottom: 2px solid rgb(241, 196, 15);
+}
+
+.commentSelectArea #commentSelectTable td {
+	font-size: 24px;
+	border-bottom: 2px solid rgb(241, 196, 15);
+}
+
+#commentSelectTable tr {
+	font-size: 24px;
+}
+
+.commentSelectArea #commentSelectArea {
+	width: 500px;
+	overflow: hidden;
+}
+
+#trImage {
+	width: 150px;
+}
+
 .trNickName {
-	border-bottom:2px solid rgb(241, 196, 15);
+	border-bottom: 2px solid rgb(241, 196, 15);
 }
 </style>
 </head>
@@ -138,37 +149,52 @@ ul.navi2 li a {
 	<br>
 	<br>
 	<div class="main">
+		<%
+			if (!loginUser.getUserEmail().equals("admin") && loginUser != null) {
+		%>
 		<div id="showLeft">
 			<ul class="navi2" style="list-style-type: none">
 				<hr class="colorgraph">
 				<!-- 기능 -->
-				<li id="web-font"><a href="#">1:1문의하기</a></li>
+				<li id="web-font"><a href="views/notice/fnq.jsp">1:1문의하기</a></li>
 				<hr class="colorgraph">
-				<li id="web-font"><a href="#">자주묻는질문</a></li>
+				<li id="web-font"><a href="views/notice/fnq.jsp">자주묻는질문</a></li>
 				<li id="web-font"><a
 					href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 			</ul>
 		</div>
+		<%
+			} else {
+		%>
+		<%@ include file="../admin/adminbar.jsp"%>
+		<%
+			}
+		%>
+
 		<div class="showRight">
 			<div id="qnaDetail" align="center">
-				<h2 id="web-font" style="color:rgb(241, 196, 15);">문의하기</h2>
+				<h2 id="web-font">문의하기</h2>
 				<div class="tableArea">
 					<table>
 						<tr>
 							<td>제목</td>
-							<td colspan="3" ><input type="text" size="90" name="title"	value="<%=n.getbTitle()%>" readonly></td>
+							<td colspan="3"><input type="text" size="90" name="title"
+								value="<%=n.getbTitle()%>" readonly></td>
 						</tr>
 						<tr>
 							<td>작성자</td>
-							<td><input type="text" value="<%=n.getUserNumber()%>"	name="writer" readonly></td>
+							<td><input type="text" value="<%=n.getUserNumber()%>"
+								name="writer" readonly></td>
 							<td>작성일</td>
-							<td><input type="date" name="date" value="<%=n.getbDate()%>"	readonly></td>
+							<td><input type="date" name="date" value="<%=n.getbDate()%>"
+								readonly></td>
 						</tr>
 						<tr>
 							<td>내용</td>
 						</tr>
 						<tr>
-							<td colspan="4"><textarea name="content" cols="100"rows="15" style="resize: none" readonly><%=n.getbContent()%></textarea>
+							<td colspan="4"><textarea name="content" cols="100"
+									rows="15" style="resize: none" readonly><%=n.getbContent()%></textarea>
 							</td>
 						</tr>
 
@@ -184,11 +210,12 @@ ul.navi2 li a {
 				</div>
 			</div>
 		</div>
-		<script>
+	</div>
+	<script>
 		$(function(){
 			$(function(){
 				window.onload=function(){
-					var boardNum = "<%= n.getbNumber() %>";
+					var boardNum = "<%=n.getbNumber()%>";
 					var content = $('.comment').val();
 					
 					$.ajax({
@@ -227,48 +254,55 @@ ul.navi2 li a {
 				
 				$(".commentBtn").click(function(){
 					
-					var boardNum = "<%= n.getbNumber()%>";
-					var content = $('.comment').val();
-					
-					$.ajax({
-						url:"/ns/insertqnacomment.iqc",
-						data:{boardNum:boardNum, content:content},
-						type:"get",
-						success:function(data){
-							
-							$table = $("#commentSelectTable");
-							$table.find("tr").remove();
-							
-							for(var key in data){
-								var $trOne = $("<tr id='web-font'><td align='center' rowspan='4' id='trImage'><img src='images/board/ori.png'>");
-								var $trDate = $("<tr class='trDate' id='web-font'>");
-							    var $trContent = $("<tr class='trContent' id='web-font'>");
-							    var $trNickName = $("<tr class='trNickName' id='web-font'>");
-								$trDate.text(data[key].comment_date);
-								$trContent.text(data[key].comment_content);
-								$trNickName.text(data[key].nickname);
-								$table.append($trOne);
-								$table.append($trDate);
-								$table.append($trContent);
-								$table.append($trNickName);
-							}
-							
-							$input = $(".comment");
-							$input.val('');
-							
-							$("#commentSelectTable").show();
-							
-							
-						},
-						error:function(data){
-							console.log(data);
-						}
-					});
-					
-				});
+					var boardNum = "<%=n.getbNumber()%>";
+									var content = $('.comment').val();
+
+									$.ajax({
+												url : "/ns/insertqnacomment.iqc",
+												data : {
+													boardNum : boardNum,
+													content : content
+												},
+												type : "get",
+												success : function(data) {
+
+													$table = $("#commentSelectTable");
+													$table.find("tr").remove();
+
+													for ( var key in data) {
+														var $trOne = $("<tr id='web-font'><td align='center' rowspan='4' id='trImage'><img src='images/board/ori.png'>");
+														var $trDate = $("<tr class='trDate' id='web-font'>");
+														var $trContent = $("<tr class='trContent' id='web-font'>");
+														var $trNickName = $("<tr class='trNickName' id='web-font'>");
+														$trDate
+																.text(data[key].comment_date);
+														$trContent
+																.text(data[key].comment_content);
+														$trNickName
+																.text(data[key].nickname);
+														$table.append($trOne);
+														$table.append($trDate);
+														$table
+																.append($trContent);
+														$table
+																.append($trNickName);
+													}
+
+													$input = $(".comment");
+													$input.val('');
+
+													$("#commentSelectTable")
+															.show();
+
+												},
+												error : function(data) {
+													console.log(data);
+												}
+											});
+
+								});
 			});
 		});
-	
 	</script>
 </body>
 </html>
