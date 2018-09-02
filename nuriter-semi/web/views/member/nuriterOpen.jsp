@@ -165,7 +165,7 @@
 	    <%@ include file="../common/categorybar.jsp" %>
 	</div>
 	<div id="main">
-	<% if(loginUser != null){ %>
+	<% if(loginUser.getGrade().equals("G2")){ %>
 	    	<div id="twoRight" align="center">
 	    		<div id="twoRight-child">
 		    		<div id="twoRight-child2" align="left">
@@ -278,6 +278,13 @@
 	    </div>
     </div>
     
+    <% }else if(loginUser.getGrade().equals("G3")){ %>
+      <%@ include file="../common/categorybar.jsp" %>
+	  <div id="main" align="center">
+	  <h1 class="msg" align="center" id="web-font">누리장 신청이 필요한 기능입니다.</h1>
+      <br><br><br><br>
+	  <a href="/ns/index.jsp"><font id="web-font" size="8px">메인으로 이동</font></a>
+	  </div>
     <% }else{ %>
       <%@ include file="../common/categorybar.jsp" %>
 	  <div id="main" align="center">

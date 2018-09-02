@@ -26,9 +26,6 @@
    	 width:auto;
    	 height:100%;
    }
-   #main1{
-   	width:auto;
-   } 
     #main1{
    	width:auto;
    	height:100%;
@@ -39,28 +36,54 @@
    #main1 div{
    	display: inline-block;
    } 
-    table #web-font{
-      font-family: 'Jua', sans-serif;
-      font-size: 60px;
-      margin: 5px;
-   }
 #one{
-	width:auto;
-	border: 1px solid #ffd400;
+    width:1800px;
+    height:100%;
+    display: inline-block;
 	overflow:hidden;
 }
 #one table {
-	width: 500px;
-	height: 400px;
-	border: 1px solid #ffd400;
-	display: flex;
+    display: inline-block;
+	width: 300px;
+	height: 300px;
+	border: 4px solid #ffd400;
+	margin-right:50px;
+	text-align:center;
+	margin-top:100px;
 }
+#tableCount{
+	margin-left:300px;
+}
+table #web-font{
+      margin:auto;
+	  width:100%;
+      font-family: 'Jua', sans-serif;
+      font-size: 30px;
+      text-align:center;
+   }
 table .web-font{
-	font-size:70px;
+	margin:auto;
+	width:100%;
+	font-family: 'Jua', sans-serif;
+	font-size:30px;
 	color:#FA8258;
+	text-align:center;
 }
-div{
-	border: 1px solid #ffd400;
+table .web-font1{
+	margin:auto;
+	width:100%;
+	font-family: 'Jua', sans-serif;
+	font-size:30px;
+	color:#FA8258;
+	text-align:center;
+}
+table tr{
+	margin:auto;
+	width:100%;
+}
+table tr td{
+	margin:auto;
+	width:100%;
 }
 </style>
 </head>
@@ -116,10 +139,8 @@ div{
 
 
 <div id="main1">
-<%@ include file="adminbar.jsp" %> 
 <div id="one">
-	<table id="countTable">
-	</table>
+<%@ include file="adminbar.jsp" %>
 </div>	
 <script>
 window.onload=function(){
@@ -136,9 +157,9 @@ window.onload=function(){
 			$div.find("table").remove();
 			
 			for(var key in data){
-				var $table = $("<table>");
-				var $trMember = $("<tr id='web-font' align='center'>");
-			    var $trMemberTwo = $("<tr class='web-font' id='web-font' align='center'>");
+				var $table = $("<table id='tableCount'>");
+				var $trMember = $("<tr id='web-font' width='100%'>");
+			    var $trMemberTwo = $("<tr class='web-font' width='100%'>");
 			    
 			    var $tableTwo = $("<table>");
 			    var $trJoin = $("<tr id='web-font' align='center'>");
