@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.*, com.kh.nuriter.member.model.vo.*"%>
+	import="java.util.*, com.kh.nuriter.member.model.vo.*, com.kh.nuriter.nuriter.model.vo.*"%>
 <%
 	Member m = (Member)request.getAttribute("m");
 	int numberOfPeople1 = (int)(request.getAttribute("numberOfPeople1"));
 	int numberOfPeople2 = (int)(request.getAttribute("numberOfPeople2"));
 	int price = (int)(request.getAttribute("price"));
-	String ownerNum = request.getAttribute("ownerNum").toString();	
+	String ownerNum = request.getAttribute("ownerNum").toString();
+	String nuriNum = request.getAttribute("nuriNum").toString();
+	Nuriter nu = (Nuriter)request.getAttribute("nu");
 %>
 
 <!DOCTYPE html>
@@ -177,6 +179,7 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox" style="align:center;">
 							<tr>
+								<th style="display:none;"><th>
 								<th>누리장 이름</th>
 								<th>총결제인원</th>
 								<th>환불인원</th>
@@ -191,6 +194,7 @@ button:hover {
 							
 							<tr>
 								<input type="hidden" value=<%=ownerNum%>>
+								<td id="give" style="display:none;"><input type="hidden" value=<%=nuriNum%>><td>
 								<td style="color:rgb(139, 195, 74);"><%=m.getUserName() %></td>
 								<td><%=numberOfPeople1 %></td>
 								<td><%=numberOfPeople2 %></td>
@@ -199,7 +203,7 @@ button:hover {
 								<td style="color:rgb(90, 174, 255);"><%=m.getBankName() %></td>
 								<td style="color:rgb(90, 174, 255);"><%=m.getBankNumber() %></td>
 								<td id="giveMoney"><div style="color:#FF5E00;">지급하기</div></td>
-								<td>ㅛㅛ</td>
+								<td><%=nu.getPayStatus() %></td>
 							</tr>
 							
 						</table>
@@ -211,7 +215,10 @@ button:hover {
 								}).mouseout(function(){
 									$(this).css({"background":"white"});
 								}).click(function(){
-									location.href="<%=request.getContextPath()%>/updatePayStatus.nu";
+									var nuriNum = $(this).parent().children("#give").children("input").val();
+									console.log(nuriNum);
+									alert("누리터번호 : " + nuriNum);
+									location.href="<%=request.getContextPath()%>/updatePayStatus.nu?nuriNum=" + nuriNum;
 								});
 							});
 						</script>

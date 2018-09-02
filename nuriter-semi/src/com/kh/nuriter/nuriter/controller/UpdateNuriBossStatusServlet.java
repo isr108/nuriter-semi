@@ -38,7 +38,6 @@ public class UpdateNuriBossStatusServlet extends HttpServlet {
 		int result = new NuriterService().updateNuribossStatus(num);
 		int result2 = new NuriterService().updateMemberGrade(num2);
 		
-		String page = "";
 		
 		if(result > 0 && result > 0){
 			System.out.println("누리장 승인 및 멤버 등급 변경 완료!");
@@ -47,6 +46,8 @@ public class UpdateNuriBossStatusServlet extends HttpServlet {
 			request.setAttribute("msg", "누리장 승인 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+		
+		
 	}
 
 	/**

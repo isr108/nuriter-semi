@@ -643,6 +643,53 @@ public ArrayList<HashMap<String, Object>> selectChildThumbnailList(int currentPa
 
 }
 
+public int updateNuriterPayStatus(String nuriNum) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateNuriterPayStatus(con, nuriNum);
+	
+	if(result > 0) { 
+        commit(con);
+     } else { 
+        rollback(con);
+     }
+	
+	return result;
+}
+
+public String selectNuriterPayStatus(String nuriNum) {
+	Connection con = getConnection();
+	
+	String result = new NuriterDao().selectNuriterPayStatus(con, nuriNum);
+	
+	close(con);
+	
+	return result;
+}
+
+public Nuriter selectOneNuriterEB(String nuriNum) {
+	Connection con = getConnection();
+	
+	Nuriter nu = new NuriterDao().selectOneNuriterEB(con, nuriNum);
+	
+	close(con);
+	
+	return nu;
+}
+
+public int updateNuribossApproveToN(String applyNum) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateNuribossApproveToN(con, applyNum);
+			
+	if(result > 0) { 
+        commit(con);
+    } else { 
+        rollback(con);
+    }
+	
+	return result;
+}
 
 
 }

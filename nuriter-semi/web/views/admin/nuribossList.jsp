@@ -77,8 +77,9 @@
 .pagination {
 	width: 400px;
 	height: 45px;
-	overflow: hidden; /* 
-	    border-style: solid;
+	/* overflow: hidden;  */
+	 
+	  /* border-style: solid;
     	border-color: hotpink; */
 }
 
@@ -128,6 +129,16 @@
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
 }
 
+#child2 table th, #child3 table th{
+	/* height:30px; */
+	background-color:rgb(241, 196, 15);
+}
+
+
+#child2 table td, #child3 table td{
+	/* height:30px; */
+}
+
 button {
 	width: 90px;
 	height: 40px;
@@ -170,7 +181,7 @@ button:hover {
 					<div id="child2">
 						<h1 id="web-font">누리장 신청 회원</h1>
 						<br>
-						<table border="2" width="100%" id="web-font" class="listBox">
+						<table border="2" width="100%" id="web-font" class="listBox" align="center">
 							<tr>
 								<th width="400px">신청일자</th>
 								<th width="400px">이름</th>
@@ -351,16 +362,12 @@ button:hover {
 						<div class="pagination2" align="center">
 
 							<br> 
-							<!-- <a href="#">&laquo;</a> <a href="#" class="active">1</a>
-							<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-							<a href="#">6</a> <a href="#">&raquo;</a> --> 
-
-							<!-- <button id="web-font">누리장 전체보기</button> -->
-							<%-- <button id="web-font" onclick="location.href='<%=request.getContextPath()%>/views/admin/nuribossApplyList.jsp'">누리장 전체보기</button> --%>
-							<input type="button" class="button" style="width: 200px;"
+							
+							<input type="button" class="button" style="width:200px;"
 								value="누리장 전체보기"
 								onclick="location.href='<%=request.getContextPath()%>/selectNuriBossDetailList2.nu'">
 						</div>
+						
 					</div>
 				</div>
 			</form>

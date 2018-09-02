@@ -2435,4 +2435,113 @@ public class NuriterDao {
 		return pictureList;
 	}
 
+
+	public int updateNuriterPayStatus(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateNuriterPayStatus");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
+	public String selectNuriterPayStatus(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String result = null;
+		
+		String query = prop.getProperty("getNuriterPayStatus");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result = rset.getString(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
+
+	public Nuriter selectOneNuriterEB(Connection con, String nuriNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Nuriter nu = null;
+		
+		String query = prop.getProperty("selectOneNuriterEB");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, nuriNum);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				nu = new Nuriter();
+				
+				nu.setNuriNum(rset.getString("nuri_number"));
+				nu.setOwnerNum(rset.getString("owner_number"));
+				nu.setNuriTitle(rset.getString("nuri_name"));
+				nu.setPayStatus(rset.getString("pay_status"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return nu;
+	}
+
+
+	public int updateNuribossApproveToN(Connection con, String applyNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("changeNuribossApproveToN");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, applyNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
+	
+
 }
