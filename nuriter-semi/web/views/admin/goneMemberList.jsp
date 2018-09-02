@@ -18,134 +18,154 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Insert title here</title>
 <style>
-	.outer{
-	
-		width:850px;
-		height:auto;
-		background:white;
-		color:lightblack;
-		margin-top:1%;
-		margin-left:auto;
-		margin-right:auto;
-		
-		/* margin-top:280px; */
-	}
-	h2{
+#main {
+	/* margin-top: 190px; */
+	/* margin-left: 210px; */
+	margin-right: 19%;
+	float: right;
+	overflow: hidden;
+}
+
+#child {
+	width: 900px;
+	overflow: hidden;
+	/* border-style: solid;
+    	border-color: hotpink; */
+}
+
+#child2 {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	/* border-style: solid;
+    	 border-color: hotpink; */
+}
+
+#child3 {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	/* border-style: solid;
+    	 border-color: hotpink; */
+}
+
+#web-font {
 	font-family: 'Jua', sans-serif;
-	}
-	table {
-		border:1px solid gray;
-		text-align:center;
-		font-family: 'Jua', sans-serif;
-		width:auto;
-		height:auto;
-	}
-	.tableArea {
-		width:650px;
-		height:auto;
-		margin-left:5%;
-		margin-right:auto;
-	}
-	.searchArea {
-		width:650px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	table tr th{
-	text-align:center;
-	/* width:auto;
-	height:auto; */
-	}
-	
-	table td td{
-	width:auto;
-	}
-	
-	.content{
-	padding-left:15px;
-	padding-right:15px;
-	white-space:nowrap;
-	} 
+}
 
-	#listArea{
-	align:center;
-	}
-	
-	/* .pageArea{
-	padding-left:20%;
+#submit>button {
+	width: 150px;
+}
+
+.pagination {
+	width: 400px;
+	height: 45px;
+	overflow: hidden; /* 
+	    border-style: solid;
+    	border-color: hotpink; */
+}
+
+.pagination a {
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
+}
+
+.pagination a.active {
+	background-color: rgb(241, 196, 15);
+	color: white;
+	border: 1px solid rgb(241, 196, 15);
+}
+
+.pagination a:hover :not (.active ){
+	background-color: #ddd;
+}
+
+.pagination a:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.pagination>button {
+	width: 200px;
+}
+/* hr { 
+	    display: block;
+	    margin-top: 0.5em;
+	    margin-bottom: 0.5em;
+	    margin-left: auto;
+	    margin-right: auto;
+	    border-style: inset;
+	    border-width: 10px;
 	} */
+#child2 table, #child3 table {
+	width: 700px;
+	height: auto;
+	text-align: center;
+	border-radius: 5px; /* iOS 둥근모서리 제거 */
+}
+
+button {
+	width: 90px;
+	height: 40px;
+	font-weight: 600;
+	border-radius: 4px;
+	background-color: rgb(241, 196, 15);
+	color: white;
+}
+
+button:hover {
+	background-color: white; /* Green */
+	color: rgb(241, 196, 15);
+	border: 2px solid rgb(241, 196, 15); /* Green */
+}
+
+#main1 {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-top: 70px;
+	/* 	border-style: solid;
+    border-color: red; */
+}
+	th div{
+	text-align:center;
+	}
 	
-	tbody{
-		width:auto;
-		height:auto;
+	.colorgraph{
+	margin-top:7%;
 	}
-	
-	 .pagination {
-  		display:inline-blick;
-	    /* width:400px;
-	    height:60px;
-	    overflow:hidden; */
-	    padding-left: 50%;
-	    margin: 20px 0;
-	    boder-radius:4px;
-	    pointer: cursor;
-	    align:center;
-	}
-
-	.pagination a {
-	    color: black;
-	    padding: 8px 16px;
-	    text-decoration: none;
-	    border: 1px solid #ddd;
-	    pointer: cursor;
-	}
-	.pagination a.active {
-	    background-color: rgb(241, 196, 15);
-	    color: white;
-	    border: 1px solid rgb(241, 196, 15);
-	    pointer: cursor;
-	}
-	.pagination a:hover:not(.active) {
-		background-color: #ddd;
-		pointer: cursor;
-	}
-
-	.pagination a:first-child {
-	    border-top-left-radius: 5px;
-	    border-bottom-left-radius: 5px;
-	    pointer: cursor;
-	}
-
-	.pagination a:last-child {
-	    border-top-right-radius: 5px;
-	    border-bottom-right-radius: 5px;
-	    pointer: cursor;
-	
-
-
 </style>
 </head>
 <body>
 <%@ include file="../common/logoAndLogbutton.jsp"%>
-	<div class="outer">
-<%@ include file="adminbar.jsp"%>	
-
-
-
-		<br>
-		<h2 align="center">탈퇴 회원 목록</h2>
-		<div class="tableArea" align="center">
-			<table id="listArea">
+<%@ include file="adminbar.jsp"%>
+	<div id="main1">
+		<div class="main" align="center">
+		<form>
+			<div id="child">
+				<div id="child2">
+					<h2 align="center">탈퇴 회원 목록</h2>
+					<br>
+					<table id="web-font">
 				<tbody>
 				<tr>
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
-					<th><div style="width:100px">회원번호</div></th>
+					<th><div style="width:70px">회원번호</div></th>
 					<!-- <th><div style="width:100px">누리장명</div></th> -->
 					<th><div style="width:200px">아이디</div></th>
 					<th><div style="width:100px">이름</div></th>
 					<th><div style="width:200px">닉네임</div></th>
-					<th><div style="width:400px">주소</div></th>
+					<th><div style="width:300px">주소</div></th>
 					<th><div style="width:100px">연락처</div></th>
 					<th><div style="width:100px">가입일</div></th>
 					<th><div style="width:100px">탈퇴일</div></th>
@@ -167,7 +187,8 @@
 				</tr>
 				<% } %>
 				</tbody>
-			</table>
+			</table>	
+				
 			<br>
 			<br>
 			<!-- 페이지처리 -->
@@ -196,12 +217,14 @@
    				<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%= currentPage + 1%>'">></a>
    			<% } %>
    				<a onclick="location.href='<%= request.getContextPath()%>/selectGoneMemberList.ad?currentPage=<%= maxPage %>'">>></a>
-   		</div>
-		</div>
+			</div>
+			</div>
+			</div>
+			</form>
+			</div>
+			</div>
 			
-   		
-
-		</div>
+	
    	
 
 </body>

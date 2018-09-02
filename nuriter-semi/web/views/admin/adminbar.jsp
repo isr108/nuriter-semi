@@ -21,11 +21,12 @@
    #showLeft{
        /* border-style: solid; 
         border-color: red; */
-       width:10%;
+       width:12%;
       /*  height:15%; */
        font-size:20px;
         display: inline-block;
         /* margin-top:100px; */
+        position:fixed;
    }
    ul.navi2 li a {
       float: center;
