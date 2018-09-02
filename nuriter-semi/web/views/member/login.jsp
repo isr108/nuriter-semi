@@ -137,6 +137,14 @@
   a{
   color:#585858;
   }
+  
+    #notice{
+      float:center;
+   	  display:inline-block;
+      font-size: 15px;
+      margin-left: 500px;
+      margin-bottom: 40px;
+   }
 </style>
 </head>
 <body>
@@ -213,7 +221,9 @@
  %>
   <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
 
-<div id="naver_id_login"></div>
+<%-- <%@ include file="/views/member/naverLogin.jsp" %> --%>
+
+ <div id="naver_id_login"></div>
 <script type="text/javascript"
 		src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 		charset="utf-8"></script>
@@ -223,9 +233,10 @@
 		var callbackUrl = "http://localhost:8001/ns/views/member/navercallback.jsp";
 		var naver_id_login = new naver_id_login(clientId, callbackUrl);
 		var state = naver_id_login.getUniqState();
-		naver_id_login.setButton("green", 3, 50);
-		naver_id_login.setDomain("http://localhost:8001/ns");
+		naver_id_login.setButton("green", 3,48);
+		naver_id_login.setDomain("http://localhost:8001");
 		naver_id_login.setState(state);
+		window.name="naverLogin";
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
 </script>
@@ -330,7 +341,7 @@
 	
 	<script>
 		function home(){
-			location.href='<%=request.getContextPath()%>/home';
+			location.href='<%=request.getContextPath()%>/';
 		}
 		
 	

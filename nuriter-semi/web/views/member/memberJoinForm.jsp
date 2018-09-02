@@ -151,7 +151,7 @@
 	}
 
 	table {
-	width:370px;
+	width:420px;
     border-top: 2px solid #ACACAC;
     border-bottom: 2px solid #ACACAC;
     color: #5B5B5B;
@@ -218,6 +218,54 @@
 	
 		cursor:pointer;
 	}
+	
+	#emailCheck{
+		background:rgb(241, 196, 15);
+		border-radius:5px;
+		width:80px;
+		height:25px;
+		text-align:center;
+		color: white;
+		
+	
+	}
+
+	#emailCheck:hover{
+	
+		cursor:pointer;
+	}
+	
+	#emailok{
+		background:rgb(241, 196, 15);
+		border-radius:5px;
+		width:80px;
+		height:25px;
+		text-align:center;
+		color: white;
+		
+	
+	}
+
+	#emailok:hover{
+	
+		cursor:pointer;
+	}
+	
+	#banckCheck{
+		background:rgb(241, 196, 15);
+		border-radius:5px;
+		width:80px;
+		height:25px;
+		text-align:center;
+		color: white;
+		
+	
+	}
+
+	#banckCheck:hover{
+	
+		cursor:pointer;
+	}
 
     
 </style>
@@ -239,8 +287,15 @@
 			<tbody>
 			<tr>
 				<th>이메일</th>		
-				<td><input type="text" id="userEmail" name="userEmail"></td>
+				<td><input type="text" id="userEmail" name="userEmail" ></td>
 				<td width=100px><div id="idCheck">중복확인</div></td>
+				<td width=100px><div id="emailCheck" style="background-color:darkgray">이메일 발송</div></td>
+			</tr>
+			<tr>
+				<th>이메일 인증</th>
+				<input type="hidden" id="userEmailcheck" name="userEmailcheck" value="">		
+				<td><input type="text" id="emailok1" name="emailok1"></td>
+				<td width=100px><div id="emailok">인증</div></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -280,6 +335,7 @@
 				<td><input type="text" name="address" <%-- value="<%=loginUser.getAddress()%>" --%>></td>
 				<td></td>
 			</tr>
+			
 			<tr>
 				<th><label>은행명</label></th>
 				<td><input type="text" name="bankname"></td>
@@ -288,6 +344,7 @@
 			<tr>
 				<th><label>계좌번호</label></th>
 				<td><input type="text" name="banknumber"></td>
+				<td width=100px><div id="banckCheck" style="background-color:darkgray">계좌인증</div></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -365,7 +422,7 @@
 							if(data === "fail"){
 								alert("아이디가 중복됩니다.");
 							}else{
-								alert("사용 가능합니다.")
+								alert("사용 가능합니다.");
 							}
 						},
 						error:function(data){
@@ -373,6 +430,38 @@
 						}
 					});
 				});
+				
+				$("#emailCheck").click(function(){
+					var userEmail = $("#userEmail").val();
+					console.log("클릭");
+					$.ajax({
+						url:"/ns/emilcheck.me",
+						type:"post",
+						data:{userEmail:userEmail},
+						success:function(data){
+							console.log(data);
+							$("#userEmailcheck").attr('value',data); 
+							alert("인증번호가 발송 되었습니다.");
+						},
+						error:function(data){
+							console.log("실패");
+						}
+					});
+				});
+				
+				
+				$("#emailok").click(function(){
+					if($("#userEmailcheck").val() != $("#emailok1").val()){
+						alert("인증번호가 일치하지 않습니다.");
+					}else{
+						alert("인증되었습니다.");
+					}
+				});
+				
+				$("#banckCheck").click(function(){
+					location.href='<%=request.getContextPath()%>/views/member/banckCheck.jsp';
+				});
+				
 			});
 	
 	</script> 
@@ -415,7 +504,7 @@
 	<script>
 		
 		function home(){
-			location.href='<%=request.getContextPath()%>/home';
+			location.href='<%=request.getContextPath()%>/';
 		}
 		
 			/*$(function(){

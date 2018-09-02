@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
+<html lang="ko">
 <html>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -9,7 +10,7 @@
 <body>
 <script type="text/javascript">
   var clientId = "p7rY8Kd2Yc3e2TAc4l38";
-  var callbackUrl = "http://localhost:8001/ns/naverlogin";
+  var callbackUrl = "http://localhost:8001/ns/views/member/navercallback.jsp";
   var naver_id_login = new naver_id_login(clientId, callbackUrl);
   // 접근 토큰 값 출력
   /* alert(naver_id_login.oauthParams.access_token); */
@@ -21,7 +22,7 @@
     alert(naver_id_login.getProfileData('nickname'));
     alert(naver_id_login.getProfileData('age')); */
     
-    var email = naver_id_login.getProfileData('email');
+    /* var email = naver_id_login.getProfileData('email');
     var name = naver_id_login.getProfileData('name');
     var nickname = naver_id_login.getProfileData('nickname');
     var birthday = naver_id_login.getProfileData('birthday');
@@ -35,7 +36,15 @@
     document.frm.birthday.value=birthday;
   
     console.log(document.frm.name.value);
-    document.frm.submit();
+    document.frm.submit(); */
+	$("#useremail").val(naver_id_login.getProfileData('email'));
+    $("#name").val(naver_id_login.getProfileData('name'));
+	$("#nickname").val(naver_id_login.getProfileData('nickname'));
+	$("#birthday").val(naver_id_login.getProfileData('birthday'));
+	/* $("#accessToken").val(naver_id_login.oauthParams.access_token);
+	$("#refreshToken").val(); */
+	$("#login").submit();
+    self.close();
   }
   
   
@@ -43,12 +52,12 @@
 
 
 
-<form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/naverlogin">
+<form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/naverlogin" target="naverLogin">
 		
-		<input type="hidden" name="useremail">
-		<input type="hidden" name="name">
-		<input type="hidden" name="nickname">
-		<input type="hidden" name="birthday">
+		<input type="hidden" id="useremail" name="useremail">
+		<input type="hidden" id="name" name="name">
+		<input type="hidden" id="nickname" name="nickname">
+		<input type="hidden" id="birthday" name="birthday">
 		
 	</form>
 

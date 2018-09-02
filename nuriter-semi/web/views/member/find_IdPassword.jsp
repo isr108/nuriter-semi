@@ -379,7 +379,7 @@
 	<script>
 		
 		function home(){
-			location.href='<%=request.getContextPath()%>/home';
+			location.href='<%=request.getContextPath()%>/';
 		}
 		
 	

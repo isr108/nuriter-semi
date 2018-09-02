@@ -1,6 +1,8 @@
 package com.kh.nuriter.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
+import com.kh.nuriter.nuriter.model.service.NuriterService;
 
 /**
  * Servlet implementation class UpdateMemberServlet
@@ -87,8 +90,15 @@ public class UpdateMemberServlet extends HttpServlet {
 	      
 	      if(result > 0) {
 	    	  request.getSession().invalidate();
-	  		
-	  		  response.sendRedirect("index.jsp");
+	    	  ArrayList<HashMap<String, Object>> pictureList = new NuriterService().selectThumbnailList1();
+			  ArrayList<HashMap<String, Object>> pictureList2 = new NuriterService().selectThumbnailList2();
+			  ArrayList<HashMap<String, Object>> pictureList3 = new NuriterService().selectThumbnailList3();
+	    	  
+			  request.setAttribute("pictureList", pictureList);
+		      request.setAttribute("pictureList2", pictureList2);
+			  request.setAttribute("pictureList3", pictureList3);
+			  request.getRequestDispatcher("index.jsp").forward(request, response);
+	  		 /* response.sendRedirect("index.jsp");*/
 	      }else {
 	         page = "views/common/errorPage.jsp";
 	         request.setAttribute("msg", "회원 정보 수정에 실패하였습니다!!");
