@@ -128,6 +128,15 @@
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
 }
 
+#child2 table th, #child3 table th{
+	height:30px;
+	background-color:rgb(241, 196, 15);
+}
+
+#child2 table td, #child3 table td{
+	height:50px;
+}
+
 #search-select {
 	display: inline;
 }

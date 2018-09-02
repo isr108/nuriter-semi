@@ -38,6 +38,16 @@
    src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 <title>Insert title here</title>
 <style>
+
+#main1 {
+   width: 100%;
+   height: 100%;
+   display: inline-block;
+   margin-top: 70px;
+   /*    border-style: solid;
+    border-color: red; */
+}
+
 #main {
    /* margin-top:190px;
       margin-left:220px;
@@ -123,15 +133,16 @@
    border-radius: 5px; /* iOS 둥근모서리 제거 */
 }
 
-
-#main1 {
-   width: 100%;
-   height: 100%;
-   display: inline-block;
-   margin-top: 70px;
-   /*    border-style: solid;
-    border-color: red; */
+#child2 table th, #child3 table th{
+	height:30px;
+	background-color:rgb(241, 196, 15);
 }
+
+#child2 table td, #child3 table td{
+	height:50px;
+}
+
+
 </style>
 </head>
 <body>
@@ -240,7 +251,7 @@
                         <td><%=m.getBankName()%></td>
                         <td><%=m.getBankNumber()%></td>
                         <td><%=m.getRefundNuriterPrice()%></td>
-                        <td>환불날짜</td>
+                        <td><%=m.getRefundNuriterDate() %></td>
                      </tr>
                      <%
                         }

@@ -22,6 +22,10 @@
     	border-color: hotpink; */
 }
 
+#child table td{
+ 	font-size:1em;
+}
+
 #web-font {
 	font-family: 'Jua', sans-serif;
 }
@@ -56,17 +60,17 @@ button {
 				<table border="2" width="100%" id="web-font" class="listBox">
 					<tr>
 						<td>신청일자</td>
-							<td><input type="text" size="" 
+							<td><input type="text" style="background-color: #f1c40fb8;" size="" 
 								name="applyDate" readonly value="<%=nb.getApplyDate()%>"></td>
 						<td>이름</td>
-						<td><input type="text" size="" 
+						<td><input type="text" style="background-color: #f1c40fb8;" size="" 
 								name="name" readonly value="<%=nb.getUserNum()%>"></td>
 						<td>카테고리</td>
-						<td><input type="text" size="" 
+						<td><input type="text" style="background-color: #f1c40fb8;" size="" 
 								name="cname" readonly value="<%=nb.getCategoryNum()%>"></td>
 					</tr>
 					<tr>
-						<td colspan="6">활동 계획서</td>
+						<td colspan="6" >활동 계획서</td>
 					</tr>
 					<tr>
 						<td colspan="6" height="300px"><input type="text" size="110" 

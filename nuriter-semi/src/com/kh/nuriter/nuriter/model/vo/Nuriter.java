@@ -25,13 +25,14 @@ public class Nuriter implements java.io.Serializable{
     private String categoryName; //카테고리 이름
     private int interestCount; //관심 누리터가 선택된 인원 수
     private int enterCount; //참가 신청된 인원 수
+    private String payStatus; //누리장 지급여부
     
     public Nuriter() {}
 
 	public Nuriter(String nuriNum, String ownerNum, String ownerName, String categoryNum, String nuriTitle, String content,
 			Date startDate, Date endDate, String startTime, String endTime, String place, String price,
 			Date applicationDate, String personnel, int reportCount, String progress, int attendCount, String nickName,
-			String categoryName, int interestCount, int enterCount) {
+			String categoryName, int interestCount, int enterCount, String payStatus) {
 		super();
 		this.nuriNum = nuriNum;
 		this.ownerNum = ownerNum;
@@ -54,6 +55,7 @@ public class Nuriter implements java.io.Serializable{
 		this.categoryName = categoryName;
 		this.interestCount = interestCount;
 		this.enterCount = enterCount;
+		this.payStatus = payStatus;
 	}
 
 	public String getNuriNum() {
@@ -223,6 +225,14 @@ public class Nuriter implements java.io.Serializable{
 	public void setEnterCount(int enterCount) {
 		this.enterCount = enterCount;
 	}
+	
+	public String getPayStatus() {
+		return payStatus;
+	}
+
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
 
 	@Override
 	public String toString() {
@@ -232,7 +242,7 @@ public class Nuriter implements java.io.Serializable{
 				+ ", price=" + price + ", applicationDate=" + applicationDate + ", personnel=" + personnel
 				+ ", reportCount=" + reportCount + ", progress=" + progress + ", attendCount=" + attendCount
 				+ ", NickName=" + NickName + ", categoryName=" + categoryName + ", interestCount=" + interestCount
-				+ ", enterCount=" + enterCount + "]";
+				+ ", enterCount=" + enterCount + ", payStatus=" + payStatus + "]";
 	}
 
 	

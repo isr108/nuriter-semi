@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.nuriter.member.model.service.MemberService;
 import com.kh.nuriter.member.model.vo.Member;
 import com.kh.nuriter.nuriter.model.service.NuriterService;
+import com.kh.nuriter.nuriter.model.vo.Nuriter;
 import com.kh.nuriter.payment.model.service.PaymentService;
 
 /**
@@ -38,6 +39,7 @@ public class SelectTotalMoneyOfNuriter extends HttpServlet {
 		String nuriNum = request.getParameter("nuriNum");
 		System.out.println("누리터번호 : " + nuriNum);
 		
+		
 		String ownerNum = new NuriterService().getOwnerNum(nuriNum);
 		System.out.println("누리장 번호 : " + ownerNum);
 		
@@ -50,8 +52,12 @@ public class SelectTotalMoneyOfNuriter extends HttpServlet {
 		int price = new NuriterService().getNuriPrice(nuriNum);
 		System.out.println("누리터 가격 : " + price);
 		
+		
 		Member m = new MemberService().selectNuriBossInfo(ownerNum);
 		System.out.println(m);
+		
+		Nuriter nu = new NuriterService().selectOneNuriterEB(nuriNum);
+		System.out.println("nuriter정보 : " + nu);
 		
 		String page = "";
 		
@@ -62,6 +68,9 @@ public class SelectTotalMoneyOfNuriter extends HttpServlet {
 			request.setAttribute("numberOfPeople2", totalPayNum2);
 			request.setAttribute("price", price);
 			request.setAttribute("m", m);
+			request.setAttribute("nuriNum", nuriNum);
+			request.setAttribute("nu", nu);
+			
 		}else{
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "지급될 누리터 가격정보 조회 실패!");

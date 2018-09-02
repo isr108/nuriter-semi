@@ -984,7 +984,7 @@ public class MemberDao {
 	            m.setBankName(rset.getString("bank_name"));
 	            m.setBankNumber(rset.getString("bank_number"));
 	            m.setRefundNuriterPrice(rset.getInt("price"));
-	           /* m.setRefundNuriterDate(rset.getDate("refund_date"));*/
+	            m.setRefundNuriterDate(rset.getDate("refund_date"));
 	            
 	            refundList2.add(m);
 	         }
