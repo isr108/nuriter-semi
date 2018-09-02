@@ -141,7 +141,8 @@
     width: 1000px;
     height: 100%;
     float: right;
-    margin-right: 30%
+    margin-top:5%;
+    margin-right: 12%
     /* float: center; */
     /* margin-left:13%;
     margin-bottom:1%; */

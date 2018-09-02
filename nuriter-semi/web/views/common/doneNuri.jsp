@@ -85,8 +85,8 @@
 	    /* width:400px;
 	    height:60px;
 	    overflow:hidden; */
-	    padding-left: 50%;
-	    margin: 20px 0;
+	    padding-left: 0%;
+	    margin: 20px 0; 
 	    boder-radius:4px;
 	    pointer: cursor;
 	    align:center;
@@ -130,7 +130,7 @@
 	<div class="outer">
 		<br>
 		<h2 align="center">참여 종료된 누리터</h2>
-		<div class="tableArea">
+		<div class="tableArea" align="center">
 			<table id="listArea">
 				<tbody>
 				<tr>
@@ -163,7 +163,7 @@
 			<br>
 			<!-- 페이지처리 -->
 			<!-- <div class="pageArea" align="center"> -->
-			<div class="pagination" id="web-font">
+			<div class="pagination" id="web-font" align="center">
    			<br>
    			<a href="location.href='<%= request.getContextPath()%>/selectDoneNuriList.nu?currentPage=1'"><<</a>
    			<% if(currentPage <= 1){ %>

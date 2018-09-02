@@ -27,15 +27,15 @@
 }
 
 #child {
-	width: 900px;
+	width: auto;
 	overflow: hidden;
 	/* border-style: solid;
     	border-color: hotpink; */
 }
 
 #child2 {
-	width: 800px;
-	margin-left: auto;
+	width: 100%;
+	margin-left: 2%;
 	margin-right: auto;
 	overflow: hidden;
 	/* border-style: solid;
@@ -107,7 +107,7 @@
 	    border-width: 10px;
 	} */
 #child2 table, #child3 table {
-	width: 700px;
+	width: auto;
 	height: auto;
 	text-align: center;
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
@@ -155,17 +155,17 @@ button:hover {
 				<div id="child2">
 					<h2 align="center">탈퇴 회원 목록</h2>
 					<br>
-					<table id="web-font">
+					<table id="web-font" style="border-line:1px solid black;">
 				<tbody>
 				<tr>
 					<!-- <th width="250px">누리터번호</th> -->
 					<!-- <th width="150px">누리장</th> -->
 					<th><div style="width:70px">회원번호</div></th>
 					<!-- <th><div style="width:100px">누리장명</div></th> -->
-					<th><div style="width:200px">아이디</div></th>
-					<th><div style="width:100px">이름</div></th>
-					<th><div style="width:200px">닉네임</div></th>
-					<th><div style="width:300px">주소</div></th>
+					<th><div style="width:150px">아이디</div></th>
+					<th><div style="width:70px">이름</div></th>
+					<th><div style="width:100px">닉네임</div></th>
+					<th><div style="width:250px">주소</div></th>
 					<th><div style="width:100px">연락처</div></th>
 					<th><div style="width:100px">가입일</div></th>
 					<th><div style="width:100px">탈퇴일</div></th>
