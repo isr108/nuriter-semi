@@ -133,7 +133,7 @@ table tr td {
 	<br>
 	<br>
 	<div class="main">
-	<%if(!loginUser.getUserEmail().equals("admin")){ %>
+	
 		<div id="showLeft">
 			<ul class="navi2" style="list-style-type: none">
 				<hr class="colorgraph">
@@ -144,12 +144,11 @@ table tr td {
 				<li class="web-font" id="qnaColor"><a href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 			</ul>
 		</div>
-		<%}else{ %>
-			<%@ include file="../admin/adminbar.jsp" %>
-		<% } %>
+		
+			
 		<div class="showRight">
 			<div class="buttonArea">
-				<button id="bButton" onclick="location.href='quaInquire.jsp'">게시글 작성</button>
+				<button id="bButton" onclick="location.href='views/notice/quaInquire.jsp'">게시글 작성</button>
 			</div>
 			 <table id="listArea">
             <tr>
@@ -172,12 +171,12 @@ table tr td {
 			</table>
 			 <div class="pageArea" align="center">
          <button
-            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=1'"><<</button>
+            onclick="location.href='<%= request.getContextPath()%>/selectqnalist.sql?currentPage=1'"><<</button>
          <% if(currentPage <= 1){ %>
          <button disabled><</button>
          <% }else{ %>
          <button
-            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%=currentPage - 1%>'"><</button>
+            onclick="location.href='<%= request.getContextPath()%>/selectqnalist.sql?currentPage=<%=currentPage - 1%>'"><</button>
          <% } %>
          <% for(int p = startPage; p <= endPage; p++){
                if(p == currentPage){   
@@ -185,7 +184,7 @@ table tr td {
          <button disabled><%= p %></button>
          <%  }else{ %>
          <button
-            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= p %>'"><%= p %></button>
+            onclick="location.href='<%= request.getContextPath()%>/selectqnalist.sql?currentPage=<%= p %>'"><%= p %></button>
          <%  } %>
 
          <% } %>
@@ -194,12 +193,29 @@ table tr td {
          <button disabled>></button>
          <% }else{ %>
          <button
-            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= currentPage + 1%>'">></button>
+            onclick="location.href='<%= request.getContextPath()%>/selectqnalist.sql?currentPage=<%= currentPage + 1%>'">></button>
          <% } %>
          <button
-            onclick="location.href='<%= request.getContextPath()%>/reportlist.rl?currentPage=<%= maxPage %>'">>></button>
+            onclick="location.href='<%= request.getContextPath()%>/selectqnalist.sql?currentPage=<%= maxPage %>'">>></button>
       </div> 
 		
+		<script>
+			$(function(){
+				$('.testList').click(function(){
+					
+		 
+					var num = $(this).children(0).eq(0).val();
+		            var title =$(this).children(0).eq(1).text();
+		            var content =$(this).children(0).eq(2).text();
+			        var nickname =$(this).children(0).eq(3).text();
+			        var date =$(this).children(0).eq(4).text();
+			        
+			        location.href="<%= request.getContextPath()%>/selectqnadetail.sdq?num="+num;
+				});
+				
+				
+			});
+		</script>
 		
 	
 
