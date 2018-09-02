@@ -71,8 +71,7 @@ public class InsertqnaServlet extends HttpServlet {
 		String page = "";
 		
 		if(result >0){
-			System.out.println("성공");
-			
+			 response.sendRedirect(request.getContextPath()+"/selectqnalist.sql");			
 		}else{
 			System.out.println("실패");
 		}

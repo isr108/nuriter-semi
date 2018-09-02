@@ -8,8 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
+import com.kh.nuriter.board.model.vo.reportNuri;
 import com.kh.nuriter.notice.model.vo.Notice;
 
 import static com.kh.nuriter.common.JDBCTemplate.*;
@@ -322,6 +324,111 @@ public class NoticeDao {
 		}
 		
 		return listCount;
+	}
+	public Notice SelectqnaDetail(Connection con, String boardNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		Notice n  =null;
+		
+		String query = prop.getProperty("selectqnadetail");
+		
+		try {
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, boardNum);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				n = new Notice();
+				
+				n.setbNumber(rset.getString("board_number"));
+				n.setbTitle(rset.getString("board_title"));
+				n.setbContent(rset.getString("board_content"));
+				n.setUserNumber(rset.getString("nickname"));
+				n.setbDate(rset.getDate("board_date"));
+				
+			}
+			System.out.println(n);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+			
+		}
+		
+		
+		return n;
+	}
+	public int InsertqnaComment(Connection con, String boardNum, String content, String writer) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("insertComment");
+		
+
+		try {
+			System.out.println(boardNum);
+			System.out.println(content);
+			System.out.println(writer);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, boardNum); 
+			pstmt.setString(2, content);
+			pstmt.setString(3, writer);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println("민지야 댓글 추가 성공"+result);
+		
+		return result;
+	}
+	
+	
+	public ArrayList<HashMap<String, Object>> selectqnaComment(Connection con, String boardNum) {
+		ArrayList<HashMap<String, Object>> commentList = null;
+		HashMap<String, Object> hmap = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectqnaComment");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, boardNum);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			commentList = new ArrayList<HashMap<String, Object>>();
+			
+			while(rset.next()){
+				hmap = new HashMap<String, Object>();
+				
+				hmap.put("nickname", rset.getString("nickname"));
+				hmap.put("comment_date", rset.getString("comment_date"));
+				hmap.put("comment_content", rset.getString("comment_content"));
+				
+				commentList.add(hmap);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return commentList;
 	}
 
 }

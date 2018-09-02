@@ -2,9 +2,11 @@ package com.kh.nuriter.notice.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.nuriter.notice.model.dao.NoticeDao;
 import com.kh.nuriter.notice.model.vo.Notice;
+import com.kh.nuriter.nuriter.model.dao.NuriterDao;
 
 import static com.kh.nuriter.common.JDBCTemplate.*;
 
@@ -140,6 +142,49 @@ public class NoticeService {
 		
 		
 		return listCount;
+	}
+
+	public Notice SelectqnaDetail(String boardNum) {
+		Connection con  = getConnection();
+		
+		Notice n = new NoticeDao().SelectqnaDetail(con,boardNum);
+		if(n != null){
+			commit(con);
+			
+		}else{
+			rollback(con);
+			
+		}
+		close(con);
+		
+		
+		return n;
+	}
+
+	public int InsertqnaComment(String boardNum, String content, String writer) {
+		Connection con = getConnection();
+		
+		int result = new NoticeDao().InsertqnaComment(con,boardNum,content,writer);
+		
+		if(result >0){
+			commit(con);
+			
+		}else{
+			rollback(con);
+			
+		}
+		
+		return result;
+	}
+
+	public ArrayList<HashMap<String, Object>> selectqnaComment(String boardNum) {
+		Connection con = getConnection();
+		
+		ArrayList<HashMap<String, Object>> commentList = new NoticeDao().selectqnaComment(con, boardNum);
+		
+		close(con);
+		
+		return commentList;
 	}
 
 	

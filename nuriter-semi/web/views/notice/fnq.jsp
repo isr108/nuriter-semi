@@ -161,7 +161,7 @@ h3:hover{
 					<li class="web-font"><a href="fnq.jsp">고객센터</a></li>
 					<hr class="colorgraph">
 					<li class="web-font" id=fnqColor><a href="fnq.jsp">자주묻는질문</a></li>
-					<li class="web-font"><a href="qna.jsp">1:1 문의하기</a></li>
+					<li class="web-font"><a href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 				</ul>
 			</div>
 		</div>
