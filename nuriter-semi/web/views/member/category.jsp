@@ -61,11 +61,10 @@
    }
    
    #tableDiv{
-      width:100%;
+      width:90%;
       height:100%;
       display: inline-block;
-       
-       
+      margin-left:100px;
    }
    #tableDiv table{
    	  width:20%;
@@ -260,17 +259,12 @@
      color: white;
      cursor: pointer;
   }
-  /* .pagination {
-	    width:400px;
-	    height:60px;
-	    overflow:hidden;
-
-	}  */
 	 .pagination {
   		display:inline-blick;
 	    /* width:400px;
 	    height:60px;
 	    overflow:hidden; */
+	    align:center;
 	    padding-left: 0;
 	    margin: 20px 0;
 	    boder-radius:4px;
@@ -322,7 +316,7 @@
     <%@ include file="../common/logoAndLogbutton.jsp" %>
     <%@ include file="../common/categorybar.jsp" %>
 
-    <br><br><br> <br><br><br> <br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
   
   <div id="showMain">
    <div id="showLeft" >
@@ -330,7 +324,6 @@
         <li id="web-font"><a href="#">카테고리</a></li>
         <hr class="colorgraph">
      </ul>
-
    </div>
   
      <div id="showRight">
@@ -347,11 +340,15 @@
               
        </div>
       
-        <div id="tableDiv" align="center">
+        <div id="tableDiv">
         	<%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
-        	%>
+ 					if(i == 4){
+ 			%>		
+ 					<br><br><br><br><br><br><br><br>
+ 			    <%  } %>
+ 			    
         		<table id="nuriterListArea">
            			<tr id="tableHiddenTop">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
@@ -382,14 +379,11 @@
             <br><br><br><br><br><br>
             
              <!-- 페이지처리 -->
-
-
-             <!-- <div class="pageArea" align="center"> -->
+             <div align="center">
              <div class="pagination" align="center" id="web-font">
              <br>
              	<a href="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=1'"><<</a>
              	<% if(currentPage <= 1){ %>
-             	<!-- <button disabled><</button> -->
              	<a disabled><</a>
              	<% }else{ %>
              	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= currentPage - 1%>'">&laquo;</a>
@@ -413,7 +407,7 @@
              	<% } %>
              	<a onclick="location.href='<%= request.getContextPath()%>/selectNuriterList.no?currentPage=<%= maxPage %>'">>></a>
              </div>
-        
+        	 </div>
     </div>
    
     </div>
@@ -456,6 +450,7 @@
 	 	});
   	});
   </script>
-   
+   <br><br><br><br><br>
+   <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

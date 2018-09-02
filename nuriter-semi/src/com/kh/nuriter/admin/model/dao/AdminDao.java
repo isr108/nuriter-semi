@@ -55,5 +55,109 @@ private Properties prop = new Properties();
 
 		return listCount;
 	}
+
+	public int selectMemberCount(Connection con) {
+		PreparedStatement pstmt = null;
+		int memberCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectMemberCount_Park");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				memberCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return memberCount;
+	}
+
+	public int selectActivatedCount(Connection con) {
+		PreparedStatement pstmt = null;
+		int activateCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectActivateCount_Park");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				activateCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return activateCount;
+	}
+
+	public int selectJoinCount(Connection con) {
+		PreparedStatement pstmt = null;
+		int memberJoinCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectMemberJoinCount_Park");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				memberJoinCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return memberJoinCount;
+	}
+
+	public int selectNuriterCount(Connection con) {
+		PreparedStatement pstmt = null;
+		int nuriterCount = 0;
+		ResultSet rset = null;
+
+		String query = prop.getProperty("selectNuriterCount_Park");
+
+		try {
+			pstmt = con.prepareStatement(query);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				nuriterCount = rset.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return nuriterCount;
+	}
 	
 }

@@ -307,10 +307,11 @@ img {
 </style>
 </head>
 <body>
+	
    <%@ include file="../common/logoAndLogbutton.jsp" %>
    <%@ include file="../common/categorybar.jsp" %>
    
-
+<%if(loginUser == null || loginUser != null){ %>
 <div class="content">
 	   <div class="leftBox">
 	   	<div class="images">
@@ -443,10 +444,12 @@ img {
            </div>
         </div>
          
+         <% if(loginUser != null){ %>
          <div id="enterDiv" align="center">
          	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
-
          </div>
+         <% } %>
+         
          </div>
          <br><br>
     </div>
@@ -684,5 +687,8 @@ function choice(){
 	}
 
 </script>
+<% } %>
+<br><br><br><br><br>
+<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

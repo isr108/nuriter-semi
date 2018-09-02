@@ -18,4 +18,44 @@ public class AdminService {
 	    return listCount;
 	}
 
+	public int selectMemberCount() {
+		Connection con = getConnection();  
+		
+	    int memberCount = new AdminDao().selectMemberCount(con);
+	         
+	    close(con);
+	         
+	    return memberCount;
+	}
+
+	public int selectActivatedCount() {
+		Connection con = getConnection();  
+		
+	    int activatedCount = new AdminDao().selectActivatedCount(con);
+	         
+	    close(con);
+	         
+	    return activatedCount;
+	}
+
+	public int selectJoinCount() {
+		Connection con = getConnection();  
+		
+	    int memberJoinCount = new AdminDao().selectJoinCount(con);
+	         
+	    close(con);
+	         
+	    return memberJoinCount;
+	}
+
+	public int selectNuriterCount() {
+		Connection con = getConnection();  
+		
+	    int nuriterCount = new AdminDao().selectNuriterCount(con);
+	         
+	    close(con);
+	         
+	    return nuriterCount;
+	}
+
 }

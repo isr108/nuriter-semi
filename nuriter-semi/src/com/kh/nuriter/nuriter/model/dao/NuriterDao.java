@@ -1668,7 +1668,6 @@ public class NuriterDao {
 			
 			pstmt.setString(1, nuriNum);
 			
-			
 			rset = pstmt.executeQuery();
 			
 			commentList = new ArrayList<HashMap<String, Object>>();
