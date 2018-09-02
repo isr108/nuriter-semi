@@ -296,6 +296,34 @@ public class MemberService {
 			close(con);
 			
 			return list;
+		}
+
+		public int snsMember1(Member m) {
+			Connection con=getConnection();
+			
+			int result=new MemberDao().snsMember1(m, con);
+			
+			if(result > 0){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			
+			close(con);
+			
+			System.out.println("sns 서비스 result :" + result);
+			return result;
+		}
+
+		public Member snsloginMember1(String userEmail) {
+			Connection con=getConnection();
+			Member loginUser = new MemberDao().snsloginMember1(con, userEmail);
+			
+			System.out.println("service userid : " +userEmail);
+			close(con);
+			
+			return loginUser;
 		}	   
 
 	/*public int snsloginMember(Member m) {

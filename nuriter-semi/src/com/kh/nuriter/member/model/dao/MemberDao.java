@@ -1250,6 +1250,136 @@ public class MemberDao {
 			return list;
 		}
 
+		public int snsMember1(Member m, Connection con) {
+			int result=0;
+			int sw=0;
+			Member m1=null;
+			ArrayList<Member> list=new ArrayList<Member>();
+			Statement st=null;
+			PreparedStatement pst=null;
+			ResultSet rset=null;
+			String query="";
+			query=prop.getProperty("checkMember");
+			/*String checkQuery=prop.getProperty("checkMember");*/
+			try {
+				st=con.createStatement();
+				rset=st.executeQuery(query);
+				
+				while(rset.next()){
+					m1=new Member();
+					m1.setUserEmail(rset.getString("user_email"));
+					
+					list.add(m1);
+					
+				}
+				
+				System.out.println("dao list:" + list);
+				
+				for(int i=0;i<list.size();i++){
+					if(list.get(i).getUserEmail().equals(m.getUserEmail())){
+						sw=1;
+						break;
+					}
+				}
+				
+				
+				System.out.println("sw: " + sw);
+				if(sw==1){
+					query=prop.getProperty("loginMember");
+					
+					pst=con.prepareStatement(query);
+					pst.setString(1, m.getUserEmail());
+					
+					result=pst.executeUpdate();
+					
+					if(result>0){
+						result=99;
+					}
+					else{
+						result=0;
+					}	
+				}
+				else{
+					query=prop.getProperty("insertMember3");
+					
+					pst=con.prepareStatement(query);
+					pst.setString(1, m.getUserEmail());
+					pst.setString(2, m.getUserName());
+					pst.setString(3, m.getNickName());
+					/*pst.setDate(4, m.getBirthDate());*/
+					
+					/*pst.setString(3, m.getToken());*/
+					
+					result=pst.executeUpdate();
+					
+					/*result=99;	*/
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(st);
+				close(rset);
+				close(pst);
+			}
+			
+			System.out.println("memberdaoresult: " + result);
+			return result;
+		}
+
+		public Member snsloginMember1(Connection con, String userEmail) {
+			Member loginUser = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = prop.getProperty("loginMember1");
+			System.out.println(query);
+			try {
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, userEmail);
+				
+				System.out.println(pstmt);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()){
+					loginUser = new Member();
+					
+					loginUser.setUserNumber(Integer.parseInt(rset.getString("user_number")));
+					loginUser.setUserEmail(rset.getString("user_email"));
+					loginUser.setPassword(rset.getString("user_pwd"));
+					loginUser.setUserName(rset.getString("user_name"));
+					loginUser.setNickName(rset.getString("nickname"));
+					loginUser.setAddress(rset.getString("address"));
+					loginUser.setPhone(rset.getString("phone"));
+					loginUser.setHobby(rset.getString("hobby"));
+					loginUser.setBirthDate(rset.getDate("birth_date"));
+					loginUser.setEnrollDate(rset.getDate("enroll_date"));
+					loginUser.setGrade(rset.getString("grade"));
+					loginUser.setGradeDate(rset.getDate("grade_date"));
+					loginUser.setBankName(rset.getString("bank_name"));
+					loginUser.setBankNumber(rset.getString("bank_number"));
+					loginUser.setAccountSort(rset.getString("account_sort"));
+					loginUser.setToken(rset.getString("token"));
+					loginUser.setReportedUser(rset.getString("reported_user"));
+					loginUser.setActivated(rset.getString("activated"));
+					loginUser.setActivatedDate(rset.getDate("activated_date"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+				
+			}
+			
+			
+			return loginUser;
+		}
+
 		
 }
 
