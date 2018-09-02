@@ -97,6 +97,7 @@
 	<nav id="nuriBavBar1" class="top-0 is-nav-white is-fixed">
         <div class="wrapper">
           <ul class="navi">
+          	   &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C1" class="parentsNa" onclick="goParentsNuriList();">언어
                	 <ul class="nana">
                		<li id="web-font" class="na" value="C11" onclick="goNuriList();">영어</li>
@@ -105,6 +106,7 @@
                		<li id="web-font" class="na" value="C14" onclick="goNuriList();">아랍어</li>
                	</ul> 
                	</li>	
+               	&nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C2" class="parentsNa" onclick="goParentsNuriList();">공방
                	<ul>
                		<li id="web-font" class="na" value="C15" onclick="goNuriList();">목공</li>
@@ -113,6 +115,7 @@
                		
                	</ul> 
                </li>
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C3" class="parentsNa" onclick="goParentsNuriList();">요리
                	<ul>
                		<li id="web-font" class="na" value="C18" onclick="goNuriList();">한식</li>
@@ -122,12 +125,14 @@
                		
                	</ul> 
                </li>
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C4" class="parentsNa" onclick="goParentsNuriList();">운동
                <ul>
                	<li id="web-font" class="na" value="C9" onclick="goNuriList();">축구</li>
                	<li id="web-font" class="na" value="C10" onclick="goNuriList();">야구</li>
                	</ul>
                </li>
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C5" class="parentsNa" onclick="goParentsNuriList();">음악
                <ul>
                	<li id="web-font" class="na" value="C22" onclick="goNuriList();">악기</li>
@@ -135,12 +140,14 @@
                	<li id="web-font" class="na" value="C24" onclick="goNuriList();">작곡</li>
                	</ul>
                </li>
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C6" class="parentsNa" onclick="goParentsNuriList();">컴퓨터
                <ul>
                	<li id="web-font" class="na" value="C25" onclick="goNuriList();">소프트웨어</li>
                	<li id="web-font" class="na" value="C26" onclick="goNuriList();">하드웨어</li>
                	</ul>
                </li>
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C7" class="parentsNa" onclick="goParentsNuriList();">문화
                <ul>
                	<li id="web-font" class="na" value="C27" onclick="goNuriList();">영화</li>
@@ -148,11 +155,13 @@
                	<li id="web-font" class="na" value="C29" onclick="goNuriList();">공연</li>
                </ul>
                </li> 
+               &nbsp;&nbsp;&nbsp;
                <li id="web-font" value="C8" class="parentsNa" onclick="goParentsNuriList();">기타
                	<ul>
                	<li id="web-font" class="na" value="C30" onclick="goNuriList();">낚시</li> <!-- onclick="goNuriList();" -->
                </ul>
                </li>
+               &nbsp;&nbsp;&nbsp;
           </ul>
         </div>
         <hr class="colorgraph">

@@ -39,6 +39,9 @@
       margin-left: 50px;
       margin-bottom: 40px;
    }
+   #notice{
+   
+   }
 </style>
 </head>
 <body>
@@ -52,7 +55,7 @@
 	      1544-1544
 	   </div>
 	   
-	   <div id="notice" onclick="goNotice();">
+	   <div id="notice" onclick="goNotice();" align="center">
 	   	<h4>공지사항</h4>
 	      <ul>
 	         <li>고객센터 운영시간 변경안내</li>
