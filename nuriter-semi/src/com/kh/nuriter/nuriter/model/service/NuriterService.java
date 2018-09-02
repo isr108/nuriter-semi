@@ -677,11 +677,25 @@ public Nuriter selectOneNuriterEB(String nuriNum) {
 	return nu;
 }
 
-public int updateNuribossApproveToN(String applyNum) {
+public int updateNuribossApproveToN(String userNum) {
 	Connection con = getConnection();
 	
-	int result = new NuriterDao().updateNuribossApproveToN(con, applyNum);
+	int result = new NuriterDao().updateNuribossApproveToN(con, userNum);
 			
+	if(result > 0) { 
+        commit(con);
+    } else { 
+        rollback(con);
+    }
+	
+	return result;
+}
+
+public int updateMemberGrade2(String userNum) {
+	Connection con = getConnection();
+	
+	int result = new NuriterDao().updateMemberGrade2(con, userNum);
+	
 	if(result > 0) { 
         commit(con);
     } else { 

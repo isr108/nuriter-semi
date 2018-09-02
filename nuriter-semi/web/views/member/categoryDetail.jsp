@@ -455,7 +455,7 @@ img {
     </div>
    
 </div>
-      <%@ include file="../common/footer.jsp" %>
+      <%-- <%@ include file="../common/footer.jsp" %> --%>
       
 <script>
 $(function(){

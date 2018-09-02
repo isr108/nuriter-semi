@@ -250,7 +250,7 @@ button:hover {
 								console.log(userNum);
 								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
 								<%-- location.href="<%=request.getContextPath()%>/deleteNuriboss2.nu?applyNum="+applyNum+"&userNum="+userNum; --%>
-								location.href="<%=request.getContextPath()%>/updateNuribossStatus2.nu?applyNum="+applyNum;
+								location.href="<%=request.getContextPath()%>/updateNuribossStatus2.nu?userNum="+userNum;
 							});
 							
 							$(".listBox #myNuri").mouseenter(function(){

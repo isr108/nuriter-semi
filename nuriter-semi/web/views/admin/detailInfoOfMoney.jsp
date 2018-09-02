@@ -57,14 +57,6 @@
     	 border-color: hotpink; */
 }
 
-#child3 {
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-	overflow: hidden;
-	/* border-style: solid;
-    	 border-color: hotpink; */
-}
 
 #web-font {
 	font-family: 'Jua', sans-serif;
@@ -121,11 +113,20 @@
 	    border-style: inset;
 	    border-width: 10px;
 	} */
-#child2 table, #child3 table {
+#child2 table{
 	width: 700px;
 	height: auto;
 	text-align: center;
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
+}
+
+#child2 table th{
+	height:30px;
+	background-color:rgb(241, 196, 15);
+}
+
+#child2 table td{
+	height:50px;
 }
 
 select {

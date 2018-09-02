@@ -89,10 +89,12 @@ public class SelectNuriBossListServlet extends HttpServlet {
 		ArrayList<Nuriboss> bossList2 = new NuriterService().selectNuribossList2(currentPage2, limit);
 
 		System.out.println("누리보스 목록 불러오는 서블릿 이동 완료!");
+		System.out.println("ssss");
 		System.out.println(bossList);
 		String page = "";
 
 		if(bossList != null){
+			
 			page="views/admin/nuribossList.jsp";
 			request.setAttribute("bossList", bossList);
 			request.setAttribute("bossList2", bossList2);

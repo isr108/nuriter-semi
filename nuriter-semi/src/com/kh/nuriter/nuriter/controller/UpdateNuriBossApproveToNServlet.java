@@ -29,14 +29,18 @@ public class UpdateNuriBossApproveToNServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("누리장 승인취소 시키는 서블릿 이동 완료!");
-		String applyNum = request.getParameter("applyNum");
-		System.out.println("누리장 applyNum : " + applyNum);
+		/*String applyNum = request.getParameter("applyNum");
+		System.out.println("누리장 applyNum : " + applyNum);*/
+		String userNum = request.getParameter("userNum");
+		System.out.println("누리장 userNum : " + userNum);
 		
-		int result = new NuriterService().updateNuribossApproveToN(applyNum);
+		int result = new NuriterService().updateNuribossApproveToN(userNum);
+		int result2 = new NuriterService().updateMemberGrade2(userNum);
+		
 		System.out.println("누리장 approve 바뀌면 1 : " + result);
+		System.out.println("누리장인 멤버 grade 바뀌면1 : " + result2);
 		
-		
-		if(result > 0){
+		if(result > 0 || result2 > 0){
 			response.sendRedirect("selectNuriBossDetailList2.nu");
 		}else{
 			request.setAttribute("msg", "누리장 승인 실패!");
