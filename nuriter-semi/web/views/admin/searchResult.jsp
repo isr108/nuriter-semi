@@ -130,7 +130,7 @@
     width: 1000px;
     height: 50%;
     /* float: center; */
-    margin-left:26%;
+    /* margin-left:26%; */
     margin-bottom:1%;
 
    }
@@ -141,7 +141,7 @@
     width: 1000px;
     height: 100%;
     float: right;
-    margin-left:30%;
+    /* margin-left:30%; */
     /* margin-right: 30% */
     /* float: center; */
     /* margin-left:13%;

@@ -11,6 +11,7 @@
 	}
 	p {
 		text-align:center;
+		margin-right:8%;
 	}
 	#container {
     height:200px;
@@ -27,13 +28,14 @@
    		text-align:center;
    		float:right;
    		/* margin-top:1%; */
-   		margin-right:2%;
+   		margin-right:10%;
+   		margin-left:5%;
    }
    #web-font{
       font-family: 'Jua', sans-serif;
    }
    #noticeMain{
-   		float:left;
+   	  float:left;
    	  display:inline-block;
       font-size: 15px;
       margin-left: 50px;
@@ -73,7 +75,9 @@
       </div>
       </div>
 	<hr>
-	<p>Copyright ⓒ 2018 Nuriter Inc. All rights reserved</p>
+	<br><br>
+	<hr>
+	<p align="center">Copyright ⓒ 2018 Nuriter Inc. All rights reserved</p>
 	</font>
 	
 </body>
