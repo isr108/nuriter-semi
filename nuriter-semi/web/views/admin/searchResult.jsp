@@ -130,7 +130,7 @@
     width: 1000px;
     height: 50%;
     /* float: center; */
-    margin-left:5%;
+    margin-left:26%;
     margin-bottom:1%;
 
    }
@@ -141,7 +141,8 @@
     width: 1000px;
     height: 100%;
     float: right;
-    margin-right: 30%
+    margin-left:30%;
+    /* margin-right: 30% */
     /* float: center; */
     /* margin-left:13%;
     margin-bottom:1%; */
@@ -338,8 +339,8 @@
         <li id="web-font"><a href="#">고객문의관리</a></li>
      </ul>
    	</div>  -->       		
-<div id="showMain1">   		
- <div id="showMain" align="center">  		
+<div id="showMain1" style="align:center;">   		
+ <div id="showMain" align="center" style="align:center;">  		
    		<!-- <h1 align="center">회원 정보 전체 보기</h1> -->
 		<div  align="center">
 			<form action="<%=request.getContextPath() %>/searchMember" method="get" style="margin-left:100px;">
