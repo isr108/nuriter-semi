@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>누리터 아이디&비밀번호 찾기</title>
 <style>
    
    html{

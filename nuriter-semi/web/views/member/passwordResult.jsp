@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>비밀번호 찾기</title>
 <style>
  #iBox{
       display: inline-block;

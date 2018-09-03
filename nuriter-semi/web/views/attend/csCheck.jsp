@@ -26,7 +26,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>출석체크</title>
 <style>
 	#web-font{
       font-family: 'Jua', sans-serif;
@@ -87,6 +87,21 @@
 	.pageArea{
 	padding-left:20%;
 	}
+	
+	  #notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    }
+    li.na {
+    width: 120px;
+    border-style: solid;
+    border-color: rgb(241, 196, 15);
+    border-top: none;
+    border-bottom: none;
+}
 </style>
 </head>
 <body><font id="web-font">
@@ -145,7 +160,7 @@
 				 <%} } %>
 			</table>
 		</div>	
-		<br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div class="tableArea">
     <h3 align="left">개설중인 누리터</h3> 
 			<table align="center" id="listArea">
@@ -174,7 +189,8 @@
 		</div>
 		
 	</div>
-	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<%@ include file="../common/footer.jsp" %>
 	<script>
 		$(function(){
 			var usernumber = <%=loginUser.getUserNumber()%>

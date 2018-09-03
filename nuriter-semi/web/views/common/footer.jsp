@@ -28,7 +28,7 @@
    		text-align:center;
    		float:right;
    		/* margin-top:1%; */
-   		margin-right:10%;
+   		/* margin-right:10%; */
    		margin-left:5%;
    }
    #web-font{
@@ -74,8 +74,6 @@
 	      <input type ="button" id="callMe" value="전화 전 클릭" onclick="location.href='<%=request.getContextPath()%>/views/notice/fnq.jsp'">
       </div>
       </div>
-	<hr>
-	<br><br>
 	<hr>
 	<p align="center">Copyright ⓒ 2018 Nuriter Inc. All rights reserved</p>
 	</font>

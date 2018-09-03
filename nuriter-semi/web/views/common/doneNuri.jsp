@@ -121,7 +121,22 @@
 	    border-bottom-right-radius: 5px;
 	    pointer: cursor;
 	
-
+}
+#notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    }
+    
+    li.na {
+    width: 120px;
+    border-style: solid;
+    border-color: rgb(241, 196, 15);
+    border-top: none;
+    border-bottom: none;
+}
 </style>
 </head>
 <body>
