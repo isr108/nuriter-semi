@@ -472,7 +472,7 @@
 	        		<% if(!loginUser.getUserEmail().equals("admin")){ %>
 						<button class="button" onclick="location.href='<%=request.getContextPath()%>/selectMyNuriList.nu?'">마이페이지</button>
 					<% }else{ %>
-						<button class="button" onclick="location.href='<%=request.getContextPath()%>/selectAll'">관리페이지</button>
+						<button class="button" onclick="location.href='<%=request.getContextPath()%>/views/admin/adminMain.jsp'">관리페이지</button>
 					<% } %>
 	        
 	        <%} %>
