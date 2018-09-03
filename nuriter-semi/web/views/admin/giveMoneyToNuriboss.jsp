@@ -225,7 +225,7 @@ button:hover {
 								}).click(function(){
 									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
 									var ownerNum = $(this).parent().children("#ownerNum").children("input").val();
-									alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum);
+									/* alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum); */
 									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
 								});
 								

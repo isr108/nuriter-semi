@@ -217,8 +217,8 @@ button:hover {
 									$(this).css({"background":"white"});
 								}).click(function(){
 									var nuriNum = $(this).parent().children("#give").children("input").val();
-									console.log(nuriNum);
-									alert("누리터번호 : " + nuriNum);
+									/* console.log(nuriNum);
+									alert("누리터번호 : " + nuriNum); */
 									location.href="<%=request.getContextPath()%>/updatePayStatus.nu?nuriNum=" + nuriNum;
 								});
 							});

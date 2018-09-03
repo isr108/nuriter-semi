@@ -50,6 +50,8 @@
    	float: right;
    	overflow: hidden;
    	background:rgb(248, 223, 125);
+    margin-bottom: 150px;
+   	
    }
    
    #upBox{
@@ -75,7 +77,15 @@
 <%@ include file="../common/logoAndLogbutton.jsp" %>
 
 <div id="main">
- 	<%@ include file="../admin/adminbar.jsp"%>
+ 	<% if(loginUser != null && loginUser.getUserEmail().equals("admin")){ %>
+	
+		<%@ include file="../admin/adminbar.jsp"%>
+
+   	<% }else{ %>
+   	
+   	<br><br><br><br>
+   	
+   	<% } %>
  	
  	<div id="noticeDetail" align="center">
  		<div id="upBox" align="center">
@@ -125,6 +135,6 @@
  		</div>
  	</div>
 </div>
-
+<br><br><br><br>
 </body>
 </html>
