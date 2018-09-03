@@ -246,10 +246,9 @@ button:hover {
 							}).click(function(){
 								var applyNum = $(this).parent().children("#test1").children("input").val();
 								var userNum = $(this).parent().children("#test2").children("input").val();
-								console.log(applyNum);
+								/* console.log(applyNum);
 								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
-								<%-- location.href="<%=request.getContextPath()%>/deleteNuriboss2.nu?applyNum="+applyNum+"&userNum="+userNum; --%>
+								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum); */
 								location.href="<%=request.getContextPath()%>/updateNuribossStatus2.nu?userNum="+userNum;
 							});
 							
@@ -259,7 +258,7 @@ button:hover {
 								$(this).css({"background":"white"});
 							}).click(function(){
 								var userNum = $(this).parent().children("#test2").children("input").val();
-								alert("유저번호 : " + userNum);
+								/* alert("유저번호 : " + userNum); */
 								location.href="<%=request.getContextPath()%>/selectNuribossNuriterList.nu?userNum=" + userNum;
 							});
 							
