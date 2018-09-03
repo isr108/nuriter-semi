@@ -12,7 +12,6 @@
    
    /* int name = Integer.parseInt(request.getParameter("name")) ;
    System.out.print("name :" +name);  */
-
 %>
    
    
@@ -30,14 +29,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<title>Insert title here</title>
+<title>누리터</title>
 
 
 <style>
 	#web-font-Nanum{
 		font-family: 'Song Myung', serif;
 	}
-
 	html{
    		height:100%;
    }
@@ -270,7 +268,6 @@
 	    boder-radius:4px;
 	    pointer: cursor;
 	}
-
 	.pagination a {
 	    color: black;
 	    padding: 8px 16px;
@@ -288,13 +285,11 @@
 		background-color: #ddd;
 		pointer: cursor;
 	}
-
 	.pagination a:first-child {
 	    border-top-left-radius: 5px;
 	    border-bottom-left-radius: 5px;
 	    pointer: cursor;
 	}
-
 	.pagination a:last-child {
 	    border-top-right-radius: 5px;
 	    border-bottom-right-radius: 5px;
@@ -310,6 +305,29 @@
     	height:auto;
     	radius: 5px;
     }
+    
+       #notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 300px;
+    margin-bottom: 40px;
+}
+
+ #help {
+    text-align: center;
+    float: right;
+    /* margin-top: 1%; */
+    margin-right: 5%;
+     margin-left: 5%;
+    }
+    
+  .na1:hover{
+     color:#FF4500;
+   }
+  .na1{
+  	cursor:pointer;
+  }   
 </style>
 </head>
 <body>

@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-<title>Insert title here</title>
+<title>누리터 회원가입</title>
 <style>
    
    html{
@@ -387,9 +387,6 @@
 				var yes = document.getElementById("yes").checked;
 				var num = 0;
 				
-				/* if(yes == true){
-					 num=1;
-				} */
 				
 				if(yes == true){
 					$("#form1").submit();
@@ -457,52 +454,21 @@
 						alert("인증되었습니다.");
 					}
 				});
-
-				<%-- $("#btn_id").click(function(){
-					var w = window.open("about:blank","width=500, height=700");
-				     
-				     // value 가져옴
-				        var userName=  $("#userName").val();
-				        var phone =  $("#phone").val();
-				        var bancknumber = $("#bancknumber").val();
-				        var date = $("#date").val();
-				        	    
-				        // 어떤 데이터를 보낼것인가?
-				         var regi_data= {"userName":userName,"phone":phone,
-				        				 "bancknumber":bancknumber, "date":date
-				        				};
-				        $.ajax({
-				            url:"/ns/banckCheck",
-				            type:"post",
-				            data:regi_data,
-				            
-				            success : eventSuccess,
-				            
-				            error:function(data){
-				                console.log("실패");
-				            }//error
-				            
-				            
-				            
-				        });//ajax
-				            
-				        function eventSuccess(data)
-				        {
-				        	//여기서 팝업된 창의 주소를 변경하자.
-				        	w.location.href = "<%=request.getContextPath()%>/views/member/banckCheck.jsp";
-				        }
-				    }); --%>
 				
-				 $("#banckCheck").click(function(){
+				  $("#banckCheck").click(function(){
 					 var userName=  $("#userName").val();
 				        var phone =  $("#phone").val();
 				        var bancknumber = $("#bancknumber").val();
 				        var date = $("#date").val();
-					<%-- window.open("<%=request.getContextPath()%>/banckCheck?userName="+usrName+"&phone="+phone+"&bancknumber="+bancknumber+"&date="+date, "", "width=500, height=700"); --%>
-					window.open("<%=request.getContextPath()%>/views/member/banckCheck.jsp", "", "width=500, height=700");
-					<%-- location.href="<%=request.getContextPath()%>/attendonedeteil.nu?nunum="+nunum+"&usernumber="+usernumber; --%>
+				        
+				        var year = date.substring(2,4);
+				        var month = date.substring(5,7);
+				        var date1 = date.substring(8,10);
+				        
+				        var day = year+month+date1;
+				
+					window.open("<%=request.getContextPath()%>/views/member/banckCheck.jsp?userName="+userName+"&phone="+phone+"&bancknumber="+bancknumber+"&day="+day, "", "width=500, height=700");
 					
-					<%-- location.href='<%=request.getContextPath()%>/views/member/banckCheck.jsp'; --%>
 				});
 				
 			});
@@ -550,30 +516,13 @@
 			location.href='<%=request.getContextPath()%>/';
 		}
 		
-			/*$(function(){
-				$("#idCheck").click(function(){
-					var userId = $("#userEmail").val();
-					console.log("클릭");
-					$.ajax({
-						url:"/jsp/idCheck.me",
-						type:"post",
-						data:{userId:userId},
-						success:function(data){
-							console.log(data);
-							if(data === "fail"){
-								alert("아이디가 중복됩니다.");
-							}else{
-								alert("사용 가능합니다.")
-							}
-						},
-						error:function(data){
-							console.log("실패");
-						}
-					});
-				});
-			});
-	 */
 	</script> 
 	</div></font>
 </body>
 </html>
+
+
+
+
+
+

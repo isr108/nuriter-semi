@@ -95,7 +95,7 @@ button{
 				<!-- 기능 -->
 				<li id="web-font"><a href="views/notice/fnq.jsp">고객센터</a></li>
 				<hr class="colorgraph">
-				<li id="web-font"><a href="views/notice/fnq.jsp">자주묻는질문</a></li>
+				<li id="web-font"><a href="<%=request.getContextPath()%>/views/notice/fnq.jsp">자주묻는질문</a></li>
 				<li id="web-font"><a
 					href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 			</ul>

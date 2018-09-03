@@ -318,6 +318,20 @@ button{
 	     border: 2px solid rgb(241, 196, 15); /* Green */
 	     color: rgb(241, 196, 15);
    	}
+   	 #notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 200px;
+    margin-bottom: 40px;
+    }
+    #help {
+    text-align: center;
+    float: right;
+    /* margin-top: 1%; */
+    margin-right: 15%;
+    /* margin-left: 5%; */
+    }
 </style>
 </head>
 <body>
@@ -328,7 +342,6 @@ button{
 	 <div id="showMain">
   
      <div id="showRight">
-      
         <div id="tableDiv">
         	<%
         		for(int i = 0; i < pictureList.size(); i++){

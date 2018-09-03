@@ -296,6 +296,21 @@
     td {
     	display: inline-block; width: 200px; white-space: nowrap; overflow: hidden;
     }
+      #notice {
+    float: center;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 200px;
+    margin-bottom: 40px;
+    }
+    
+     #help {
+    text-align: center;
+    float: right;
+    /* margin-top: 1%; */
+    margin-right: 15%;
+    margin-left: 1%;
+    }
 </style>
 </head>
 <body>

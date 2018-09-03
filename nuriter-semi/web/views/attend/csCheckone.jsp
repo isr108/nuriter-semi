@@ -66,7 +66,7 @@ int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>누리원 출석체크</title>
 <style>
 	#web-font{
       font-family: 'Jua', sans-serif;

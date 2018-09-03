@@ -2,6 +2,10 @@
     pageEncoding="UTF-8" import="com.kh.nuriter.member.model.vo.*, com.kh.nuriter.nuriter.model.vo.PageInfo, java.util.*, com.kh.nuriter.nuriter.model.vo.*"%>
  
 <% Member loginUser = (Member)session.getAttribute("loginUser");%>
+
+<%@page import="java.text.SimpleDateFormat"%>
+
+<%@page import="java.util.Calendar"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +21,7 @@
   <!-- <script src="/lib/jquery-1.12.2.min.js"></script>
   <script src="/lib/bootstrap.min.js"></script> -->
   
-<title>Insert title here</title>
+<title>누리터</title>
 
 
 <style>
@@ -353,7 +357,7 @@
       float:center;
    	  display:inline-block;
       font-size: 15px;
-      margin-left: 300px;
+      margin-left: 200px;
       margin-bottom: 40px;
    }
    #notice:hover{
@@ -582,6 +586,21 @@
    		 <%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
+        			
+        			String date = hmap.get("start_date").toString();
+        			String year = date.substring(0,4);
+        			String month = date.substring(5,7);
+        			String date1 = date.substring(8,10);
+        			
+        			String day = year + month + date1;
+        			
+        			Calendar todayCal = Calendar.getInstance();
+        			SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        			int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+        			
+        			int day2 = Integer.parseInt(day);
+        			
+        			int day3 = day2 - intToday;
         	%>
         	<div id="listBox1">
         		<table id="nuriterListArea">
@@ -604,7 +623,7 @@
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<td id="d-day" align="right">Day-<%= hmap.get("start_date") %>일</td>
+           				<td id="d-day" align="right">Day-<%= day3 %>일</td>
            			</tr>
             	</table>
 			</div>
@@ -616,6 +635,23 @@
    		 <%
         		for(int i = 0; i < pictureList2.size(); i++){
         			HashMap<String,Object> hmap2 = pictureList2.get(i);
+        			
+        			String date = hmap2.get("start_date").toString();
+        			String year = date.substring(0,4);
+        			String month = date.substring(5,7);
+        			String date1 = date.substring(8,10);
+        			
+        			String day = year + month + date1;
+        			
+        			Calendar todayCal = Calendar.getInstance();
+        			SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        			int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+        			
+        			int day2 = Integer.parseInt(day);
+        			
+        			int day3 = day2 - intToday;
+        			
+        			
         	%>
         	<div id="listBox1">
         		<table id="nuriterListArea">
@@ -638,7 +674,7 @@
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap2.get("nuri_number")%>">
-           				<td id="d-day" align="right">Day-<%= hmap2.get("start_date") %>일</td>
+           				<td id="d-day" align="right">Day-<%= day3 %>일</td>
            			</tr>
             	</table>
 			</div>
@@ -650,6 +686,21 @@
    		 <%
         		for(int i = 0; i < pictureList3.size(); i++){
         			HashMap<String,Object> hmap3 = pictureList3.get(i);
+        			
+        			String date = hmap3.get("start_date").toString();
+        			String year = date.substring(0,4);
+        			String month = date.substring(5,7);
+        			String date1 = date.substring(8,10);
+        			
+        			String day = year + month + date1;
+        			
+        			Calendar todayCal = Calendar.getInstance();
+        			SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+        			int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+        			
+        			int day2 = Integer.parseInt(day);
+        			
+        			int day3 = day2 - intToday;
         	%>
         	<div id="listBox1">
         		<table id="nuriterListArea">
@@ -672,7 +723,7 @@
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap3.get("nuri_number")%>">
-           				<td id="d-day" align="right">Day-<%= hmap3.get("start_date") %>일</td>
+           				<td id="d-day" align="right">Day-<%= day3 %>일</td>
            			</tr>
             	</table>
 			</div>
