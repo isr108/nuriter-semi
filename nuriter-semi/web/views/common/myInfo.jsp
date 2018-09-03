@@ -134,6 +134,13 @@ colorgroup {
 a {
 	color: black;
 }
+li.na {
+    width: 120px;
+    border-style: solid;
+    border-color: rgb(241, 196, 15);
+    border-top: none;
+    border-bottom: none;
+}
 </style>
 </head>
 <body>

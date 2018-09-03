@@ -463,80 +463,60 @@ img {
 			      } 
 			  });    
 			  </script>
-				</div>
+   		</div>
+   		
+	        <hr>
+	        <p><font id="web-font-Nanum" size="4px">가격(1인) : <%= n.getPrice() %> 원</font></p>
+	        <p><font id="web-font-Nanum" size="4px">정원 : <%= n.getPersonnel() %> 명</font></p>
+	        <p><font id="web-font-Nanum" size="4px">현재까지 신청된 인원은 <%= n.getEnterCount() %> 명 입니다.</font></p>
+	        <p><font id="web-font-Nanum" size="4px">이 누리터는 <%= n.getInterestCount() %> 명의 관심을 받고있습니다.</font></p>
+        
+        
+        <hr color="red" size="10px">
+        
+        <div class="likeOrAngry" align="center">
+        
+	        <div class="hobbyDiv">
+	             <i class="far fa-grin-hearts fa-5x"></i><br><font id="web-font" size="5px">관심누리터 등록</font>
+	        </div>
+	            
+	        <div>
+	             <i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal" data-target="#popupDiv"></i><br><font id="web-font" size="5px">게시글 신고</font>
+	        </div>
+	         
+            <div id="popupDiv" class="modal fade" role="dialog">
+	            <h2 id="web-font">누리터 신고</h2>
+	            <div id="textArea">
+		            <h5 id="web-font">신고 제목</h5>
+		            <input type="text" style="width:300px; height:30px;border:6px solid #FFBF00;" id="reportTitle" name="reportTitle">
+		            <h5 id="web-font">신고 내용</h5>
+		            <textarea rows="15" cols="50" id="report" style="border:6px solid #FFBF00;" name="reportContent"></textarea>
+	            </div>
+	            <div class="popBtn">
+		            <button id="popSendbtn">send</button>
+		            <button id="popCloseBtn">close</button>
+	            </div>
+           </div>
+        </div>
+         
+         <% if(loginUser != null){ %>
+         <div id="enterDiv" align="center">
+         	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
+         </div>
+         <% } %>
+                                                                                     
+                                                                                     
+                                                                                     
+         
+         </div>
+         <br><br>
+    </div>
+   
+</div>
+ <%-- <%@ include file="../common/footer.jsp" %> --%>
 
-				<hr>
-				<p>
-					<font id="web-font-Nanum" size="4px">가격(1인) : <%= n.getPrice() %>
-						원
-					</font>
-				</p>
-				<p>
-					<font id="web-font-Nanum" size="4px">정원 : <%= n.getPersonnel() %>
-						명
-					</font>
-				</p>
-				<p>
-					<font id="web-font-Nanum" size="4px">현재까지 신청된 인원은 <%= n.getEnterCount() %>
-						명 입니다.
-					</font>
-				</p>
-				<p>
-					<font id="web-font-Nanum" size="4px">이 누리터는 <%= n.getInterestCount() %>
-						명의 관심을 받고있습니다.
-					</font>
-				</p>
-
-
-				<hr color="red" size="10px">
-
-				<div class="likeOrAngry" align="center">
-
-					<div class="hobbyDiv">
-						<i class="far fa-grin-hearts fa-5x"></i><br>
-						<font id="web-font" size="5px">관심누리터 등록</font>
-					</div>
-
-					<div>
-						<i class="fas fa-angry fa-5x" id="popOpen" data-toggle="modal"
-							data-target="#popupDiv"></i><br>
-						<font id="web-font" size="5px">게시글 신고</font>
-					</div>
-
-					<div id="popupDiv" class="modal fade" role="dialog">
-						<h2 id="web-font">누리터 신고</h2>
-						<div id="textArea">
-							<h5 id="web-font">신고 제목</h5>
-							<input type="text"
-								style="width: 300px; height: 30px; border: 6px solid #FFBF00;"
-								id="reportTitle" name="reportTitle">
-							<h5 id="web-font">신고 내용</h5>
-							<textarea rows="15" cols="50" id="report"
-								style="border: 6px solid #FFBF00;" name="reportContent"></textarea>
-						</div>
-						<div class="popBtn">
-							<button id="popSendbtn">send</button>
-							<button id="popCloseBtn">close</button>
-						</div>
-					</div>
-				</div>
-
-				<% if(loginUser != null){ %>
-				<div id="enterDiv" align="center">
-					<button id="enter" onclick="choice();">
-						<font id="web-font-Nanum" size="3px">누리터 신청하기</font>
-					</button>
-				</div>
-				<% } %>
-
-			</div>
-			<br>
-			<br>
-		</div>
-
-	</div>
-
-	<script>
+      
+<script>
 $(function(){
 	$(function(){
 		window.onload=function(){
@@ -700,7 +680,6 @@ function choice(){
 	var answer = window.confirm("환불 후 재결제는 불가능합니다. 계속 진행하시겠습니까?");
 	var count = '<%= n.getEnterCount() %>';
 	var parsonnel ='<%= n.getPersonnel() %>';
-	var answer2 = window.confirm("정원이 다 찼습니다");
 	
 	if(answer==true){
 		if(parsonnel < count){

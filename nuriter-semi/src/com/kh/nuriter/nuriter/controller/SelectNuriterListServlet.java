@@ -86,6 +86,7 @@ public class SelectNuriterListServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
 			request.setAttribute("pictureList", pictureList);
+			request.setAttribute("category", category);
 		}else{
 			page="views/common/errorPage.jsp";
 			request.setAttribute("msg", "누리터 목록 조회 실패");

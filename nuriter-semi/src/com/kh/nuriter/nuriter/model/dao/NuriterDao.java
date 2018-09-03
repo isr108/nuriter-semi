@@ -2521,7 +2521,7 @@ public class NuriterDao {
 	}
 
 
-	public int updateNuribossApproveToN(Connection con, String applyNum) {
+	public int updateNuribossApproveToN(Connection con, String userNum) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -2529,7 +2529,7 @@ public class NuriterDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, applyNum);
+			pstmt.setString(1, userNum);
 			
 			result = pstmt.executeUpdate();
 			
@@ -2539,6 +2539,28 @@ public class NuriterDao {
 			close(pstmt);
 		}
 		
+		
+		return result;
+	}
+
+
+	public int updateMemberGrade2(Connection con, String userNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("updateMemberGrade2EB");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
 		return result;
 	}

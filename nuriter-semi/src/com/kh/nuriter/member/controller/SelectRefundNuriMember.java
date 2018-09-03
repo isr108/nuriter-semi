@@ -56,7 +56,7 @@ public class SelectRefundNuriMember extends HttpServlet {
       }
 
       System.out.println("1번 currentPage : " + currentPage);
-      System.out.println("2번 currentPage : " +currentPage2  );
+      System.out.println("2번 currentPage : " +currentPage2);
 
       int listCount = new MemberService().getRefundMemberCount();
       int listCount2 = new MemberService().getRefundMemberCount2();

@@ -231,7 +231,7 @@ button:hover {
 								$(this).parent().css({"background":"white"});
 							}).click(function(){
 								var num = $(this).parent().children("#test1").children("input").val();
-								alert("야 !!! " + num);
+								/* alert("야 !!! " + num); */
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
@@ -242,9 +242,9 @@ button:hover {
 							}).click(function(){
 								var applyNum = $(this).parent().children("#test1").children("input").val();
 								var userNum = $(this).parent().children("#test2").children("input").val();
-								console.log(applyNum);
+								/* console.log(applyNum);
 								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
+								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum); */
 								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							
@@ -255,9 +255,9 @@ button:hover {
 							}).click(function(){
 								var applyNum = $(this).parent().children("#test1").children("input").val();
 								var userNum = $(this).parent().children("#test2").children("input").val();
-								console.log(applyNum);
+								/* console.log(applyNum);
 								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum);
+								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum); */
 								location.href="<%=request.getContextPath()%>/deleteNuriboss.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							

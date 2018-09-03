@@ -215,7 +215,7 @@ button:hover {
 										$(this).css({"background":"white"});
 									}).click(function(){
 										var num = $(this).parent().children("input").val();
-										alert("야 !!! " + num);
+										/* alert("야 !!! " + num); */
 										location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 									});
 										
@@ -313,7 +313,7 @@ button:hover {
 										$(this).css({"background":"white"});
 									}).click(function(){
 										var num = $(this).parent().children("input").val();
-										alert("야 !!! " + num);
+										/* alert("야 !!! " + num); */
 										location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 									});
 										

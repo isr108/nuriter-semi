@@ -162,8 +162,16 @@
 	<%@ include file="../common/logoAndLogbutton.jsp" %>
 	
 	<div id="main">
+	
+	<% if(loginUser != null && loginUser.getUserEmail().equals("admin")){ %>
+	
 		<%@ include file="../admin/adminbar.jsp"%>
 
+   	<% }else{ %>
+   	
+   	<br><br><br><br>
+   	
+   	<% } %>
    	
    	<div id="notice" align="center">
    		<div id="upBox" align="center">

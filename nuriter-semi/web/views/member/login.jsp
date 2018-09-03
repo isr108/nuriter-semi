@@ -179,34 +179,6 @@
 	 </form>
 	 </div>
 	 <br>
-	  <!-- <button id="naver_id_login" type="button" style="width: 290px; height: 30px;" onclick="openChild()"><font id="web-font">네이버 로그인</font></button> --> 
-	<!-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>-->
-<%-- <%
-  String clientId = "p7rY8Kd2Yc3e2TAc4l38";//애플리케이션 클라이언트 아이디값";
-  String redirectURI = URLEncoder.encode("http://localhost:8001/ns/naverlogin", "UTF-8");
-  SecureRandom random = new SecureRandom();
-  String state = new BigInteger(130, random).toString();
-  String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-  apiURL += "&client_id=" + clientId;
-  apiURL += "&redirect_uri=" + redirectURI;
-  apiURL += "&state=" + state;
-  session.setAttribute("state", state);
-%>  --%>
-
-<%--  <%
-    String clientId = "p7rY8Kd2Yc3e2TAc4l38";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:8001/ns/views/member/navercallback.jsp", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- %>
-  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
-
-<%-- <%@ include file="/views/member/naverLogin.jsp" %> --%>
 
  <div id="naver_id_login"></div>
 <script type="text/javascript"
@@ -225,18 +197,9 @@
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();
 </script>
-	   <%--  <form id="login" method="post" name="frm" action="<%=request.getContextPath()%>/snslogin.me">
-		
-		<input type="hidden" name="useremail">
-		<input type="hidden" name="idNum">
-		<input type="hidden" name="nickname">
-		<input type="hidden" name="refreshToken">
-	</form> --%>
 
 	
 	 <br>
-	<!-- <button type="button" style="width: 290px; height: 30px;"><font id="web-font">카카오톡으로
-				시작하기</font></button> -->
 				<a id="kakao-login-btn"></a>
 				<a href="http://developers.kakao.com/logout"></a>
 				<script type='text/javascript'>
@@ -312,18 +275,6 @@
 	</form>
 	</div>
 
-	
-	 <%--     <script>
-        function openChild()
-        {
-            // window.name = "부모창 이름"; 
-            window.name = "parentForm";
-            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-            window.open("<%=apiURL%>",
-                    "childForm", "width=570, height=350, resizable = no, scrollbars = no");    
-        }
-   </script> --%>
-	
 	<script>
 		function home(){
 			location.href='<%=request.getContextPath()%>/';

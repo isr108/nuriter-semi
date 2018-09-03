@@ -121,11 +121,20 @@
 	    border-style: inset;
 	    border-width: 10px;
 	} */
-#child2 table, #child3 table {
+#child2 table{
 	width: 700px;
 	height: auto;
 	text-align: center;
 	border-radius: 5px; /* iOS 둥근모서리 제거 */
+}
+
+#child2 table th{
+	height:30px;
+	background-color:rgb(241, 196, 15);
+}
+
+#child2 table td{
+	height:50px;
 }
 
 select {
@@ -216,7 +225,7 @@ button:hover {
 								}).click(function(){
 									var nuriNum = $(this).parent().children("#nuriNum").children("input").val();
 									var ownerNum = $(this).parent().children("#ownerNum").children("input").val();
-									alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum);
+									/* alert("누리터번호는 " + nuriNum + "누리장번호는 " + ownerNum); */
 									location.href="<%=request.getContextPath()%>/selectNuriTotalMoney.nu?nuriNum="+nuriNum+"&ownerNum="+ownerNum;
 								});
 								
