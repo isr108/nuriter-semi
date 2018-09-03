@@ -82,7 +82,7 @@ img {
 	height: 100px;
 	box-sizing: border-box;
 	border-style: solid;
-	border-color: rgb(241, 196, 15);
+	/* border-color: rgb(241, 196, 15); */
 }
 
 .commentBtn {
@@ -150,9 +150,14 @@ img {
 	<br>
 	<div class="main">
 		<%
-			if (!loginUser.getUserEmail().equals("admin") && loginUser != null) {
+			if (loginUser.getUserEmail().equals("admin")) {
 		%>
-		<div id="showLeft">
+		<%@ include file="../admin/adminbar.jsp"%>
+	
+		<%
+			} else {
+		%>
+			<div id="showLeft">
 			<ul class="navi2" style="list-style-type: none">
 				<hr class="colorgraph">
 				<!-- 기능 -->
@@ -163,10 +168,6 @@ img {
 					href="<%=request.getContextPath()%>/selectqnalist.sql">1:1 문의하기</a></li>
 			</ul>
 		</div>
-		<%
-			} else {
-		%>
-		<%@ include file="../admin/adminbar.jsp"%>
 		<%
 			}
 		%>

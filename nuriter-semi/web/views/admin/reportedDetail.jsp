@@ -25,7 +25,6 @@
 	margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto;
-	background:black;
 	width: 80%;
 	height: 500px;
 }
@@ -39,7 +38,6 @@ table tr td {
 #reportBtn{
 	margin-right:auto;
 	margin-left:auto;
-	background:red;
 	height:30px;
 	width:150px;
 	margin-top:15px;
@@ -48,8 +46,6 @@ button{
 	padding-right: 30px;
 	padding-left:30px;
 	background:rgb(241, 196, 15);
-	
-	
 	
 }
 </style>

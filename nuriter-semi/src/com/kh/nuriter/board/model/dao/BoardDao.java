@@ -46,7 +46,7 @@ public class BoardDao {
 			pstmt.setString(2, rNuri.getBoardContent());
 			pstmt.setString(3, (rNuri.getUserNum())+"");
 			pstmt.setString(4, rNuri.getN_ownerNum());
-		
+			pstmt.setString(5, rNuri.getNuriNum());
 			
 			result = pstmt.executeUpdate();
 			

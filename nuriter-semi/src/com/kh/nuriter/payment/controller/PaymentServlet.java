@@ -105,7 +105,8 @@ public class PaymentServlet extends HttpServlet {
 				request.getRequestDispatcher(page).forward(request, response);
 
 			}else{
-				System.out.println("실패");
+				page="/selectNuriterOne.nu?num="+nuriNum;
+				request.getRequestDispatcher(page).forward(request, response);
 			}
 
 
