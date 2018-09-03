@@ -330,13 +330,13 @@
      
         <div id="showRightButton">
             <button id="web-font-Nanum" class="button" onclick="location.href='/ns/views/member/nuriterOpen.jsp' ">누리터 개설하기</button>
-               <div class="select-control inline-block width-100px" align="right">
+               <!-- <div class="select-control inline-block width-100px" align="right">
                <select class="input-xs" onchange="sendGAClickEvent('정렬 방식 변경 - ' + this.value)">
                     <option value="recommendation_point">추천순</option>
                     <option value="ranking_points" selected=" ">랭킹순</option>
                     <option value="created_at">신규등록순</option>
               </select>
-        	</div>  
+        	  </div>   -->
               
        </div>
       

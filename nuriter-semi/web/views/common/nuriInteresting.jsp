@@ -152,6 +152,7 @@
       display: inline-block;
       width:100%;
       height:100%;
+      margin-left:10%;
    }
    
    #showLeft{
@@ -306,17 +307,27 @@
   
      <div id="showRight">
       
-        <div id="tableDiv" align="center">
+        <div id="tableDiv">
         	<%
         		for(int i = 0; i < pictureList.size(); i++){
         			HashMap<String,Object> hmap = pictureList.get(i);
-        	%>
+ 					if(i == 4){
+ 			%>		
+ 					<br><br><br><br><br><br><br><br>
+ 			    <%  } %>
+ 			    
         		<table id="nuriterListArea">
-
-
            			<tr id="tableHiddenTop">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>
+           				<th><img src="/ns/thumbnail_uploadFiles/<%=hmap.get("change_name") %>" width="230px" height="230px" onclick=""></th>           			
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td id="priceTd" align="left">[<%= hmap.get("category_name") %>]</td>
+           			</tr>
+           			<tr>
+           				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
+           				<td>&nbsp;&nbsp;<%= hmap.get("start_date")%> ~ <%= hmap.get("end_date")%></td>
            			</tr>
            			<tr align="center">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
@@ -325,19 +336,20 @@
            			</tr>
            			<tr id="tableHidden">
            				<input type="hidden" value="<%= hmap.get("nuri_number")%>">
-           				<td id="priceTd" align="right"><%= hmap.get("price") %> 원</td>
+           				<td id="priceTd" align="right"><%= hmap.get("price") %>원</td>
            			</tr>
             	</table>
 
         	<%  System.out.println(hmap.get("nuri_number")); } %>
 
             
-            <br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br>
             
              <!-- 페이지처리 -->
 
 
              <!-- <div class="pageArea" align="center"> -->
+             <div align="center" style="padding-right:20%;">
              <div class="pagination" align="center" id="web-font">
              <br>
              	<a href="location.href='<%= request.getContextPath()%>/selectTemptingNuriList.nu?currentPage=1'"><<</a>
@@ -366,14 +378,13 @@
              	<% } %>
              	<a onclick="location.href='<%= request.getContextPath()%>/selectTemptingNuriList.nu?currentPage=<%= maxPage %>'">>></a>
              </div>
-        
-    </div>
-   
-     	<%@ include file="../common/footer.jsp" %>
-    </div>
-   
-     
-		</div>
+ 		 	 	</div>
+ 		 	 		</div>
+     				<%@ include file="../common/footer.jsp" %>
+						</div>
+							</div>
+							
+	
   
  <script>
   <%-- $(function() {
