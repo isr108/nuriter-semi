@@ -133,7 +133,7 @@ table tr td {
 	<br>
 	<div class="main" id="web-font">
 		<%
-         if (!loginUser.getUserEmail().equals("admin") && loginUser != null) {
+         if (!loginUser.equals("admin") && loginUser != null) {
       %>
 		<div id="showLeft">
 			<ul class="navi2" style="list-style-type: none">
@@ -152,6 +152,8 @@ table tr td {
 		<%} %>
 
 		<div class="showRight">
+		<br>
+		<h2 id="web-font" align="center">1:1 문의하기</h2>
 			<div class="buttonArea">
 				<button id="bButton"
 					onclick="location.href='views/notice/quaInquire.jsp'">게시글

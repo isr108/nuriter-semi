@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
+	pageEncoding="UTF-8"
+	import="com.kh.nuriter.nuriter.model.vo.*,com.kh.nuriter.payment.model.vo.*"%>
 <% 
    Nuriter n = (Nuriter)request.getAttribute("n"); 
    String nuriNum=(String)request.getAttribute("num");
@@ -12,363 +13,417 @@
 <html>
 <head>
 <meta charset=UTF-8">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <link href="https://fonts.googleapis.com/css?family=Song+Myung" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<link href="https://fonts.googleapis.com/css?family=Song+Myung"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous">
+
 <title>categoryDetail</title>
 <style>
-#textBox{
-	width:400px;
-	height:auto;
-	overflow:hidden;
+#textBox {
+	width: 400px;
+	height: auto;
+	overflow: hidden;
 }
-    
+
 hr {
-	width:90%;
-}
-.content{
-   margin-top: 170px;
-   border:1px solid white;
-   margin-left:auto;
-   margin-right:auto;
-   width: 1300px;
-   min-height: 935px;
+	width: 90%;
 }
 
-.leftBox{
-   float:left;
-   margin-top:50px;
+.content {
+	margin-top: 170px;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1300px;
+	min-height: 935px;
 }
 
-.images{
-   border:2px solid #FFBF00;
-   border-radius: 6px;
-   padding-top:50px;
-   margin-top: 50px;
-   width:705px;
-   height:auto;
-   float:left;
-   overflow:hidden;
-}
-img{
-    width: 100px;
-    object-fit: contain;
+.leftBox {
+	float: left;
+	margin-top: 50px;
 }
 
+.images {
+	border: 2px solid #FFBF00;
+	border-radius: 6px;
+	padding-top: 50px;
+	margin-top: 50px;
+	width: 705px;
+	height: auto;
+	float: left;
+	overflow: hidden;
+}
 
-#tabs{
-   width:500px;
-   margin-top:50px;
+img {
+	width: 100px;
+	object-fit: contain;
+}
+
+#tabs {
+	width: 500px;
+	margin-top: 50px;
 }
 
 .rightBox {
-   float:right;
+	float: right;
 }
 
 #info {
-   border:2px solid #FFBF00;
-   width:450px;
-   height:auto;
-   margin-bottom: 20px;
-   overflow:hidden; 
-   border-radius: 6px;
-   
+	border: 2px solid #FFBF00;
+	width: 450px;
+	height: auto;
+	margin-bottom: 20px;
+	overflow: hidden;
+	border-radius: 6px;
 }
 
-.likeOrAngry > div{
-    margin-left: 10px;
-	border:2px solid #FFBF00;
-	float:left;
+.likeOrAngry>div {
+	margin-left: 10px;
+	border: 2px solid #FFBF00;
+	float: left;
 	width: 210px;
 	border-radius: 4px;
 	cursor: pointer;
 }
 
-.likeOrAngry > div:hover{
-	border:2px solid #FFBF00;
-	background:#F5D0A9;
-	float:left;
+.likeOrAngry>div:hover {
+	border: 2px solid #FFBF00;
+	background: #F5D0A9;
+	float: left;
 	width: 210px;
 	border-radius: 4px;
 	opacity: 0.8;
 }
 
 button {
-   margin-top:10px;
-   width:200px;
-   height:50px;
+	margin-top: 10px;
+	width: 200px;
+	height: 50px;
 }
 
-#aboutHe{
-   border:1px solid black;
-   width:450px;
-   height:400px;
-   padding-top:20px;
+#aboutHe {
+	border: 1px solid black;
+	width: 450px;
+	height: 400px;
+	padding-top: 20px;
 }
 
-#profile{
-   width:100px;
-   height:100px;
+#profile {
+	width: 100px;
+	height: 100px;
 }
 
-#introduce{
-    margin-top: 30px;
+#introduce {
+	margin-top: 30px;
 }
 
-#introduce > p{
-   border:1px solid black;
-   width:370px;
-   height:200px;
+#introduce>p {
+	border: 1px solid black;
+	width: 370px;
+	height: 200px;
 }
 
 #textBox {
-	text-align:center;
-    margin-top: 30px;
+	text-align: center;
+	margin-top: 30px;
 }
 
-#popupDiv {  /* 팝업창 css */
-    top : 0px;
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    display: none; 
-    background:#D8D8D8;
-   	border:none;
-    
-    }
-#textArea{
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:5px;
-}
-.popBtn{
-	margin-top:10px;
-		
-}
-#popSendbtn{
-	background:#0080FF;
-	color:white;
-	margin-right:15px;
-	height:30px;
-	width:80px;
-}
-#popCloseBtn{
-	background:#FFBF00;
-	color:white;
-	height:30px;
-	width:80px;
+#popupDiv { /* 팝업창 css */
+	top: 0px;
+	position: absolute;
+	width: 550px;
+	height: 550px;
+	display: none;
+	background: #D8D8D8;
+	border: none;
 }
 
-.applyButton{
-   margin-top:10px;
-   width:200px;
-   height:50px;
+#textArea {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
 }
+
+.popBtn {
+	margin-top: 10px;
+}
+
+#popSendbtn {
+	background: #0080FF;
+	color: white;
+	margin-right: 15px;
+	height: 30px;
+	width: 80px;
+}
+
+#popCloseBtn {
+	background: #FFBF00;
+	color: white;
+	height: 30px;
+	width: 80px;
+}
+
+.applyButton {
+	margin-top: 10px;
+	width: 200px;
+	height: 50px;
+}
+
 .likeOrAngry {
-	overflow:hidden;
+	overflow: hidden;
 }
+
 #nuri {
-	font-size:20px;
+	font-size: 20px;
 }
-#nuri p{
-	margin-left:20px;
-	text-align:left;
-	height:auto;
+
+#nuri p {
+	margin-left: 20px;
+	text-align: left;
+	height: auto;
 }
+
 #enterDiv {
-	margin-top:5px;
-	margin-bottom:5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 #enter {
 	color: #424242;
 	font-weight: 600;
-    border-radius: 4px;
-	background:#FFBF00;
+	border-radius: 4px;
+	background: #FFBF00;
 }
+
 #enter:hover {
 	color: #424242;
 	font-weight: 600;
-    border-radius: 4px;
-	background:#FFBF00;
+	border-radius: 4px;
+	background: #FFBF00;
 	opacity: 0.6;
 }
-img { 
-	max-width: 100%; 
-	height: auto; 
+
+img {
+	max-width: 100%;
+	height: auto;
 }
-.commentDiv input[type=text]{
-       border-radius: 3px;
-      margin-top:50px;
-       width:600px;
-       height:100px;
-      box-sizing: border-box;
-       border-style: solid;
-       border-color: rgb(241, 196, 15);
+
+.commentDiv input[type=text] {
+	border-radius: 3px;
+	margin-top: 50px;
+	width: 600px;
+	height: 100px;
+	box-sizing: border-box;
+	border-style: solid;
+	border-color: rgb(241, 196, 15);
 }
+
 .commentBtn {
-	width:100px;
-	height:100px;
+	width: 100px;
+	height: 100px;
 	background-color: #FFBF00; /* Green */
 	font-family: 'Song Myung', serif;
-    color: black;
-    border-radius: 3px;
-    font-size:20px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
 }
+
 .commentBtn:hover {
-	width:100px;
-	height:100px;
+	width: 100px;
+	height: 100px;
 	background-color: rgb(241, 196, 15); /* Green */
 	font-family: 'Song Myung', serif;
-    color: black;
-    border-radius: 3px;
-    font-size:20px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
-    opacity: 0.6;
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
+	opacity: 0.6;
 }
+
 .commentDiv {
-	width:800px;
+	width: 800px;
 }
-#commentSelectTable{
-	width:799px;
-	font-size:24px;
-	border-bottom:2px solid rgb(241, 196, 15);
+
+#commentSelectTable {
+	width: 799px;
+	font-size: 24px;
+	border-bottom: 2px solid rgb(241, 196, 15);
 }
-.commentSelectArea #commentSelectTable td{
-	font-size:24px;
-	border-bottom:2px solid rgb(241, 196, 15);
+
+.commentSelectArea #commentSelectTable td {
+	font-size: 24px;
+	border-bottom: 2px solid rgb(241, 196, 15);
 }
-#commentSelectTable tr{
-	font-size:24px;
+
+#commentSelectTable tr {
+	font-size: 24px;
 }
+
 .commentSelectArea #commentSelectArea {
-	width:500px;
-	overflow:hidden;
+	width: 500px;
+	overflow: hidden;
 }
+
 #trImage {
-	width:150px;
+	width: 150px;
 }
+
 .trNickName {
-	border-bottom:2px solid rgb(241, 196, 15);
+	border-bottom: 2px solid rgb(241, 196, 15);
 }
-#web-font-Nanum{
+
+#web-font-Nanum {
 	font-family: 'Song Myung', serif;
 }
+
 .update {
 	width: 705px;
 }
-.update button{
-	margin-top:10px;
-	width:120px;
-	height:40px;
+
+.update button {
+	margin-top: 10px;
+	width: 120px;
+	height: 40px;
 	background-color: #FFBF00; /* Green */
 	font-family: 'Song Myung', serif;
-    color: black;
-    border-radius: 3px;
-    font-size:20px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
 }
-.update button:hover{
-	margin-top:10px;
-	width:120px;
-	height:40px;
+
+.update button:hover {
+	margin-top: 10px;
+	width: 120px;
+	height: 40px;
 	background-color: #FFBF00; /* Green */
 	font-family: 'Song Myung', serif;
-    color: black;
-    border-radius: 3px;
-    font-size:20px;
-    border: 2px solid rgb(241, 196, 15); /* Green */
-    opacity: 0.6;
+	color: black;
+	border-radius: 3px;
+	font-size: 20px;
+	border: 2px solid rgb(241, 196, 15); /* Green */
+	opacity: 0.6;
 }
 
 #notice {
-    float: center;
-    display: inline-block;
-    font-size: 15px;
-    margin-left: 500px;
-    margin-bottom: 40px;
+	float: center;
+	display: inline-block;
+	font-size: 15px;
+	margin-left: 500px;
+	margin-bottom: 40px;
 }
- #map{
-	border: 2px solid rgb(241, 196, 15); /* Green */
-	margin-left:15px;
-} 
 
+#map {
+	border: 2px solid rgb(241, 196, 15); /* Green */
+	margin-left: 15px;
+}
 </style>
 </head>
 <body>
-	
-   <%@ include file="../common/logoAndLogbutton.jsp" %>
-   <%@ include file="../common/categorybar.jsp" %>
-   
-<%if(loginUser == null || loginUser != null){ %>
-<div class="content">
-	   <div class="leftBox">
-	   	<div class="images">
-	        <%= n.getContent() %>
-	   	</div>
-	   	
-	  	<% if(loginUser.getUserNumber() == Integer.parseInt(n.getOwnerNum())){ %>
-	  	    <form class="writeForm" action="<%=request.getContextPath()%>/requestNuriter.nu" method="post">
-	  	    	<input type="hidden" value='<%= n.getNuriNum() %>' name="nuriNum">
-	  	    	<input type="hidden" value='<%= n.getNuriTitle() %>' name="nuriTitle">
-	  	    	<input type="hidden" value='<%= n.getContent() %>' name="content">
-			  	<div class="update" align="right">
-			  		<button type="button" class="updateBtn">누리터 수정</button>
-			  	</div>
-		  	</form>
-	  	<% } %>
-	  	
-      	<div class="commentDiv">
-      		<input type="text" id="web-font" name="comment" class="comment">&nbsp;&nbsp;<button class="commentBtn">댓글 등록</button>
-      	</div>
-      	
-      	<br><hr><br>
-      	
-      	<div class="commentSelectArea">
+
+	<%@ include file="../common/logoAndLogbutton.jsp"%>
+	<%@ include file="../common/categorybar.jsp"%>
+
+	<%if(loginUser == null || loginUser != null){ %>
+	<div class="content">
+		<div class="leftBox">
+			<div class="images">
+				<%= n.getContent() %>
+			</div>
+
+			<% if(loginUser.getUserNumber() == Integer.parseInt(n.getOwnerNum())){ %>
+			<form class="writeForm"
+				action="<%=request.getContextPath()%>/requestNuriter.nu"
+				method="post">
+				<input type="hidden" value='<%= n.getNuriNum() %>' name="nuriNum">
+				<input type="hidden" value='<%= n.getNuriTitle() %>'
+					name="nuriTitle"> <input type="hidden"
+					value='<%= n.getContent() %>' name="content">
+				<div class="update" align="right">
+					<button type="button" class="updateBtn">누리터 수정</button>
+				</div>
+			</form>
+			<% } %>
+
+			<div class="commentDiv">
+				<input type="text" id="web-font" name="comment" class="comment">&nbsp;&nbsp;
+				<button class="commentBtn">댓글 등록</button>
+			</div>
+
+			<br>
+			<hr>
+			<br>
+
+			<div class="commentSelectArea">
 				<table id="commentSelectTable">
 				</table>
+			</div>
 		</div>
-   	   </div>
-                                      
-   <div class="rightBox">
-   	  <br>
-   	  
-      <div id="textBox" align="center">
-      	<font id="web-font-Nanum" size="5px"><%= n.getNuriTitle() %></font>
-      	<input type="hidden" value='
-      	<%=n.getNuriTitle()%>' id="nuriTitle" name="nuriTitle">
-      </div>
-      
-      <br><br>
-     <div id="info">
-     	
-     	<br>
-        
-        <div id="nuri">
-	        <p><font id="web-font-Nanum">누리장 : <%= n.getNickName() %></font></p>
-	        <p><font id="web-font-Nanum">누리장 신고 횟수 : <%= n.getReportCount() %> 회</font></p>
-	        <hr>
-	        <p><font id="web-font-Nanum">카테고리 : <%= n.getCategoryName() %></font></p>
-	        <hr>
-	        <p><font id="web-font-Nanum">누리터 활동상태: <%= n.getProgress() %></font></p>
-	        <p><font id="web-font-Nanum">시작일시: <%= n.getStartDate() %></font><br><font id="web-font-Nanum">종료일시: <%= n.getEndDate() %></font></p>
-	        <p><font id="web-font-Nanum">총 출석 횟수: <%= n.getAttendCount() %></font>
-	        <hr>
-	        <p><font id="web-font-Nanum">장소: <%= n.getPlace() %></font></p>
-	        <div id="map" style="width:420px;height:400px;"></div>
-			  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32a364f56c1e2fe3c30aa773daa80f7e&libraries=services"></script>
-			  <script>
+
+		<div class="rightBox">
+			<br>
+
+			<div id="textBox" align="center">
+				<font id="web-font-Nanum" size="5px"><%= n.getNuriTitle() %></font>
+				<input type="hidden" value='
+      	<%=n.getNuriTitle()%>'
+					id="nuriTitle" name="nuriTitle">
+			</div>
+
+			<br>
+			<br>
+			<div id="info">
+
+				<br>
+
+				<div id="nuri">
+					<p>
+						<font id="web-font-Nanum">누리장 : <%= n.getNickName() %></font>
+					</p>
+					<p>
+						<font id="web-font-Nanum">누리장 신고 횟수 : <%= n.getReportCount() %>
+							회
+						</font>
+					</p>
+					<hr>
+					<p>
+						<font id="web-font-Nanum">카테고리 : <%= n.getCategoryName() %></font>
+					</p>
+					<hr>
+					<p>
+						<font id="web-font-Nanum">누리터 활동상태: <%= n.getProgress() %></font>
+					</p>
+					<p>
+						<font id="web-font-Nanum">시작일시: <%= n.getStartDate() %></font><br>
+						<font id="web-font-Nanum">종료일시: <%= n.getEndDate() %></font>
+					</p>
+					<p>
+						<font id="web-font-Nanum">총 출석 횟수: <%= n.getAttendCount() %></font>
+					<hr>
+					<p>
+						<font id="web-font-Nanum">장소: <%= n.getPlace() %></font>
+					</p>
+					<div id="map" style="width: 420px; height: 400px;"></div>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=32a364f56c1e2fe3c30aa773daa80f7e&libraries=services"></script>
+					<script>
 			  var place = '<%= n.getPlace() %>';
 			  var fruits = place.split("|")[1];
 			  
@@ -449,6 +504,9 @@ img {
          	<button id="enter" onclick="choice();"><font id="web-font-Nanum" size="3px">누리터 신청하기</font></button>
          </div>
          <% } %>
+                                                                                     
+                                                                                     
+                                                                                     
          
          </div>
          <br><br>
@@ -616,26 +674,34 @@ $(function(){
             
          });
  });
-</script>  
-<script>
+</script>
+	<script>
 function choice(){
 	var answer = window.confirm("환불 후 재결제는 불가능합니다. 계속 진행하시겠습니까?");
+	var count = '<%= n.getEnterCount() %>';
+	var parsonnel ='<%= n.getPersonnel() %>';
+	
 	if(answer==true){
-  		if(<%=n.getPrice()%> != 0){
-    	 	cash();
-     	}else{
-    		var contextPath = '<%=request.getContextPath()%>';
-   			var pId = "imp_"+new Date().getTime() ;
-    		var userNum = '<%=loginUser.getUserNumber()%>';
-    		var nuriNum = '<%=n.getNuriNum()%>';
-    		var endDate ='<%=n.getEndDate()%>';
-			var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum="
+		if(parsonnel < count){
+			var answer2 = window.confirm("정원이 초과되어 신청이 불가합니다");
+			
+		}else{
+			if(<%=n.getPrice()%> != 0){
+    	 		cash();
+     		}else{
+    			var contextPath = '<%=request.getContextPath()%>';
+   				var pId = "imp_"+new Date().getTime() ;
+    			var userNum = '<%=loginUser.getUserNumber()%>';
+    			var nuriNum = '<%=n.getNuriNum()%>';
+    			var endDate ='<%=n.getEndDate()%>';
+				var loc = contextPath + '/payment.pms?imp=' + pId + "&userNum="
 						+ userNum + "&nuriNum=" + nuriNum + "&endDate="
 						+ endDate;
-				console.log(loc);
+					console.log(loc);
 
-				location.href = loc;
+					location.href = loc;
 			}
+		}
 	}else{
 		alert("신청이 취소되었습니다.");
 		}
@@ -643,8 +709,6 @@ function choice(){
 	
 
 	function cash() {
-		alert('전송');
-
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp43582013'); // 가맹점 식별 코드
 
@@ -677,7 +741,7 @@ function choice(){
           console.log(loc);
     
           location.href=loc;
-       
+       		alert(msg);
           /*m_redirect_url : // 결제 완료 후 보낼 컨트롤러의 메소드명 */
        } else { // 실패시
           var msg = '결제에 실패하였습니다.';
@@ -688,8 +752,12 @@ function choice(){
 	}
 
 </script>
-<% } %>
-<br><br><br><br><br>
-<%@ include file="../common/footer.jsp" %>
+	<% } %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
