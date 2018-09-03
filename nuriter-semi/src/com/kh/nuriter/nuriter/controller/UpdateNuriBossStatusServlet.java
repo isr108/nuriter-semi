@@ -29,13 +29,13 @@ public class UpdateNuriBossStatusServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("누리장 승인 받기 위한 서블릿 이동 완료!");
-		String num = request.getParameter("applyNum");
-		System.out.println(num);
+		/*String num = request.getParameter("applyNum");
+		System.out.println(num);*/
 		
 		String num2 = request.getParameter("userNum");
 		System.out.println(num2);
 		
-		int result = new NuriterService().updateNuribossStatus(num);
+		int result = new NuriterService().updateNuribossStatus(num2);
 		int result2 = new NuriterService().updateMemberGrade(num2);
 		
 		
