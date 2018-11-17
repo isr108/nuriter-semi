@@ -203,24 +203,23 @@ button:hover {
 								<th>이름</th>
 								<th>카테고리</th>
 								<th>승인</th>
-								<th>삭제</th>
+								<th>취소</th>
 							</tr>
 							<%
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
-								<td id="test1" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
-								<td id="test2" style="display:none;"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
+								<td id="tdApplyNum" style="display:none;"><input type="hidden" value="<%=nb.getApplyNum()%>"></td>
+								<td id="tdUserNum" style="display:none;"><input type="hidden" value="<%=nb.getUserNum()%>"></td>
 								<td><%=nb.getApplyDate()%></td>
 								<td><%=nb.getUserName()%></td>
 								<td><%=nb.getCategoryNum()%></td>
-								<td id="test4"><div style="color:#5AAEFF; text-align:center;">승인하기</div></td>
-								<td id="test3"><div style="color:#FF5E00;">삭제하기</div></td>
+								<td id="applyBtn"><div style="color:#5AAEFF; text-align:center;">승인하기</div></td>
+								<td id="cancelBtn"><div style="color:#FF5E00;">취소하기</div></td>
 							</tr>
 							<%
 								}
 							%>
-							
 						</table>
 						
 						<script>
@@ -230,34 +229,27 @@ button:hover {
 							}).mouseout(function(){
 								$(this).parent().css({"background":"white"});
 							}).click(function(){
-								var num = $(this).parent().children("#test1").children("input").val();
-								/* alert("야 !!! " + num); */
+								var num = $(this).parent().children("#tdApplyNum").children("input").val();
 								location.href="<%=request.getContextPath()%>/selectOneNuriboss.nu?num=" + num;
 							});
 							
-							$(".listBox #test4").mouseenter(function(){
+							$(".listBox #applyBtn").mouseenter(function(){
 								$(this).css({"background":"#dde8fc"});
 							}).mouseout(function(){
 								$(this).css({"background":"white"});
 							}).click(function(){
-								var applyNum = $(this).parent().children("#test1").children("input").val();
-								var userNum = $(this).parent().children("#test2").children("input").val();
-								/* console.log(applyNum);
-								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum); */
+								var applyNum = $(this).parent().children("#tdApplyNum").children("input").val();
+								var userNum = $(this).parent().children("#tdUserNum").children("input").val();
 								location.href="<%=request.getContextPath()%>/updateNuribossStatus.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							
-							$(".listBox #test3").mouseenter(function(){
+							$(".listBox #cancelBtn").mouseenter(function(){
 								$(this).css({"background":"#fed8cd"});
 							}).mouseout(function(){
 								$(this).css({"background":"white"});
 							}).click(function(){
-								var applyNum = $(this).parent().children("#test1").children("input").val();
-								var userNum = $(this).parent().children("#test2").children("input").val();
-								/* console.log(applyNum);
-								console.log(userNum);
-								alert("신청번호 : " + applyNum + " 유저번호 : " + userNum); */
+								var applyNum = $(this).parent().children("#tdApplyNum").children("input").val();
+								var userNum = $(this).parent().children("#tdUserNum").children("input").val();
 								location.href="<%=request.getContextPath()%>/deleteNuriboss.nu?applyNum="+applyNum+"&userNum="+userNum;
 							});
 							

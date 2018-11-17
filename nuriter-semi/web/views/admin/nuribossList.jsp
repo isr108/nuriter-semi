@@ -5,12 +5,20 @@
 	ArrayList<Nuriboss> bossList = (ArrayList<Nuriboss>) request.getAttribute("bossList");
 	ArrayList<Nuriboss> bossList2 = (ArrayList<Nuriboss>) request.getAttribute("bossList2");
 	
+	
 	PageInfo pi = (PageInfo) request.getAttribute("pi");
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
+	int listCount = 0;
+	int currentPage = 0;
+	int maxPage = 0;
+	int startPage = 0;
+	int endPage = 0;
+	if(pi != null){
+		listCount = pi.getListCount();
+		currentPage = pi.getCurrentPage();
+		maxPage = pi.getMaxPage();
+		startPage = pi.getStartPage();
+		endPage = pi.getEndPage();
+	}
 	
 	PageInfo pi2 = (PageInfo) request.getAttribute("pi2");
 	int listCount2 = pi2.getListCount();
@@ -183,12 +191,13 @@ button:hover {
 						<br>
 						<table border="2" width="100%" id="web-font" class="listBox" align="center">
 							<tr>
-								<th width="400px">신청일자</th>
-								<th width="400px">이름</th>
-								<th width="400px">카테고리</th>
-								<th width="400px">활동 계획서</th>
+								<th width="400px" style="text-align:center;">신청일자</th>
+								<th width="400px" style="text-align:center;">이름</th>
+								<th width="400px" style="text-align:center;">카테고리</th>
+								<th width="400px" style="text-align:center;">활동 계획서</th>
 							</tr>
 							<%
+								if(bossList != null) {
 								for (Nuriboss nb : bossList) {
 							%>
 							<tr>
@@ -202,7 +211,11 @@ button:hover {
 							<%
 								}
 							%>
-
+							<%}else{ %>
+								<tr>
+									<td colspan="4" style="text-align:center;">신청 회원이 없습니다.</td>
+								</tr>
+							<%} %>
 
 						</table>
 
@@ -226,6 +239,8 @@ button:hover {
 
 
 						<!-- 페이지처리 -->
+						
+						<% if(pi != null){ %>
 						<div class="pagination" align="center">
 
 							<br> <a
@@ -262,7 +277,7 @@ button:hover {
 							%> <a
 								onclick="location.href='<%=request.getContextPath()%>/selectNuribossList.nu?currentPage=<%=maxPage%>'">>></a>
 						</div>
-
+						<% } %>
 
 
 						<div class="pagination2" align="center">
@@ -282,10 +297,10 @@ button:hover {
 						<br>
 						<table border="2" id="web-font" class="listBox2">
 							<tr>
-								<th width="400px">승인일자</th>
-								<th width="400px">이름</th>
-								<th width="400px">카테고리</th>
-								<th width="400px">활동 계획서</th>
+								<th width="400px" style="text-align:center;">승인일자</th>
+								<th width="400px" style="text-align:center;">이름</th>
+								<th width="400px" style="text-align:center;">카테고리</th>
+								<th width="400px" style="text-align:center;">활동 계획서</th>
 							</tr>
 							<%
 								for (Nuriboss nb2 : bossList2) {

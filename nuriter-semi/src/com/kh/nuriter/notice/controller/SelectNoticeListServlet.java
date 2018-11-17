@@ -34,26 +34,23 @@ public class SelectNoticeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이징처리
-		int currentPage;
-		int limit;
-		int maxPage;
-		int startPage;
-		int endPage;
+		int currentPage;	// 현재 페이지 번호
+		int limit;			// 한 페이지에 나타낼 게시글 수
+		int maxPage;		// 가장 마지막 페이지
+		int startPage;		// 현재 페이지에서 첫번째 페이지 번호
+		int endPage;		// 현재 페이지에서 마지막 페이지 번호
 		
 		currentPage = 1;
 		
 		if(request.getParameter("currentPage") != null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+		//공지사항 개수 조회
 		int listCount = new NoticeService().getListCount();
 		
 		limit = 5;
-		
 		maxPage = (int)((double)listCount / limit + 0.9) ;
-		
 		startPage = (((int)((double)currentPage / limit + 0.9)) -1) * limit + 1;
-		
 		endPage = startPage + limit - 1;
 		
 		if(maxPage < endPage){
@@ -62,9 +59,8 @@ public class SelectNoticeListServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
+		//공지사항 목록 조회
 		ArrayList<Notice> list = new NoticeService().selectList(currentPage, limit);
-		System.out.println("hi");
-		//System.out.println(list);
 
 		String page = "";
 

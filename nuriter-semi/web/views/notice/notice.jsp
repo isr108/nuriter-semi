@@ -200,7 +200,7 @@
    				<% for(Notice n : list){ %>
 				<tr>
 					<input type="hidden" value="<%= n.getbNumber()%>">
-					<td><%= n.getbNumber() %></td>
+					<td><%= n.getbRownum() %></td>
 					<td><%= n.getbTitle() %></td>
 					<td><%= n.getUserNumber() %></td>
 					<td><%= n.getbCount() %></td>

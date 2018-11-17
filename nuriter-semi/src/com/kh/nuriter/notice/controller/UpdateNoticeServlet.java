@@ -33,8 +33,10 @@ public class UpdateNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String num = request.getParameter("num");
 		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
 		String date = request.getParameter("date");
+		
+		System.out.println("공지사항 수정한 작성일(date) : " + date);
+		
 		String content = request.getParameter("content");
 		
 		java.sql.Date day = null;
@@ -52,6 +54,8 @@ public class UpdateNoticeServlet extends HttpServlet {
 			day = new java.sql.Date(new GregorianCalendar().getTimeInMillis());
 		}
 		
+		System.out.println("공지사항 수정한 작성일(day) : " + day);
+		
 		Notice n = new Notice();
 		
 		n.setbNumber(num);
@@ -59,8 +63,7 @@ public class UpdateNoticeServlet extends HttpServlet {
 		n.setbDate(day);
 		n.setbContent(content);
 
-		System.out.println(n);
-		System.out.println("아왜안되냐고오오오오");
+		System.out.println("수정된 공지사항 정보 : " + n);
 		
 		int result = new NoticeService().updateNotice(n);
 		

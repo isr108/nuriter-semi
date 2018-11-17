@@ -92,7 +92,7 @@
 
 .pagination {
    width: 400px;
-   height: auto;
+   height: 100px;
    overflow: hidden; /* 
        border-style: solid;
        border-color: hotpink; */
@@ -162,12 +162,12 @@
                      style="align: center;">
                      <tr>
                         <th style="display: none;"></th>
-                        <th>회원이름</th>
-                        <th>누리터명</th>
-                        <th>은행명</th>
-                        <th>계좌번호</th>
-                        <th>환불될 가격</th>
-                        <th>환불승인</th>
+                        <th style="text-align:center;">회원이름</th>
+                        <th style="text-align:center;">누리터명</th>
+                        <th style="text-align:center;">은행명</th>
+                        <th style="text-align:center;">계좌번호</th>
+                        <th style="text-align:center;">환불될 가격</th>
+                        <th style="text-align:center;">환불승인</th>
                      </tr>
                      <%
                         for (Member m : refundList) {
@@ -185,7 +185,6 @@
                      <%
                         }
                      %>
-
                   </table>
 
                   <script>
@@ -233,12 +232,12 @@
                   <table border="2" id="web-font" class="listBox2">
                      <tr>
                         <th style="display: none;"></th>
-                        <th>회원이름</th>
-                        <th>누리터명</th>
-                        <th>은행명</th>
-                        <th>계좌번호</th>
-                        <th>환불된 가격</th>
-                        <th>환불날짜</th>
+                        <th style="text-align:center;">회원이름</th>
+                        <th style="text-align:center;">누리터명</th>
+                        <th style="text-align:center;">은행명</th>
+                        <th style="text-align:center;">계좌번호</th>
+                        <th style="text-align:center;">환불된 가격</th>
+                        <th style="text-align:center;">환불날짜</th>
                      </tr>
                      <%
                         for (Member m : refundList2) {
@@ -256,16 +255,8 @@
                      <%
                         }
                      %>
-
                   </table>
 
-                  <script>
-                  $(function(){
-                     
-                     
-                  });
-                           
-                  </script>
 
                   <!-- 페이지처리 -->
                   <div class="pagination" align="center">

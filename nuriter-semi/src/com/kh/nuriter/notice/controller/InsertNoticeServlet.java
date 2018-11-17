@@ -32,12 +32,12 @@ public class InsertNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("공지사항 작성 후 서블릿 이동");
 		
 		String title = request.getParameter("title");
 		String writer = request.getParameter("writer");
 		String userNumber = request.getParameter("userNumber");
 		
-		System.out.println("hi");
 		System.out.println(writer);
 		System.out.println(userNumber);
 		
@@ -55,6 +55,8 @@ public class InsertNoticeServlet extends HttpServlet {
 			}
 			
 			day = new java.sql.Date(new GregorianCalendar(arr[0], arr[1]-1, arr[2]).getTimeInMillis());
+		}else{
+			System.out.println("날짜를 입력해 주세요!");
 		}
 		
 		Notice n = new Notice();

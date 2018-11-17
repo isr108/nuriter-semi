@@ -33,6 +33,9 @@ public class SelectNuriBossListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("누리보스 목록 불러오는 서블릿 이동 완료!");
+		
 		//페이징처리
 		int currentPage;
 		int limit;
@@ -88,23 +91,18 @@ public class SelectNuriBossListServlet extends HttpServlet {
 		ArrayList<Nuriboss> bossList = new NuriterService().selectNuribossList(currentPage, limit);
 		ArrayList<Nuriboss> bossList2 = new NuriterService().selectNuribossList2(currentPage2, limit);
 
-		System.out.println("누리보스 목록 불러오는 서블릿 이동 완료!");
-		System.out.println("ssss");
-		System.out.println(bossList);
 		String page = "";
 
-		if(bossList != null){
-			
-			page="views/admin/nuribossList.jsp";
+		if(bossList.size() != 0){
 			request.setAttribute("bossList", bossList);
-			request.setAttribute("bossList2", bossList2);
 			request.setAttribute("pi", pi);
-			request.setAttribute("pi2", pi2);
-		}else{
-			page="views/common/errorPage.jsp";
-			request.setAttribute("msg", "누리장 조회 실패!");
 		}
-
+		page="views/admin/nuribossList.jsp";
+		request.setAttribute("bossList2", bossList2);
+		request.setAttribute("pi2", pi2);
+		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}

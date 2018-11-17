@@ -908,15 +908,14 @@ public class MemberDao {
 	      
 	      String query = prop.getProperty("selectRefundMember");
 	      
-	      
 	      try {
 	         pstmt = con.prepareStatement(query);
 	         
 	         int startRow = (currentPage - 1) * limit + 1;
-	            int endRow = startRow + limit - 1;
+	         int endRow = startRow + limit - 1;
 	            
-	            pstmt.setInt(1, startRow);
-	            pstmt.setInt(2, endRow);
+	         pstmt.setInt(1, startRow);
+	         pstmt.setInt(2, endRow);
 	         
 	         rset = pstmt.executeQuery();
 	         
@@ -938,15 +937,12 @@ public class MemberDao {
 	            
 	            refundList.add(m);
 	         }
-	         
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      } finally {
 	         close(pstmt);
 	         close(rset);
 	      }
-	      System.out.println(refundList);
-	      
 	      return refundList;
 	   }
 

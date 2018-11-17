@@ -36,17 +36,12 @@ public class NoticeDao {
 		Notice n = null;
 		
 		String query = prop.getProperty("selectList");
-		String sort="공지사항";
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			
-			/*pstmt.setString(1, sort);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);*/
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -58,6 +53,7 @@ public class NoticeDao {
 			while(rset.next()){
 				n = new Notice();
 				
+				n.setbRownum(rset.getString("rnum"));
 				n.setbNumber(rset.getString("board_number"));
 				n.setbTitle(rset.getString("board_title"));
 				n.setbContent(rset.getString("board_content"));
@@ -67,18 +63,15 @@ public class NoticeDao {
 				
 				list.add(n);
 			}
-			System.out.println(list);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
-		
 		return list;
 	}
+	
 	public int insertNotice(Connection con, Notice n) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -139,7 +132,6 @@ public class NoticeDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, num);
-			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
@@ -205,9 +197,9 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		
-		
 		return result;
 	}
+	
 	public int deleteNotice(Connection con, String num) {
 		PreparedStatement pstmt = null;
 		int result = 0;

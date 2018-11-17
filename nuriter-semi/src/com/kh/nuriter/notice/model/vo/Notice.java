@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Notice {
 	
 	private String bNumber;
+	private String bRownum;
 	private String bTitle;
 	private String bContent;
 	private String userNumber;
@@ -16,10 +17,11 @@ public class Notice {
 	
 	public Notice(){}
 
-	public Notice(String bNumber, String bTitle, String bContent, String userNumber, int bCount, Date bDate,
-			String bSort, String nuriNumber, String nuriRegister) {
+	public Notice(String bNumber, String bRownum, String bTitle, String bContent, String userNumber, int bCount,
+			Date bDate, String bSort, String nuriNumber, String nuriRegister) {
 		super();
 		this.bNumber = bNumber;
+		this.bRownum = bRownum;
 		this.bTitle = bTitle;
 		this.bContent = bContent;
 		this.userNumber = userNumber;
@@ -36,6 +38,14 @@ public class Notice {
 
 	public void setbNumber(String bNumber) {
 		this.bNumber = bNumber;
+	}
+
+	public String getbRownum() {
+		return bRownum;
+	}
+
+	public void setbRownum(String bRownum) {
+		this.bRownum = bRownum;
 	}
 
 	public String getbTitle() {
@@ -104,9 +114,11 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return "Notice [bNumber=" + bNumber + ", bTitle=" + bTitle + ", bContent=" + bContent + ", userNumber="
-				+ userNumber + ", bCount=" + bCount + ", bDate=" + bDate + ", bSort=" + bSort + ", nuriNumber="
-				+ nuriNumber + ", nuriRegister=" + nuriRegister + "]";
+		return "Notice [bNumber=" + bNumber + ", bRownum=" + bRownum + ", bTitle=" + bTitle + ", bContent=" + bContent
+				+ ", userNumber=" + userNumber + ", bCount=" + bCount + ", bDate=" + bDate + ", bSort=" + bSort
+				+ ", nuriNumber=" + nuriNumber + ", nuriRegister=" + nuriRegister + "]";
 	}
+
+	
 	
 }

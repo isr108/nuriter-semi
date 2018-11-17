@@ -505,45 +505,45 @@
        <tr>
          <td>
 
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C1">
+         <button class="buttonLanguage" value="C1">
 
          	<img src="images/board/language.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C2">
+         <button class="buttonLanguage" value="C2">
          	<img src="images/board/bang.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C3">
+         <button class="buttonLanguage" value="C3">
          	<img src="images/board/cooking.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C4">
+         <button class="buttonLanguage" value="C4">
          	<img src="images/board/sports.png" width="80" height="80">
          </button>
          </td>
       </tr>
       <tr>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C5">
+         <button class="buttonLanguage" value="C5">
          	<img src="images/board/music.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C6">
+         <button class="buttonLanguage" value="C6">
          	<img src="images/board/compu.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C7">
+         <button class="buttonLanguage" value="C7">
          	<img src="images/board/cul.png" width="80" height="80">
          </button>
          </td>
          <td>
-         <button class="buttonLanguage" onclick="goNuriterList();" value="C8">
+         <button class="buttonLanguage" value="C8">
          	<img src="images/board/gita.png" width="80" height="80">
          </button>
          </td>

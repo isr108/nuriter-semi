@@ -127,8 +127,7 @@
  			<br>
 			<div align="center" id="btnBox" class="web-font">
 				<button onclick="location.href='<%=request.getContextPath() %>/selectList.no'">이전</button>&nbsp;
-				<% if(loginUser != null 
-					&& loginUser.getUserEmail().equals("admin")){ %>
+				<% if(loginUser != null && loginUser.getUserEmail().equals("admin")){ %>
 					<button onclick="location.href='<%=request.getContextPath()%>/selectNotice.no?num=<%=n.getbNumber()%>'">수정하기</button>
 				<% } %>
 			</div>

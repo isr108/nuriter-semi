@@ -52,7 +52,6 @@ public class NoticeService {
 		Connection con = getConnection();
 		
 		int result = 0;
-		
 		Notice n = new NoticeDao().selectOne(con, num);
 		
 		if(n != null){
@@ -64,7 +63,6 @@ public class NoticeService {
 			}
 		}
 		close(con);
-		
 		return n;
 	}
 

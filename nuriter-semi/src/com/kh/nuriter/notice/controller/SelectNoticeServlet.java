@@ -31,9 +31,10 @@ public class SelectNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("공지사항 수정하는 서블릿");
+		
 		String num = request.getParameter("num");
 		Notice n = new NoticeService().selectOne(num);
-		System.out.println("selectNoticeServlet호출됨");
 		System.out.println(n);
 		
 		String page = "";
